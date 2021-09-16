@@ -15,6 +15,7 @@ export default function Things() {
     <div>
       <h1>Things</h1>
       <Text>Styled Test</Text>
+      <p>{JSON.stringify(things)}</p>
     </div>
   );
 }

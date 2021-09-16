@@ -1,21 +1,16 @@
 import React, { useEffect } from "react";
-import axios from 'axios';
 import styled from 'styled-components'
+import useAxiosOnMount from "../hooks/useAxiosOnMount";
+import ErrorMessage from "../components/ErrorMessage";
+import SemanticLoader from "../components/SemanticLoader";
 
 export default function Things() {
 
-    useEffect(()=>{
-        getThings()
-    }, [])
+  const { data:things, error, loading } = useAxiosOnMount('/api/things')
 
-    const getThings = async () => {
-        try {
-            let res = await axios.get("/api/things")
-            console.log(res.data)
-        }catch (err){
+  if(error) return <ErrorMessage error={error} header={"Did not load!"} />
+  if(loading) return <SemanticLoader />
 
-        }
-    }
   return (
     <div>
       <h1>Things</h1>

@@ -50,7 +50,7 @@ const Navbar = (props) => {
       </Link>
       <Menu.Menu position="right">{rightNavItems()}</Menu.Menu>
     </Menu>
-  )
+  );
 }
 
 export default withRouter(Navbar)

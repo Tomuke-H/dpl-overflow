@@ -1,17 +1,20 @@
 import React, { useContext, useState } from 'react'
+import { useHistory } from 'react-router';
 import { Button, Form } from 'semantic-ui-react';
 import { AuthContext } from '../providers/AuthProvider';
 
 const Register = () => {
     const {handleRegister} = useContext(AuthContext);
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [passwordConfirmation, setPasswordConfirmation] = useState('')
+    const [email, setEmail] = useState('test@test.com')
+    const [password, setPassword] = useState('123456')
+    const [passwordConfirmation, setPasswordConfirmation] = useState('123456')
+    const history = useHistory();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        handleRegister({email, password})
+        handleRegister({email, password}, history)
     }
+
     return (
         <Form onSubmit={handleSubmit}>
             <Form.Input 

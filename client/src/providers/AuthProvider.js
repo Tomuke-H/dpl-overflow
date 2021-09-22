@@ -6,14 +6,36 @@ export const AuthContext = React.createContext();
 const AuthProvider = (props) => {
     const [user, setUser] = useState(null);
 
-    const handleRegister = (user) => {};
+    const handleRegister = async (user, history) => {
+        try {
+            let res = await axios.post('/api/auth', user)
+            setUser(res.data.data)
+            history.push('/')
+        }catch(err){
+            alert('register is broke! check console')
+            console.log(err)
+        }
+    };
 
-    const handleLogin = (users) => {};
+    const handleLogin = async (user, history) => {
+        try{
+            let res = await axios.post('/api/auth/sign_in', user)
+            setUser(res.data.data)
+            history.push('/things')
+        }catch (err) {
+            alert('cannot login! is broke!')
+            console.log(err)
+        }
+    };
 
-    const handleLogout = () =>{};
+    const handleLogout = (history) =>{
+        setUser(null)
+        localStorage.removeItem('access-token')
+        history.push('/login')
+    };
     
     return (
-        <AuthContext.Provider value={{user, handleRegister, handleLogin, handleLogout}}>
+        <AuthContext.Provider value={{user, handleRegister, handleLogin, handleLogout, authenticated: user ? true : false}}>
             {props.children}
         </AuthContext.Provider>
     );

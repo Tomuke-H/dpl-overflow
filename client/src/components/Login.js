@@ -15,12 +15,12 @@ const Login = (props) => {
         <Form onSubmit={handleSubmit}>
             <Form.Input 
                 value={email}
-                label="email"
+                label="Email"
                 onChange={(e) => setEmail(e.target.value)}
             />
             <Form.Input 
                 value={password}
-                label="password"
+                label="Password"
                 onChange={(e) => setPassword(e.target.value)}
             />
             <Button>Login</Button>

@@ -8,6 +8,7 @@ import Things from './pages/Things';
 import ComponentDemo from './pages/ComponentDemo';
 import Login from './components/Login';
 import Register from './components/Register';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
       <Container>
         <Switch>
           <Route exact path='/' component={Home}/>
-          <Route exact path='/things' component={Things}/>
+          <ProtectedRoute exact path='/things' component={Things}/>
           <Route exact path='/components' component={ComponentDemo}/>
           <Route exact path='/login' component={Login}/>
           <Route exact path='/register' component={Register}/>

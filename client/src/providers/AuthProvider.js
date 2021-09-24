@@ -5,15 +5,31 @@ export const AuthContext = React.createContext();
 
 const AuthProvider = (props) => {
     const [user, setUser] = useState(null);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false)
+
+    const wait = (ms) => {
+        return new Promise((res, rej) => {
+          setTimeout(() => {
+            res("yo");
+          }, ms);
+        });
+      };
 
     const handleRegister = async (user, history) => {
         try {
+            setError(null)
+            setLoading(true)
+            // for testing
+            await wait(3000)
             let res = await axios.post('/api/auth', user)
             setUser(res.data.data)
             history.push('/')
         }catch(err){
-            alert('register is broke! check console')
+            setError(err.response.data.errors.full_messages ? err.response.data.errors.full_messages : err.response.data)
             console.log(err)
+        }finally{
+            setLoading(false)
         }
     };
 
@@ -23,7 +39,7 @@ const AuthProvider = (props) => {
             setUser(res.data.data)
             history.push('/things')
         }catch (err) {
-            alert('cannot login! is broke!')
+            setError(err)
             console.log(err)
         }
     };
@@ -35,7 +51,17 @@ const AuthProvider = (props) => {
     };
     
     return (
-        <AuthContext.Provider value={{user, setUser, handleRegister, handleLogin, handleLogout, authenticated: user ? true : false}}>
+        <AuthContext.Provider value={{
+            user, 
+            error, 
+            setError, 
+            setUser, 
+            handleRegister, 
+            handleLogin, 
+            handleLogout, 
+            loading,
+            authenticated: user ? true : false
+        }}>
             {props.children}
         </AuthContext.Provider>
     );

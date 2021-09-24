@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Navbar from './components/Navbar';
 import { Container } from 'semantic-ui-react';
@@ -10,6 +9,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import ProtectedRoute from './components/ProtectedRoute';
 import FetchUser from './components/FetchUser';
+import EditUser from './components/EditUser';
 
 function App() {
   return (
@@ -23,6 +23,7 @@ function App() {
             <ProtectedRoute exact path='/components' component={ComponentDemo}/>
             <Route exact path='/login' component={Login}/>
             <Route exact path='/register' component={Register}/>
+            <ProtectedRoute exact path='/edit_user' component={EditUser}/>
             <Route component={()=><p>react 404 path not found</p>} />
           </Switch>
         </Container>

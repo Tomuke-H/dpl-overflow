@@ -12,7 +12,14 @@ const Navbar = (props) => {
   const rightNavItems = () =>{
     if(user){
       return (
+        <>
+        <Link to='/edit_user'>
+          <Menu.Item active={location.pathname == '/edit_user'} >
+            Edit User
+          </Menu.Item >
+        </Link>
         <Menu.Item onClick={()=> handleLogout(history)}>Logout</Menu.Item>
+        </>
       ) ;
     };
     return (

@@ -7,5 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require 'faker'
+User.destroy_all
+User.create(email:'test@test.com', password:123456, name:'Tester')
+
 Thing.create(name: Faker::Company.name)
 Thing.create(name: Faker::Company.name)

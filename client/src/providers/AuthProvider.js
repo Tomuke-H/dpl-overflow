@@ -26,12 +26,29 @@ const AuthProvider = (props) => {
             setUser(res.data.data)
             history.push('/')
         }catch(err){
-            setError(err.response.data.errors.full_messages ? err.response.data.errors.full_messages : err.response.data)
+            setError(err.response.data.errors ? err.response.data.errors : err.response.data)
             console.log(err)
         }finally{
             setLoading(false)
         }
     };
+
+    const handleUserUpdate = async (user, history) => {
+        try {
+            setError(null)
+            setLoading(true)
+            // for testing
+            await wait(3000)
+            let res = await axios.put('/api/auth', user)
+            setUser(res.data.data)
+            history.push('/')
+        }catch(err){
+            setError(err.response.data.errors ? err.response.data.errors : err.response.data)
+            console.log(err)
+        }finally{
+            setLoading(false)
+        }
+    }
 
     const handleLogin = async (user, history) => {
         try{
@@ -59,6 +76,7 @@ const AuthProvider = (props) => {
             handleRegister, 
             handleLogin, 
             handleLogout, 
+            handleUserUpdate,
             loading,
             authenticated: user ? true : false
         }}>

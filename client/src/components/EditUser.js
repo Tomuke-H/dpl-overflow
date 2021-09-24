@@ -4,28 +4,22 @@ import { Button, Form } from 'semantic-ui-react';
 import { AuthContext } from '../providers/AuthProvider';
 import ErrorMessage from './ErrorMessage';
 
-const Register = () => {
-    const {handleRegister, error, loading} = useContext(AuthContext);
-    const [email, setEmail] = useState('test@test.com')
-    const [name, setName] = useState('Tester')
-    const [password, setPassword] = useState('123456')
-    const [passwordConfirmation, setPasswordConfirmation] = useState('123456')
+const EditUser = () => {
+    const {handleUserUpdate, error, loading, user} = useContext(AuthContext);
+    const [name, setName] = useState(user.name)
+    const [password, setPassword] = useState('')
+    const [passwordConfirmation, setPasswordConfirmation] = useState('')
     const history = useHistory();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        handleRegister({email, password, name}, history)
+        handleUserUpdate({password, name}, history)
     }
 
     return (
         <div>
-            {error && <ErrorMessage header="Could not Register" error={error}/>}
+            {error && <ErrorMessage header="Could not Update" error={error}/>}
             <Form onSubmit={handleSubmit}>
-                <Form.Input 
-                    value={email}
-                    label="Email"
-                    onChange={(e) => setEmail(e.target.value)}
-                    />
                 <Form.Input 
                     value={name}
                     label="Name"
@@ -33,18 +27,18 @@ const Register = () => {
                     />
                 <Form.Input 
                     value={password}
-                    label="Password"
+                    label="New Password"
                     onChange={(e) => setPassword(e.target.value)}
                     />
                 <Form.Input 
                     value={passwordConfirmation}
-                    label="Confirm Password"
+                    label="Confirm New Password"
                     onChange={(e) => setPasswordConfirmation(e.target.value)}
                     />
-                <Button loading={loading} disabled={loading}>Register</Button>
+                <Button loading={loading} disabled={loading}>Update</Button>
             </Form>
         </div>
     );
 }
 
-export default Register;
+export default EditUser;

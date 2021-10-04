@@ -1,8 +1,7 @@
 import React, { useContext, useState } from 'react'
+import { Form, Button } from 'react-bootstrap';
 import { useHistory } from 'react-router';
-import { Button, Form } from 'semantic-ui-react';
 import { AuthContext } from '../providers/AuthProvider';
-import ErrorMessage from './ErrorMessage';
 
 const Register = () => {
     const {handleRegister, error, loading} = useContext(AuthContext);
@@ -19,24 +18,23 @@ const Register = () => {
 
     return (
         <div>
-            {error && <ErrorMessage header="Could not Register" error={error}/>}
             <Form onSubmit={handleSubmit}>
-                <Form.Input 
+                <Form.Control 
                     value={email}
                     label="Email"
                     onChange={(e) => setEmail(e.target.value)}
                     />
-                <Form.Input 
+                <Form.Control
                     value={name}
                     label="Name"
                     onChange={(e) => setName(e.target.value)}
                     />
-                <Form.Input 
+                <Form.Control 
                     value={password}
                     label="Password"
                     onChange={(e) => setPassword(e.target.value)}
                     />
-                <Form.Input 
+                <Form.Control 
                     value={passwordConfirmation}
                     label="Confirm Password"
                     onChange={(e) => setPasswordConfirmation(e.target.value)}

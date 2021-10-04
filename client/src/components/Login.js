@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
+import { Form, Button } from 'react-bootstrap';
 import { useHistory } from 'react-router';
-import { Button, Form, Input } from 'semantic-ui-react';
 import { AuthContext } from '../providers/AuthProvider'
 
 const Login = (props) => {
@@ -15,12 +15,12 @@ const Login = (props) => {
     }
     return (
         <Form onSubmit={handleSubmit}>
-            <Form.Input 
+            <Form.Control
                 value={email}
                 label="Email"
                 onChange={(e) => setEmail(e.target.value)}
             />
-            <Form.Input 
+            <Form.Control
                 value={password}
                 label="Password"
                 onChange={(e) => setPassword(e.target.value)}

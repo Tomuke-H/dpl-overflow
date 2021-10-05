@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { Button } from 'react-bootstrap'
 
 const Question = ({props}) => {
   const [question, setQuestion] = useState(null)
@@ -17,6 +18,15 @@ const Question = ({props}) => {
     getQuestion()
   },[])
 
+  const deleteQuestion = async (id) => {
+    try{
+      let res = await axios.delete(`/api/questions/${id}`)
+      setQuestion(null)
+    }catch (err) {
+      console.log(err)
+    }
+  }
+
   const renderQuestion = () => {
     if(!question){
       return(
@@ -27,6 +37,7 @@ const Question = ({props}) => {
       <div>
         <h2>{question.title}</h2>
         <h2>{question.body}</h2>
+        <Button type="submit" onClick={()=>deleteQuestion(question.id)}>Delete</Button>
       </div>
     )
   }

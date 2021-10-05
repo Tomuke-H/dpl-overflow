@@ -25,14 +25,14 @@ const OurNavbar = (props) => {
     return (
       <>
         <Link to='/login'>
-          <Nav.Link>
+          <Link>
             Login
-          </Nav.Link >
+          </Link >
         </Link>
         <Link to='/register'>
-          <Nav.Link>
+          <Link>
             Register
-          </Nav.Link >
+          </Link >
         </Link>
       </>
     )
@@ -45,6 +45,9 @@ const OurNavbar = (props) => {
       </Link >
       <Link to='/test_page'>
           Test Page
+      </Link>
+      <Link to='/user'>
+        Profile
       </Link>
       <Navbar>{rightNavItems()}</Navbar>
     </Navbar>

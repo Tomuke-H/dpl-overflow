@@ -24,11 +24,6 @@ const Register = () => {
                     label="Email"
                     onChange={(e) => setEmail(e.target.value)}
                     />
-                <Form.Control
-                    value={name}
-                    label="Name"
-                    onChange={(e) => setName(e.target.value)}
-                    />
                 <Form.Control 
                     value={password}
                     label="Password"
@@ -39,7 +34,7 @@ const Register = () => {
                     label="Confirm Password"
                     onChange={(e) => setPasswordConfirmation(e.target.value)}
                     />
-                <Button loading={loading} disabled={loading}>Register</Button>
+                <Button type="submit">Register</Button>
             </Form>
         </div>
     );

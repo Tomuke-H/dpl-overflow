@@ -1,30 +1,18 @@
-import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../providers/AuthProvider";
+import React from "react"
+import Comments from "./Comments"
 
-// I anticipate that props passed into this file should/will be answer and user
+const Comment = ({comments, id, body, answer, user, deleteComment}) => {
 
-const Comment = () => {
-  const [comments, setComments] = useState([])
-  const {user} = useContext(AuthContext)
-
-  useEffect(() => {
-    getComments()
-  }, [])
-
-  const getComments = async () => {
-    try{
-      let res = await axios.get(`/api/comments/`)
-      console.log("comments:", res.data)
-    } catch(error) {
-
-    }
-  }
-
-  return (
-    <>
-    </>
+  return(
+    <div style={{margin: "66px"}}>
+{/* <p>{answer.body}</p> */}
+<h6>{user.name}</h6>
+<p>{body}</p>
+<button onClick={()=>deleteComment(id)}>Delete Comment</button> 
+</div>
   )
 }
+
+
 
 export default Comment

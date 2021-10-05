@@ -23,10 +23,6 @@ function App() {
             <Route exact path='/test_page' component={TestPage}/>
             <Route exact path='/login' component={Login}/>
             <Route exact path='/register' component={Register}/>
-            <Route exact path='/answer/:id' component={Answer}/>
-            <Route exact path='/answers' component={Answers}/>
-            <Route exact path='/answers/new' component={NewAnswer}/>
-            <Route exact path='/answers/edit' component={EditAnswer}/>
             <ProtectedRoute exact path='/edit_user' component={EditUser}/>
             <Route component={()=><p>react 404 path not found</p>} />
           </Switch>

@@ -42,18 +42,6 @@ const OurNavbar = (props) => {
       <Link to='/test_page'>
           Test Page
       </Link>
-      <Link to='/answer/:id'>
-          Answer
-      </Link>
-      <Link to='/answers'>
-          Answers
-      </Link>
-      <Link to='/answers/new'>
-          New Answer
-      </Link>
-      <Link to='/answers/edit'>
-          Edit Answer
-      </Link>
       <Navbar>{rightNavItems()}</Navbar>
     </Navbar>
   );

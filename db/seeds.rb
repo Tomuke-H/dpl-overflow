@@ -7,8 +7,35 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require 'faker'
+QuestionTag.destroy_all
+Tag.destroy_all
+Comment.destroy_all
+Answer.destroy_all
+Question.destroy_all
 User.destroy_all
-User.create(email:'test@test.com', password:123456, name:'Tester')
 
-Thing.create(name: Faker::Company.name)
-Thing.create(name: Faker::Company.name)
+
+test = User.create(email:'test@test.com', password:123456, name:'Tester', cohort: 'Fall 2021', about_me: 'I am a fake user.', image: 'https://images.theconversation.com/files/17962/original/jt558trs-1353642967.jpg?ixlib=rb-1.1.0&rect=23%2C5%2C3831%2C2573&q=45&auto=format&w=926&fit=clip')
+
+test2 = User.create(email:'test2@test.com', password:123456, name:'Tester2', cohort: 'Fall 2021', about_me: 'I am a fake user too.', image: 'https://images.theconversation.com/files/17962/original/jt558trs-1353642967.jpg?ixlib=rb-1.1.0&rect=23%2C5%2C3831%2C2573&q=45&auto=format&w=926&fit=clip')
+
+# Thing.create(name: Faker::Company.name)
+# Thing.create(name: Faker::Company.name)
+
+ quest = test.questions.create(title: 'Am I even alive?', body: 'I am a test user, but am I even alive?')
+
+ quest2 = test2.questions.create(title: 'Is this course hard?', body: 'I will be in the next cohort and I want to know if it will be difficult?')
+
+ tag1 = Tag.create(name: "existential")
+
+ tag2 = Tag.create(name: "preparation")
+
+ quest.question_tags.create(tag_id: tag1.id)
+ quest2.question_tags.create(tag_id: tag2.id)
+
+
+ ans = quest.answers.create(body: "not really", likes: 0, verified: false, user_id: test2.id)
+ ans2 = quest2.answers.create(body: "depends on who you are m8", likes: 0, verified: false, user_id: test.id)
+
+ ans.comments.create(body: "This is a dumb answer", user_id: test.id)
+ ans2.comments.create(body: "not particularly helpful are you?", user_id: test2.id)

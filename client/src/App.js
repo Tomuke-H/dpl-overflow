@@ -8,6 +8,7 @@ import FetchUser from './components/FetchUser';
 import EditUser from './components/EditUser';
 import OurNavbar from './components/OurNavbar';
 import TestPage from './pages/TestPage';
+import User from './components/User';
 import Tags from './pages/Tags';
 import Answers from './pages/Answers';
 import NewAnswer from './pages/NewAnswer';
@@ -28,6 +29,7 @@ function App() {
             <Route exact path='/tags' component={Tags}/>
             <Route exact path='/login' component={Login}/>
             <Route exact path='/register' component={Register}/>
+            <ProtectedRoute exact path='/user' component={User}/>
             <Route exact path='/questions' component={Questions}/>
             <Route exact path='/question/:id' component={QuestionTestPage}/>
 

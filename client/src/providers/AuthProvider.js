@@ -20,8 +20,6 @@ const AuthProvider = (props) => {
         try {
             setError(null)
             setLoading(true)
-            // for testing
-            await wait(3000)
             let res = await axios.post('/api/auth', user)
             setUser(res.data.data)
             history.push('/')
@@ -37,8 +35,6 @@ const AuthProvider = (props) => {
         try {
             setError(null)
             setLoading(true)
-            // for testing
-            await wait(3000)
             let res = await axios.put('/api/auth', user)
             setUser(res.data.data)
             history.push('/')

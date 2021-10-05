@@ -13,11 +13,7 @@ const OurNavbar = (props) => {
       return (
         <>
         <Link to='/edit_user'>
-          <Container>
-          <Nav.Link href='/edit_user'>
             Edit User
-          </Nav.Link >
-          </Container>
         </Link>
         <Nav.Item onClick={()=> handleLogout(history)}>Logout</Nav.Item>
         </>
@@ -26,18 +22,10 @@ const OurNavbar = (props) => {
     return (
       <>
         <Link to='/login'>
-          <Container>
-          <Nav.Link href='/login'>
             Login
-          </Nav.Link >
-          </Container>
         </Link>
         <Link to='/register'>
-          <Container>
-          <Nav.Link href='register'>
             Register
-          </Nav.Link >
-          </Container>
         </Link>
       </>
     )

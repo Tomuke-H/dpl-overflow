@@ -1,8 +1,7 @@
 import React, { useContext } from 'react'
-import { Nav, Navbar } from 'react-bootstrap'
+import { Container, Nav, Navbar } from 'react-bootstrap'
 import { Link, useHistory, withRouter } from 'react-router-dom'
 import { AuthContext } from '../providers/AuthProvider'
-
 
 const OurNavbar = (props) => {
   const { user, handleLogout} = useContext(AuthContext)
@@ -33,14 +32,29 @@ const OurNavbar = (props) => {
   };
 
   return(
-    <Navbar>
+    <Navbar bg="dark">
       <Link to='/'>
+          <Container>
+        <Nav.Link href='/'>
         Home
+          </Nav.Link>
+          </Container>
       </Link >
       <Link to='/test_page'>
-          Test Page
+        <Container>
+          <Nav.Link href='/test_page'>
+            Test Page
+          </Nav.Link>
+        </Container>
       </Link>
-      <Navbar>{rightNavItems()}</Navbar>
+      <Link to='/tags'>
+        <Container>
+          <Nav.Link href='/tags'>
+            Tags
+          </Nav.Link>
+        </Container>
+      </Link>
+      <Navbar.Collapse className="justify-content-end">{rightNavItems()}</Navbar.Collapse>
     </Navbar>
   );
 }

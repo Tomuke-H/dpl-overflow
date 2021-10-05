@@ -9,6 +9,7 @@ import EditUser from './components/EditUser';
 import OurNavbar from './components/OurNavbar';
 import TestPage from './pages/TestPage';
 import QuestionTestPage from './pages/QuestionTestPage';
+import Questions from './pages/Questions';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route exact path='/test_page' component={TestPage}/>
             <Route exact path='/login' component={Login}/>
             <Route exact path='/register' component={Register}/>
+            <Route exact path='/questions' component={Questions}/>
             <Route exact path='/question/:id' component={QuestionTestPage}/>
             <ProtectedRoute exact path='/edit_user' component={EditUser}/>
             <Route component={()=><p>react 404 path not found</p>} />

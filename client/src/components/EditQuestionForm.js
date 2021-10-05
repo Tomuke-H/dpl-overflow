@@ -22,7 +22,8 @@ const EditQuestionForm = ({props}) => {
     }
   }
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault()
     try {
       let res = axios.put(`/api/questions/${props.match.params.id}`, {title, body})
       setQuestion(res.data)

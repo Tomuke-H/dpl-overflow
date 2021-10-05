@@ -47,6 +47,13 @@ const OurNavbar = (props) => {
           </Nav.Link>
         </Container>
       </Link>
+      <Link to='/user'>
+          <Container>
+        <Nav.Link href='/user'>
+        Profile
+          </Nav.Link>
+          </Container>
+      </Link >
       <Link to='/tags'>
         <Container>
           <Nav.Link href='/tags'>

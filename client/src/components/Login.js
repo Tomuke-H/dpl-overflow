@@ -25,7 +25,7 @@ const Login = (props) => {
                 label="Password"
                 onChange={(e) => setPassword(e.target.value)}
             />
-            <Button>Login</Button>
+            <Button type="submit">Login</Button>
         </Form>
     );
 };

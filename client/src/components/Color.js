@@ -1,0 +1,1 @@
+export const dplPurple = '#533f79';

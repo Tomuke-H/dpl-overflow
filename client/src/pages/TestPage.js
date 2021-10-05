@@ -5,7 +5,6 @@ const TestPage = () => {
   return (
     <div>
       <h1>I'm here!</h1>
-      <NewQuestionForm />
     </div>
   )
 }

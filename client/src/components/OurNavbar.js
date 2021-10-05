@@ -25,14 +25,10 @@ const OurNavbar = (props) => {
     return (
       <>
         <Link to='/login'>
-          <Nav.Link>
             Login
-          </Nav.Link >
         </Link>
         <Link to='/register'>
-          <Nav.Link>
             Register
-          </Nav.Link >
         </Link>
       </>
     )

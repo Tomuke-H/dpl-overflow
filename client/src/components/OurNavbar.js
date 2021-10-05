@@ -1,8 +1,7 @@
 import React, { useContext } from 'react'
-import { Nav, Navbar } from 'react-bootstrap'
+import { Container, Nav, Navbar } from 'react-bootstrap'
 import { Link, useHistory, withRouter } from 'react-router-dom'
 import { AuthContext } from '../providers/AuthProvider'
-
 
 const OurNavbar = (props) => {
   const { user, handleLogout} = useContext(AuthContext)
@@ -14,9 +13,11 @@ const OurNavbar = (props) => {
       return (
         <>
         <Link to='/edit_user'>
+          <Container>
           <Nav.Link href='/edit_user'>
             Edit User
           </Nav.Link >
+          </Container>
         </Link>
         <Nav.Item onClick={()=> handleLogout(history)}>Logout</Nav.Item>
         </>
@@ -25,28 +26,47 @@ const OurNavbar = (props) => {
     return (
       <>
         <Link to='/login'>
-          <Nav.Link>
+          <Container>
+          <Nav.Link href='/login'>
             Login
           </Nav.Link >
+          </Container>
         </Link>
         <Link to='/register'>
-          <Nav.Link>
+          <Container>
+          <Nav.Link href='register'>
             Register
           </Nav.Link >
+          </Container>
         </Link>
       </>
     )
   };
 
   return(
-    <Navbar>
+    <Navbar bg="dark">
       <Link to='/'>
+          <Container>
+        <Nav.Link href='/'>
         Home
+          </Nav.Link>
+          </Container>
       </Link >
       <Link to='/test_page'>
-          Test Page
+        <Container>
+          <Nav.Link href='/test_page'>
+            Test Page
+          </Nav.Link>
+        </Container>
       </Link>
-      <Navbar>{rightNavItems()}</Navbar>
+      <Link to='/tags'>
+        <Container>
+          <Nav.Link href='/tags'>
+            Tags
+          </Nav.Link>
+        </Container>
+      </Link>
+      <Navbar.Collapse className="justify-content-end">{rightNavItems()}</Navbar.Collapse>
     </Navbar>
   );
 }

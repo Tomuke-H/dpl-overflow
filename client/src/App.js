@@ -8,6 +8,7 @@ import FetchUser from './components/FetchUser';
 import EditUser from './components/EditUser';
 import OurNavbar from './components/OurNavbar';
 import TestPage from './pages/TestPage';
+import Tags from './pages/Tags';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Switch>
             <Route exact path='/' component={Home}/>
             <Route exact path='/test_page' component={TestPage}/>
+            <Route exact path='/tags' component={Tags}/>
             <Route exact path='/login' component={Login}/>
             <Route exact path='/register' component={Register}/>
             <ProtectedRoute exact path='/edit_user' component={EditUser}/>

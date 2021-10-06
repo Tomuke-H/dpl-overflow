@@ -7,8 +7,6 @@ const Tags = () => {
   const [show, setShow] = useState("false")
   const {data: tags, loading, error} = useAxiosOnMount("/api/tags")
   
-  console.log(tags)
-
   const renderTags = () => {
     return tags.map((t,ind)=>{
       return(

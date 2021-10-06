@@ -12,67 +12,61 @@ const OurNavbar = (props) => {
     if(user){
       return (
         <>
-        <Link to='/edit_user'>
+        <Nav.Link as={Link} to='/edit_user'>
           <Container>
             Edit User
           </Container>
-        </Link>
-        <Link onClick={()=> handleLogout(history)} to='/login'>
+        </Nav.Link>
+        <Nav.Link as={Link} onClick={()=> handleLogout(history)} to='/login'>
           <Container>
             Logout
           </Container>
-        </Link>
+        </Nav.Link>
         </>
       ) ;
     };
     return (
       <>
-        <Link to='/login'>
+        <Nav.Link as={Link} to='/login'>
           <Container>
             Login
           </Container>
-        </Link>
-        <Link to='/register'>
+        </Nav.Link>
+        <Nav.Link as={Link} to='/register'>
           <Container>
             Register
           </Container>
-        </Link>
+        </Nav.Link>
       </>
     )
   };
 
   return(
+    <span>
     <Navbar bg="dark">
-      <Link to='/'>
+          <Nav.Link as={Link} to='/'>
         <Container>
-          <Nav.Link href='/'>
             Home
-          </Nav.Link>
         </Container>
-      </Link >
-      <Link to='/test_page'>
+      </Nav.Link >
+          <Nav.Link as={Link} to='/test_page'>
         <Container>
-          <Nav.Link href='/test_page'>
             Test Page
-          </Nav.Link>
         </Container>
-      </Link>
-      <Link to='/user'>
+          </Nav.Link>
+          <Nav.Link as={Link} to='/user'>
         <Container>
-          <Nav.Link href='/user'>
             Profile
-          </Nav.Link>
         </Container>
-      </Link >
-      <Link to='/tags'>
+          </Nav.Link>
+          <Nav.Link as={Link} to='/tags'>
         <Container>
-          <Nav.Link href='/tags'>
             Tags
-          </Nav.Link>
         </Container>
-      </Link>
+          </Nav.Link>
       <Navbar.Collapse className="justify-content-end">{rightNavItems()}</Navbar.Collapse>
     </Navbar>
+    </span>
   );
 }
 

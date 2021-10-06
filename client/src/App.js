@@ -32,6 +32,10 @@ function App() {
             <Route exact path='/login' component={Login}/>
             <Route exact path='/register' component={Register}/>
             <ProtectedRoute exact path='/user' component={User}/>
+            <Route exact path='/answers' component={Answers}/>
+            <Route exact path='/answers/:id' component={Answer}/>
+            <Route exact path='/answers/:id/edit' component={EditAnswer}/>
+
             <Route exact path='/dashboard' component={Dashboard}/>
             <Route exact path='/new_question' component={NewQuestionPage}/>
             <Route exact path='/question/:id' component={QuestionPage}/>

@@ -1,17 +1,18 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
+import {useHistory} from "react-router-dom"
+import Tags from "../../pages/Tags";
+
 
 const CreateTag = () => {
   const [name, setName] = useState("")
-
+  let history = useHistory()
 
   const handleSubmit = async (e) =>{
     e.preventDefault()
     try {
-      console.log(name)
       let res = await axios.post("/api/tags", {name})
-      console.log(res)
     } catch (err) {
       console.log(err)
     };

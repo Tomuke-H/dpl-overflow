@@ -1,27 +1,54 @@
-import React, { useState } from "react"
+import axios from "axios"
+import React, { useEffect, useState } from "react"
 import { Badge, } from "react-bootstrap"
 import CreateTag from "../components/TagComponents/CreateTag"
 import useAxiosOnMount from "../hooks/useAxiosOnMount"
 
 const Tags = () => {
   const [show, setShow] = useState("false")
-  const {data: tags, loading, error} = useAxiosOnMount("/api/tags")
+  const [tags, setTags] = useState([])
+  // const {data: tags, loading, error} = useAxiosOnMount("/api/tags")
+
+  useEffect(()=>{
+    console.log("in UseEffect")
+    getTags();
+  },[setTags]);
+
+  const getTags = async () => {
+    try {
+      let res = await axios.get("/api/tags")
+      setTags(res.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
   
+  const deleteTag = async (id) => {
+    try {
+      let res = await axios.delete(`/api/tags/${id}`)
+      let tag = tags.filter((t) => t.id !== id)
+      setTags(tag)
+    } catch (error) {
+      console.log(error)
+    }
+  }
   const renderTags = () => {
     return tags.map((t,ind)=>{
       return(
-        <a style={{fontSize: "large"}} key={ind}>
+        <div style={{fontSize: "large"}} key={ind}>
         <Badge pill variant="primary" >
           {t.name}
+          <a style={{backgroundColor:"black", marginLeft:".25em", padding:".25em", borderRadius:"1em"}} onClick={()=>deleteTag(t.id)}>x</a>
         </Badge> 
-        </a>
+        </div>
       )
     })
   }
 
   const addTag = () => {
     return(
-      <CreateTag/>
+      <CreateTag
+      />
     )
   }
 

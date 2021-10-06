@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Button, Container } from 'react-bootstrap'
 
-const Question = ({props}) => {
+const Question = ({props, history}) => {
   const [question, setQuestion] = useState(null)
 
   const getQuestion = async () => {
@@ -21,7 +21,7 @@ const Question = ({props}) => {
   const deleteQuestion = async (id) => {
     try{
       let res = await axios.delete(`/api/questions/${id}`)
-      setQuestion(null)
+      history.push('/dashboard')
     }catch (err) {
       console.log(err)
     }

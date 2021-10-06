@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Button } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 
 const QuestionCard = ({question, history}) => {
   const handleRedirect = (id) => {
@@ -7,10 +7,13 @@ const QuestionCard = ({question, history}) => {
   }
 
   return(
-    <Card>
+    <Card onClick={()=>handleRedirect(question.id)}>
       <Card.Header>{question.title}</Card.Header>
-      <Card.Body>{question.body}</Card.Body>
-      <Button onClick={()=>handleRedirect(question.id)}>View Question</Button>
+      <Card.Body>
+        <Card.Text>{question.body}</Card.Text>
+        <Card.Text>{question.body}</Card.Text>
+      </Card.Body>
+      <Card.Footer className="text-muted">Created {question.created_at}</Card.Footer>
     </Card>
   )
 }

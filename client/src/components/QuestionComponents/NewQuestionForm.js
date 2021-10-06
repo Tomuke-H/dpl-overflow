@@ -1,7 +1,6 @@
 import axios from 'axios'
 import React, { useContext, useState } from 'react'
 import { Container, Form, Button } from 'react-bootstrap'
-import { useHistory } from 'react-router'
 import { AuthContext } from '../../providers/AuthProvider'
 
 const NewQuestionForm = ({ handleRedirect }) => {
@@ -12,9 +11,7 @@ const NewQuestionForm = ({ handleRedirect }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      let res = await axios.post('/api/questions', {title, body, user_id: 1})
-      console.log(res)
-      console.log(handleRedirect)
+      let res = await axios.post('/api/questions', {title, body, user_id: user.id})
       handleRedirect(res.data.id)
     }catch (err) {
       console.log(err)

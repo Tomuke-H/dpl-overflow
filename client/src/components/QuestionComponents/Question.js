@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Button } from 'react-bootstrap'
+import { Button, Container } from 'react-bootstrap'
 
 const Question = ({props}) => {
   const [question, setQuestion] = useState(null)
@@ -30,15 +30,15 @@ const Question = ({props}) => {
   const renderQuestion = () => {
     if(!question){
       return(
-        <h2>Question Not Found</h2>
+        <h2>404 Question Not Found</h2>
       )
     }
     return(
-      <div>
+      <Container>
         <h2>{question.title}</h2>
         <h2>{question.body}</h2>
         <Button type="submit" onClick={()=>deleteQuestion(question.id)}>Delete</Button>
-      </div>
+      </Container>
     )
   }
   return (

@@ -18,7 +18,7 @@ import Questions from './pages/Dashboard';
 import Comments from './components/Comments';
 import QuestionPage from './pages/QuestionPage';
 import Dashboard from './pages/Dashboard';
-import NewQuestionForm from './components/QuestionComponents/NewQuestionForm';
+import NewQuestionPage from './pages/NewQuestionPage';
 
 function App() {
   return (
@@ -33,7 +33,7 @@ function App() {
             <Route exact path='/register' component={Register}/>
             <ProtectedRoute exact path='/user' component={User}/>
             <Route exact path='/dashboard' component={Dashboard}/>
-            <Route exact path='/new_question' component={NewQuestionForm}/>
+            <Route exact path='/new_question' component={NewQuestionPage}/>
             <Route exact path='/question/:id' component={QuestionPage}/>
 
             {/* probably don't keep this path as the comment component with be embedded in other components but for testing purposes here it is */}

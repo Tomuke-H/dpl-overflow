@@ -31,7 +31,8 @@ class Api::CommentsController < ApplicationController
   end
 
   def destroy
-    render json: @comment.destroy
+    @comment.destroy
+    render json: @comment
   end
 
   private

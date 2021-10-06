@@ -17,6 +17,7 @@ const OurNavbar = (props) => {
             Edit User
           </Container>
         </Nav.Link>
+
         <Nav.Link as={Link} onClick={()=> handleLogout(history)} to='/login'>
           <Container>
             Logout
@@ -44,26 +45,31 @@ const OurNavbar = (props) => {
   return(
     <span>
     <Navbar bg="dark">
-          <Nav.Link as={Link} to='/'>
+      <Nav.Link as={Link} to='/'>
         <Container>
             Home
         </Container>
       </Nav.Link >
-          <Nav.Link as={Link} to='/test_page'>
+      <Nav.Link as={Link} to='/test_page'>
         <Container>
             Test Page
         </Container>
-          </Nav.Link>
-          <Nav.Link as={Link} to='/user'>
+      </Nav.Link>
+      <Nav.Link as={Link} to='/user'>
         <Container>
             Profile
         </Container>
-          </Nav.Link>
-          <Nav.Link as={Link} to='/tags'>
+      </Nav.Link>
+      <Nav.Link as={Link} to='/tags'>
         <Container>
             Tags
         </Container>
-          </Nav.Link>
+      </Nav.Link>
+      <Nav.Link as={Link} to='/answers'>
+          <Container>
+            Answers
+        </Container>
+      </Nav.Link>
       <Navbar.Collapse className="justify-content-end">{rightNavItems()}</Navbar.Collapse>
     </Navbar>
     </span>

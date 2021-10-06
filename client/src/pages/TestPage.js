@@ -1,5 +1,4 @@
 import React from 'react'
-import NewQuestionForm from '../components/NewQuestionForm'
 
 const TestPage = () => {
   return (

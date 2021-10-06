@@ -14,9 +14,11 @@ import Answers from './pages/Answers';
 import NewAnswer from './pages/NewAnswer';
 import EditAnswer from './pages/EditAnswer';
 import Answer from './pages/Answer';
-import QuestionTestPage from './pages/QuestionTestPage';
-import Questions from './pages/Questions';
+import Questions from './pages/Dashboard';
 import Comments from './components/Comments';
+import QuestionPage from './pages/QuestionPage';
+import Dashboard from './pages/Dashboard';
+import NewQuestionPage from './pages/NewQuestionPage';
 
 function App() {
   return (
@@ -30,8 +32,9 @@ function App() {
             <Route exact path='/login' component={Login}/>
             <Route exact path='/register' component={Register}/>
             <ProtectedRoute exact path='/user' component={User}/>
-            <Route exact path='/questions' component={Questions}/>
-            <Route exact path='/question/:id' component={QuestionTestPage}/>
+            <Route exact path='/dashboard' component={Dashboard}/>
+            <Route exact path='/new_question' component={NewQuestionPage}/>
+            <Route exact path='/question/:id' component={QuestionPage}/>
 
             {/* probably don't keep this path as the comment component with be embedded in other components but for testing purposes here it is */}
             <Route exact path='/comments' component={Comments}/>

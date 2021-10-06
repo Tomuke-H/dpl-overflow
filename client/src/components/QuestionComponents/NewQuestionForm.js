@@ -1,11 +1,9 @@
 import axios from 'axios'
 import React, { useContext, useState } from 'react'
 import { Container, Form, Button } from 'react-bootstrap'
-import { useHistory } from 'react-router'
-import { AuthContext } from '../providers/AuthProvider'
+import { AuthContext } from '../../providers/AuthProvider'
 
-const NewQuestionForm = () => {
-  const history = useHistory()
+const NewQuestionForm = ({ handleRedirect }) => {
   const {user} = useContext(AuthContext)
   const [title, setTitle] = useState('')
   const [body, setBody] = useState('')
@@ -13,9 +11,8 @@ const NewQuestionForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      let res = axios.post('/api/questions', {title, body, user_id: 1})
-      // console.log(res)
-      // history.push(`/question/${res.data.id}`)
+      let res = await axios.post('/api/questions', {title, body, user_id: user.id})
+      handleRedirect(res.data.id)
     }catch (err) {
       console.log(err)
     }

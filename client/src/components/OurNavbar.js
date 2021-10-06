@@ -13,19 +13,29 @@ const OurNavbar = (props) => {
       return (
         <>
         <Link to='/edit_user'>
+          <Container>
             Edit User
+          </Container>
         </Link>
-        <Nav.Item onClick={()=> handleLogout(history)}>Logout</Nav.Item>
+        <Link onClick={()=> handleLogout(history)} to='/login'>
+          <Container>
+            Logout
+          </Container>
+        </Link>
         </>
       ) ;
     };
     return (
       <>
         <Link to='/login'>
+          <Container>
             Login
+          </Container>
         </Link>
         <Link to='/register'>
+          <Container>
             Register
+          </Container>
         </Link>
       </>
     )
@@ -34,11 +44,11 @@ const OurNavbar = (props) => {
   return(
     <Navbar bg="dark">
       <Link to='/'>
-          <Container>
-        <Nav.Link href='/'>
-        Home
+        <Container>
+          <Nav.Link href='/'>
+            Home
           </Nav.Link>
-          </Container>
+        </Container>
       </Link >
       <Link to='/test_page'>
         <Container>
@@ -48,11 +58,11 @@ const OurNavbar = (props) => {
         </Container>
       </Link>
       <Link to='/user'>
-          <Container>
-        <Nav.Link href='/user'>
-        Profile
+        <Container>
+          <Nav.Link href='/user'>
+            Profile
           </Nav.Link>
-          </Container>
+        </Container>
       </Link >
       <Link to='/tags'>
         <Container>

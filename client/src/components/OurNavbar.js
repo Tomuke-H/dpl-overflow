@@ -15,7 +15,9 @@ const OurNavbar = (props) => {
         <Link to='/edit_user'>
             Edit User
         </Link>
-        <Nav.Item onClick={()=> handleLogout(history)}>Logout</Nav.Item>
+        <Link>
+        <Nav.Link onClick={()=> handleLogout(history)}>Logout</Nav.Link>
+        </Link>
         </>
       ) ;
     };

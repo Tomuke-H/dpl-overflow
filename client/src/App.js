@@ -16,7 +16,8 @@ import EditAnswer from './pages/EditAnswer';
 import Answer from './pages/Answer';
 import QuestionTestPage from './pages/QuestionTestPage';
 import Questions from './pages/Questions';
-import Comments from './components/Comments';
+import Comments from './components/CommentComponents/Comments';
+import NewCommentForm from './components/CommentComponents/NewCommentForm';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
 
             {/* probably don't keep this path as the comment component with be embedded in other components but for testing purposes here it is */}
             <Route exact path='/comments' component={Comments}/>
+            <Route exact path='/newcomment' component={NewCommentForm}/>
             {/* probably don't keep this path as the comment component with be embedded in other components but for testing purposes here it is */}
 
             <ProtectedRoute exact path='/edit_user' component={EditUser}/>

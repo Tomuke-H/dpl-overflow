@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import NewQuestionForm from "../components/NewQuestionForm";
+import NewQuestionForm from "../components/QuestionComponents/NewQuestionForm";
 
-const Questions = (props) => {
+const Dashboard = (props) => {
   const [questions, setQuestions] = useState([])
 
   useEffect(()=>{
@@ -36,4 +36,4 @@ const Questions = (props) => {
   )
 }
 
-export default Questions;
+export default Dashboard;

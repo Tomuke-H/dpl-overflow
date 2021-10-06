@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useContext, useState } from 'react'
 import { Container, Form, Button } from 'react-bootstrap'
 import { useHistory } from 'react-router'
-import { AuthContext } from '../providers/AuthProvider'
+import { AuthContext } from '../../providers/AuthProvider'
 
 const NewQuestionForm = () => {
   const history = useHistory()

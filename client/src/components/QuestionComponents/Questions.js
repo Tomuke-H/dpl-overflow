@@ -6,6 +6,8 @@ import { Container } from "react-bootstrap";
 
 const Questions = ({history}) => {
   const [questions, setQuestions] = useState([])
+  const [page, setPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(0)
 
   useEffect(()=>{
     getQuestions()

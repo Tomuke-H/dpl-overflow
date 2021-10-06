@@ -28,6 +28,8 @@ gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'mast
 
 gem 'devise_token_auth'
 
+gem 'kaminari'
+
 group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'

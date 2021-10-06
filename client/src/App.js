@@ -32,6 +32,10 @@ function App() {
             <ProtectedRoute exact path='/user' component={User}/>
             <Route exact path='/questions' component={Questions}/>
             <Route exact path='/question/:id' component={QuestionTestPage}/>
+            <Route exact path='/answers' component={Answers}/>
+            <Route exact path='/answers/:id' component={Answer}/>
+            <Route exact path='/answers/:id/edit' component={EditAnswer}/>
+
 
             {/* probably don't keep this path as the comment component with be embedded in other components but for testing purposes here it is */}
             <Route exact path='/comments' component={Comments}/>

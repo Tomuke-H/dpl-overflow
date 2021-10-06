@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { Button, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import useAxiosOnMount from '../hooks/useAxiosOnMount';
+import useAxiosOnMount from '../../hooks/useAxiosOnMount';
 import Answer from './Answer';
 import EditAnswer from './EditAnswer';
 import NewAnswer from './NewAnswer';

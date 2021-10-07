@@ -19,6 +19,10 @@ class Api::QuestionsController < ApplicationController
     end
   end
 
+  def find_question_by_tag
+    render json: Question.find_question_by_tag(params[:tag_name])
+  end
+
   def update
     if(@question.update(question_params))
       render json: @question

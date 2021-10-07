@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :tags
     resources :answers
     resources :questions
+    get 'questions/find_question_by_tag/:tag_name', to:'questions#find_question_by_tag'
     resources :comments
   end
   

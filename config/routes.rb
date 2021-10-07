@@ -8,6 +8,9 @@ Rails.application.routes.draw do
     resources :answers
     resources :questions
     get 'questions/find_question_by_tag/:tag_name', to:'questions#find_question_by_tag'
+    get 'questionTags', to:'question_tags#index'
+    post 'questionTags', to:'question_tags#create'
+    delete 'questionTags/:id', to:'question_tags#destroy'
     resources :comments
   end
   

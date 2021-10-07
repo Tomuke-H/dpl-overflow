@@ -2,12 +2,10 @@ import axios from "axios"
 import React, { useEffect, useState } from "react"
 import { Badge, } from "react-bootstrap"
 import CreateTag from "../components/TagComponents/CreateTag"
-import useAxiosOnMount from "../hooks/useAxiosOnMount"
 
 const Tags = () => {
   const [show, setShow] = useState("false")
   const [tags, setTags] = useState([])
-  // const {data: tags, loading, error} = useAxiosOnMount("/api/tags")
 
   useEffect(()=>{
     console.log("in UseEffect")

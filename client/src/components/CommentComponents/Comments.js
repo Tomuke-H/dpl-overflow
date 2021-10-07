@@ -34,10 +34,15 @@ const Comments = () => {
     }
   }
 
+  const updateComments = (comment) => {
+    const updatedComments = comments.map((c) => (c.id === comment.id ? comment : c));
+    setComments(updatedComments)
+  }
+
   const renderComments = () => {
     return comments.map((comment) => {
       return(
-        <Comment key={comment.id} comments={comments} deleteComment={deleteComment} {...comment}/>
+        <Comment key={comment.id} comments={comments} deleteComment={deleteComment} updateComments={updateComments} id={comment.id} body={comment.body} answer={comment.answer} u={comment.user} />
       )
     })
   }

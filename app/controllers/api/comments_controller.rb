@@ -1,5 +1,4 @@
 class Api::CommentsController < ApplicationController
-  # before_action :set_user
   # before_action :set_answer
   before_action :set_comment, only: [:show, :update, :destroy]
 
@@ -36,10 +35,6 @@ class Api::CommentsController < ApplicationController
   end
 
   private
-
-  def set_user
-    @user = User.find(params[:user_id])
-  end
 
   def set_answer
     @answer = Answer.find(params[:answer_id])

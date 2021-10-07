@@ -1,33 +1,12 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap'
+import { useHistory } from 'react-router-dom'
 import EditAnswer from './EditAnswer'
 
-const Answer = (props) => {
-  const [answer, setAnswer] = useState(null)
-
-  const getAnswer = async () => {
-    try {
-      let res = await axios.get(`/api/answers/${props.match.params.id}`)
-      console.log(res.data)
-      setAnswer(res.data)
-    }catch (err) {
-      console.log(err)
-    }
-  }
-
-  useEffect(()=>{
-    getAnswer()
-  },[])
-
-  const deleteAnswer = async (id) => {
-    try{
-      let res = await axios.delete(`/api/answers/${id}`)
-      setAnswer(null)
-    }catch (err) {
-      console.log(err)
-    }
-  }
+const Answer = ({answer, props, deleteAnswer}) => {
+  const history = useHistory();
+  const [showForm, setShowForm] = useState(false)
 
   const renderAnswer = () => {
     if(!answer){
@@ -45,7 +24,8 @@ const Answer = (props) => {
   return (
     <div>
       {renderAnswer()}
-      <EditAnswer a = {answer}/>
+      <Button onClick={()=>setShowForm(!showForm)}>Edit</Button>
+      {showForm && <EditAnswer a = {answer} props = {props}/>}
     </div>
   )
 }

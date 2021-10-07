@@ -4,10 +4,11 @@ Rails.application.routes.draw do
   namespace :api do
     get 'things', to: 'things#index'
     resources :users 
-    resources :tags
-    resources :answers
-    resources :questions
+    resources :questions do 
+    resources :answers do
     resources :comments
+    end
   end
-  
+    resources :tags
+  end  
 end

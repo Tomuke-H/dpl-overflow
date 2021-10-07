@@ -3,22 +3,23 @@ import React, { useContext, useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import { AuthContext } from "../../providers/AuthProvider";
 
-const NewAnswer = () => {
+const NewAnswer = ({props}) => {
   const [body, setBody] = useState("")
   // const [answer, setAnswer] = useState({body: , question_id: ,})
   const { user } = useContext(AuthContext)
 
 
+
   const handleSubmit = async (e) =>{
     let answer = { 
       body: body,
-      question_id: 1,
-      user_id: 1
+      question_id: props.match.params.id,
+      user_id: user.id
     }
-    e.preventDefault()
+    // e.preventDefault()
     try {
       console.log(body)
-      let res = await axios.post("/api/answers", answer)
+      let res = await axios.post(`/api/questions/${props.match.params.id}/answers`, answer)
       console.log(res)
     } catch (err) {
       console.log(err)

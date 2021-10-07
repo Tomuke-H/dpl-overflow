@@ -26,6 +26,10 @@ const Questions = ({history}) => {
     }
   }
 
+  const normalizeData = (data) => {
+    console.log(data)
+  }
+
   const getTags = async () => {
     try{
       let res = await axios.get('/api/tags')
@@ -39,7 +43,8 @@ const Questions = ({history}) => {
     try{
       let res = await axios.get('/api/questions')
       console.log(res.data)
-      setQuestions(res.data)
+      setQuestions(res.data.questions)
+      setTotalPages(res.data.total_pages)
     }catch(err){
       console.log(err)
     }

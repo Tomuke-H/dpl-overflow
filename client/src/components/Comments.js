@@ -26,7 +26,7 @@ const Comments = () => {
 
   const deleteComment = async (id) => {
     try{
-      await axios.delete(`/api/commments/${id}`)
+      await axios.delete(`/api/comments/${id}`)
       const filterComments = comments.filter((comment) => comment.id !== id);
       setComments(filterComments)
     } catch {

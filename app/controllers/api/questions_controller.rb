@@ -1,9 +1,8 @@
 class Api::QuestionsController < ApplicationController
-
   before_action :set_question, only: [:show, :update, :destroy]
 
   def index
-    render json: Question.all
+    render json: Question.page(1).per(10)
   end
 
   def show
@@ -19,7 +18,7 @@ class Api::QuestionsController < ApplicationController
     end
   end
 
-  def find_question_by_tag
+  def find_questions_by_tag
     render json: Question.find_question_by_tag(params[:tag_name])
   end
 
@@ -44,6 +43,10 @@ class Api::QuestionsController < ApplicationController
 
   def set_question
     @question = Question.find(params[:id])
+  end
+
+  def set_page
+    @page = params[:page] || 1
   end
 
 

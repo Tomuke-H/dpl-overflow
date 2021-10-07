@@ -5,7 +5,7 @@ import { Button, Container, Form } from 'react-bootstrap'
 import axios from 'axios';
 
 
-const EditUser = () => {
+const EditUser = (id) => {
     const {user, setUser} = useContext(AuthContext)
     const [name, setName] = useState(user.name)
     const [email, setEmail] = useState(user.email)
@@ -39,6 +39,19 @@ const EditUser = () => {
             console.log(err)
         }
 
+    }
+
+    const deleteAccount = async (id) => {
+        try {
+            console.log(user)
+            let res = await axios.delete(`/api/users/${user.id}`);
+            let filterAccounts = user.filter((a) => a.id !== id);
+            setUser(filterAccounts);
+            history.push("/")
+        } catch (error) {
+            alert("error deleting account");
+            console.log(error);
+        }
     }
 
 
@@ -95,6 +108,10 @@ const EditUser = () => {
                     />
                 <Button type="submit">Update Password</Button>
             </Form>
+            <br />
+            <br />
+            <br />
+            <Button onClick={() => deleteAccount(id)}>Delete Account</Button>
             </Container>
         </div>
     );

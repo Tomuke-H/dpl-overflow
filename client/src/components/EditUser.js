@@ -46,10 +46,12 @@ const EditUser = (id) => {
     const deleteAccount = async () => {
         try {
             await axios.delete("/api/auth");
+            localStorage.removeItem("access-token")
+            setUser(null)
+            history.push("/")
         } catch (error) {
             alert("error deleting account");
             console.log(error);
-            // {handleLogout()}
         }
     }
 

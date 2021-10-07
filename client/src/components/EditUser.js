@@ -75,7 +75,10 @@ const EditUser = () => {
                     label="About Me"
                     onChange={(e) => setAbout_me(e.target.value)}
                     />
+                <Button type="submit">Update Profile</Button>
             </Form>
+                <br />
+                <br />
                 <br />
                 <h5>New Password:</h5>
             <Form onSubmit={handlePasswordUpdate}>
@@ -90,7 +93,7 @@ const EditUser = () => {
                     label="Confirm New Password"
                     onChange={(e) => setPasswordConfirmation(e.target.value)}
                     />
-                <Button type="submit">Update</Button>
+                <Button type="submit">Update Password</Button>
             </Form>
             </Container>
         </div>

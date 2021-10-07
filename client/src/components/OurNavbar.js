@@ -20,7 +20,7 @@ const OurNavbar = (props) => {
 
         <Nav.Link as={Link} to='/user/edit'>
           <Container>
-            Edit User
+            Edit Profile
           </Container>
         </Nav.Link>
 

@@ -1,12 +1,15 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
+import { AuthContext } from '../../providers/AuthProvider'
 import EditAnswer from './EditAnswer'
 
 const Answer = ({answer, props, deleteAnswer}) => {
   const history = useHistory();
   const [showForm, setShowForm] = useState(false)
+  const { user } = useContext(AuthContext)
+  const [showEdit, setShowEdit] = useState(false)
 
   const renderAnswer = () => {
     if(!answer){
@@ -17,14 +20,34 @@ const Answer = ({answer, props, deleteAnswer}) => {
     return(
       <div>
         <h2>{answer.body}</h2>
-        <Button type="submit" onClick={()=>deleteAnswer(answer.id)}>Delete</Button>
       </div>
     )
   }
+
+  const showEditForm = () => {
+  return (<Button onClick={()=>setShowForm(!showForm)}>Edit</Button>
+  )}
+
+
+  const userEdit = () => {
+    if (answer.user_id === user.id) {
+      return showEditForm()
+    } else {
+      console.log("not your answer")
+    }
+  }
+
+  const userDelete = ()n => {
+    return (
+      <p>nothing</p>
+    )
+  }
+
   return (
     <div>
       {renderAnswer()}
-      <Button onClick={()=>setShowForm(!showForm)}>Edit</Button>
+      <Button type="submit" onClick={()=>deleteAnswer(answer.id)}>Delete</Button>
+      {userEdit()}
       {showForm && <EditAnswer a = {answer} props = {props}/>}
     </div>
   )

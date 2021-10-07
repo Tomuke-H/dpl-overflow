@@ -34,19 +34,6 @@ const deleteAnswer = async (id) => {
   }
 }
 
-// const renderAnswers = () => {
-//   return answers.map (a => {
-//     return (
-//       <div>
-//         <h3>{a.body}</h3>
-//         <Link to= {`/answers/${a.id}`}>
-//           <Button></Button>
-//         </Link>
-//         <Button onClick={()=>deleteAnswer(a.id)}>Delete</Button>
-//       </div>
-//     )
-//   })
-// }
 const renderAnswers = () => {
   return answers.map (a => {
     return (

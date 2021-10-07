@@ -3,6 +3,7 @@ import { useHistory } from 'react-router';
 import { AuthContext } from '../providers/AuthProvider';
 import { Button, Container, Form } from 'react-bootstrap'
 import axios from 'axios';
+import handleLogout from '../providers/AuthProvider';
 
 
 const EditUser = (id) => {
@@ -15,6 +16,7 @@ const EditUser = (id) => {
     const [passwordConfirmation, setPasswordConfirmation] = useState('')
     const current_password = user.password
     const history = useHistory();
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -41,16 +43,13 @@ const EditUser = (id) => {
 
     }
 
-    const deleteAccount = async (id) => {
+    const deleteAccount = async () => {
         try {
-            console.log(user)
-            let res = await axios.delete(`/api/users/${user.id}`);
-            let filterAccounts = user.filter((a) => a.id !== id);
-            setUser(filterAccounts);
-            history.push("/")
+            await axios.delete("/api/auth");
         } catch (error) {
             alert("error deleting account");
             console.log(error);
+            // {handleLogout()}
         }
     }
 

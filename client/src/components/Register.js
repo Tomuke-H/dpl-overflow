@@ -4,13 +4,11 @@ import { useHistory } from 'react-router';
 import { AuthContext } from '../providers/AuthProvider';
 
 const Register = () => {
-    const {handleRegister, error, loading} = useContext(AuthContext);
-    const [email, setEmail] = useState('test222@test.com')
-    const [name, setName] = useState('Tester222')
-    const [password, setPassword] = useState('123456789')
-    const [passwordConfirmation, setPasswordConfirmation] = useState('123456789')
-    const [cohort, setCohort]= useState('now')
-    const [about_me, setAbout_me] = useState('i am student')
+    const {handleRegister} = useContext(AuthContext);
+    const [email, setEmail] = useState('test1@test.com')
+    const [name, setName] = useState('Tester1')
+    const [password, setPassword] = useState('123456')
+    const [passwordConfirmation, setPasswordConfirmation] = useState('123456')
     const history = useHistory();
 
     const handleSubmit = (e) => {

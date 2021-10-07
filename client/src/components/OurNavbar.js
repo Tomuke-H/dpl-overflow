@@ -12,57 +12,67 @@ const OurNavbar = (props) => {
     if(user){
       return (
         <>
-        <Link to='/edit_user'>
+        <Nav.Link as={Link} to='/edit_user'>
+          <Container>
             Edit User
-        </Link>
-        <Nav.Item onClick={()=> handleLogout(history)}>Logout</Nav.Item>
+          </Container>
+        </Nav.Link>
+
+        <Nav.Link as={Link} onClick={()=> handleLogout(history)} to='/login'>
+          <Container>
+            Logout
+          </Container>
+        </Nav.Link>
         </>
       ) ;
     };
     return (
       <>
-        <Link to='/login'>
+        <Nav.Link as={Link} to='/login'>
+          <Container>
             Login
-        </Link>
-        <Link to='/register'>
+          </Container>
+        </Nav.Link>
+        <Nav.Link as={Link} to='/register'>
+          <Container>
             Register
-        </Link>
+          </Container>
+        </Nav.Link>
       </>
     )
   };
 
   return(
+    <span>
     <Navbar bg="dark">
-      <Link to='/'>
-          <Container>
-        <Nav.Link href='/'>
-        Home
-          </Nav.Link>
-          </Container>
-      </Link >
-      <Link to='/test_page'>
+      <Nav.Link as={Link} to='/'>
         <Container>
-          <Nav.Link href='/test_page'>
+            Home
+        </Container>
+      </Nav.Link >
+      <Nav.Link as={Link} to='/test_page'>
+        <Container>
             Test Page
-          </Nav.Link>
         </Container>
-      </Link>
-      <Link to='/user'>
-          <Container>
-        <Nav.Link href='/user'>
-        Profile
-          </Nav.Link>
-          </Container>
-      </Link >
-      <Link to='/tags'>
+      </Nav.Link>
+      <Nav.Link as={Link} to='/user'>
         <Container>
-          <Nav.Link href='/tags'>
-            Tags
-          </Nav.Link>
+            Profile
         </Container>
-      </Link>
+      </Nav.Link>
+      <Nav.Link as={Link} to='/tags'>
+        <Container>
+            Tags
+        </Container>
+      </Nav.Link>
+      <Nav.Link as={Link} to='/answers'>
+          <Container>
+            Answers
+        </Container>
+      </Nav.Link>
       <Navbar.Collapse className="justify-content-end">{rightNavItems()}</Navbar.Collapse>
     </Navbar>
+    </span>
   );
 }
 

@@ -1,9 +1,13 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import NewQuestionForm from "../components/NewQuestionForm";
+import React from "react";
+import { useEffect, useState } from "react";
+import axios from 'axios'
+import QuestionCard from "./QuestionCard";
+import { Container } from "react-bootstrap";
 
-const Questions = (props) => {
+const Questions = ({history}) => {
   const [questions, setQuestions] = useState([])
+  const [page, setPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(0)
 
   useEffect(()=>{
     getQuestions()
@@ -21,18 +25,17 @@ const Questions = (props) => {
   const renderQuestions = () => {
     return questions.map(q => {
       return (
-        <div>
-          <h2>{q.title}</h2>
-          <h2>{q.body}</h2>
+        <div key={q.id} style={{marginBottom: "30px"}}>
+          <QuestionCard question={q} history={history}/>
         </div>
       )
     })
   }
+
   return (
-    <div>
-      <NewQuestionForm />
+    <Container>
       {renderQuestions()}
-    </div>
+    </Container>
   )
 }
 

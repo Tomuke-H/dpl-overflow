@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../providers/AuthProvider";
+import { AuthContext } from "../../providers/AuthProvider";
 import Comment from "./Comment"
 
 

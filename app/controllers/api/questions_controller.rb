@@ -12,9 +12,8 @@ class Api::QuestionsController < ApplicationController
 
   def create
     @question = Question.new(question_params)
-    @question.likes = 0
     if(@question.save)
-      render json: 'it worked!!'
+      render json: @question
     else
       render json: @question.errors, status: 422
     end

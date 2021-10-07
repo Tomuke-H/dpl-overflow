@@ -10,10 +10,9 @@ import OurNavbar from './components/OurNavbar';
 import TestPage from './pages/TestPage';
 import User from './components/User';
 import Tags from './pages/Tags';
-import Answers from './pages/Answers';
-import NewAnswer from './pages/NewAnswer';
-import EditAnswer from './pages/EditAnswer';
-import Answer from './pages/Answer';
+import EditAnswer from './components/AnswerComponents/EditAnswer';
+import Answer from './components/AnswerComponents/Answer';
+import Answers from './components/AnswerComponents/Answers'
 import Comments from './components/CommentComponents/Comments';
 import NewCommentForm from './components/CommentComponents/NewCommentForm';
 import QuestionPage from './pages/QuestionPage';

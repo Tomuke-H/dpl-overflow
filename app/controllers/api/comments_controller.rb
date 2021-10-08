@@ -1,11 +1,10 @@
 class Api::CommentsController < ApplicationController
-  # before_action :set_user
-  # before_action :set_answer
+  before_action :set_answer
   before_action :set_comment, only: [:show, :update, :destroy]
 
 
   def index
-    comments = Comment.simplify
+    comments = @answer.comments.simplify
     render json: comments
   end
 
@@ -37,16 +36,12 @@ class Api::CommentsController < ApplicationController
 
   private
 
-  def set_user
-    @user = User.find(params[:user_id])
-  end
-
   def set_answer
     @answer = Answer.find(params[:answer_id])
   end
 
   def set_comment
-    @comment = Comment.find(params[:id])
+    @comment = @answer.comments.find(params[:id])
   end
 
   def comment_params

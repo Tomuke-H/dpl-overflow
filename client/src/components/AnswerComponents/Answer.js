@@ -2,14 +2,48 @@ import axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
+import Comments from '../CommentComponents/Comments'
+import NewCommentForm from '../CommentComponents/NewCommentForm'
 import { AuthContext } from '../../providers/AuthProvider'
 import EditAnswer from './EditAnswer'
 
 const Answer = ({answer, props, deleteAnswer}) => {
+  const [comments, setComments] = useState([])
   const history = useHistory();
   const [showForm, setShowForm] = useState(false)
   const { user } = useContext(AuthContext)
   const [showEdit, setShowEdit] = useState(false)
+
+  useEffect(() => {
+    getComments()
+  }, [])
+
+  const getComments = async () => {
+    try{
+      let res = await axios.get(`/api/answers/${answer.id}/comments/`)
+      console.log("comments:", res.data)
+      setComments(res.data)
+    } catch(error) {
+      alert("error getting comments, but that sounds like a YOU problem")
+    }
+  };
+
+  const addComment = async (e, comment) => {
+    e.preventDefault()
+    console.log(comment)
+    try {
+      await axios.post(`/api/answers/${answer.id}/comments/`, comment)
+      setComments([...comments, comment])
+    } catch(err) {
+      console.log(err)
+      alert("somethin ain't right...")
+    }
+  }
+
+  const updateComments = (comment) => {
+    const updatedComments = comments.map((c) => (c.id === comment.id ? comment : c));
+    setComments(updatedComments)
+  }
 
   const renderAnswer = () => {
     if(!answer){
@@ -55,6 +89,7 @@ const Answer = ({answer, props, deleteAnswer}) => {
       {userEdit()}
       {userDelete()}
       {showForm && <EditAnswer a = {answer} props = {props}/>}
+      <Comments addComment={addComment} updateComments={updateComments} comments={comments} setComments={setComments} answer={answer}/>
     </div>
   )
 }

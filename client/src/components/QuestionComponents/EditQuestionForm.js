@@ -6,9 +6,12 @@ const EditQuestionForm = ({props}) => {
   const [question, setQuestion] = useState(null)
   const [title, setTitle] = useState('')
   const [body, setBody] = useState('')
+  const [tags, setTags] = useState([])
+  const [checkedItems, setCheckedItems] = useState({})
 
   useEffect(()=>{
     getQuestion()
+    getTags()
   },[])
 
   const getQuestion = async () => {
@@ -22,6 +25,53 @@ const EditQuestionForm = ({props}) => {
     }
   }
 
+  const getTags = async () => {
+    try {
+      let res = await axios.get('/api/tags')
+      setTags(res.data)
+    }catch (err){
+      console.log(err)
+    }
+  }
+
+  const getQuestionTag = async () => {
+    try {
+      let res = await axios.get('/api/tags')
+      setTags(res.data)
+    }catch (err){
+      console.log(err)
+    }
+  }
+
+  const handleCheckbox = (event)=>{
+    console.log(event.target.checked, event.target.id)
+    setCheckedItems({...checkedItems, [event.target.id]: event.target.checked})
+  }
+
+  const tagList = () => {
+    console.log(checkedItems)
+    return tags.map((t) => {
+      return (
+        <Form.Check inline
+        type='checkbox'
+        id={t.id}
+        label={t.name}
+        value={t.id}
+        checked= {checkedItems[t.id]}
+        onClick={handleCheckbox}
+        />
+      )
+    })
+  }
+
+  const handleTagSubmit = async (res) =>{
+    for (const [key, value] of Object.entries(checkedItems)) {
+      if(value === true){
+        let tagRes = await axios.post('/api/questionTags', {tag_id: key,question_id: res.data.id})
+      }
+    }
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
@@ -29,6 +79,7 @@ const EditQuestionForm = ({props}) => {
       setQuestion(res.data)
       setTitle(res.data.title)
       setBody(res.data.body)
+      handleTagSubmit()
     }catch (err) {
       console.log(err)
     }
@@ -52,6 +103,9 @@ const EditQuestionForm = ({props}) => {
             placeholder='Explain your question here'
             onChange={(e) => setBody(e.target.value)}
           />
+        </Form.Group>
+        <Form.Group>
+            {tagList()}
         </Form.Group>
         <Button variant="primary" type='submit'>Edit Question</Button>
       </Form>

@@ -6,5 +6,6 @@ class QuestionTag < ApplicationRecord
     select('*')
     .from('question_tags')
     .where('question_id = ?', question_id)
+    .order('tag_id')
   end
 end

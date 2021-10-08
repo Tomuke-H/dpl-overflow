@@ -8,10 +8,12 @@ const EditQuestionForm = ({props}) => {
   const [body, setBody] = useState('')
   const [tags, setTags] = useState([])
   const [checkedItems, setCheckedItems] = useState({})
+  const [checkedItemstest, setCheckedItemstest] = useState({})
 
   useEffect(()=>{
     getQuestion()
     getTags()
+    getQuestionTag()
   },[])
 
   const getQuestion = async () => {
@@ -36,11 +38,22 @@ const EditQuestionForm = ({props}) => {
 
   const getQuestionTag = async () => {
     try {
-      let res = await axios.get('/api/tags')
-      setTags(res.data)
+      let res = await axios.get(`/api/questionTags/${props.match.params.id}`)
+      console.log("questiontag",res)
+      setCheckedItems(res.data)
+      normalizeCheckedItems(res.data)
     }catch (err){
       console.log(err)
     }
+  }
+
+  const normalizeCheckedItems = (data) =>{
+    // for (let i = 0; data[data.length-1].tag_id; i++) {
+    //   for (let j = 0; j < data.length; j++) {
+    //     console.log("in normalize data")
+        
+    //   }
+    // }
   }
 
   const handleCheckbox = (event)=>{
@@ -49,8 +62,10 @@ const EditQuestionForm = ({props}) => {
   }
 
   const tagList = () => {
-    console.log(checkedItems)
     return tags.map((t) => {
+      // let q = checkedItems 
+      // console.log("Q",q)
+      // console.log("Taglist Checked items",checkedItems[t.id],t.id)
       return (
         <Form.Check inline
         type='checkbox'

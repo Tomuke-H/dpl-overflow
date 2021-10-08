@@ -29,7 +29,7 @@ const Answer = ({answer, props, deleteAnswer}) => {
   };
 
   const addComment = async (e, comment) => {
-    e.preventDefault()
+    // e.preventDefault()
     console.log(comment)
     try {
       await axios.post(`/api/answers/${answer.id}/comments/`, comment)

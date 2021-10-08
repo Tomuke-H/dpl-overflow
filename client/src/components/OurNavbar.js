@@ -66,6 +66,11 @@ const OurNavbar = (props) => {
             Tags
         </Container>
       </Nav.Link>
+      <Nav.Link as={Link} to='/yearbook'>
+        <Container>
+            Yearbook
+        </Container>
+      </Nav.Link>
       <Navbar.Collapse className="justify-content-end">{rightNavItems()}</Navbar.Collapse>
     </Navbar>
     </span>

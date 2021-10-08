@@ -5,9 +5,10 @@ Rails.application.routes.draw do
     get 'things', to: 'things#index'
     resources :users 
     resources :questions do 
+    resources :answers
+  end
     resources :answers do
     resources :comments
-    end
   end
     resources :tags
   end  

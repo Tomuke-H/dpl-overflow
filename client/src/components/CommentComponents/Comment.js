@@ -8,6 +8,8 @@ const [showEdit, setShowEdit] = useState(false);
 const { user } = useContext(AuthContext);
 
   const showEditDelete = () => {
+    console.log("user", user)
+    if (user) {
     if(u.id === user.id) {
       return (
         <>
@@ -19,11 +21,16 @@ const { user } = useContext(AuthContext);
       )
     }
   }
+  }
+
   return(
     <div style={{margin: "66px"}}>
-      {/* <h6>{user.name}</h6> */}
+      {/* <h6>{u.name}</h6> */}
       <p>{body}</p>
-      {showEditDelete}
+      <Button onClick={()=>deleteComment(id)}>Delete Comment</Button>  
+      <Button onClick={()=>setShowEdit(!showEdit)}> {!showEdit ? "Edit Comment" : "Cancel" }</Button>  
+      {showEdit && <EditCommentForm updateComments={updateComments} id={id} body={body} answer={answer} u={u} showEdit={showEdit} setShowEdit={setShowEdit}/>}
+      {/* {showEditDelete()} */}
     </div>
   )
 }

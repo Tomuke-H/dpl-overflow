@@ -17,7 +17,7 @@ const EditCommentForm = ({updateComments, id, body, u, answer, showEdit, setShow
       answer_id: answer.id
     }
     try {
-      let res = await axios.put(`/api/comments/${id}`, comment)
+      let res = await axios.put(`/api/answers/${answer.id}/comments/${id}`, comment)
       console.log(res);
       setShowEdit(!showEdit);
       updateComments(res.data)

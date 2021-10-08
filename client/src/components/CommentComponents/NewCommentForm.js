@@ -5,38 +5,26 @@ import axios from "axios";
 import { Form, Button } from "react-bootstrap";
 
 
-//comment form will be an option at the bottom of each answer
 
-const NewCommentForm = () => {
+const NewCommentForm = ({answer, addComment}) => {
 const [commentBody, setCommentBody] = useState ("")
 const { user } = useContext(AuthContext)
-const history = useHistory();
 
-  const addComment = async (e) => {
-    e.preventDefault()
-    let comment = { 
-      body: commentBody,
-      user_id: user.id,
-      answer_id: 7
-      //DO NOT FORGET TO CHANGE THIS TO BE answer.id  OR SOMETHING!
-      //answer should be passed in as props but until we get that working,
-      //I am just hardcoding it at 7.
-    };
-    console.log(comment)
-    try {
-      await axios.post("/api/comments/", comment)
-      history.push("/comments")
-    } catch(err) {
-      console.log(err)
-      alert("somethin ain't right...")
-    }
-  }
+let comment = {
+  body: commentBody,
+  user_id: user.id,
+  answer_id: answer.id
+}
 
-
+const handleSubmit = (e, comment) => {
+    addComment(e, comment);
+    setCommentBody("");
+}
 
   return (
     <div>
-      <Form onSubmit={addComment}>
+      <Form onSubmit={(e)=>{handleSubmit(e, comment)}}>
+      {/* <Form> */}
         <Form.Control
         value={commentBody}
         label="Body"

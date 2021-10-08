@@ -2,41 +2,23 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import Comment from "./Comment"
+import NewCommentForm from "./NewCommentForm";
 
 
 // I anticipate that props passed into this file should/will be answer and user
-const Comments = () => {
-  const [comments, setComments] = useState([])
+const Comments = ({answer, comments, setComments, addComment, updateComments}) => {
   const {user} = useContext(AuthContext)
+  // const history = useHistory();
 
-  useEffect(() => {
-    getComments()
-  }, [])
-
-  const getComments = async () => {
-    try{
-      //will need to edit routes.rb and axios call to be user and answer specific but for testing purposes this works
-      let res = await axios.get(`/api/comments/`)
-      console.log("comments:", res.data)
-      setComments(res.data)
-    } catch(error) {
-      alert("error getting comments, but that sounds like a YOU problem")
-    }
-  };
 
   const deleteComment = async (id) => {
     try{
-      await axios.delete(`/api/comments/${id}`)
+      await axios.delete(`/api/answers/${answer.id}/comments/${id}`)
       const filterComments = comments.filter((comment) => comment.id !== id);
       setComments(filterComments)
     } catch {
       alert("Ah shucks.  I don't know what I'm trying to do, but clearly it ain't workin.")
     }
-  }
-
-  const updateComments = (comment) => {
-    const updatedComments = comments.map((c) => (c.id === comment.id ? comment : c));
-    setComments(updatedComments)
   }
 
   const renderComments = () => {
@@ -50,6 +32,7 @@ const Comments = () => {
   return (
     <>
     {renderComments()}
+    <NewCommentForm answer={answer} addComment={addComment}/>
     </>
   )
 }

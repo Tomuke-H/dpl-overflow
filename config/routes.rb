@@ -15,6 +15,6 @@ Rails.application.routes.draw do
     post 'questionTags', to:'question_tags#create'
     delete 'questionTags/:id', to:'question_tags#destroy'
     get 'find_questions_by_tag/:tag_name', to:'questions#find_questions_by_tag'
-  resources :tags
-end
+    resources :tags
+  end
 end

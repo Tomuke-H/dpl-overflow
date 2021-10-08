@@ -9,6 +9,8 @@ const NewQuestionPage = (props) => {
     history.push(`/question/${id}`)
   }
 
+  /// markdown backtick instructions? 
+  
   return(
     <div>
       <NewQuestionForm handleRedirect={handleRedirect}/>

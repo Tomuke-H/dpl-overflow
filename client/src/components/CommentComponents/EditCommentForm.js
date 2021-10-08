@@ -4,20 +4,20 @@ import { AuthContext } from "../../providers/AuthProvider"
 import axios from "axios";
 import { Form, Button } from "react-bootstrap";
 
-const EditCommentForm = ({updateComments, id, body, u, answer, showEdit, setShowEdit}) => {
+const EditCommentForm = ({updateComments, answer, c, showEdit, setShowEdit}) => {
   const { user } = useContext(AuthContext)
-  const [commentBody, setCommentBody] = useState(body)
+  const [commentBody, setCommentBody] = useState(c.body)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     let comment = {
-      id: id,
+      id: c.id,
       body: commentBody,
-      user_id: u.id,
+      user_id: user.id,
       answer_id: answer.id
     }
     try {
-      let res = await axios.put(`/api/answers/${answer.id}/comments/${id}`, comment)
+      let res = await axios.put(`/api/answers/${answer.id}/comments/${c.id}`, comment)
       console.log(res);
       setShowEdit(!showEdit);
       updateComments(res.data)

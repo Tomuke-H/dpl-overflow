@@ -1,6 +1,5 @@
 class Api::QuestionTagsController < ApplicationController
   before_action :set_question_tag_by_QT_ID, only: [:destroy]
-  before_action :set_question, only: [:find_tags_for_question]
 
 def index
   render json: QuestionTag.all
@@ -16,7 +15,7 @@ def create
 end
 
 def find_tags_for_question
-
+  render json: QuestionTag.find_tags_for_question(params[:question_id])
 end
 
 def destroy
@@ -33,8 +32,5 @@ def set_question_tag_by_QT_ID
   @questionTag = QuestionTag.find(params[:id])
 end
 
-def set_question
-  @questionTag = Question.find(params[:id])
-end
 
 end

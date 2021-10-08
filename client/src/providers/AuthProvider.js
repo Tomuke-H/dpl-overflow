@@ -26,6 +26,7 @@ const AuthProvider = (props) => {
         }catch(err){
             setError(err.response.data.errors ? err.response.data.errors : err.response.data)
             console.log(err)
+            alert("Account already exists. Please log in.")
         }finally{
             setLoading(false)
         }
@@ -54,6 +55,7 @@ const AuthProvider = (props) => {
         }catch (err) {
             setError(err)
             console.log(err)
+            alert("Account does not exist. Please create account.")
         }
     };
 

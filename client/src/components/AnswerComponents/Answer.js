@@ -45,6 +45,17 @@ const Answer = ({answer, props, deleteAnswer}) => {
     setComments(updatedComments)
   }
 
+
+  const deleteComment = async (id) => {
+    try{
+      await axios.delete(`/api/answers/${answer.id}/comments/${id}`)
+      const filterComments = comments.filter((comment) => comment.id !== id);
+      setComments(filterComments)
+    } catch {
+      alert("Ah shucks.  I don't know what I'm trying to do, but clearly it ain't workin.")
+    }
+  }
+
   const renderAnswer = () => {
     if(!answer){
       return(
@@ -89,7 +100,7 @@ const Answer = ({answer, props, deleteAnswer}) => {
       {userEdit()}
       {userDelete()}
       {showForm && <EditAnswer a = {answer} props = {props}/>}
-      <Comments addComment={addComment} updateComments={updateComments} comments={comments} setComments={setComments} answer={answer}/>
+      <Comments addComment={addComment} updateComments={updateComments} deleteComment={deleteComment} comments={comments} setComments={setComments} answer={answer}/>
     </div>
   )
 }

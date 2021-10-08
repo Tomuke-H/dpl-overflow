@@ -27,6 +27,8 @@ class Api::TagsController < ApplicationController
 
   def destroy
     @tag.destroy
+    render json: Tag.all
+
   end
 
   private

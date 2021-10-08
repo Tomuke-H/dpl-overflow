@@ -50,9 +50,9 @@ const OurNavbar = (props) => {
             Home
         </Container>
       </Nav.Link >
-      <Nav.Link as={Link} to='/test_page'>
+      <Nav.Link as={Link} to='/Dashboard'>
         <Container>
-            Test Page
+            Dashboard
         </Container>
       </Nav.Link>
       <Nav.Link as={Link} to='/user'>

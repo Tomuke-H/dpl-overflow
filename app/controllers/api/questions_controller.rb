@@ -3,7 +3,7 @@ class Api::QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :update, :destroy]
 
   def index
-    render json: {questions: Question.page(@page).per(10), total_pages: Question.page(@page).total_pages}
+    render json: {questions: Question.page(@page).per(3), total_pages: Question.page(@page).total_pages}
   end
 
   def show
@@ -20,7 +20,7 @@ class Api::QuestionsController < ApplicationController
   end
 
   def find_questions_by_tag
-    render json: Question.find_question_by_tag(params[:tag_name])
+    render json: {questions: Question.find_question_by_tag(params[:tag_name]).page(@page).per(3), total_pages: Question.find_question_by_tag(params[:tag_name]).page(@page).total_pages}
   end
 
   def update

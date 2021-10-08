@@ -3,7 +3,6 @@ import { useHistory } from 'react-router';
 import { AuthContext } from '../providers/AuthProvider';
 import { Button, Container, Form } from 'react-bootstrap'
 import axios from 'axios';
-import handleLogout from '../providers/AuthProvider';
 
 
 const EditUser = (id) => {

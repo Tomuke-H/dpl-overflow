@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Container } from 'react-bootstrap';
 import { useHistory } from 'react-router';
 import { AuthContext } from '../providers/AuthProvider'
 
@@ -13,20 +13,28 @@ const Login = (props) => {
         e.preventDefault();
         handleLogin({email, password}, history)
     }
+
     return (
-        <Form onSubmit={handleSubmit}>
-            <Form.Control
-                value={email}
-                label="Email"
-                onChange={(e) => setEmail(e.target.value)}
-            />
-            <Form.Control
-                value={password}
-                label="Password"
-                onChange={(e) => setPassword(e.target.value)}
-            />
-            <Button type="submit">Login</Button>
-        </Form>
+        <Container>
+            <h1>Login</h1>
+            <br />
+            <h5>Email</h5>
+            <Form onSubmit={handleSubmit}>
+                <Form.Control
+                    value={email}
+                    label="Email"
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+                <br />
+                <h5>Password</h5>
+                <Form.Control
+                    value={password}
+                    label="Password"
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+                <Button type="submit">Login</Button>
+            </Form>
+        </Container>
     );
 };
 

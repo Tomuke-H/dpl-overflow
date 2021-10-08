@@ -25,7 +25,12 @@ const NewQuestionForm = ({ handleRedirect }) => {
   const tagList = () => {
     return tags.map(t => {
       return (
-        <option value={t.name} key={t.id}>{t.name}</option>
+        <Form.Check inline
+        type='checkbox'
+        id={t.id}
+        label={t.name}
+        value={t.id}
+      />
       )
     })
   }
@@ -60,10 +65,7 @@ const NewQuestionForm = ({ handleRedirect }) => {
           />
         </Form.Group>
         <Form.Group>
-          <Form.Select>
-            <option>I don't actually work yet</option>
             {tagList()}
-          </Form.Select>
         </Form.Group>
         <Button variant="primary" type='submit'>Ask Question</Button>
       </Form>

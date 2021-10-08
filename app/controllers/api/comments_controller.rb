@@ -4,7 +4,8 @@ class Api::CommentsController < ApplicationController
 
 
   def index
-    comments = @answer.comments.simplify
+    comments = @answer.comments.all
+    # comments = @answer.comments.simplify
     render json: comments
   end
 

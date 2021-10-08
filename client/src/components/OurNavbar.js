@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Container, Nav, Navbar } from 'react-bootstrap'
+import { Container, Dropdown, Nav, Navbar } from 'react-bootstrap'
 import { Link, useHistory, withRouter } from 'react-router-dom'
 import { AuthContext } from '../providers/AuthProvider'
 
@@ -12,23 +12,23 @@ const OurNavbar = (props) => {
     if(user){
       return (
         <>
-        <Nav.Link as={Link} to='/user'>
-          <Container>
-            Profile
-          </Container>
-        </Nav.Link>
+          <Nav.Link as={Link} to='/user'>
+            <Container>
+              Profile
+            </Container>
+          </Nav.Link>
 
-        <Nav.Link as={Link} to='/user/edit'>
-          <Container>
-            Edit Profile
-          </Container>
-        </Nav.Link>
+          <Nav.Link as={Link} to='/user/edit'>
+            <Container>
+              Edit Profile
+            </Container>
+          </Nav.Link>
 
-        <Nav.Link as={Link} onClick={()=> handleLogout(history)} to='/login'>
-          <Container>
-            Logout
-          </Container>
-        </Nav.Link>
+          <Nav.Link as={Link} onClick={()=> handleLogout(history)} to='/login'>
+            <Container>
+              Logout
+            </Container>
+          </Nav.Link>
         </>
       ) ;
     };

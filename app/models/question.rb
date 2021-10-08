@@ -12,4 +12,10 @@ class Question < ApplicationRecord
     .where('t.name= ?', tag_name)
   end
 
+  def self.simplify
+    question = Question.find(params[:id])
+    question.map do |quest|
+    {id: comment.id, body: comment.body, likes: comment.likes, user: comment.user_id, answer: comment.answer_id}
+  end
+
 end

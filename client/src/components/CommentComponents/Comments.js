@@ -24,7 +24,7 @@ const Comments = ({answer, comments, setComments, addComment, updateComments}) =
   const renderComments = () => {
     return comments.map((comment) => {
       return(
-        <Comment key={comment.id} comments={comments} deleteComment={deleteComment} updateComments={updateComments} id={comment.id} body={comment.body} answer={comment.answer} u={comment.user} />
+        <Comment key={comment.id} comments={comments} updateComments={updateComments} id={comment.id} body={comment.body} answer={comment.answer} user_id={comment.user_id} deleteComment = {deleteComment} />
       )
     })
   }

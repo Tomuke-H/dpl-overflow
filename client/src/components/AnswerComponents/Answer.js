@@ -1,33 +1,15 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap'
+import { useHistory } from 'react-router-dom'
+import { AuthContext } from '../../providers/AuthProvider'
 import EditAnswer from './EditAnswer'
 
-const Answer = (props) => {
-  const [answer, setAnswer] = useState(null)
-
-  const getAnswer = async () => {
-    try {
-      let res = await axios.get(`/api/answers/${props.match.params.id}`)
-      console.log(res.data)
-      setAnswer(res.data)
-    }catch (err) {
-      console.log(err)
-    }
-  }
-
-  useEffect(()=>{
-    getAnswer()
-  },[])
-
-  const deleteAnswer = async (id) => {
-    try{
-      let res = await axios.delete(`/api/answers/${id}`)
-      setAnswer(null)
-    }catch (err) {
-      console.log(err)
-    }
-  }
+const Answer = ({answer, props, deleteAnswer}) => {
+  const history = useHistory();
+  const [showForm, setShowForm] = useState(false)
+  const { user } = useContext(AuthContext)
+  const [showEdit, setShowEdit] = useState(false)
 
   const renderAnswer = () => {
     if(!answer){
@@ -38,14 +20,41 @@ const Answer = (props) => {
     return(
       <div>
         <h2>{answer.body}</h2>
-        <Button type="submit" onClick={()=>deleteAnswer(answer.id)}>Delete</Button>
       </div>
     )
   }
+
+  const showEditForm = () => {
+  return (<Button onClick={()=>setShowForm(!showForm)}>Edit</Button>
+  )}
+
+
+  const userEdit = () => {
+    if (answer.user_id === user.id) {
+      return showEditForm()
+    } else {
+      console.log("not your answer")
+    }
+  }
+
+  const userDelete = () => {
+   if (answer.user_id === user.id) {
+     return showDeleteButton() 
+   } else {
+     console.log("not your answer")
+   }
+  }
+
+  const showDeleteButton = () => {
+ return (<Button type="submit" onClick={()=>deleteAnswer(answer.id)}>Delete</Button>)
+  }
+
   return (
     <div>
       {renderAnswer()}
-      <EditAnswer a = {answer}/>
+      {userEdit()}
+      {userDelete()}
+      {showForm && <EditAnswer a = {answer} props = {props}/>}
     </div>
   )
 }

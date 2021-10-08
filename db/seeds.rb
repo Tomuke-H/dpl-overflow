@@ -44,6 +44,9 @@ end
   end
 end
 
+test.questions.create(title:'Unanswered', body: 'Will somebody PLEASE answer me??')
+test2.questions.create(title:'Completely los', body: 'Will anybody PLEASE answer me??')
+
 puts "Users: #{User.all.size}"
 puts "Questions: #{Question.all.size}"
 puts "QuestionTags: #{QuestionTag.all.size}"

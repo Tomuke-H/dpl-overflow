@@ -12,4 +12,12 @@ class Question < ApplicationRecord
     .where('t.name= ?', tag_name)
   end
 
+  def self.unanswered_questions
+    select('q.id, q.title, q.body, a.id AS answer')
+    .from('questions AS q') 
+    .joins('LEFT JOIN answers AS a On a.question_id = q.id')
+    .where('a.id IS NULL')
+  end
+
+
 end

@@ -5,6 +5,7 @@ import QuestionCard from "./QuestionCard";
 import { Container, Button } from "react-bootstrap";
 import QuestionPagination from "./QuestionPagination";
 import useAxiosQuestion from "../../hooks/useAxiosQuestion";
+import SortSelector from "./SortSelector";
 
 const Questions = ({history}) => {
   const [questions, setQuestions] = useState([])
@@ -15,6 +16,7 @@ const Questions = ({history}) => {
   const [sortBy, setSortBy] = useState('all')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [showTags, setShowTags] = useState(false)
 
   const getDataByTag = async (t, p) => {
     setTag(t)
@@ -24,6 +26,18 @@ const Questions = ({history}) => {
       setQuestions(res.data.questions)
       setTotalPages(res.data.total_pages)
     } catch (err){
+      console.log(err)
+    }
+  }
+
+  const getDataByUnanswered = async (p) => {
+    setSortBy('unanswered')
+    setTag(null)
+    try{
+      let res = await axios.get(`/api/unanswered_questions?page=${p}`)
+      setQuestions(res.data.questions)
+      setTotalPages(res.data.total_pages)
+    }catch(err){
       console.log(err)
     }
   }
@@ -48,6 +62,9 @@ const Questions = ({history}) => {
         break;
       case "tag" :
         getDataByTag(t, p)
+        break;
+      case "unanswered" :
+        getDataByUnanswered(p)
         break;
       default:
         alert('Hook failed')
@@ -91,10 +108,11 @@ const Questions = ({history}) => {
 
   return (
     <Container>
-      {renderTags()}
-      <Button onClick={(e)=> getQuestions('all', 1)}>Show All</Button>
+      <SortSelector showTags={showTags} setShowTags={setShowTags} getQuestions={getQuestions} />
+      {showTags && renderTags()}
       <QuestionPagination tag={tag} sortBy={sortBy} getQuestions={getQuestions} page={page} totalPages={totalPages} />
       {renderQuestions()}
+      <QuestionPagination tag={tag} sortBy={sortBy} getQuestions={getQuestions} page={page} totalPages={totalPages} />
     </Container>
   )
 }

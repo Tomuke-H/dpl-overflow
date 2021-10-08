@@ -11,7 +11,7 @@ export default function User() {
       <div>
         <h1>{currentUser.name}</h1>
         <h2>{currentUser.cohort}</h2>
-        <p>{currentUser.aboutMe}</p>
+        <p>{currentUser.about_me}</p>
       </div>
     )
   }

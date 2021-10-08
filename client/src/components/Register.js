@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react'
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Container } from 'react-bootstrap';
 import { useHistory } from 'react-router';
 import { AuthContext } from '../providers/AuthProvider';
 
 const Register = () => {
-    const {handleRegister, error, loading} = useContext(AuthContext);
-    const [email, setEmail] = useState('test@test.com')
-    const [name, setName] = useState('Tester')
+    const {handleRegister} = useContext(AuthContext);
+    const [email, setEmail] = useState('test1@test.com')
+    const [name, setName] = useState('Tester1')
     const [password, setPassword] = useState('123456')
     const [passwordConfirmation, setPasswordConfirmation] = useState('123456')
     const history = useHistory();
@@ -18,24 +18,39 @@ const Register = () => {
 
     return (
         <div>
+            <Container>
+            <h1>New Account</h1>
+            <br />
+            <h5>Username:</h5>
             <Form onSubmit={handleSubmit}>
-                <Form.Control 
+                <Form.Control
+                    value={name}
+                    label="Username"
+                    onChange={(e) => setName(e.target.value)}
+                    />
+                <br />
+                <h5>Email:</h5>
+                <Form.Control
                     value={email}
                     label="Email"
                     onChange={(e) => setEmail(e.target.value)}
                     />
-                <Form.Control 
+                <br />
+                <h5>Password:</h5>
+                <Form.Control
                     value={password}
-                    label="Password"
+                    label="New Password"
                     onChange={(e) => setPassword(e.target.value)}
                     />
-                <Form.Control 
+                <h6>Confirm password:</h6>
+                <Form.Control
                     value={passwordConfirmation}
                     label="Confirm Password"
                     onChange={(e) => setPasswordConfirmation(e.target.value)}
                     />
-                <Button type="submit">Register</Button>
+                <Button type="submit">Create Account</Button>
             </Form>
+            </Container>
         </div>
     );
 }

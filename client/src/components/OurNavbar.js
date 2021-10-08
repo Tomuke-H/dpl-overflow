@@ -12,9 +12,15 @@ const OurNavbar = (props) => {
     if(user){
       return (
         <>
-        <Nav.Link as={Link} to='/edit_user'>
+        <Nav.Link as={Link} to='/user'>
           <Container>
-            Edit User
+            Profile
+          </Container>
+        </Nav.Link>
+
+        <Nav.Link as={Link} to='/user/edit'>
+          <Container>
+            Edit Profile
           </Container>
         </Nav.Link>
 
@@ -50,14 +56,9 @@ const OurNavbar = (props) => {
             Home
         </Container>
       </Nav.Link >
-      <Nav.Link as={Link} to='/test_page'>
+      <Nav.Link as={Link} to='/Dashboard'>
         <Container>
-            Test Page
-        </Container>
-      </Nav.Link>
-      <Nav.Link as={Link} to='/user'>
-        <Container>
-            Profile
+            Dashboard
         </Container>
       </Nav.Link>
       <Nav.Link as={Link} to='/tags'>

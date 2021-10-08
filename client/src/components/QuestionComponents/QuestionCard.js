@@ -11,7 +11,6 @@ const QuestionCard = ({question, history}) => {
       <Card.Header>{question.title}</Card.Header>
       <Card.Body>
         <Card.Text>{question.body}</Card.Text>
-        <Card.Text>{question.body}</Card.Text>
       </Card.Body>
       <Card.Footer className="text-muted">Created {question.created_at}</Card.Footer>
     </Card>

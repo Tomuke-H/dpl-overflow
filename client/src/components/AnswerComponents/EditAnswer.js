@@ -1,21 +1,23 @@
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 
-const EditAnswer = (props) => {
+const EditAnswer = ({a, props}) => {
   const [body, setBody] = useState("")
-  const [answer, setAnswer] = useState("")
+  const [answer, setAnswer] = useState([])
   const { user } = useContext(AuthContext)
+  const history = useHistory();
 
 
 
   const handleSubmit = async (e) =>{
-    setAnswer({body: body, question_id: 7, user_id: user.id})
-    e.preventDefault()
     try {
-      console.log(body)
-      let res = await axios.put(`/api/answers/${props.a.id}`, answer)
+      console.log("body:", body)
+      console.log("answer:", answer)
+      let res = await axios.put(`/api/questions/${props.match.params.id}/answers/${a.id}`, answer)
+      setBody(res.data.body)
       console.log(res)
     } catch (err) {
       console.log(err)
@@ -35,7 +37,7 @@ const EditAnswer = (props) => {
         onChange={(e) => {
           setBody(e.target.value)}}/>
         </Form.Group>
-      <Button type = "submit">
+      <Button type = "submit" onClick={()=>setAnswer({body: body, question_id: props.match.params.id, user_id: user.id})}>
           Update
       </Button>
       </Form>

@@ -1,11 +1,11 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import {useHistory} from "react-router-dom"
 import Tags from "../../pages/Tags";
 
 
-const CreateTag = () => {
+const CreateTag = ({setCreated}) => {
   const [name, setName] = useState("")
   let history = useHistory()
 
@@ -13,10 +13,11 @@ const CreateTag = () => {
     e.preventDefault()
     try {
       let res = await axios.post("/api/tags", {name})
+      setCreated(true)
+      setName("")
     } catch (err) {
       console.log(err)
-    };
-  }
+    }}
 
 
   return(
@@ -28,6 +29,7 @@ const CreateTag = () => {
         <Form.Label>Tag Name</Form.Label>
         <Form.Control 
         placeholder="Enter Tag Name" 
+        value = {name}
         onChange={(e) => {
           setName(e.target.value)}}/>
         </Form.Group>

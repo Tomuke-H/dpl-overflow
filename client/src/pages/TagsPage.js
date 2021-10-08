@@ -4,14 +4,12 @@ import { Badge, } from "react-bootstrap"
 import CreateTag from "../components/TagComponents/CreateTag"
 
 const Tags = () => {
-  const [show, setShow] = useState("false")
   const [tags, setTags] = useState([])
-  const [created, setCreated] = useState(false)
 
   useEffect(()=>{
-    setCreated(false)
+    console.log("in UseEffect")
     getTags();
-  },[created]);
+  },[]);
 
   const getTags = async () => {
     try {
@@ -21,16 +19,7 @@ const Tags = () => {
       console.log(error)
     }
   }
-  
-  const deleteTag = async (id) => {
-    try {
-      let res = await axios.delete(`/api/tags/${id}`)
-      let tag = tags.filter((t) => t.id !== id)
-      setTags(tag)
-    } catch (error) {
-      console.log(error)
-    }
-  }
+
   const renderTags = () => {
     return tags.map((t,ind)=>{
       return(
@@ -44,19 +33,10 @@ const Tags = () => {
     })
   }
 
-  const addTag = () => {
-    return(
-      <CreateTag
-      setCreated = {setCreated}
-      />
-    )
-  }
-
   return(
     <div>
       <h1>Tags</h1>
       {renderTags()}
-      {addTag()}
     </div>
   )
 }

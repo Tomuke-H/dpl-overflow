@@ -11,7 +11,6 @@ import TestPage from './pages/TestPage';
 import User from './components/User';
 import Tags from './pages/Tags';
 import Answers from './components/AnswerComponents/Answers';
-import NewAnswer from './components/AnswerComponents/NewAnswer';
 import EditAnswer from './components/AnswerComponents/EditAnswer';
 import Answer from './components/AnswerComponents/Answer'
 import Comments from './components/CommentComponents/Comments';

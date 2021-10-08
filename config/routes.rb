@@ -13,8 +13,10 @@ Rails.application.routes.draw do
     end
     get 'questionTags', to:'question_tags#index'
     post 'questionTags', to:'question_tags#create'
+    get 'questionTags/:question_id', to:'question_tags#find_tags_for_question'
     delete 'questionTags/:id', to:'question_tags#destroy'
     get 'find_questions_by_tag/:tag_name', to:'questions#find_questions_by_tag'
+    get 'unanswered_questions', to:'questions#unanswered_questions'
     resources :tags
   end
 end

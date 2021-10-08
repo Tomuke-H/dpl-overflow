@@ -8,6 +8,7 @@ const NewQuestionForm = ({ handleRedirect }) => {
   const [title, setTitle] = useState('')
   const [body, setBody] = useState('')
   const [tags, setTags] = useState([])
+  const [checkedItems, setCheckedItems] = useState({})
 
   useEffect(()=>{
     getTags()
@@ -22,23 +23,40 @@ const NewQuestionForm = ({ handleRedirect }) => {
     }
   }
 
+  const handleCheckbox = (event)=>{
+    console.log(event.target.checked, event.target.id)
+    setCheckedItems({...checkedItems, [event.target.id]: event.target.checked})
+  }
+
   const tagList = () => {
-    return tags.map(t => {
+    console.log(checkedItems)
+    return tags.map((t) => {
       return (
         <Form.Check inline
         type='checkbox'
         id={t.id}
         label={t.name}
         value={t.id}
-      />
+        checked= {checkedItems[t.id]}
+        onClick={handleCheckbox}
+        />
       )
     })
+  }
+
+  const handleTagSubmit = async (res) =>{
+    for (const [key, value] of Object.entries(checkedItems)) {
+      if(value === true){
+        let tagRes = await axios.post('/api/questionTags', {tag_id: key,question_id: res.data.id})
+      }
+    }
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
       let res = await axios.post('/api/questions', {title, body, user_id: user.id})
+      handleTagSubmit(res)
       handleRedirect(res.data.id)
     }catch (err) {
       console.log(err)

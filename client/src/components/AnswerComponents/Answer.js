@@ -37,17 +37,23 @@ const Answer = ({answer, props, deleteAnswer}) => {
     }
   }
 
-  const userDelete = ()n => {
-    return (
-      <p>nothing</p>
-    )
+  const userDelete = () => {
+   if (answer.user_id === user.id) {
+     return showDeleteButton() 
+   } else {
+     console.log("not your answer")
+   }
+  }
+
+  const showDeleteButton = () => {
+ return (<Button type="submit" onClick={()=>deleteAnswer(answer.id)}>Delete</Button>)
   }
 
   return (
     <div>
       {renderAnswer()}
-      <Button type="submit" onClick={()=>deleteAnswer(answer.id)}>Delete</Button>
       {userEdit()}
+      {userDelete()}
       {showForm && <EditAnswer a = {answer} props = {props}/>}
     </div>
   )

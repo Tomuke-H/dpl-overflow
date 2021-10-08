@@ -6,25 +6,15 @@ import NewCommentForm from "./NewCommentForm";
 
 
 // I anticipate that props passed into this file should/will be answer and user
-const Comments = ({answer, comments, setComments, addComment, updateComments}) => {
+const Comments = ({answer, comments, setComments, addComment, updateComments, deleteComment}) => {
   const {user} = useContext(AuthContext)
   // const history = useHistory();
 
 
-  const deleteComment = async (id) => {
-    try{
-      await axios.delete(`/api/answers/${answer.id}/comments/${id}`)
-      const filterComments = comments.filter((comment) => comment.id !== id);
-      setComments(filterComments)
-    } catch {
-      alert("Ah shucks.  I don't know what I'm trying to do, but clearly it ain't workin.")
-    }
-  }
-
   const renderComments = () => {
     return comments.map((comment) => {
       return(
-        <Comment key={comment.id} comments={comments} updateComments={updateComments} id={comment.id} body={comment.body} answer={comment.answer} user_id={comment.user_id} deleteComment = {deleteComment} />
+        <Comment key={comment.id} comments={comments} deleteComment={deleteComment} updateComments={updateComments} comment={comment} answer={answer}/>
       )
     })
   }

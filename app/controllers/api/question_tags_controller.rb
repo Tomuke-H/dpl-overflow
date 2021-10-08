@@ -14,6 +14,10 @@ def create
   end
 end
 
+def find_tags_for_question
+  render json: QuestionTag.find_tags_for_question(params[:question_id])
+end
+
 def destroy
   @questionTag.destroy
 end
@@ -27,5 +31,6 @@ end
 def set_question_tag_by_QT_ID
   @questionTag = QuestionTag.find(params[:id])
 end
+
 
 end

@@ -17,4 +17,4 @@ const QuestionCard = ({question, history}) => {
   )
 }
 
-export default QuestionCard;
+export default QuestionCard; 

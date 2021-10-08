@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
-import { Button } from 'react-bootstrap'
+import { Card, Button } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import Comments from '../CommentComponents/Comments'
 import NewCommentForm from '../CommentComponents/NewCommentForm'
@@ -29,7 +29,7 @@ const Answer = ({answer, props, deleteAnswer}) => {
   };
 
   const addComment = async (e, comment) => {
-    e.preventDefault()
+    // e.preventDefault()
     console.log(comment)
     try {
       await axios.post(`/api/answers/${answer.id}/comments/`, comment)
@@ -63,9 +63,13 @@ const Answer = ({answer, props, deleteAnswer}) => {
       )
     }
     return(
-      <div>
-        <h2>{answer.body}</h2>
-      </div>
+      <Card>
+        <Card.Header>{answer.user_id}</Card.Header>
+        <Card.Subtitle className="mb-2 text-muted">Created {answer.created_at}</Card.Subtitle>
+        <Card.Body>
+          <Card.Text>{answer.body}</Card.Text>
+        </Card.Body>
+      </Card>
     )
   }
 

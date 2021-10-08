@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useContext, useState } from "react"
-import { Button } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import { AuthContext } from "../../providers/AuthProvider";
 import EditCommentForm from "./EditCommentForm";
 
@@ -11,12 +11,12 @@ const { user } = useContext(AuthContext);
 const showEditDelete = () => {
   if (comment.user_id === user.id) {
     return (
-      <>
+      <Card.Footer>
       <Button onClick={()=>deleteComment(comment.id)}>Delete Comment</Button>  
       <Button onClick={()=>setShowEdit(!showEdit)}> {!showEdit ? "Edit Comment" : "Cancel" }</Button>  
       {showEdit && <EditCommentForm updateComments={updateComments} c={comment} showEdit={showEdit} setShowEdit={setShowEdit} answer={answer}/>
       }
-      </>
+      </Card.Footer>
     )
   }
 }

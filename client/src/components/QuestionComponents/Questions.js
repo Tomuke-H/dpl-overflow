@@ -26,10 +26,6 @@ const Questions = ({history}) => {
     }
   }
 
-  const normalizeData = (data) => {
-    console.log(data)
-  }
-
   const getTags = async () => {
     try{
       let res = await axios.get('/api/tags')

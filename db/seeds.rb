@@ -22,20 +22,34 @@ test2 = User.create(email:'test2@test.com', password:123456, name:'Tester2', coh
 # Thing.create(name: Faker::Company.name)
 # Thing.create(name: Faker::Company.name)
 
- quest = test.questions.create(title: 'Am I even alive?', body: 'I am a test user, but am I even alive?')
+tag1 = Tag.create(name: "existential")
 
- quest2 = test2.questions.create(title: 'Is this course hard?', body: 'I will be in the next cohort and I want to know if it will be difficult?')
+tag2 = Tag.create(name: "preparation")
 
- tag1 = Tag.create(name: "existential")
+10.times do 
+  quest = test.questions.create(title: 'Am I even alive?', body: 'I am a test user, but am I even alive?')
+  quest.question_tags.create(tag_id: tag1.id)
+  5.times do
+    ans = quest.answers.create(body: "not really", likes: 0, verified: false, user_id: test2.id)
+    ans.comments.create(body: "This is a dumb answer", user_id: test.id)
+  end
+end
 
- tag2 = Tag.create(name: "preparation")
+10.times do
+  quest2 = test2.questions.create(title: 'Is this course hard?', body: 'I will be in the next cohort and I want to know if it will be difficult?')
+  quest2.question_tags.create(tag_id: tag2.id)
+  5.times do
+    ans2 = quest2.answers.create(body: "depends on who you are m8", likes: 0, verified: false, user_id: test.id)
+    ans2.comments.create(body: "not particularly helpful are you?", user_id: test2.id)
+  end
+end
 
- quest.question_tags.create(tag_id: tag1.id)
- quest2.question_tags.create(tag_id: tag2.id)
+puts "Users: #{User.all.size}"
+puts "Questions: #{Question.all.size}"
+puts "QuestionTags: #{QuestionTag.all.size}"
+puts "Tags: #{Tag.all.size}"
 
 
- ans = quest.answers.create(body: "not really", likes: 0, verified: false, user_id: test2.id)
- ans2 = quest2.answers.create(body: "depends on who you are m8", likes: 0, verified: false, user_id: test.id)
 
- ans.comments.create(body: "This is a dumb answer", user_id: test.id)
- ans2.comments.create(body: "not particularly helpful are you?", user_id: test2.id)
+
+

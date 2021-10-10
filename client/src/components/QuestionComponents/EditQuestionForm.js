@@ -7,14 +7,17 @@ const EditQuestionForm = ({props}) => {
   const [title, setTitle] = useState('')
   const [body, setBody] = useState('')
   const [tags, setTags] = useState([])
+  const [tagsDone, setTagsDone] = useState(false)
   const [checkedItems, setCheckedItems] = useState({})
-  const [checkedItemstest, setCheckedItemstest] = useState({})
-
+  const [checkedTagDone, setCheckedTagDone] = useState(false)
+  let norm = []
+  let tagID = []
+  
   useEffect(()=>{
     getQuestion()
     getTags()
     getQuestionTag()
-  },[])
+  },[tagsDone])
 
   const getQuestion = async () => {
     try {
@@ -31,6 +34,7 @@ const EditQuestionForm = ({props}) => {
     try {
       let res = await axios.get('/api/tags')
       setTags(res.data)
+      setTagsDone(true)
     }catch (err){
       console.log(err)
     }
@@ -39,8 +43,6 @@ const EditQuestionForm = ({props}) => {
   const getQuestionTag = async () => {
     try {
       let res = await axios.get(`/api/questionTags/${props.match.params.id}`)
-      console.log("questiontag",res)
-      setCheckedItems(res.data)
       normalizeCheckedItems(res.data)
     }catch (err){
       console.log(err)
@@ -48,34 +50,49 @@ const EditQuestionForm = ({props}) => {
   }
 
   const normalizeCheckedItems = (data) =>{
-    // for (let i = 0; data[data.length-1].tag_id; i++) {
-    //   for (let j = 0; j < data.length; j++) {
-    //     console.log("in normalize data")
-        
-    //   }
-    // }
+    for (let i = 0; i < tags[tags.length-1].id+1; i++) {
+      norm.push({tag_id: i})
+    }
+    for (let i = 0; i < data.length; i++) {
+      tagID.push(data[i].tag_id)
+    }
+    for( var tag_id in norm){
+      if(tagID.includes(Number(tag_id))===true){
+        norm[tag_id].checked = true
+      }else{norm[tag_id].checked = false}
+    }
+    console.log(norm)
+    setCheckedItems(norm)
+    setCheckedTagDone(true)
   }
 
   const handleCheckbox = (event)=>{
-    console.log(event.target.checked, event.target.id)
     setCheckedItems({...checkedItems, [event.target.id]: event.target.checked})
   }
 
   const tagList = () => {
     return tags.map((t) => {
-      // let q = checkedItems 
-      // console.log("Q",q)
-      // console.log("Taglist Checked items",checkedItems[t.id],t.id)
+      if(checkedItems[t.id].checked){
       return (
         <Form.Check inline
         type='checkbox'
         id={t.id}
         label={t.name}
         value={t.id}
-        checked= {checkedItems[t.id]}
+        checked
         onClick={handleCheckbox}
         />
-      )
+      )}
+      else{
+        return(
+        <Form.Check inline
+        type='checkbox'
+        id={t.id}
+        label={t.name}
+        value={t.id}
+        onClick={handleCheckbox}
+        />)
+      }
     })
   }
 
@@ -120,7 +137,7 @@ const EditQuestionForm = ({props}) => {
           />
         </Form.Group>
         <Form.Group>
-            {tagList()}
+            { checkedTagDone && tagList()}
         </Form.Group>
         <Button variant="primary" type='submit'>Edit Question</Button>
       </Form>

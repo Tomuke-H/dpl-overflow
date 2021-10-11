@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Container, Form, Button } from 'react-bootstrap'
 
-const EditQuestionForm = ({props}) => {
+const EditQuestionForm = ({props, setEdited}) => {
   const [question, setQuestion] = useState(null)
   const [title, setTitle] = useState('')
   const [body, setBody] = useState('')
@@ -74,7 +74,7 @@ const EditQuestionForm = ({props}) => {
     return tags.map((t) => {
       if(checkedItems[t.id].checked){
       return (
-        <Form.Check inline
+        <Form.Check key={t.id} inline
         type='checkbox'
         id={t.id}
         label={t.name}
@@ -85,7 +85,9 @@ const EditQuestionForm = ({props}) => {
       )}
       else{
         return(
-        <Form.Check inline
+        <Form.Check
+        key = {t.id}
+        inline
         type='checkbox'
         id={t.id}
         label={t.name}
@@ -106,12 +108,15 @@ const EditQuestionForm = ({props}) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    console.log()
     try {
-      let res = axios.put(`/api/questions/${props.match.params.id}`, {title, body})
+      let res = await axios.put(`/api/questions/${props.match.params.id}`, {title, body})
+      console.log(res)
       setQuestion(res.data)
       setTitle(res.data.title)
       setBody(res.data.body)
-      handleTagSubmit()
+      handleTagSubmit(res)
+      setEdited(true)
     }catch (err) {
       console.log(err)
     }
@@ -146,3 +151,4 @@ const EditQuestionForm = ({props}) => {
 } 
 
 export default EditQuestionForm;
+

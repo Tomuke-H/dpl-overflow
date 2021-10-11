@@ -4,6 +4,20 @@ class User < ActiveRecord::Base
   has_many :questions, dependent: :destroy
   has_many :answers, dependent: :destroy
   has_many :comments, dependent: :destroy
+
+  def self.leaderboard
+    select('name, points, id, cohort')
+    .from('users')
+    .order('points DESC')
+  end
+
+  def self.cohort_leaderboard(cohort)
+    select('name, points, id, cohort')
+    .from('users')
+    .where('cohort = ?', cohort)
+    .order('points DESC')
+  end
+
   extend Devise::Models
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

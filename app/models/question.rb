@@ -19,5 +19,11 @@ class Question < ApplicationRecord
     .where('a.id IS NULL')
   end
 
+  def self.search(body)
+    select('*')
+    .from('questions')
+    .where('body LIKE ?', "%#{body}%")
+    .order('likes DESC')
+  end
 
 end

@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Button, Card, Container } from 'react-bootstrap'
 
-const Question = ({props, history}) => {
+const Question = ({props, edited, history}) => {
   const [question, setQuestion] = useState(null)
 
   const getQuestion = async () => {
@@ -16,7 +16,8 @@ const Question = ({props, history}) => {
 
   useEffect(()=>{
     getQuestion()
-  },[])
+
+  },[edited])
 
   const deleteQuestion = async (id) => {
     try{

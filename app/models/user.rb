@@ -4,6 +4,13 @@ class User < ActiveRecord::Base
   has_many :questions, dependent: :destroy
   has_many :answers, dependent: :destroy
   has_many :comments, dependent: :destroy
+
+  def self.leaderboard
+    select('name, points, id')
+    .from('users')
+    .order('points DESC')
+  end
+
   extend Devise::Models
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

@@ -18,6 +18,7 @@ import NewCommentForm from './components/CommentComponents/NewCommentForm';
 import QuestionPage from './pages/QuestionPage';
 import Dashboard from './pages/Dashboard';
 import NewQuestionPage from './pages/NewQuestionPage';
+import Leaderboard from './pages/Leaderboard';
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
             <Route exact path='/answers/:id/edit' component={EditAnswer}/>
 
             <Route exact path='/dashboard' component={Dashboard}/>
+            <Route exact path='/leaderboard' component={Leaderboard}/>
             <Route exact path='/new_question' component={NewQuestionPage}/>
             <Route exact path='/question/:id' component={QuestionPage}/>
 

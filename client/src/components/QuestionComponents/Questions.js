@@ -3,8 +3,7 @@ import { useEffect, useState } from "react";
 import axios from 'axios'
 import QuestionCard from "./QuestionCard";
 import { Container, Button } from "react-bootstrap";
-import QuestionPagination from "./QuestionPagination";
-import useAxiosQuestion from "../../hooks/useAxiosQuestion";
+import MyPagination from "./MyPagination";
 import SortSelector from "./SortSelector";
 
 const Questions = ({history}) => {
@@ -110,9 +109,9 @@ const Questions = ({history}) => {
     <Container>
       <SortSelector showTags={showTags} setShowTags={setShowTags} getQuestions={getQuestions} />
       {showTags && renderTags()}
-      <QuestionPagination tag={tag} sortBy={sortBy} getQuestions={getQuestions} page={page} totalPages={totalPages} />
+      <MyPagination tag={tag} sortBy={sortBy} getData={getQuestions} page={page} totalPages={totalPages} />
       {renderQuestions()}
-      <QuestionPagination tag={tag} sortBy={sortBy} getQuestions={getQuestions} page={page} totalPages={totalPages} />
+      <MyPagination tag={tag} sortBy={sortBy} getData={getQuestions} page={page} totalPages={totalPages} />
     </Container>
   )
 }

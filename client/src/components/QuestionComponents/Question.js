@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Button, Container } from 'react-bootstrap'
+import { Button, Card, Container } from 'react-bootstrap'
 
 const Question = ({props, history}) => {
   const [question, setQuestion] = useState(null)
@@ -34,13 +34,21 @@ const Question = ({props, history}) => {
       )
     }
     return(
-      <Container>
-        <h2>{question.title}</h2>
-        <h2>{question.body}</h2>
+      <Card>
+        <Card.Header>{question.user_id}</Card.Header>
+        <Card.Title>{question.title}</Card.Title>
+        <Card.Subtitle className="mb-2 text-muted">Created {question.created_at}</Card.Subtitle>
+        <Card.Body>
+          <Card.Text>{question.body}</Card.Text>
+        </Card.Body>
+        <Card.Footer className="text-muted">
         <Button type="submit" onClick={()=>deleteQuestion(question.id)}>Delete</Button>
-      </Container>
+        </Card.Footer>
+      </Card>
     )
   }
+
+
   return (
     <div>
       {renderQuestion()}

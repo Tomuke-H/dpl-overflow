@@ -5,6 +5,7 @@ import QuestionCard from "./QuestionCard";
 import { Container, Button } from "react-bootstrap";
 import MyPagination from "./MyPagination";
 import SortSelector from "./SortSelector";
+import BoxLoader from "../BoxLoader";
 
 const Questions = ({history}) => {
   const [questions, setQuestions] = useState([])
@@ -24,6 +25,7 @@ const Questions = ({history}) => {
       let res = await axios.get(`/api/find_questions_by_tag/${t}?page=${p}`)
       setQuestions(res.data.questions)
       setTotalPages(res.data.total_pages)
+      setLoading(false)
     } catch (err){
       console.log(err)
     }
@@ -36,6 +38,7 @@ const Questions = ({history}) => {
       let res = await axios.get(`/api/unanswered_questions?page=${p}`)
       setQuestions(res.data.questions)
       setTotalPages(res.data.total_pages)
+      setLoading(false)
     }catch(err){
       console.log(err)
     }
@@ -48,12 +51,14 @@ const Questions = ({history}) => {
       let res = await axios.get(`/api/questions?page=${p}`)
       setQuestions(res.data.questions)
       setTotalPages(res.data.total_pages)
+      setLoading(false)
     }catch(err){
       console.log(err)
     }
   }
 
   const getQuestions = (sC, p, t) => {
+    setLoading(true)
     setPage(p)
     switch (sC){
       case "all" :
@@ -110,6 +115,7 @@ const Questions = ({history}) => {
       <SortSelector showTags={showTags} setShowTags={setShowTags} getQuestions={getQuestions} />
       {showTags && renderTags()}
       <MyPagination tag={tag} sortBy={sortBy} getData={getQuestions} page={page} totalPages={totalPages} />
+      {loading && <BoxLoader />}
       {renderQuestions()}
       <MyPagination tag={tag} sortBy={sortBy} getData={getQuestions} page={page} totalPages={totalPages} />
     </Container>

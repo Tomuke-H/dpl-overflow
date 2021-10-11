@@ -50,34 +50,34 @@ const OurNavbar = (props) => {
 
   return(
     <span>
-      <Navbar bg="dark">
-        <Nav.Link as={Link} to='/'>
-          <Container>
-              Home
-          </Container>
-        </Nav.Link >
-        <Nav.Link as={Link} to='/Dashboard'>
-          <Container>
-              Dashboard
-          </Container>
-        </Nav.Link>
-        <Nav.Link as={Link} to='/tags'>
-          <Container>
-              Tags
-          </Container>
-        </Nav.Link>
-        <Nav.Link as={Link} to='/answers'>
-            <Container>
-              Answers
-          </Container>
-        </Nav.Link>
-        <Nav.Link as={Link} to='/leaderboard'>
-            <Container>
-              Leaderboard
-          </Container>
-        </Nav.Link>
-        <Navbar.Collapse className="justify-content-end">{rightNavItems()}</Navbar.Collapse>
-      </Navbar>
+    <Navbar bg="dark">
+      <Nav.Link as={Link} to='/'>
+        <Container>
+            Home
+        </Container>
+      </Nav.Link >
+      <Nav.Link as={Link} to='/Dashboard'>
+        <Container>
+            Dashboard
+        </Container>
+      </Nav.Link>
+      <Nav.Link as={Link} to='/tags'>
+        <Container>
+            Tags
+        </Container>
+      </Nav.Link>
+      <Nav.Link as={Link} to='/yearbook'>
+        <Container>
+            Yearbook
+        </Container>
+      </Nav.Link>
+      <Nav.Link as={Link} to='/leaderboard'>
+        <Container>
+            Leaderboard
+        </Container>
+      </Nav.Link>
+      <Navbar.Collapse className="justify-content-end">{rightNavItems()}</Navbar.Collapse>
+    </Navbar>
     </span>
   );
 }

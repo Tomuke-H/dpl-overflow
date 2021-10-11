@@ -1,6 +1,7 @@
 class Api::UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_page
+  # before_action :authenticate_user!
   before_action :set_user, only: [:show,:update,:destroy]
 
   def index

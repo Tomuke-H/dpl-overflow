@@ -1,6 +1,9 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Button, Card, Container } from 'react-bootstrap'
+import WebFont from "webfontloader";
+import UpVote from '../UpVote';
+
 
 const Question = ({props, edited, history}) => {
   const [question, setQuestion] = useState(null)
@@ -19,6 +22,15 @@ const Question = ({props, edited, history}) => {
 
   },[edited])
 
+  useEffect(() => {
+    WebFont.load({
+      google: {
+        families: ['Open Sans', 'Inter']
+      }
+    })
+  }, [])
+
+
   const deleteQuestion = async (id) => {
     try{
       let res = await axios.delete(`/api/questions/${id}`)
@@ -35,17 +47,23 @@ const Question = ({props, edited, history}) => {
       )
     }
     return(
-      <Card>
-        <Card.Header>{question.user_id}</Card.Header>
-        <Card.Title>{question.title}</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">Created {question.created_at}</Card.Subtitle>
-        <Card.Body>
-          <Card.Text>{question.body}</Card.Text>
-        </Card.Body>
-        <Card.Footer className="text-muted">
+      <div>
+      <Container>
+        <UpVote question={question}/>
+      </Container>
+      <Container >
+        {/* <h1>{question.user_id}</h1> */}
+        <h1 style={styles.questionHeader}>{question.title}</h1>
+        <div style={styles.qdContainer}>
+        <h2 style={styles.questionDetails}>Asked: {question.created_at}</h2>
+        {/* need some help getting the date to look different - either google or classmates but nOT RIGHT NOW */}
+        <h2 style={styles.questionDetails}>Active: Today</h2>
+        <h2 style={styles.questionDetails}>Viewed: </h2>
+        </div>
+        <p style={styles.questionDetails}> {question.body} </p> 
         <Button type="submit" onClick={()=>deleteQuestion(question.id)}>Delete</Button>
-        </Card.Footer>
-      </Card>
+      </Container>
+      </div>
     )
   }
 
@@ -56,5 +74,36 @@ const Question = ({props, edited, history}) => {
     </div>
   )
 }
+
+const styles = {
+  theMightyDiv: {
+
+  },
+  questionHeader: {
+    width: "800px",
+    textTransform: "uppercase",
+    marginTop: "70px",
+    fontSize: "30px",
+    fontFamily: "Open Sans, sans-serif",
+    fontWeight: "600",
+    color: "#000000",
+  },
+  questionDetails: {
+    maxWidth: "850px",
+    marginTop: "30px",
+    marginRight: "10px",
+    fontSize: "14px",
+    fontFamily: "Inter, sans-serif",
+    fontWeight: "500",
+    display: "flex",
+    alignItems: "center",
+    letterSpacing: ".5px",
+    color: "#000000",
+  },
+  qdContainer: {
+    display: "flex",
+    flexDirection: "row",
+  }
+};
 
 export default Question;

@@ -18,6 +18,7 @@ import NewCommentForm from './components/CommentComponents/NewCommentForm';
 import QuestionPage from './pages/QuestionPage';
 import Dashboard from './pages/Dashboard';
 import NewQuestionPage from './pages/NewQuestionPage';
+import Yearbook from './pages/Yearbook';
 
 function App() {
 
@@ -40,10 +41,9 @@ function App() {
             <Route exact path='/new_question' component={NewQuestionPage}/>
             <Route exact path='/question/:id' component={QuestionPage}/>
 
-            {/* probably don't keep this path as the comment component with be embedded in other components but for testing purposes here it is */}
-            <Route exact path='/comments' component={Comments}/>
-            <Route exact path='/newcomment' component={NewCommentForm}/>
-            {/* probably don't keep this path as the comment component with be embedded in other components but for testing purposes here it is */}
+            <Route exact path='/yearbook' component={Yearbook}/>
+            <Route exact path='/users/:id' component={User}/>
+
             <ProtectedRoute exact path='/user/edit' component={EditUser}/>
             <Route component={()=><p>react 404 path not found</p>} />
         </Switch>

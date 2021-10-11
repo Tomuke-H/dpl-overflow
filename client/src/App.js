@@ -19,6 +19,7 @@ import QuestionPage from './pages/QuestionPage';
 import Dashboard from './pages/Dashboard';
 import NewQuestionPage from './pages/NewQuestionPage';
 import Yearbook from './pages/Yearbook';
+import TagsPage from './pages/TagsPage';
 
 function App() {
 
@@ -29,7 +30,7 @@ function App() {
         <Switch>
             <Route exact path='/' component={Home}/>
             <Route exact path='/test_page' component={TestPage}/>
-            <Route exact path='/tags' component={Tags}/>
+            <Route exact path='/tags' component={TagsPage}/>
             <Route exact path='/login' component={Login}/>
             <Route exact path='/register' component={Register}/> 
             <ProtectedRoute exact path='/user' component={User}/>

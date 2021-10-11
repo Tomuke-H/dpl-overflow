@@ -61,7 +61,6 @@ const EditQuestionForm = ({props, setEdited}) => {
         norm[tag_id].checked = true
       }else{norm[tag_id].checked = false}
     }
-    console.log(norm)
     setCheckedItems(norm)
     setCheckedTagDone(true)
   }
@@ -108,7 +107,6 @@ const EditQuestionForm = ({props, setEdited}) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log()
     try {
       let res = await axios.put(`/api/questions/${props.match.params.id}`, {title, body})
       console.log(res)

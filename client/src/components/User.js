@@ -8,15 +8,8 @@ import EditUser from "./EditUser";
 
 const User = ({user}) => {
  const { user: currentUser } = useContext(AuthContext)
- const [showForm, setShowForm] = useState(false)
 
- const showEdit = () => {
-   if (currentUser.id === user.id) {
-     return <Button onClick={()=>setShowForm(!showForm)}>{showForm ? "Cancel" : "Edit"}</Button>
-     } else {
-     console.log("not your profile")
-   }
- }
+ 
 
 
 return (
@@ -29,8 +22,6 @@ return (
           <p>{user.name}</p>
       </Container>
       </NavLink>
-      {showEdit()}
-      {showForm && <EditUser />}
       </Card>
   </div>
 </>

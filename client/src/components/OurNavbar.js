@@ -12,7 +12,7 @@ const OurNavbar = (props) => {
     if(user){
       return (
         <>
-        <Nav.Link as={Link} to='/user'>
+        <Nav.Link as={Link} to="/users">
           <Container>
             Profile
           </Container>

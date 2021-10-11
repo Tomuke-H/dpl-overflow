@@ -13,8 +13,12 @@ const Register = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (password !== passwordConfirmation) {
+            alert("Passwords do not match!");
+            return;
+          }
         handleRegister({email, password, name}, history)
-    }
+    };
 
     return (
         <div>

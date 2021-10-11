@@ -27,6 +27,10 @@ class Api::QuestionsController < ApplicationController
     render json: {questions: Question.unanswered_questions.page(@page).per(3), total_pages: Question.unanswered_questions.page(@page).per(3).total_pages}
   end
 
+  def search
+    render json: {questions: Question.search(params[:body]).page(@page).per(3), total_pages: Question.search(params[:body]).page(@page).per(3).total_pages}
+  end
+
   def update
     if(@question.update(question_params))
       render json: @question

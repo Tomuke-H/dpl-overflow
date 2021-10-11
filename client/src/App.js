@@ -19,8 +19,19 @@ import QuestionPage from './pages/QuestionPage';
 import Dashboard from './pages/Dashboard';
 import NewQuestionPage from './pages/NewQuestionPage';
 import Yearbook from './pages/Yearbook';
+import useGetUser from './hooks/useGetUser';
 
 function App() {
+
+  const { users } = useGetUser()
+
+  const renderRoutes = () => {
+    return users.map((user)=>{
+      return(
+      <Route exact path={`/user/${user.id}`} render={(props)=> <User {...props} user={user} />}/>
+      )
+    })
+  }
 
   const hasNavBar = () =>{
     return(
@@ -36,14 +47,14 @@ function App() {
             <Route exact path='/answers' component={Answers}/>
             <Route exact path='/answers/:id' component={Answer}/>
             <Route exact path='/answers/:id/edit' component={EditAnswer}/>
-
+      
             <Route exact path='/dashboard' component={Dashboard}/>
             <Route exact path='/new_question' component={NewQuestionPage}/>
             <Route exact path='/question/:id' component={QuestionPage}/>
 
             <Route exact path='/yearbook' component={Yearbook}/>
             <Route exact path='/users/:id' component={User}/>
-
+            {renderRoutes()}
             <ProtectedRoute exact path='/user/edit' component={EditUser}/>
             <Route component={()=><p>react 404 path not found</p>} />
         </Switch>

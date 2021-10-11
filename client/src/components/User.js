@@ -1,29 +1,27 @@
-import React, { useContext } from "react";
-import { AuthContext } from '../providers/AuthProvider'
+import React from "react";
+import { useState, useEffect } from "react";
+import axios from 'axios';
+import { Card, CardGroup, Container, Image, NavLink } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
+const User = ({user, key}) => {
 
-export default function User() {
-  const { user: currentUser } = useContext(AuthContext)
+return (
+  <div>
+    {console.log("key:", key)}
+    {console.log("user:", user)}
+    {/* <CardGroup> */}
+    <Card>
+    <NavLink as={Link} to={`/user/${user.id}`}>
+      <Container>
+            <Image src={user.image} roundedCircle />
+          <p>{user.name}</p>
+      </Container>
+      </NavLink>
+      </Card>
+    {/* </CardGroup> */}
+  </div>
+)
+};
 
-
-  const renderUser = () => {
-    return (
-      <div>
-        <h1>{currentUser.name}</h1>
-        <h2>{currentUser.cohort}</h2>
-        <p>{currentUser.about_me}</p>
-      </div>
-    )
-  }
-
-
-  return (
-    <div>
-      <h1>Profile</h1>
-        {renderUser()}
-    </div>
-  )
-
-
-
-}
+export default User;

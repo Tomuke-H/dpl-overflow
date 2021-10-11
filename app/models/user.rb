@@ -6,8 +6,15 @@ class User < ActiveRecord::Base
   has_many :comments, dependent: :destroy
 
   def self.leaderboard
-    select('name, points, id')
+    select('name, points, id, cohort')
     .from('users')
+    .order('points DESC')
+  end
+
+  def self.cohort_leaderboard(cohort)
+    select('name, points, id, cohort')
+    .from('users')
+    .where('cohort = ?', cohort)
     .order('points DESC')
   end
 

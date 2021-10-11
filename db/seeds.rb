@@ -15,9 +15,13 @@ Question.destroy_all
 User.destroy_all
 
 
-test = User.create(email:'test@test.com', password:123456, name:'Tester', cohort: 'Fall 2021', about_me: 'I am a fake user.', image: 'https://images.theconversation.com/files/17962/original/jt558trs-1353642967.jpg?ixlib=rb-1.1.0&rect=23%2C5%2C3831%2C2573&q=45&auto=format&w=926&fit=clip')
+test = User.create(email:'test@test.com', points: 2, password:123456, name:'Tester', cohort: 'Fall 2021', about_me: 'I am a fake user.', image: 'https://images.theconversation.com/files/17962/original/jt558trs-1353642967.jpg?ixlib=rb-1.1.0&rect=23%2C5%2C3831%2C2573&q=45&auto=format&w=926&fit=clip')
 
-test2 = User.create(email:'test2@test.com', password:123456, name:'Tester2', cohort: 'Fall 2021', about_me: 'I am a fake user too.', image: 'https://images.theconversation.com/files/17962/original/jt558trs-1353642967.jpg?ixlib=rb-1.1.0&rect=23%2C5%2C3831%2C2573&q=45&auto=format&w=926&fit=clip')
+test2 = User.create(email:'test2@test.com', points: 1, password:123456, name:'Tester2', cohort: 'Fall 2021', about_me: 'I am a fake user too.', image: 'https://images.theconversation.com/files/17962/original/jt558trs-1353642967.jpg?ixlib=rb-1.1.0&rect=23%2C5%2C3831%2C2573&q=45&auto=format&w=926&fit=clip')
+test3 = User.create(email:'test3@test.com', points: 4, password:123456, name:'Tester3', cohort: 'Winter 2021', about_me: 'I am a fake user also.', image: 'https://images.theconversation.com/files/17962/original/jt558trs-1353642967.jpg?ixlib=rb-1.1.0&rect=23%2C5%2C3831%2C2573&q=45&auto=format&w=926&fit=clip')
+test4 = User.create(email:'test4@test.com', points: 8, password:123456, name:'Tester4', cohort: 'Winter 2021', about_me: 'I am a fake user as well.', image: 'https://images.theconversation.com/files/17962/original/jt558trs-1353642967.jpg?ixlib=rb-1.1.0&rect=23%2C5%2C3831%2C2573&q=45&auto=format&w=926&fit=clip')
+test5 = User.create(email:'test5@test.com', points: 7, password:123456, name:'Tester5', cohort: 'Spring 2022', about_me: 'I am a fake user in addition to.', image: 'https://images.theconversation.com/files/17962/original/jt558trs-1353642967.jpg?ixlib=rb-1.1.0&rect=23%2C5%2C3831%2C2573&q=45&auto=format&w=926&fit=clip')
+test6 = User.create(email:'test6@test.com', points: 3, password:123456, name:'Tester6', cohort: 'Spring 2022', about_me: 'I am a fake user unfortunately.', image: 'https://images.theconversation.com/files/17962/original/jt558trs-1353642967.jpg?ixlib=rb-1.1.0&rect=23%2C5%2C3831%2C2573&q=45&auto=format&w=926&fit=clip')
 
 # Thing.create(name: Faker::Company.name)
 # Thing.create(name: Faker::Company.name)

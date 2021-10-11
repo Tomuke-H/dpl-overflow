@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import axios from 'axios'
 import QuestionCard from "./QuestionCard";
-import { Container, Button } from "react-bootstrap";
+import { Container, Button, Form } from "react-bootstrap";
 import MyPagination from "./MyPagination";
 import SortSelector from "./SortSelector";
 import BoxLoader from "../BoxLoader";
@@ -17,6 +17,7 @@ const Questions = ({history}) => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [showTags, setShowTags] = useState(false)
+  const [search, setSearch] = useState(null)
 
   const getDataByTag = async (t, p) => {
     setTag(t)
@@ -57,6 +58,18 @@ const Questions = ({history}) => {
     }
   }
 
+  const getDataSearch = async (p, t) => {
+    setSortBy('search')
+    try{
+      let res = await axios.get(`/api/question_search?page=${p}&body=${t}`)
+      setQuestions(res.data.questions)
+      setTotalPages(res.data.total_pages)
+      setLoading(false)
+    }catch(err){
+      console.log(err)
+    }
+  }
+
   const getQuestions = (sC, p, t) => {
     setLoading(true)
     setPage(p)
@@ -69,6 +82,9 @@ const Questions = ({history}) => {
         break;
       case "unanswered" :
         getDataByUnanswered(p)
+        break;
+      case "search":
+        getDataSearch(p, t)
         break;
       default:
         alert('Hook failed')
@@ -113,6 +129,7 @@ const Questions = ({history}) => {
   return (
     <Container>
       <SortSelector showTags={showTags} setShowTags={setShowTags} getQuestions={getQuestions} />
+      <Form.Control value={search} onChange={(e) => getQuestions('search', 1, e.target.value)}/>
       {showTags && renderTags()}
       {totalPages > 1 && <MyPagination tag={tag} sortBy={sortBy} getData={getQuestions} page={page} totalPages={totalPages} />}
       {loading && <BoxLoader />}

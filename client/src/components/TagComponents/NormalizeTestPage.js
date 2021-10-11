@@ -1,41 +1,50 @@
 
 data = [
   {
-      "id": 5,
-      "tag_id": 2,
-      "question_id": 15,
-      "created_at": "2021-10-08T21:54:31.315Z",
-      "updated_at": "2021-10-08T21:54:31.315Z"
+      "id": 21,
+      "tag_id": 4,
+      "question_id": 23,
+      "created_at": "2021-10-09T04:12:02.229Z",
+      "updated_at": "2021-10-09T04:12:02.229Z"
   },
   {
-      "id": 6,
-      "tag_id": 12,
-      "question_id": 15,
-      "created_at": "2021-10-08T21:54:31.704Z",
-      "updated_at": "2021-10-08T21:54:31.704Z"
+      "id": 22,
+      "tag_id": 5,
+      "question_id": 23,
+      "created_at": "2021-10-09T04:12:02.732Z",
+      "updated_at": "2021-10-09T04:12:02.732Z"
   },
   {
-      "id": 7,
-      "tag_id": 13,
-      "question_id": 15,
-      "created_at": "2021-10-08T21:54:31.753Z",
-      "updated_at": "2021-10-08T21:54:31.753Z"
+      "id": 23,
+      "tag_id": 6,
+      "question_id": 23,
+      "created_at": "2021-10-09T04:12:02.765Z",
+      "updated_at": "2021-10-09T04:12:02.765Z"
   }
 ]
 
+let checkedItems = []
+let norm = []
+let tagID = []
 
 const normalizeCheckedItems = (data) =>{
-  for (let i = 0; i < data[data.length-1].tag_id; i++) {
-    console.log("in First Loop")
-    for (let j = 0; j < data.length; j++) {
-      console.log("Data at J",data[j])
-      console.log("data J tag Id",data[j].tag_id)
-      console.log("data i",data[i])
-      if(data[j].tag_id === data[i]){
-        console.log("hi")
-      }      
-    }
+
+  for (let i = 0; i < data[data.length-1].tag_id+1; i++) {
+    norm.push({tag_id: i})
   }
+  console.log(norm)
+  for (let i = 0; i < data.length; i++) {
+    tagID.push(data[i].tag_id)
+  }
+  console.log(tagID)
+  for( var tag_id in norm){
+    if(tagID.includes(Number(tag_id))===true){
+      console.log(norm[tag_id])
+      norm[tag_id].checked = "true"
+    }else{norm[tag_id].checked = "false"}
+  }
+  checkedItems = norm
+  return checkedItems
 }
 
 console.log(normalizeCheckedItems(data))

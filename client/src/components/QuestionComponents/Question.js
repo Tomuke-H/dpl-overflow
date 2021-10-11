@@ -5,7 +5,7 @@ import WebFont from "webfontloader";
 import UpVote from '../UpVote';
 
 
-const Question = ({props, history}) => {
+const Question = ({props, edited, history}) => {
   const [question, setQuestion] = useState(null)
 
   const getQuestion = async () => {
@@ -19,7 +19,8 @@ const Question = ({props, history}) => {
 
   useEffect(()=>{
     getQuestion()
-  },[])
+
+  },[edited])
 
   useEffect(() => {
     WebFont.load({

@@ -1,13 +1,11 @@
 import axios from "axios"
 import React, { useEffect, useState } from "react"
-import { Badge, } from "react-bootstrap"
-import CreateTag from "../components/TagComponents/CreateTag"
+import { Badge, Card, CardGroup, Col, Form, Row, } from "react-bootstrap"
 
-const Tags = () => {
+const TagsPage = () => {
   const [tags, setTags] = useState([])
 
   useEffect(()=>{
-    console.log("in UseEffect")
     getTags();
   },[]);
 
@@ -23,22 +21,61 @@ const Tags = () => {
   const renderTags = () => {
     return tags.map((t,ind)=>{
       return(
-        <div style={{fontSize: "large"}} key={ind}>
-        <Badge pill variant="primary" >
-          {t.name}
-          <a style={{backgroundColor:"black", marginLeft:".25em", padding:".25em", borderRadius:"1em"}} onClick={()=>deleteTag(t.id)}>x</a>
-        </Badge> 
-        </div>
+        <Card style={styles.gridChild} key={ind}>
+          <Card.Title style={{border:"1px solid black", padding: "5px",margin:"10px"}}>{t.name}</Card.Title>
+          <Card.Body>Tag description</Card.Body>
+        </Card> 
       )
     })
   }
 
+  const handleSubmit = async (e) =>{
+    e.preventDefault()
+    try {
+      
+    } catch (err) {
+      console.log(err)
+    }}
+
+  const renderBelowHeader = () => {
+    return(
+      <div style={{display:"flex", justifyContent:"space-between"}}>
+      <div>
+      <h3>Available tags</h3>
+      <Form onSubmit={handleSubmit}>
+        <Form.Label>Search</Form.Label>
+        <Form.Control placeholder="Search Tags"/>
+      </Form>
+      </div>
+      <div>
+        Grid thingys
+      </div>
+      </div>
+    )
+  }
+
   return(
-    <div>
+    <div style={{margin:"10px", padding:"10px"}}>
       <h1>Tags</h1>
+      {renderBelowHeader()}
+      <div style={styles.grid}>
       {renderTags()}
+      </div>
     </div>
   )
 }
 
-export default Tags
+const styles ={
+  grid:{
+    display:"flex",
+    flexWrap:"wrap",
+    margin: "20px"
+  },
+
+  gridChild:{
+    margin: "5px",
+    flexBasis: `calc(100% / 4 - 10px)`,
+  }
+}
+
+export default TagsPage

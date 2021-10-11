@@ -9,12 +9,18 @@ import Answers from "../components/AnswerComponents/Answers";
 const QuestionPage = (props) => {
   const [toggleEdit, setToggleEdit] = useState(false)
   const history = useHistory()
+  const [edited, setEdited] = useState(false)
+
+  useEffect(()=>{
+    setEdited(false)
+
+  },[edited])
 
   return (
     <div>
-      <Question props={props} history={history}/>
+      <Question props={props} edited = {edited} history={history}/>
       <Button onClick={()=>setToggleEdit(!toggleEdit)}>Edit Question</Button>
-      {toggleEdit && <EditQuestionForm props={props}/>}
+      {toggleEdit && <EditQuestionForm props={props} setEdited={setEdited}/>}
       <Answers props = {props} /> 
     </div>
   )

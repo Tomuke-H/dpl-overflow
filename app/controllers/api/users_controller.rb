@@ -1,5 +1,7 @@
 class Api::UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_page
+  # before_action :authenticate_user!
   before_action :set_user, only: [:show,:update,:destroy]
 
   def index
@@ -32,10 +34,23 @@ class Api::UsersController < ApplicationController
     render json: @user
   end
 
+  def leaderboard
+    render json: {users: User.leaderboard.page(@page).per(10), total_pages: User.leaderboard.page(@page).per(10).total_pages}
+  end
+
+  def cohort_leaderboard
+    render json: {users: User.cohort_leaderboard(params[:cohort]).page(@page).per(10), total_pages: User.cohort_leaderboard(params[:cohort]).page(@page).per(10).total_pages}
+  end
+
+
   private
   
   def set_user
     @user= User.find(params[:id])
+  end
+
+  def set_page
+    @page = params[:page] || 1
   end
 
   def user_params

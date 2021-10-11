@@ -93,7 +93,7 @@ const Leaderboard = () => {
         <ListGroup as='ol'>
           {renderUsers()}
         </ListGroup>
-        <MyPagination tag={cohort} page={page} totalPages={totalPages} getData={getUsers} sortBy={sortBy}/>
+        {totalPages > 1 && <MyPagination tag={cohort} page={page} totalPages={totalPages} getData={getUsers} sortBy={sortBy}/>}
       </div>
     </div>
   )

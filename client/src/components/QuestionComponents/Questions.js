@@ -114,10 +114,10 @@ const Questions = ({history}) => {
     <Container>
       <SortSelector showTags={showTags} setShowTags={setShowTags} getQuestions={getQuestions} />
       {showTags && renderTags()}
-      <MyPagination tag={tag} sortBy={sortBy} getData={getQuestions} page={page} totalPages={totalPages} />
+      {totalPages > 1 && <MyPagination tag={tag} sortBy={sortBy} getData={getQuestions} page={page} totalPages={totalPages} />}
       {loading && <BoxLoader />}
       {renderQuestions()}
-      <MyPagination tag={tag} sortBy={sortBy} getData={getQuestions} page={page} totalPages={totalPages} />
+      {totalPages > 1 && <MyPagination tag={tag} sortBy={sortBy} getData={getQuestions} page={page} totalPages={totalPages} />}
     </Container>
   )
 }

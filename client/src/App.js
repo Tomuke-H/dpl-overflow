@@ -18,9 +18,23 @@ import NewCommentForm from './components/CommentComponents/NewCommentForm';
 import QuestionPage from './pages/QuestionPage';
 import Dashboard from './pages/Dashboard';
 import NewQuestionPage from './pages/NewQuestionPage';
+import Leaderboard from './pages/Leaderboard';
 import Yearbook from './pages/Yearbook';
+import useGetUser from './hooks/useGetUser';
+import TagsPage from './pages/TagsPage';
+import UserProfile from './components/UserProfile';
 
 function App() {
+
+  const { users } = useGetUser()
+
+  const renderRoutes = () => {
+    return users.map((user)=>{
+      return(
+      <Route exact path={`/user/${user.id}`} render={(props)=> <User {...props} user={user} component={User}/>}/>
+      )
+    })
+  }
 
   const hasNavBar = () =>{
     return(
@@ -29,21 +43,22 @@ function App() {
         <Switch>
             <Route exact path='/' component={Home}/>
             <Route exact path='/test_page' component={TestPage}/>
-            <Route exact path='/tags' component={Tags}/>
+            <Route exact path='/tags' component={TagsPage}/>
             <Route exact path='/login' component={Login}/>
             <Route exact path='/register' component={Register}/> 
-            <ProtectedRoute exact path='/user' component={User}/>
+            <ProtectedRoute exact path='/user' component={UserProfile}/>
             <Route exact path='/answers' component={Answers}/>
             <Route exact path='/answers/:id' component={Answer}/>
             <Route exact path='/answers/:id/edit' component={EditAnswer}/>
-
+      
             <Route exact path='/dashboard' component={Dashboard}/>
+            <Route exact path='/leaderboard' component={Leaderboard}/>
             <Route exact path='/new_question' component={NewQuestionPage}/>
             <Route exact path='/question/:id' component={QuestionPage}/>
 
             <Route exact path='/yearbook' component={Yearbook}/>
             <Route exact path='/users/:id' component={User}/>
-
+            {renderRoutes()}
             <ProtectedRoute exact path='/user/edit' component={EditUser}/>
             <Route component={()=><p>react 404 path not found</p>} />
         </Switch>

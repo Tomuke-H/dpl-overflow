@@ -17,7 +17,8 @@
     "react-scripts": "4.0.3",
     "react-spinners": "^0.11.0",
     "styled-components": "^5.3.1",
-    "web-vitals": "^1.0.1"
+    "web-vitals": "^1.0.1",
+    "webfontloader": "^1.6.28"
   },
   "proxy": "http://localhost:3001",
   "scripts": {

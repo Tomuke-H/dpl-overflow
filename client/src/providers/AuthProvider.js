@@ -51,11 +51,11 @@ const AuthProvider = (props) => {
         try{
             let res = await axios.post('/api/auth/sign_in', user)
             setUser(res.data.data)
-            history.push('/')
+            history.push('/dashboard')
         }catch (err) {
             setError(err)
             console.log(err)
-            alert("Account does not exist. Please create account.")
+            alert("Login failed.")
         }
     };
 

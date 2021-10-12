@@ -59,6 +59,7 @@ const Questions = ({history}) => {
   }
 
   const getDataSearch = async (p, t) => {
+    setSearch(t)
     setSortBy('search')
     try{
       let res = await axios.get(`/api/question_search?page=${p}&body=${t}`)

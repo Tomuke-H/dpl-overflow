@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 2021_10_06_202102) do
     t.text "body"
     t.bigint "user_id", null: false
     t.integer "likes", default: 0
+    t.integer "views", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_questions_on_user_id"

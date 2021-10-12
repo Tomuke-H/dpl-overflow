@@ -20,5 +20,6 @@ Rails.application.routes.draw do
     get 'leaderboard', to: 'users#leaderboard'
     get 'cohort_leaderboard', to: 'users#cohort_leaderboard'
     resources :tags
+    get 'tag/:key', to: 'tags#tagbywords'
   end
 end

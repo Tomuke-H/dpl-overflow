@@ -5,6 +5,7 @@ class CreateQuestions < ActiveRecord::Migration[6.1]
       t.text :body
       t.belongs_to :user, null: false, foreign_key: true
       t.integer :likes, default: 0
+      t.integer :views, default: 0
 
       t.timestamps
     end

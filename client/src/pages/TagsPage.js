@@ -1,7 +1,6 @@
-import Button from "@restart/ui/esm/Button"
 import axios from "axios"
 import React, { useEffect, useState } from "react"
-import { Alert, Badge, Card, CardGroup, Col, Form, Row, } from "react-bootstrap"
+import { Alert, Button, ButtonGroup, Card, Form } from "react-bootstrap"
 
 const TagsPage = () => {
   const [tags, setTags] = useState([])
@@ -70,7 +69,11 @@ const TagsPage = () => {
         <h3>Available tags</h3>
         </div>
         <div>
-          Grid thingys
+          <ButtonGroup>
+            <Button>Sort</Button>
+            <Button>Sort</Button>
+            <Button>Sort</Button>
+          </ButtonGroup>
         </div>
       </div>
     )

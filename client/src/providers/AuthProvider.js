@@ -50,10 +50,11 @@ const AuthProvider = (props) => {
         try{
             let res = await axios.post('/api/auth/sign_in', user)
             setUser(res.data.data)
-            history.push('/user')
+            history.push('/dashboard')
         }catch (err) {
             setError(err)
             console.log(err)
+            alert("Login failed.")
         }
     };
 

@@ -7,6 +7,7 @@ import User from '../components/User';
 
 const Yearbook = () => {
   const [users, setUsers] = useState([])
+  const [cohort, setCohort] = useState("")
 
   const getUsers = async () => {
     try {
@@ -37,9 +38,35 @@ const Yearbook = () => {
     )}
   }
 
+  let cohorts = [
+    'Spring 2021',
+    'Summer 2021',
+    'Fall 2021',
+    'Winter 2021',
+    'Spring 2022',
+    'Summer 2022'
+  ]
+
+  let dropDown = () => {
+    console.log("cohort:", cohort)
+    return (
+      <div>
+        <Dropdown>
+        <Dropdown.Toggle variant="success">
+          Cohort
+        </Dropdown.Toggle>
+        <Dropdown.Menu>
+            {cohorts.map((c)=> {
+              return <Dropdown.Item onChange={()=>setCohort(c)}>{c}</Dropdown.Item>
+            })}
+        </Dropdown.Menu>
+      </Dropdown>
+    </div>
+  )}
 
   return (
     <div>
+      {dropDown()}
      <div>
       <h1 style={styles.yearbook}>YEARBOOK</h1>
     </div>
@@ -63,8 +90,6 @@ const styles = {
   fontWeight: '600',
   fontSize: '30px',
   lineHeight: '41px',
-  /* identical to box height */
-
   display: 'flex',
   alignItems: 'center',
   textAlign: 'center',

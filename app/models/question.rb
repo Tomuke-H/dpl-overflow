@@ -4,7 +4,7 @@ class Question < ApplicationRecord
   has_many :question_tags, dependent: :destroy
   has_many :tags, through: :question_tags
 
-  def self.find_question_by_tag(tag_name)
+  def self.find_questions_by_tag(tag_name)
     select('DISTINCT q.id, q.views, q.likes, t.id AS tag_id, q.title, t.name, q.body, q.created_at AS question_created')
     .from('questions AS q')
     .joins('INNER JOIN question_tags AS qt ON q.id=qt.question_id
@@ -22,7 +22,7 @@ class Question < ApplicationRecord
   def self.search(body)
     select('*')
     .from('questions AS q')
-    .where('body ILIKE ?', "%#{body}%")
+    .where('body ILIKE ANY (array[?])', body.split(' ').map { |val| "%#{val}%"})
     .order('views DESC')
   end
 

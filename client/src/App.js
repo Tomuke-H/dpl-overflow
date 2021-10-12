@@ -22,6 +22,7 @@ import Leaderboard from './pages/Leaderboard';
 import Yearbook from './pages/Yearbook';
 import useGetUser from './hooks/useGetUser';
 import TagsPage from './pages/TagsPage';
+import UserProfile from './components/UserProfile';
 
 function App() {
 
@@ -30,7 +31,7 @@ function App() {
   const renderRoutes = () => {
     return users.map((user)=>{
       return(
-      <Route exact path={`/user/${user.id}`} render={(props)=> <User {...props} user={user} />}/>
+      <Route exact path={`/user/${user.id}`} render={(props)=> <User {...props} user={user} component={User}/>}/>
       )
     })
   }
@@ -45,7 +46,7 @@ function App() {
             <Route exact path='/tags' component={TagsPage}/>
             <Route exact path='/login' component={Login}/>
             <Route exact path='/register' component={Register}/> 
-            <ProtectedRoute exact path='/user' component={User}/>
+            <ProtectedRoute exact path='/user' component={UserProfile}/>
             <Route exact path='/answers' component={Answers}/>
             <Route exact path='/answers/:id' component={Answer}/>
             <Route exact path='/answers/:id/edit' component={EditAnswer}/>

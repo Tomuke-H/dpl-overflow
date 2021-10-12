@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from '../providers/AuthProvider'
 
 
-export default function User() {
+export default function UserProfile() {
   const { user: currentUser } = useContext(AuthContext)
 
 

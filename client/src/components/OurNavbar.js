@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Container, Nav, Navbar } from 'react-bootstrap'
+import { Container, Image, Nav, Navbar } from 'react-bootstrap'
 import { Link, useHistory, withRouter } from 'react-router-dom'
 import { AuthContext } from '../providers/AuthProvider'
 
@@ -12,9 +12,9 @@ const OurNavbar = (props) => {
     if(user){
       return (
         <>
-        <Nav.Link as={Link} to="/users">
+        <Nav.Link as={Link} to="/user">
           <Container>
-            Profile
+            <Image src={user.Image} style={styles.profile}/>
           </Container>
         </Nav.Link>
 
@@ -83,3 +83,13 @@ const OurNavbar = (props) => {
 }
 
 export default withRouter(OurNavbar)
+
+const styles = {
+profile: {
+// position: 'absolute',
+width: '46px',
+height: '46px',
+left: '1364px',
+top: '12px'
+}
+}

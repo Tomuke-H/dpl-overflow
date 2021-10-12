@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Card, CardGroup, Col, Container, Image, NavLink, Row } from 'react-bootstrap';
+import { Dropdown, NavLink } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
 import User from '../components/User';
 
@@ -28,7 +28,7 @@ const Yearbook = () => {
         {users.map((user)=>{
           return (
             <NavLink as={Link} to={`/users/${user.id}`}>
-            <User key={user.id} user={user}/>
+              <User key={user.id} user={user}/>
             </NavLink>
           )
         })}

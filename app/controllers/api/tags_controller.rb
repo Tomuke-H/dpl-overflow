@@ -8,6 +8,10 @@ class Api::TagsController < ApplicationController
     render json: @tag
   end
 
+  def tag_search
+    render json: Tag.search(params[:key])
+  end
+
   def create
     tag = Tag.create(tag_params)
     if tag.save

@@ -17,16 +17,19 @@ const Questions = ({history}) => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [showTags, setShowTags] = useState(false)
-  const [search, setSearch] = useState(null)
+  const [search, setSearch] = useState('')
+
+  const setStates = (data) => {
+    setQuestions(data.questions)
+    setTotalPages(data.total_pages)
+  }
 
   const getDataByTag = async (t, p) => {
     setTag(t)
     setSortBy('tag')
     try{
       let res = await axios.get(`/api/find_questions_by_tag/${t}?page=${p}`)
-      setQuestions(res.data.questions)
-      setTotalPages(res.data.total_pages)
-      setLoading(false)
+      setStates(res.data)
     } catch (err){
       console.log(err)
     }
@@ -37,9 +40,7 @@ const Questions = ({history}) => {
     setTag(null)
     try{
       let res = await axios.get(`/api/unanswered_questions?page=${p}`)
-      setQuestions(res.data.questions)
-      setTotalPages(res.data.total_pages)
-      setLoading(false)
+      setStates(res.data)
     }catch(err){
       console.log(err)
     }
@@ -50,9 +51,7 @@ const Questions = ({history}) => {
     setTag(null)
     try{
       let res = await axios.get(`/api/questions?page=${p}`)
-      setQuestions(res.data.questions)
-      setTotalPages(res.data.total_pages)
-      setLoading(false)
+      setStates(res.data)
     }catch(err){
       console.log(err)
     }
@@ -63,9 +62,7 @@ const Questions = ({history}) => {
     setSortBy('search')
     try{
       let res = await axios.get(`/api/question_search?page=${p}&body=${t}`)
-      setQuestions(res.data.questions)
-      setTotalPages(res.data.total_pages)
-      setLoading(false)
+      setStates(res.data)
     }catch(err){
       console.log(err)
     }
@@ -76,19 +73,26 @@ const Questions = ({history}) => {
     setPage(p)
     switch (sC){
       case "all" :
+        setShowTags(false)
         getAllData(p)
+        setLoading(false)
         break;
       case "tag" :
         getDataByTag(t, p)
+        setLoading(false)
         break;
       case "unanswered" :
+        setShowTags(false)
         getDataByUnanswered(p)
+        setLoading(false)
         break;
       case "search":
         getDataSearch(p, t)
+        setLoading(false)
         break;
       default:
-        alert('Hook failed')
+        alert('Unsupported search method')
+        setLoading(false)
         break;
     }
   }
@@ -130,8 +134,8 @@ const Questions = ({history}) => {
   return (
     <Container>
       <SortSelector showTags={showTags} setShowTags={setShowTags} getQuestions={getQuestions} />
-      <Form.Control value={search} onChange={(e) => getQuestions('search', 1, e.target.value)}/>
       {showTags && renderTags()}
+      <Form.Control value={search} onChange={(e) => getQuestions('search', 1, e.target.value)}/>
       {totalPages > 1 && <MyPagination tag={tag} sortBy={sortBy} getData={getQuestions} page={page} totalPages={totalPages} />}
       {loading && <BoxLoader />}
       {renderQuestions()}

@@ -5,15 +5,25 @@ import { useState } from "react";
 import { Button } from 'react-bootstrap'
 import { useHistory } from "react-router";
 import Answers from "../components/AnswerComponents/Answers";
+import axios from "axios";
 
 const QuestionPage = (props) => {
   const [toggleEdit, setToggleEdit] = useState(false)
   const history = useHistory()
   const [edited, setEdited] = useState(false)
+  
+  const addView = async () => {
+    try{
+      let res = await axios.put(`/api/add_view/${props.match.params.id}`)
+      console.log(res)
+    }catch(err){
+      console.log(err)
+    }
+  }
 
   useEffect(()=>{
     setEdited(false)
-
+    addView()
   },[edited])
 
   return (

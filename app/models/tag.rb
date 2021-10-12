@@ -2,7 +2,14 @@ class Tag < ApplicationRecord
   has_many :question_tags, dependent: :destroy
   has_many :questions, through: :question_tags
 
-  def self.tagbywords
+  # SELECT name
+  # FROM tags
+  # WHERE name LIKE '%Test%';
 
+  def self.search(key)
+    select('*')
+    .from('tags')
+    .where('lower(name) LIKE lower(?)', "%#{ key }%")
+    .order('id DESC')
   end
 end

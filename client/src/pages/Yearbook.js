@@ -27,7 +27,9 @@ const Yearbook = () => {
       <div>
         {users.map((user)=>{
           return (
+            <NavLink as={Link} to={`/users/${user.id}`}>
             <User key={user.id} user={user}/>
+            </NavLink>
           )
         })}
       </div>
@@ -37,12 +39,14 @@ const Yearbook = () => {
 
 
   return (
-     <>
+    <div>
+     <div>
       <h1 style={styles.yearbook}>YEARBOOK</h1>
-      <CardGroup>
+    </div>
+    <div style={styles.grid}>
       {renderUsers()}
-      </CardGroup>
-     </>
+     </div>
+     </div>
   )};
 
 export default Yearbook;
@@ -54,7 +58,6 @@ const styles = {
   height: '41px',
   left: '94px',
   top: '147px',
-
   fontFamily: 'Open Sans',
   fontStyle: 'normal',
   fontWeight: '600',
@@ -68,5 +71,12 @@ const styles = {
   textTransform: 'uppercase',
 
   color: '#000000'
-}
+},
+  grid: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: "wrap",
+    justifyContent: "center",
+    position: 'relative'
+  }
 }

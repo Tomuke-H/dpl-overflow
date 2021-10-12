@@ -31,7 +31,15 @@ function App() {
   const renderRoutes = () => {
     return users.map((user)=>{
       return(
-      <Route exact path={`/user/${user.id}`} render={(props)=> <User {...props} user={user} component={User}/>}/>
+      <Route exact path={`/user/${user.id}`} render={(props)=> <User {...props} user={user}/>}/>
+      )
+    })
+  }
+
+  const renderProfiles = () => {
+    return users.map((user) => {
+      return (
+      <Route exact path={`users/${user.id}`} render={(props)=> <UserProfile {...props} user={user} />} />
       )
     })
   }
@@ -46,7 +54,7 @@ function App() {
             <Route exact path='/tags' component={TagsPage}/>
             <Route exact path='/login' component={Login}/>
             <Route exact path='/register' component={Register}/> 
-            <ProtectedRoute exact path='/user' component={UserProfile}/>
+            {/* <ProtectedRoute exact path='/user' component={UserProfile}/> */}
             <Route exact path='/answers' component={Answers}/>
             <Route exact path='/answers/:id' component={Answer}/>
             <Route exact path='/answers/:id/edit' component={EditAnswer}/>
@@ -57,8 +65,9 @@ function App() {
             <Route exact path='/question/:id' component={QuestionPage}/>
 
             <Route exact path='/yearbook' component={Yearbook}/>
-            <Route exact path='/users/:id' component={User}/>
+            <Route exact path='/users/:id' component={UserProfile}/>
             {renderRoutes()}
+            {renderProfiles()}
             <ProtectedRoute exact path='/user/edit' component={EditUser}/>
             <Route component={()=><p>react 404 path not found</p>} />
         </Switch>

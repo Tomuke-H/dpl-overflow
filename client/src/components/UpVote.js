@@ -6,13 +6,11 @@ import { AuthContext } from "../providers/AuthProvider";
 const UpVote = ({question}) => {
   const {user} = useContext(AuthContext)
 
-  //LOOK AT THIS AXIOS CALL TOMORROW
-  //getting a 404 error
-
+  // okay got it working but would like to keep track of whether a user has already liked or not - limit one like per user, right?
+  
   const saveQuestionLikes = async () => {
     try{
-    let res = await axios.put(`/api/users/${question.user_id}/questions/${question.id}`, {
-      id: question.id,
+    let res = await axios.put(`/api/questions/${question.id}`, {
       likes: likes + 1
     })
     console.log(res)

@@ -5,7 +5,7 @@ class Question < ApplicationRecord
   has_many :tags, through: :question_tags
 
   def self.find_question_by_tag(tag_name)
-    select('q.id, t.id AS tag_id, q.title, t.name, q.body, q.created_at')
+    select('DISTINCT q.id, q.views, q.likes, t.id AS tag_id, q.title, t.name, q.body, q.created_at AS question_created')
     .from('questions AS q')
     .joins('INNER JOIN question_tags AS qt ON q.id=qt.question_id
     INNER JOIN tags AS t ON qt.tag_id=t.id')
@@ -13,7 +13,7 @@ class Question < ApplicationRecord
   end
 
   def self.unanswered_questions
-    select('q.id, q.title, q.body, a.id AS answer')
+    select('q.id, q.views, q.likes, q.title, q.body, a.id AS answer')
     .from('questions AS q') 
     .joins('LEFT JOIN answers AS a On a.question_id = q.id')
     .where('a.id IS NULL')
@@ -21,9 +21,9 @@ class Question < ApplicationRecord
 
   def self.search(body)
     select('*')
-    .from('questions')
-    .where('body LIKE ?', "%#{body}%")
-    .order('likes DESC')
+    .from('questions AS q')
+    .where('body ILIKE ?', "%#{body}%")
+    .order('views DESC')
   end
 
 end

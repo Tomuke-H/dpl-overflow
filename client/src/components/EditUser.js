@@ -1,7 +1,8 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router';
 import { AuthContext } from '../providers/AuthProvider';
-import { Button, Container, Form } from 'react-bootstrap'
+import { Button, Container, Form } from 'react-bootstrap';
+import { Image } from "cloudinary-react";
 import axios from 'axios';
 
 
@@ -13,6 +14,7 @@ const EditUser = (id) => {
     const [about_me, setAbout_me] = useState(user.about_me)
     const [password, setPassword] = useState('')
     const [passwordConfirmation, setPasswordConfirmation] = useState('')
+    const [selectedFile, setSelectedFile] = useState([])
     const current_password = user.password
     const history = useHistory();
 
@@ -54,11 +56,44 @@ const EditUser = (id) => {
         }
     }
 
+    const fileSelectedHandler = event => {
+        try {
+            console.log(event.target.files[0])
+            setSelectedFile(event.target.files[0])
+        } catch (err) {
+
+        }
+    }
+
+    const fileUploadHandler = () => {
+        const fd = new FormData();
+        fd.append("image", selectedFile, selectedFile.name);
+        fd.append("upload_preset", "jtofvmws")
+        try {
+            axios.post('https://api.cloudinary.com/v1_1/dm7eqie1u/image/upload', fd)
+        } catch (err) {
+            alert(err)
+            console.log(err)
+        }
+
+    }
+
 
     return (
         <div>
             <Container>
             <h1>Edit Profile</h1>
+            <br />
+            <h5>Avatar:</h5>
+            <input type="file" onChange={fileSelectedHandler} />
+            <button onClick={fileUploadHandler}>Upload</button>
+            <br />
+            {/* <Image 
+                style={{width: 300}}
+                cloudName="dm7eqie1u" 
+                publicID="https://res.cloudinary.com/dm7eqie1u/image/upload/v1634071912/sample.jpg"
+            /> */}
+            <br />
             <br />
             <h5>Username:</h5>
             <Form onSubmit={handleSubmit}>

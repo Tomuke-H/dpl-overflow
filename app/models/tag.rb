@@ -9,7 +9,7 @@ class Tag < ApplicationRecord
   def self.search(key)
     select('*')
     .from('tags')
-    .where('name LIKE ?', "%#{key}%")
+    .where('lower(name) LIKE lower(?)', "%#{ key }%")
     .order('id DESC')
   end
 end

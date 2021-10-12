@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     get 'question_search', to:'questions#search'
     get 'leaderboard', to: 'users#leaderboard'
     get 'cohort_leaderboard', to: 'users#cohort_leaderboard'
+    get 'tag/:key', to: 'tags#tag_search'
     resources :tags
-    get 'tag/:key', to: 'tags#tagbywords'
   end
 end

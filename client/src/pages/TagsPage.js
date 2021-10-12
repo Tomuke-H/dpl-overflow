@@ -1,13 +1,15 @@
+import Button from "@restart/ui/esm/Button"
 import axios from "axios"
 import React, { useEffect, useState } from "react"
-import { Badge, Card, CardGroup, Col, Form, Row, } from "react-bootstrap"
+import { Alert, Badge, Card, CardGroup, Col, Form, Row, } from "react-bootstrap"
 
 const TagsPage = () => {
   const [tags, setTags] = useState([])
+  const [tagSearch, setTagSearch] = useState([])
 
   useEffect(()=>{
     getTags();
-  },[]);
+  },[tagSearch]);
 
   const getTags = async () => {
     try {
@@ -28,28 +30,48 @@ const TagsPage = () => {
       )
     })
   }
+  const renderBadSearch = () => {
+      return(
+        <Alert variant="danger"> No Results</Alert>
+      )
+  }
 
   const handleSubmit = async (e) =>{
     e.preventDefault()
     try {
-      
+      let res = await axios.get(`/api/tag/${tagSearch}`)
+      console.log(res)
+      if(res.data.length > 0){
+        setTags(res.data)
+      }else{
+        setTags([])
+      }
     } catch (err) {
       console.log(err)
     }}
 
+  const reset = () =>{
+    setTagSearch("")
+    getTags()
+  }
+
   const renderBelowHeader = () => {
     return(
       <div style={{display:"flex", justifyContent:"space-between"}}>
-      <div>
-      <h3>Available tags</h3>
-      <Form onSubmit={handleSubmit}>
-        <Form.Label>Search</Form.Label>
-        <Form.Control placeholder="Search Tags"/>
-      </Form>
-      </div>
-      <div>
-        Grid thingys
-      </div>
+        <div>
+          <Form onSubmit={handleSubmit}>
+            <Form.Label>Search</Form.Label>
+            <Form.Control placeholder="Search Tags"
+            value = {tagSearch}
+            onChange={(e) => {
+            setTagSearch(e.target.value)}}/>
+            <Button onClick={()=>{reset()}}>Reset Search</Button>
+          </Form>
+        <h3>Available tags</h3>
+        </div>
+        <div>
+          Grid thingys
+        </div>
       </div>
     )
   }
@@ -61,6 +83,7 @@ const TagsPage = () => {
       <div style={styles.grid}>
       {renderTags()}
       </div>
+      {tags.length == 0 && renderBadSearch()}
     </div>
   )
 }

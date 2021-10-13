@@ -132,10 +132,16 @@ const Questions = ({history}) => {
 
 
   return (
-    <Container>
-      <SortSelector showTags={showTags} setShowTags={setShowTags} getQuestions={getQuestions} />
-      {showTags && renderTags()}
-      <Form.Control value={search} onChange={(e) => getQuestions('search', 1, e.target.value)}/>
+    <Container style={{marginTop: '30px'}}>
+      <div style={{display: 'flex', justifyContent: 'space-between'}}>
+        <div style={{width: '500px'}}>
+          <Form.Control value={search} onChange={(e) => getQuestions('search', 1, e.target.value)}/>
+        </div>
+        <div>
+          <SortSelector showTags={showTags} setShowTags={setShowTags} getQuestions={getQuestions} />
+          {showTags && renderTags()}
+        </div>
+      </div>
       {totalPages > 1 && <MyPagination tag={tag} sortBy={sortBy} getData={getQuestions} page={page} totalPages={totalPages} />}
       {loading && <BoxLoader />}
       {renderQuestions()}

@@ -76,7 +76,7 @@ const Question = ({props, edited,setEdited, history, question}) => {
         <h2 style={styles.questionDetails}>Asked: {question.created_at}</h2>
         {/* need some help getting the date to look different - either google or classmates but nOT RIGHT NOW */}
         <h2 style={styles.questionDetails}>Active: Today</h2>
-        <h2 style={styles.questionDetails}>Viewed: </h2>
+        <h2 style={styles.questionDetails}>Viewed: {question.views} times</h2>
         </div>
         <p style={styles.questionDetails}> {question.body} </p> 
         <div style={{display:"flex"}}>{renderTags()}</div>

@@ -6,6 +6,7 @@ import Comments from '../CommentComponents/Comments'
 import NewCommentForm from '../CommentComponents/NewCommentForm'
 import { AuthContext } from '../../providers/AuthProvider'
 import EditAnswer from './EditAnswer'
+import AnswerVote from './AnswerVote'
 
 const Answer = ({answer, props, deleteAnswer}) => {
   const [comments, setComments] = useState([])
@@ -56,6 +57,18 @@ const Answer = ({answer, props, deleteAnswer}) => {
     }
   }
 
+  const showEditDelete = () => {
+    if (answer.user_id === user.id) {
+      return (        
+        <div style={styles.adContainer}>
+        <p style={{margin: "10px"}} onClick={()=>setShowForm(!showForm)}>{showForm ? "Cancel" : "Edit"}</p>
+        <p style={{margin: "10px"}} onClick={()=>deleteAnswer(answer.id)}>Delete</p>
+        {showForm && <EditAnswer a = {answer} props = {props}/>}
+        </div>
+      )
+    }
+  }
+
   const renderAnswer = () => {
     if(!answer){
       return(
@@ -63,50 +76,62 @@ const Answer = ({answer, props, deleteAnswer}) => {
       )
     }
     return(
-      <Card>
-        <Card.Header>{answer.user_id}</Card.Header>
-        <Card.Subtitle className="mb-2 text-muted">Created {answer.created_at}</Card.Subtitle>
-        <Card.Body>
-          <Card.Text>{answer.body}</Card.Text>
-        </Card.Body>
-      </Card>
+      <div style={styles.theMightyDiv}>
+        <div style={styles.likesContainer}>
+          <AnswerVote answer={answer}/>
+        </div>
+        <div style={styles.answerContainer}>
+          <p style={styles.answerDetails}>{answer.body}</p>
+          {showEditDelete()}
+        </div>
+      </div>
     )
   }
 
-  const showEditForm = () => {
-  return (<Button onClick={()=>setShowForm(!showForm)}>Edit</Button>
-  )}
 
-
-  const userEdit = () => {
-    if (answer.user_id === user.id) {
-      return showEditForm()
-    } else {
-      console.log("not your answer")
-    }
-  }
-
-  const userDelete = () => {
-   if (answer.user_id === user.id) {
-     return showDeleteButton() 
-   } else {
-     console.log("not your answer")
-   }
-  }
-
-  const showDeleteButton = () => {
- return (<Button type="submit" onClick={()=>deleteAnswer(answer.id)}>Delete</Button>)
-  }
+ 
 
   return (
     <div>
       {renderAnswer()}
-      {userEdit()}
-      {userDelete()}
-      {showForm && <EditAnswer a = {answer} props = {props}/>}
       <Comments addComment={addComment} updateComments={updateComments} deleteComment={deleteComment} comments={comments} setComments={setComments} answer={answer}/>
     </div>
   )
+}
+
+const styles = {
+  theMightyDiv: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  likesContainer: {
+    marginRight: "66px",
+    padding: "0px"
+  },
+  answerDetails: {
+    maxWidth: "850px",
+    marginRight: "10px",
+    fontSize: "16px",
+    fontFamily: "Inter, sans-serif",
+    fontWeight: "500",
+    display: "flex",
+    alignItems: "left",
+    letterSpacing: ".5px",
+    color: "#000000",
+  },
+  adContainer: {
+    display: "flex",
+    flexDirection: "row",
+    fontSize: "14px",
+    fontFamily: "Inter, sans-serif",
+    fontWeight: "500",
+    marginTop: "30px",
+  },
+  answerContainer: {
+    diaplsy: "flex",
+    flexDirection: "column",
+  }
 }
 
 export default Answer;

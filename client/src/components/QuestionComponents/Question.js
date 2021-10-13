@@ -1,7 +1,8 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Button, Card, Container } from 'react-bootstrap'
 import WebFont from "webfontloader";
+import { AuthContext } from '../../providers/AuthProvider';
 import UpVote from '../UpVote';
 import EditQuestionForm from "./EditQuestionForm"
 
@@ -9,6 +10,7 @@ import EditQuestionForm from "./EditQuestionForm"
 const Question = ({props, edited,setEdited, history, question}) => {
   const [toggleEdit, setToggleEdit] = useState(false)
   const [tags, setTags] = useState([])
+  const { user } = useContext(AuthContext)
 
   useEffect(() => {
     getTags();
@@ -44,6 +46,18 @@ const Question = ({props, edited,setEdited, history, question}) => {
     }
   }
 
+  const showEditDelete = () => {
+    if (question.user_id === user.id) {
+      return (        
+        <div style={styles.qdContainer}>
+        <p style={styles.questionDetails} onClick={()=>setToggleEdit(!toggleEdit)}>{toggleEdit ? "Cancel" : "Edit"}</p>
+        <p style={styles.questionDetails} onClick={()=>deleteQuestion(question.id)}>Delete</p>
+        {toggleEdit && <EditQuestionForm props={props} setEdited={setEdited} toggleEdit={toggleEdit} setToggleEdit={setToggleEdit}/>}
+        </div>
+      )
+    }
+  }
+
   const renderQuestion = () => {
     if(!question){
       return(
@@ -66,11 +80,7 @@ const Question = ({props, edited,setEdited, history, question}) => {
         </div>
         <p style={styles.questionDetails}> {question.body} </p> 
         <div style={{display:"flex"}}>{renderTags()}</div>
-        <div style={styles.qdContainer}>
-        <p style={styles.questionDetails} onClick={()=>setToggleEdit(!toggleEdit)}>{toggleEdit ? "Cancel" : "Edit"}</p>
-        <p style={styles.questionDetails} onClick={()=>deleteQuestion(question.id)}>Delete</p>
-        {toggleEdit && <EditQuestionForm props={props} setEdited={setEdited} toggleEdit={toggleEdit} setToggleEdit={setToggleEdit}/>}
-        </div>
+        {showEditDelete()}
       </Container>
       </div>
     )

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Dropdown, ListGroup } from 'react-bootstrap'
 import BoxLoader from '../components/BoxLoader'
 import MyPagination from '../components/QuestionComponents/MyPagination'
+import InfiniteScroll from 'react-infinite-scroll-component'
 
 const Leaderboard = () => {
   const [users, setUsers] = useState([])
@@ -10,50 +11,48 @@ const Leaderboard = () => {
   const [page, setPage] = useState(1)
   const [sortBy, setSortBy] = useState('all')
   const [cohort, setCohort] = useState(null)
-  const [loading, setLoading] = useState(true)
 
   useEffect(()=>{
-    getUsers(sortBy, page)
+    getUsers(sortBy, null, page)
   },[])
 
   const getAllUsers = async (p) => {
     setCohort(null)
     try{
       let res = await axios.get(`/api/leaderboard?page=${p}`)
-      setUsers(res.data.users)
+      setUsers(users.concat(res.data.users))
       setTotalPages(res.data.total_pages)
+      console.log(users)
+      setPage(p)
     }catch (err) {
       console.log(err)
     }
-    setLoading(false)
   }
 
-  const getCohortUsers = async (p, cohort) => {
-    setCohort(cohort)
-    try{
-      let res = await axios.get(`/api/cohort_leaderboard?cohort=${cohort}&page=${p}`)
-      setUsers(res.data.users)
-      setTotalPages(res.data.total_pages)
-    }catch(err){
-      console.log(err)
-    }
-    setLoading(false)
-  }
+  // const getCohortUsers = async (p, cohort) => {
+  //   setCohort(cohort)
+  //   try{
+  //     let res = await axios.get(`/api/cohort_leaderboard?cohort=${cohort}&page=${p}`)
+  //     setUsers(res.data.users)
+  //     setTotalPages(res.data.total_pages)
+  //   }catch(err){
+  //     console.log(err)
+  //   }
+  // }
 
-  const getUsers = (sortBy, page, cohort) => {
-    setPage(page)
+  const getUsers = (sortBy, cohort, p) => {
+    console.log('called')
+    console.log(sortBy)
     setSortBy(sortBy)
-    setLoading(true)
     switch(sortBy){
       case 'all':
-        getAllUsers(page)
+        getAllUsers(p)
         break;
-      case 'cohort':
-        getCohortUsers(page, cohort)
-        break;
+      // case 'cohort':
+      //   getCohortUsers(p, cohort)
+      //   break;
       default:
         console.log('Somefin bad happened')
-        setLoading(false)
     }
   }
 
@@ -61,7 +60,7 @@ const Leaderboard = () => {
     return users.map((u, index)=> {
       return (
         <ListGroup.Item className='d-flex justify-content-between' as='li' key={u.id}>
-          <h2>{(index + 1) + ((page - 1) * 10)}</h2>
+          <h2>{(index + 1)}</h2>
           <div>
             Name: {u.name}
           </div>
@@ -77,23 +76,32 @@ const Leaderboard = () => {
   return (
     <div>
       <h1>Top Answerer's</h1>
+      <h2>page:{page}</h2>
+      <h2>total pages:{totalPages}</h2>
 
       <Dropdown>
         <Dropdown.Toggle>View By Cohort</Dropdown.Toggle>
         <Dropdown.Menu>
-          <Dropdown.Item onClick={(e) => getUsers('all', 1)}>View All</Dropdown.Item>
-          <Dropdown.Item onClick={(e) => getUsers('cohort', 1, 'Fall 2021')}>Fall 2021</Dropdown.Item>
-          <Dropdown.Item onClick={(e) => getUsers('cohort', 1, 'Winter 2021')}>Winter 2021</Dropdown.Item>
-          <Dropdown.Item onClick={(e) => getUsers('cohort', 1, 'Spring 2022')}>Spring 2022</Dropdown.Item>
+          <Dropdown.Item onClick={(e) => getUsers('all', null, 1)}>View All</Dropdown.Item>
+          <Dropdown.Item onClick={(e) => getUsers('cohort', 'Fall 2021')}>Fall 2021</Dropdown.Item>
+          <Dropdown.Item onClick={(e) => getUsers('cohort', 'Winter 2021')}>Winter 2021</Dropdown.Item>
+          <Dropdown.Item onClick={(e) => getUsers('cohort', 'Spring 2022')}>Spring 2022</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
-      {loading && <BoxLoader />}
 
       <div style={{maxWidth: '1000px'}}>
-        <ListGroup as='ol'>
+        <InfiniteScroll
+          dataLength={users.length}
+          next={(e)=>getUsers(sortBy, cohort, page + 1)}
+          hasMore={page<totalPages}
+          loader={<BoxLoader/>}
+        >
+          {renderUsers()}
+        </InfiniteScroll>
+        {/* <ListGroup as='ol'>
           {renderUsers()}
         </ListGroup>
-        {totalPages > 1 && <MyPagination tag={cohort} page={page} totalPages={totalPages} getData={getUsers} sortBy={sortBy}/>}
+        {totalPages > 1 && <MyPagination tag={cohort} page={page} totalPages={totalPages} getData={getUsers} sortBy={sortBy}/>} */}
       </div>
     </div>
   )

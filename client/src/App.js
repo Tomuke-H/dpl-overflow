@@ -23,6 +23,7 @@ import Yearbook from './pages/Yearbook';
 import useGetUser from './hooks/useGetUser';
 import TagsPage from './pages/TagsPage';
 import UserProfile from './components/UserProfile';
+import Footer from './components/Footer';
 
 function App() {
 
@@ -31,7 +32,7 @@ function App() {
   const renderRoutes = () => {
     return users.map((user)=>{
       return(
-      <Route exact path={`/user/${user.id}`} render={(props)=> <User {...props} user={user}/>}/>
+      <ProtectedRoute exact path={`/user/${user.id}`} render={(props)=> <User {...props} user={user}/>}/>
       )
     })
   }
@@ -39,7 +40,7 @@ function App() {
   const renderProfiles = () => {
     return users.map((user) => {
       return (
-      <Route exact path={`users/${user.id}`} render={(props)=> <UserProfile {...props} user={user} />} />
+      <ProtectedRoute exact path={`users/${user.id}`} render={(props)=> <UserProfile {...props} user={user} />} />
       )
     })
   }
@@ -51,26 +52,29 @@ function App() {
         <Switch>
             <Route exact path='/' component={Home}/>
             <Route exact path='/test_page' component={TestPage}/>
-            <Route exact path='/tags' component={TagsPage}/>
+            <ProtectedRoute exact path='/tags' component={TagsPage}/>
             <Route exact path='/login' component={Login}/>
             <Route exact path='/register' component={Register}/> 
             {/* <ProtectedRoute exact path='/user' component={UserProfile}/> */}
-            <Route exact path='/answers' component={Answers}/>
-            <Route exact path='/answers/:id' component={Answer}/>
-            <Route exact path='/answers/:id/edit' component={EditAnswer}/>
+            <ProtectedRoute exact path='/answers' component={Answers}/>
+            <ProtectedRoute exact path='/answers/:id' component={Answer}/>
+            <ProtectedRoute exact path='/answers/:id/edit' component={EditAnswer}/>
       
-            <Route exact path='/dashboard' component={Dashboard}/>
-            <Route exact path='/leaderboard' component={Leaderboard}/>
-            <Route exact path='/new_question' component={NewQuestionPage}/>
+            <ProtectedRoute exact path='/dashboard' component={Dashboard}/>
+            <ProtectedRoute exact path='/leaderboard' component={Leaderboard}/>
+            <ProtectedRoute exact path='/new_question' component={NewQuestionPage}/>
             <Route exact path='/question/:id' component={QuestionPage}/>
 
-            <Route exact path='/yearbook' component={Yearbook}/>
-            <Route exact path='/users/:id' component={UserProfile}/>
+            <ProtectedRoute exact path='/yearbook' component={Yearbook}/>
+            <ProtectedRoute exact path='/users/:id' component={UserProfile}/>
             {renderRoutes()}
             {renderProfiles()}
             <ProtectedRoute exact path='/user/edit' component={EditUser}/>
             <Route component={()=><p>react 404 path not found</p>} />
         </Switch>
+        <br />
+        <br />
+        <Footer />
     </>
     )
   }

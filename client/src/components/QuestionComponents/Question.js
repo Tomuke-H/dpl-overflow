@@ -6,23 +6,8 @@ import UpVote from '../UpVote';
 import EditQuestionForm from "./EditQuestionForm"
 
 
-const Question = ({props, edited,setEdited, history}) => {
-  const [question, setQuestion] = useState(null)
+const Question = ({props, edited,setEdited, history, question}) => {
   const [toggleEdit, setToggleEdit] = useState(false)
-
-  const getQuestion = async () => {
-    try {
-      let res = await axios.get(`/api/questions/${props.match.params.id}`)
-      setQuestion(res.data)
-    }catch (err) {
-      console.log(err)
-    }
-  }
-
-  useEffect(()=>{
-    getQuestion()
-    
-  },[edited])
 
   useEffect(() => {
     WebFont.load({

@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     get 'question_search', to:'questions#search'
     get 'leaderboard', to: 'users#leaderboard'
     get 'cohort_leaderboard', to: 'users#cohort_leaderboard'
+    get 'answer_count/:id', to: 'questions#answer_count'
     resources :tags
   end
 end

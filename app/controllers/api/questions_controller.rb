@@ -1,6 +1,6 @@
 class Api::QuestionsController < ApplicationController
   before_action :set_page
-  before_action :set_question, only: [:show, :update, :destroy]
+  before_action :set_question, only: [:show, :update, :destroy, :answer_count]
 
   def index
     render json: {questions: Question.page(@page).per(3), total_pages: Question.page(@page).per(3).total_pages}
@@ -43,6 +43,9 @@ class Api::QuestionsController < ApplicationController
     render json: @question.destroy
   end
 
+  def answer_count
+    render json: Question.answer_count(params[:id])
+  end
 
   private
 

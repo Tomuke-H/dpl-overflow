@@ -49,10 +49,19 @@ const QuestionPage = (props) => {
   return (
     <div>
       <Question props={props} edited = {edited} setEdited={setEdited} history={history} question={question}/>
-      <p>{answerCount} Answers </p>
+      <p style={styles.answerCount}>{answerCount} Answers </p>
       <Answers props = {props} /> 
     </div>
   )
 }
 
+const styles = {
+  answerCount: {
+    marginTop: "33px",
+    marginLeft: "137px",
+    fontSize: "20px",
+    fontWeight: "500",
+    fontFamily: "Inter"
+  }
+}
 export default QuestionPage;

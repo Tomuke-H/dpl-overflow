@@ -43,7 +43,6 @@ const renderAnswers = () => {
 }
   return (
     <div>
-      <h1>Answers</h1>
       {renderAnswers()}
       <br />
       <NewAnswer props = {props}/>

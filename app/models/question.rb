@@ -29,4 +29,11 @@ class Question < ApplicationRecord
     .order('q.views DESC')
   end
 
+  def self.answer_count(id)
+    select('count(a.id)')
+    .from('questions AS q')
+    .joins('LEFT JOIN answers AS a ON q.id = a.question_id')
+    .where('q.id = ?', id)
+  end
+
 end

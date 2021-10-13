@@ -1,6 +1,6 @@
 class Api::QuestionsController < ApplicationController
   before_action :set_page
-  before_action :set_question, only: [:show, :update, :destroy, :add_view]
+  before_action :set_question, only: [:show, :update, :destroy, :answer_count, :add_view]
 
   def index
     render json: {questions: Question.page(@page).per(3), total_pages: Question.page(@page).per(3).total_pages}
@@ -52,11 +52,14 @@ class Api::QuestionsController < ApplicationController
     render json: @question.destroy
   end
 
+  def answer_count
+    render json: Question.answer_count(params[:id])
+  end
 
   private
 
   def question_params
-    params.require(:question).permit(:user_id, :title, :body)
+    params.require(:question).permit(:user_id, :title, :body, :likes)
   end
 
   def set_question

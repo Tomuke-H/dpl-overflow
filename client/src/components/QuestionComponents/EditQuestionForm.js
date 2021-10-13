@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Container, Form, Button } from 'react-bootstrap'
+import MarkdownEditor from '../Markdown/MarkdownEditor'
 
 const EditQuestionForm = ({props, setEdited}) => {
   const [question, setQuestion] = useState(null)
@@ -157,11 +158,9 @@ const EditQuestionForm = ({props, setEdited}) => {
           />
         </Form.Group>
         <Form.Group className='mb-3'>
-          <Form.Control 
-            as='textarea'
-            value={body}
-            placeholder='Explain your question here'
-            onChange={(e) => setBody(e.target.value)}
+           <MarkdownEditor
+          body = {body}
+          setBody = {setBody}
           />
         </Form.Group>
         <Form.Group>

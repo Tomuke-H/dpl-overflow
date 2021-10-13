@@ -23,6 +23,7 @@ import Yearbook from './pages/Yearbook';
 import useGetUser from './hooks/useGetUser';
 import TagsPage from './pages/TagsPage';
 import UserProfile from './components/UserProfile';
+import MarkdownTest from './components/Markdown/MarkdownTest';
 
 function App() {
 
@@ -66,6 +67,7 @@ function App() {
 
             <Route exact path='/yearbook' component={Yearbook}/>
             <Route exact path='/users/:id' component={UserProfile}/>
+            <Route exact path='/markdown' component={MarkdownTest}/>
             {renderRoutes()}
             {renderProfiles()}
             <ProtectedRoute exact path='/user/edit' component={EditUser}/>

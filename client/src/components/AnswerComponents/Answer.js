@@ -6,6 +6,7 @@ import Comments from '../CommentComponents/Comments'
 import NewCommentForm from '../CommentComponents/NewCommentForm'
 import { AuthContext } from '../../providers/AuthProvider'
 import EditAnswer from './EditAnswer'
+import MarkdownView from '../Markdown/MarkdownView'
 
 const Answer = ({answer, props, deleteAnswer}) => {
   const [comments, setComments] = useState([])
@@ -67,7 +68,7 @@ const Answer = ({answer, props, deleteAnswer}) => {
         <Card.Header>{answer.user_id}</Card.Header>
         <Card.Subtitle className="mb-2 text-muted">Created {answer.created_at}</Card.Subtitle>
         <Card.Body>
-          <Card.Text>{answer.body}</Card.Text>
+          <Card.Text as={'div'}><MarkdownView body = {answer.body}/></Card.Text>
         </Card.Body>
       </Card>
     )

@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     get 'question_search', to:'questions#search'
     get 'leaderboard', to: 'users#leaderboard'
     get 'cohort_leaderboard', to: 'users#cohort_leaderboard'
+    put 'users/image/update', to: 'users#update_image'
     resources :tags
   end
 end

@@ -65,12 +65,14 @@ const EditUser = (id) => {
         }
     }
 
-    const fileUploadHandler = () => {
-        const fd = new FormData();
-        fd.append("image", selectedFile, selectedFile.name);
-        fd.append("upload_preset", "jtofvmws")
+    const fileUploadHandler = async () => {
+        const file = new FormData();
+        file.append("image", selectedFile, selectedFile.name);
+        file.append("upload_preset", "jtofvmws")
         try {
-            axios.post('https://api.cloudinary.com/v1_1/dm7eqie1u/image/upload', fd)
+            let res = await axios.put('/api/users/image/update', file)
+            setUser(res.data)
+            console.log(res)
         } catch (err) {
             alert(err)
             console.log(err)
@@ -88,11 +90,11 @@ const EditUser = (id) => {
             <input type="file" onChange={fileSelectedHandler} />
             <button onClick={fileUploadHandler}>Upload</button>
             <br />
-            {/* <Image 
+            <Image 
                 style={{width: 300}}
                 cloudName="dm7eqie1u" 
-                publicID="https://res.cloudinary.com/dm7eqie1u/image/upload/v1634071912/sample.jpg"
-            /> */}
+                publicID={user.image}
+            />
             <br />
             <br />
             <h5>Username:</h5>

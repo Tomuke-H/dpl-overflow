@@ -1,37 +1,26 @@
 class Api::UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index]
   before_action :set_page
-  # before_action :authenticate_user!
-  before_action :set_user, only: [:show,:update,:destroy]
 
   def index
     render json: User.all
   end
 
   def show
-    render json: @user
-  end
-
-  def create
-    user = User.new(user_params)
-    if user.save
-      render json: user
-    else
-      render json: {errors: @user.errors}, status: 422
-    end
+    render json: current_user
   end
 
   def update
-    if @user.update(user_params)
-      render json: @user
+    if current_user.update(user_params)
+      render json: current_user
     else
-      render json: {errors: @user.errors}, status: 422
+      render json: {errors: current_user.errors}, status: 422
     end
   end
 
   def destroy
-    @user.destroy
-    render json: @user
+    current_user.destroy
+    render json: current_user
   end
 
   def leaderboard
@@ -42,12 +31,28 @@ class Api::UsersController < ApplicationController
     render json: {users: User.cohort_leaderboard(params[:cohort]).page(@page).per(10), total_pages: User.cohort_leaderboard(params[:cohort]).page(@page).per(10).total_pages}
   end
 
+  def update_image
+      file = params[:image]
+  
+      if file
+        begin
+          # ext = File.extname(file.tempfile)
+          
+          cloud_image = Cloudinary::Uploader.upload(file, public_id: file.original_filename, secure: true, resource_type: :auto)
+          current_user.image = cloud_image['secure_url']
+          current_user.save
+          render json: current_user
+        rescue => e
+          render json: { errors: e }, status: 422
+          return
+        end
+      end
+  end
+    
+
 
   private
-  
-  def set_user
-    @user= User.find(params[:id])
-  end
+
 
   def set_page
     @page = params[:page] || 1

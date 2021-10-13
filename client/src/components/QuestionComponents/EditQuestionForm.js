@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Container, Form, Button } from 'react-bootstrap'
 
-const EditQuestionForm = ({props, setEdited}) => {
+const EditQuestionForm = ({props, setEdited, toggleEdit, setToggleEdit}) => {
   const [question, setQuestion] = useState(null)
   const [title, setTitle] = useState('')
   const [body, setBody] = useState('')
@@ -139,6 +139,7 @@ const EditQuestionForm = ({props, setEdited}) => {
       setBody(res.data.body)
       handleTagSubmit(res)
       setEdited(true)
+      setToggleEdit(!toggleEdit)
     }catch (err) {
       console.log(err)
     }

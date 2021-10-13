@@ -23,7 +23,6 @@ const QuestionPage = (props) => {
     try {
       let res = await axios.get(`/api/questions/${props.match.params.id}`)
       setQuestion(res.data)
-      console.log("QUESTION SETTING HERE", res.data)
     }catch (err) {
       console.log(err)
     }
@@ -32,8 +31,6 @@ const QuestionPage = (props) => {
   const getAnswerCount = async () => {
     try {
       let res = await axios.get(`/api/answer_count/${props.match.params.id}`)
-      console.log("ANSWER COUNT HERE", res.data[0].count)
-      //it's putting it in an array...
       setAnswerCount(res.data[0].count) 
     } catch(err) {
       console.log(err)

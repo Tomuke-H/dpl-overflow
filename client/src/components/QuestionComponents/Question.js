@@ -8,8 +8,10 @@ import EditQuestionForm from "./EditQuestionForm"
 
 const Question = ({props, edited,setEdited, history, question}) => {
   const [toggleEdit, setToggleEdit] = useState(false)
+  const [tags, setTags] = useState([])
 
   useEffect(() => {
+    getTags();
     WebFont.load({
       google: {
         families: ['Open Sans', 'Inter']
@@ -17,6 +19,21 @@ const Question = ({props, edited,setEdited, history, question}) => {
     })
   }, [])
 
+  const getTags = async () => {
+    try {
+      let res = await axios.get(`/api/tagwithname/${question.id}`)
+      setTags(res.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const renderTags = () => {
+    console.log(tags)
+    return tags.map((tag)=>{
+      return <div style={styles.qTagBox}>{tag.tag_name}</div>
+    })
+  }
 
   const deleteQuestion = async (id) => {
     try{
@@ -48,10 +65,11 @@ const Question = ({props, edited,setEdited, history, question}) => {
         <h2 style={styles.questionDetails}>Viewed: </h2>
         </div>
         <p style={styles.questionDetails}> {question.body} </p> 
+        <div style={{display:"flex"}}>{renderTags()}</div>
         <div style={styles.qdContainer}>
-        <p style={styles.questionDetails} onClick={()=>setToggleEdit(!toggleEdit)}>Edit</p>
-        {toggleEdit && <EditQuestionForm props={props} setEdited={setEdited}/>}
+        <p style={styles.questionDetails} onClick={()=>setToggleEdit(!toggleEdit)}>{toggleEdit ? "Cancel" : "Edit"}</p>
         <p style={styles.questionDetails} onClick={()=>deleteQuestion(question.id)}>Delete</p>
+        {toggleEdit && <EditQuestionForm props={props} setEdited={setEdited} toggleEdit={toggleEdit} setToggleEdit={setToggleEdit}/>}
         </div>
       </Container>
       </div>
@@ -106,6 +124,21 @@ const styles = {
   qdContainer: {
     display: "flex",
     flexDirection: "row",
+  },
+  qTagBox: {
+    margin: "10px",
+    padding: "5px",
+    border: "1px solid",
+    height: "20px",
+    color: "#000000",
+    boxSizing: "borderBox",
+    fontSize: "10px",
+    fontFamily: "Inter, sans-serif",
+    fontWeight: "500",
+    display: "flex",
+    alignItems: "center",
+    letterSpacing: ".5px",
+    color: "#000000", 
   }
 };
 

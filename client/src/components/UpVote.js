@@ -11,15 +11,6 @@ const UpVote = ({question}) => {
 
   // okay got it working but would like to keep track of whether a user has already liked or not - limit one like per user, right?
 
-
-  useEffect(() => {
-    WebFont.load({
-      google: {
-        families: ['Inter']
-      }
-    })
-  }, [])
-
   const saveQuestionLikes = async () => {
     try{
     let res = await axios.put(`/api/questions/${question.id}`, {
@@ -53,11 +44,13 @@ const UpVote = ({question}) => {
       <div style={styles.voteBox}>
         <AiFillCaretUp
         size="40px"
+        color="#757575"
          onClick={() => {upVote()}}/>
         <p style={styles.likesNumber}>{likes}</p>
         <AiFillCaretDown
         size="40px"
-         onClick={() => {downVote()}}/>
+        color="#757575"
+        onClick={() => {downVote()}}/>
       </div>
     );
   };

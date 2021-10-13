@@ -82,7 +82,7 @@ const Answer = ({answer, props, deleteAnswer}) => {
           <AnswerVote answer={answer}/>
         </div>
         <div style={styles.answerContainer}>
-          <p style={styles.answerDetails}><MarkdownView body = {answer.body}/></p>
+          <div style={styles.answerDetails}><MarkdownView body = {answer.body}/></div>
           {showEditDelete()}
         </div>
       </div>

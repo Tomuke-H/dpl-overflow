@@ -16,10 +16,10 @@ const Leaderboard = () => {
     getUsers(sortBy, page)
   },[])
 
-  const getAllUsers = async () => {
+  const getAllUsers = async (p) => {
     setCohort(null)
     try{
-      let res = await axios.get('/api/leaderboard?')
+      let res = await axios.get(`/api/leaderboard?page=${p}`)
       setUsers(res.data.users)
       setTotalPages(res.data.total_pages)
     }catch (err) {
@@ -28,10 +28,10 @@ const Leaderboard = () => {
     setLoading(false)
   }
 
-  const getCohortUsers = async (page, cohort) => {
+  const getCohortUsers = async (p, cohort) => {
     setCohort(cohort)
     try{
-      let res = await axios.get(`/api/cohort_leaderboard?cohort=${cohort}`)
+      let res = await axios.get(`/api/cohort_leaderboard?cohort=${cohort}&page=${p}`)
       setUsers(res.data.users)
       setTotalPages(res.data.total_pages)
     }catch(err){
@@ -41,7 +41,7 @@ const Leaderboard = () => {
   }
 
   const getUsers = (sortBy, page, cohort) => {
-    setPage(1)
+    setPage(page)
     setSortBy(sortBy)
     setLoading(true)
     switch(sortBy){
@@ -61,7 +61,7 @@ const Leaderboard = () => {
     return users.map((u, index)=> {
       return (
         <ListGroup.Item className='d-flex justify-content-between' as='li' key={u.id}>
-          <h2>{index + 1}</h2>
+          <h2>{(index + 1) + ((page - 1) * 10)}</h2>
           <div>
             Name: {u.name}
           </div>

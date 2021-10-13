@@ -8,7 +8,8 @@ const EditQuestionForm = ({props, setEdited}) => {
   const [body, setBody] = useState('')
   const [tags, setTags] = useState([])
   const [tagsDone, setTagsDone] = useState(false)
-  const [checkedItems, setCheckedItems] = useState({})
+  const [checkedItems, setCheckedItems] = useState([])
+  const [checkNewItems, setCheckedNewItems] = useState([])
   const [checkedTagDone, setCheckedTagDone] = useState(false)
   let norm = []
   let tagID = []
@@ -43,6 +44,7 @@ const EditQuestionForm = ({props, setEdited}) => {
   const getQuestionTag = async () => {
     try {
       let res = await axios.get(`/api/questionTags/${props.match.params.id}`)
+      console.log("prenorm data",res)
       normalizeCheckedItems(res.data)
     }catch (err){
       console.log(err)
@@ -59,9 +61,16 @@ const EditQuestionForm = ({props, setEdited}) => {
     for( var tag_id in norm){
       if(tagID.includes(Number(tag_id))===true){
         norm[tag_id].checked = true
+        for(let i = 0; i < data.length; i++){
+          if(data[i].tag_id == tag_id){
+            norm[tag_id].id = data[i].id
+          }
+        }
       }else{norm[tag_id].checked = false}
     }
+    console.log("norm",norm)
     setCheckedItems(norm)
+    setCheckedNewItems(norm)
     setCheckedTagDone(true)
   }
 
@@ -98,9 +107,25 @@ const EditQuestionForm = ({props, setEdited}) => {
   }
 
   const handleTagSubmit = async (res) =>{
-    for (const [key, value] of Object.entries(checkedItems)) {
-      if(value === true){
-        let tagRes = await axios.post('/api/questionTags', {tag_id: key,question_id: res.data.id})
+    for (const [tagNum, check] of Object.entries(checkedItems)) {
+      if(check === true){
+        try {
+          let tagRes = await axios.post('/api/questionTags', {tag_id: tagNum, question_id: res.data.id})
+        } catch (error) {
+          console.log(error)
+        }
+      }
+      if(check === false){
+        checkNewItems.forEach(tag => {
+          if(tag.tag_id === Number(tagNum)){
+            let QTId = tag.id
+            try {
+              let delTag = axios.delete(`/api/questionTags/${QTId}`)
+            } catch (error) {
+              console.log(error)
+            }
+          }
+        });
       }
     }
   }
@@ -109,7 +134,6 @@ const EditQuestionForm = ({props, setEdited}) => {
     e.preventDefault()
     try {
       let res = await axios.put(`/api/questions/${props.match.params.id}`, {title, body})
-      console.log(res)
       setQuestion(res.data)
       setTitle(res.data.title)
       setBody(res.data.body)
@@ -119,6 +143,7 @@ const EditQuestionForm = ({props, setEdited}) => {
       console.log(err)
     }
   }
+
   return (
     <Container>
       <h2>Edit Question</h2>

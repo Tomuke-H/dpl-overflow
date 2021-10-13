@@ -16,6 +16,7 @@ const QuestionPage = (props) => {
       getQuestion()
       setEdited(false)
       getAnswerCount()
+      addView()
   }, [edited])
 
   const getQuestion = async () => {
@@ -35,6 +36,15 @@ const QuestionPage = (props) => {
       //it's putting it in an array...
       setAnswerCount(res.data[0].count) 
     } catch(err) {
+      console.log(err)
+    }
+  }
+  
+  const addView = async () => {
+    try{
+      let res = await axios.put(`/api/add_view/${props.match.params.id}`)
+      console.log(res)
+    }catch(err){
       console.log(err)
     }
   }

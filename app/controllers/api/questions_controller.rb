@@ -1,6 +1,6 @@
 class Api::QuestionsController < ApplicationController
   before_action :set_page
-  before_action :set_question, only: [:show, :update, :destroy, :answer_count]
+  before_action :set_question, only: [:show, :update, :destroy, :answer_count, :add_view]
 
   def index
     render json: {questions: Question.page(@page).per(3), total_pages: Question.page(@page).per(3).total_pages}
@@ -19,8 +19,17 @@ class Api::QuestionsController < ApplicationController
     end
   end
 
+  def add_view
+    if(@question.update(views: @question.views+1))
+      render json: @question.views
+    else
+      render json: @question.errors, status: 422
+    end
+  end
+
+
   def find_questions_by_tag
-    render json: {questions: Question.find_question_by_tag(params[:tag_name]).page(@page).per(3), total_pages: Question.find_question_by_tag(params[:tag_name]).page(@page).per(3).total_pages}
+    render json: {questions: Question.find_questions_by_tag(params[:tag_name]).page(@page).per(3), total_pages: Question.find_questions_by_tag(params[:tag_name]).page(@page).per(3).total_pages}
   end
 
   def unanswered_questions

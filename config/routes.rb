@@ -17,9 +17,11 @@ Rails.application.routes.draw do
     get 'find_questions_by_tag/:tag_name', to:'questions#find_questions_by_tag'
     get 'unanswered_questions', to:'questions#unanswered_questions'
     get 'question_search', to:'questions#search'
+    put 'add_view/:id', to:'questions#add_view'
     get 'leaderboard', to: 'users#leaderboard'
     get 'cohort_leaderboard', to: 'users#cohort_leaderboard'
     get 'answer_count/:id', to: 'questions#answer_count'
+    get 'tag/:key', to: 'tags#tag_search'
     resources :tags
   end
 end

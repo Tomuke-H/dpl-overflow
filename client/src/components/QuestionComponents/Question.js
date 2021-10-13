@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Button, Card, Container } from 'react-bootstrap'
 import WebFont from "webfontloader";
 import { AuthContext } from '../../providers/AuthProvider';
-import UpVote from '../UpVote';
+import QuestionVote from '../QuestionVote';
 import EditQuestionForm from "./EditQuestionForm"
 
 
@@ -67,7 +67,7 @@ const Question = ({props, edited,setEdited, history, question}) => {
     return(
       <div style={styles.theMightyDiv}>
         <div style={styles.likesContainer}>
-        <UpVote question={question}/>
+        <QuestionVote question={question}/>
         </div>
       <Container style={styles.questionContainer}>
         {/* <h1>{question.user_id}</h1> */}

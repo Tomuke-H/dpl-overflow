@@ -6,12 +6,12 @@ import { AiFillCaretUp, AiFillCaretDown } from "react-icons/ai"
 import WebFont from "webfontloader";
 
 
-const UpVote = ({question}) => {
+const QuestionVote = ({question}) => {
   const {user} = useContext(AuthContext)
 
   // okay got it working but would like to keep track of whether a user has already liked or not - limit one like per user, right?
 
-  const saveQuestionLikes = async () => {
+  const saveUpVote = async () => {
     try{
     let res = await axios.put(`/api/questions/${question.id}`, {
       likes: likes + 1
@@ -21,14 +21,25 @@ const UpVote = ({question}) => {
       console.log(err)
     }
   }
+
+  const saveDownVote = async () => {
+    try{
+    let res = await axios.put(`/api/questions/${question.id}`, {
+      likes: likes - 1
+    })
+    console.log(res)
+  } catch (err) {
+      console.log(err)
+    }
+  }
   
     const upVote = () =>
     {dispatch("add");
-    saveQuestionLikes(likes)}
+    saveUpVote(likes)}
 
     const downVote = () =>
     {dispatch("subtract");
-    saveQuestionLikes(likes)}
+    saveDownVote(likes)}
 
   
     const [likes, dispatch] = useReducer((state, action) => {
@@ -77,4 +88,4 @@ const UpVote = ({question}) => {
   },
   }
 
-export default UpVote;
+export default QuestionVote;

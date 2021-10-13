@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     put 'add_view/:id', to:'questions#add_view'
     get 'leaderboard', to: 'users#leaderboard'
     get 'cohort_leaderboard', to: 'users#cohort_leaderboard'
+    put 'users/image/update', to: 'users#update_image'
     get 'answer_count/:id', to: 'questions#answer_count'
     get 'tag/:key', to: 'tags#tag_search'
     resources :tags

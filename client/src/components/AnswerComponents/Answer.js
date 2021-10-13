@@ -7,6 +7,7 @@ import NewCommentForm from '../CommentComponents/NewCommentForm'
 import { AuthContext } from '../../providers/AuthProvider'
 import EditAnswer from './EditAnswer'
 import AnswerVote from './AnswerVote'
+import MarkdownView from '../Markdown/MarkdownView'
 
 const Answer = ({answer, props, deleteAnswer}) => {
   const [comments, setComments] = useState([])
@@ -81,7 +82,7 @@ const Answer = ({answer, props, deleteAnswer}) => {
           <AnswerVote answer={answer}/>
         </div>
         <div style={styles.answerContainer}>
-          <p style={styles.answerDetails}>{answer.body}</p>
+          <p style={styles.answerDetails}><MarkdownView body = {answer.body}/></p>
           {showEditDelete()}
         </div>
       </div>

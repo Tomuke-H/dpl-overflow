@@ -4,6 +4,7 @@ import { Button, Card, Container } from 'react-bootstrap'
 import WebFont from "webfontloader";
 import { AuthContext } from '../../providers/AuthProvider';
 import QuestionVote from '../QuestionVote';
+import MarkdownView from '../Markdown/MarkdownView';
 import EditQuestionForm from "./EditQuestionForm"
 
 
@@ -78,7 +79,7 @@ const Question = ({props, edited,setEdited, history, question}) => {
         <h2 style={styles.questionDetails}>Active: Today</h2>
         <h2 style={styles.questionDetails}>Viewed: {question.views} times</h2>
         </div>
-        <p style={styles.questionDetails}> {question.body} </p> 
+        <div style={styles.questionDetails}><MarkdownView body = {question.body}/></div> 
         <div style={{display:"flex"}}>{renderTags()}</div>
         {showEditDelete()}
       </Container>

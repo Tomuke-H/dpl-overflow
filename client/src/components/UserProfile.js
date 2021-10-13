@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { Button, Image } from "react-bootstrap";
+import { Button, Container, Image } from "react-bootstrap";
 import useGetUser from "../hooks/useGetUser";
 import { AuthContext } from '../providers/AuthProvider'
 import EditUser from "./EditUser";
@@ -19,8 +19,8 @@ export default function UserProfile() {
         <p style={styles.name}>{user.name}</p>
       </div>
       <div style={styles.optionsContainer}>
-        <Button style={styles.profile}>Profile</Button>
-        <Button style={styles.activity}>Activity</Button>
+        <Button onClick={()=>{setShowForm(false)}}style={styles.profile}>Profile</Button>
+        <Button onClick={()=>{setShowForm(false)}}style={styles.activity}>Activity</Button>
         <Button onClick={()=>{setShowForm(!showForm)}}style={styles.settings}>Settings</Button>
         {showForm && <EditUser />}
       </div>

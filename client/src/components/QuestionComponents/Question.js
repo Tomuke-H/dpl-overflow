@@ -3,24 +3,11 @@ import React, { useEffect, useState } from 'react'
 import { Button, Card, Container } from 'react-bootstrap'
 import WebFont from "webfontloader";
 import UpVote from '../UpVote';
+import EditQuestionForm from "./EditQuestionForm"
 
 
-const Question = ({props, edited, history}) => {
-  const [question, setQuestion] = useState(null)
-
-  const getQuestion = async () => {
-    try {
-      let res = await axios.get(`/api/questions/${props.match.params.id}`)
-      setQuestion(res.data)
-    }catch (err) {
-      console.log(err)
-    }
-  }
-
-  useEffect(()=>{
-    getQuestion()
-
-  },[edited])
+const Question = ({props, edited,setEdited, history, question}) => {
+  const [toggleEdit, setToggleEdit] = useState(false)
 
   useEffect(() => {
     WebFont.load({
@@ -47,11 +34,11 @@ const Question = ({props, edited, history}) => {
       )
     }
     return(
-      <div>
-      <Container>
+      <div style={styles.theMightyDiv}>
+        <div style={styles.likesContainer}>
         <UpVote question={question}/>
-      </Container>
-      <Container >
+        </div>
+      <Container style={styles.questionContainer}>
         {/* <h1>{question.user_id}</h1> */}
         <h1 style={styles.questionHeader}>{question.title}</h1>
         <div style={styles.qdContainer}>
@@ -61,7 +48,11 @@ const Question = ({props, edited, history}) => {
         <h2 style={styles.questionDetails}>Viewed: </h2>
         </div>
         <p style={styles.questionDetails}> {question.body} </p> 
-        <Button type="submit" onClick={()=>deleteQuestion(question.id)}>Delete</Button>
+        <div style={styles.qdContainer}>
+        <p style={styles.questionDetails} onClick={()=>setToggleEdit(!toggleEdit)}>Edit</p>
+        {toggleEdit && <EditQuestionForm props={props} setEdited={setEdited}/>}
+        <p style={styles.questionDetails} onClick={()=>deleteQuestion(question.id)}>Delete</p>
+        </div>
       </Container>
       </div>
     )
@@ -77,7 +68,19 @@ const Question = ({props, edited, history}) => {
 
 const styles = {
   theMightyDiv: {
-
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  likesContainer: {
+    marginRight: "66px",
+    padding: "0px"
+  },
+  questionContainer: {
+    display: "flex",
+    flexDirection: "column",
+    marginLeft: "66px"
+    // alignItems: "left",
   },
   questionHeader: {
     width: "800px",
@@ -96,7 +99,7 @@ const styles = {
     fontFamily: "Inter, sans-serif",
     fontWeight: "500",
     display: "flex",
-    alignItems: "center",
+    alignItems: "left",
     letterSpacing: ".5px",
     color: "#000000",
   },

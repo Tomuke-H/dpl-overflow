@@ -18,6 +18,10 @@ def find_tags_for_question
   render json: QuestionTag.find_tags_for_question(params[:question_id])
 end
 
+def find_tagname_for_question
+  render json: QuestionTag.find_tagname_for_question(params[:question_id])
+end
+
 def destroy
   @questionTag.destroy
 end

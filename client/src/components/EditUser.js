@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router';
 import { AuthContext } from '../providers/AuthProvider';
-import { Button, Container, Form } from 'react-bootstrap'
+import { Button, Container, Form } from 'react-bootstrap';
+import { Image } from "cloudinary-react";
 import axios from 'axios';
-import handleLogout from '../providers/AuthProvider';
 
 
 const EditUser = (id) => {
@@ -14,6 +14,7 @@ const EditUser = (id) => {
     const [about_me, setAbout_me] = useState(user.about_me)
     const [password, setPassword] = useState('')
     const [passwordConfirmation, setPasswordConfirmation] = useState('')
+    const [selectedFile, setSelectedFile] = useState([])
     const current_password = user.password
     const history = useHistory();
 
@@ -55,11 +56,46 @@ const EditUser = (id) => {
         }
     }
 
+    const fileSelectedHandler = event => {
+        try {
+            console.log(event.target.files[0])
+            setSelectedFile(event.target.files[0])
+        } catch (err) {
+
+        }
+    }
+
+    const fileUploadHandler = async () => {
+        const file = new FormData();
+        file.append("image", selectedFile, selectedFile.name);
+        file.append("upload_preset", "jtofvmws")
+        try {
+            let res = await axios.put('/api/users/image/update', file)
+            setUser(res.data)
+            console.log(res)
+        } catch (err) {
+            alert(err)
+            console.log(err)
+        }
+
+    }
+
 
     return (
         <div>
             <Container>
             <h1>Edit Profile</h1>
+            <br />
+            <h5>Avatar:</h5>
+            <input type="file" onChange={fileSelectedHandler} />
+            <button onClick={fileUploadHandler}>Upload</button>
+            <br />
+            <Image 
+                style={{width: 300}}
+                cloudName="dm7eqie1u" 
+                publicID={user.image}
+            />
+            <br />
             <br />
             <h5>Username:</h5>
             <Form onSubmit={handleSubmit}>

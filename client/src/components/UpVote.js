@@ -1,18 +1,28 @@
 import axios from "axios";
-import React, { useContext, useReducer } from "react";
+import React, { useContext, useReducer, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { AuthContext } from "../providers/AuthProvider";
+import { AiFillCaretUp, AiFillCaretDown } from "react-icons/ai"
+import WebFont from "webfontloader";
+
 
 const UpVote = ({question}) => {
   const {user} = useContext(AuthContext)
 
-  //LOOK AT THIS AXIOS CALL TOMORROW
-  //getting a 404 error
+  // okay got it working but would like to keep track of whether a user has already liked or not - limit one like per user, right?
+
+
+  useEffect(() => {
+    WebFont.load({
+      google: {
+        families: ['Inter']
+      }
+    })
+  }, [])
 
   const saveQuestionLikes = async () => {
     try{
-    let res = await axios.put(`/api/users/${question.user_id}/questions/${question.id}`, {
-      id: question.id,
+    let res = await axios.put(`/api/questions/${question.id}`, {
       likes: likes + 1
     })
     console.log(res)
@@ -40,19 +50,38 @@ const UpVote = ({question}) => {
     }, question.likes);
   
     return (
-      <p>
-        <Button
-         onClick={() => {upVote()}}>
-          UP 
-        </Button>
-        {likes}
-        <Button
-         onClick={() => {downVote()}}>
-           DOWN
-        </Button>
-      </p>
+      <div style={styles.voteBox}>
+        <AiFillCaretUp
+        size="40px"
+         onClick={() => {upVote()}}/>
+        <p style={styles.likesNumber}>{likes}</p>
+        <AiFillCaretDown
+        size="40px"
+         onClick={() => {downVote()}}/>
+      </div>
     );
   };
 
+  const styles = {
+  voteBox: {
+    position: "absolute",
+    top: "189px",
+    left: "44px",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  likesNumber: {
+    maxWidth: "850px",
+    margin: "10px",
+    fontSize: "30px",
+    fontFamily: "Inter, sans-serif",
+    fontWeight: "500",
+    display: "flex",
+    alignItems: "center",
+    letterSpacing: ".5px",
+    color: "#000000",
+  },
+  }
 
 export default UpVote;

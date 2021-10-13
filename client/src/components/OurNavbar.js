@@ -1,7 +1,8 @@
 import React, { useContext } from 'react'
-import { Container, Image, Nav, Navbar } from 'react-bootstrap'
+import { Container, Image, Nav, Navbar, Button, Dropdown, NavDropdown } from 'react-bootstrap'
 import { Link, useHistory, withRouter } from 'react-router-dom'
 import { AuthContext } from '../providers/AuthProvider'
+import Beaker from '../../src/icons/Beaker-black-60.png'
 
 const OurNavbar = (props) => {
   const { user, handleLogout} = useContext(AuthContext)
@@ -12,23 +13,36 @@ const OurNavbar = (props) => {
     if(user){
       return (
         <>
-        <Nav.Link as={Link} to={`/users/${user.id}`}>
+        <Nav.Link as={Link} to='new_question'>
+          <Button>Ask a Question</Button>
+        </Nav.Link>
+
+        {/* <Nav.Link as={Link} to={`/users/${user.id}`}>
           <Container>
             <Image roundedCircle src={user.image} style={styles.profile}/>
           </Container>
-        </Nav.Link>
+        </Nav.Link> */}
+          <NavDropdown align='end' title={<Image roundedCircle src={user.image} style={styles.profile}/>} id="basic-nav-dropdown">
+            <Nav.Link as={Link} to={`/users/${user.id}`}>
+              <Container>
+                View Profile
+              </Container>
+            </Nav.Link>
 
-          <Nav.Link as={Link} to='/user/edit'>
-            <Container>
-              Edit Profile
-            </Container>
-          </Nav.Link>
+            <Nav.Link as={Link} to='/user/edit'>
+              <Container>
+                Edit Profile
+              </Container>
+            </Nav.Link>
 
-          <Nav.Link as={Link} onClick={()=> handleLogout(history)} to='/login'>
-            <Container>
-              Logout
-            </Container>
-          </Nav.Link>
+
+            <Nav.Link as={Link} onClick={()=> handleLogout(history)} to='/login'>
+              <Container>
+                Logout
+              </Container>
+            </Nav.Link>
+          </NavDropdown>
+
         </>
       ) ;
     };
@@ -50,15 +64,15 @@ const OurNavbar = (props) => {
 
   return(
     <span>
-    <Navbar bg="dark">
+    <Navbar collapseOnSelect style={{borderBottom: 'solid 2px black'}}>
       <Nav.Link as={Link} to='/'>
         <Container>
-            Home
+            <Image src={Beaker} />
         </Container>
       </Nav.Link >
       <Nav.Link as={Link} to='/Dashboard'>
         <Container>
-            Dashboard
+            Questions
         </Container>
       </Nav.Link>
       <Nav.Link as={Link} to='/tags'>

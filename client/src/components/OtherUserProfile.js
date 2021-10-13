@@ -6,9 +6,23 @@ import { AuthContext } from '../providers/AuthProvider'
 import EditUser from "./EditUser";
 
 
-export default function UserProfile() {
-  const { user } = useContext(AuthContext)
+export default function OtherUserProfile() {
   const [showForm, setShowForm] = useState(false)
+  const [user, setUser] = useState([])
+
+  useEffect(()=>{
+    getUser()
+  },[])
+
+  const getUser = async (id) => {
+    try {
+    let res = await axios.get (`/api/users/${id}/profile`)
+    setUser(res.data.user)
+    console.log("user:", user)
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
 
   const renderUser = () => {
@@ -25,7 +39,7 @@ export default function UserProfile() {
         {showForm && <EditUser />}
       </div>
       <div>
-        <p style={styles.stats}>STATS</p>
+        <p style={styles.stats}>OTHER USERRRRRRRRRR</p>
         <p style={styles.about}>ABOUT</p>
       </div>
       </>

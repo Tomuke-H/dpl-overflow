@@ -16,6 +16,7 @@ return (
       <Container style={{textAlign:'center'}}>
             <Image style={styles.circle} alt="100x100" src={user.image} roundedCircle data-holder-rendered="true"/>
           <p>{user.name}</p>
+          <p>{user.cohort}</p>
       </Container>
   </div>
 </>
@@ -36,5 +37,5 @@ const styles = {
     flexDirection: 'row',
     flexWrap: "wrap",
     justifyContent: "center"
-  },
+ },
 }

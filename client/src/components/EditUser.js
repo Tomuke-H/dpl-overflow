@@ -90,8 +90,8 @@ const EditUser = (id) => {
             <input type="file" onChange={fileSelectedHandler} />
             <button onClick={fileUploadHandler}>Upload</button>
             <br />
-            <Image 
-                style={{width: 300}}
+            <Image
+                style={{ width: '137px', height: '137px'}}
                 cloudName="dm7eqie1u" 
                 publicID={user.image}
             />

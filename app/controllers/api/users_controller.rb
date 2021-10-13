@@ -35,8 +35,6 @@ class Api::UsersController < ApplicationController
     render json: {users: User.cohort_yearbook(params[:cohort])}
   end
 
-
-  private
   def update_image
       file = params[:image]
   
@@ -55,6 +53,9 @@ class Api::UsersController < ApplicationController
       end
   end
     
+  def user_profile
+    render json: {users: User.user_profile(params[:id])}
+  end
 
 
   private

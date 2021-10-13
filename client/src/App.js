@@ -56,7 +56,6 @@ function App() {
             <ProtectedRoute exact path='/tags' component={TagsPage}/>
             <Route exact path='/login' component={Login}/>
             <Route exact path='/register' component={Register}/> 
-            {/* <ProtectedRoute exact path='/user' component={UserProfile}/> */}
             <ProtectedRoute exact path='/answers' component={Answers}/>
             <ProtectedRoute exact path='/answers/:id' component={Answer}/>
             <ProtectedRoute exact path='/answers/:id/edit' component={EditAnswer}/>

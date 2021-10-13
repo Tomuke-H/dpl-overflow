@@ -1,15 +1,20 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Button, Card, Container } from 'react-bootstrap'
 import WebFont from "webfontloader";
-import UpVote from '../UpVote';
+import { AuthContext } from '../../providers/AuthProvider';
+import QuestionVote from '../QuestionVote';
+import MarkdownView from '../Markdown/MarkdownView';
 import EditQuestionForm from "./EditQuestionForm"
 
 
 const Question = ({props, edited,setEdited, history, question}) => {
   const [toggleEdit, setToggleEdit] = useState(false)
+  const [tags, setTags] = useState([])
+  const { user } = useContext(AuthContext)
 
   useEffect(() => {
+    getTags();
     WebFont.load({
       google: {
         families: ['Open Sans', 'Inter']
@@ -17,6 +22,21 @@ const Question = ({props, edited,setEdited, history, question}) => {
     })
   }, [])
 
+  const getTags = async () => {
+    try {
+      let res = await axios.get(`/api/tagwithname/${question.id}`)
+      setTags(res.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const renderTags = () => {
+    console.log(tags)
+    return tags.map((tag)=>{
+      return <div style={styles.qTagBox}>{tag.tag_name}</div>
+    })
+  }
 
   const deleteQuestion = async (id) => {
     try{
@@ -24,6 +44,18 @@ const Question = ({props, edited,setEdited, history, question}) => {
       history.push('/dashboard')
     }catch (err) {
       console.log(err)
+    }
+  }
+
+  const showEditDelete = () => {
+    if (question.user_id === user.id) {
+      return (        
+        <div style={styles.qdContainer}>
+        <p style={styles.questionDetails} onClick={()=>setToggleEdit(!toggleEdit)}>{toggleEdit ? "Cancel" : "Edit"}</p>
+        <p style={styles.questionDetails} onClick={()=>deleteQuestion(question.id)}>Delete</p>
+        {toggleEdit && <EditQuestionForm props={props} setEdited={setEdited} toggleEdit={toggleEdit} setToggleEdit={setToggleEdit}/>}
+        </div>
+      )
     }
   }
 
@@ -36,7 +68,7 @@ const Question = ({props, edited,setEdited, history, question}) => {
     return(
       <div style={styles.theMightyDiv}>
         <div style={styles.likesContainer}>
-        <UpVote question={question}/>
+        <QuestionVote question={question}/>
         </div>
       <Container style={styles.questionContainer}>
         {/* <h1>{question.user_id}</h1> */}
@@ -45,14 +77,11 @@ const Question = ({props, edited,setEdited, history, question}) => {
         <h2 style={styles.questionDetails}>Asked: {question.created_at}</h2>
         {/* need some help getting the date to look different - either google or classmates but nOT RIGHT NOW */}
         <h2 style={styles.questionDetails}>Active: Today</h2>
-        <h2 style={styles.questionDetails}>Viewed: </h2>
+        <h2 style={styles.questionDetails}>Viewed: {question.views} times</h2>
         </div>
-        <p style={styles.questionDetails}> {question.body} </p> 
-        <div style={styles.qdContainer}>
-        <p style={styles.questionDetails} onClick={()=>setToggleEdit(!toggleEdit)}>Edit</p>
-        {toggleEdit && <EditQuestionForm props={props} setEdited={setEdited}/>}
-        <p style={styles.questionDetails} onClick={()=>deleteQuestion(question.id)}>Delete</p>
-        </div>
+        <div style={styles.questionDetails}><MarkdownView body = {question.body}/></div> 
+        <div style={{display:"flex"}}>{renderTags()}</div>
+        {showEditDelete()}
       </Container>
       </div>
     )
@@ -106,6 +135,21 @@ const styles = {
   qdContainer: {
     display: "flex",
     flexDirection: "row",
+  },
+  qTagBox: {
+    margin: "10px",
+    padding: "5px",
+    border: "1px solid",
+    height: "20px",
+    color: "#000000",
+    boxSizing: "borderBox",
+    fontSize: "10px",
+    fontFamily: "Inter, sans-serif",
+    fontWeight: "500",
+    display: "flex",
+    alignItems: "center",
+    letterSpacing: ".5px",
+    color: "#000000", 
   }
 };
 

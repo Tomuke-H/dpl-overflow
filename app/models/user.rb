@@ -18,6 +18,12 @@ class User < ActiveRecord::Base
     .order('points DESC')
   end
 
+  def self.cohort_yearbook(cohort)
+    select('name, image, cohort')
+    .from('users')
+    .where('cohort = ?', cohort)
+  end
+
   extend Devise::Models
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

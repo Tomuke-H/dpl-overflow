@@ -42,6 +42,10 @@ class Api::UsersController < ApplicationController
     render json: {users: User.cohort_leaderboard(params[:cohort]).page(@page).per(10), total_pages: User.cohort_leaderboard(params[:cohort]).page(@page).per(10).total_pages}
   end
 
+  def cohort_yearbook
+    render json: {users: User.cohort_yearbook(params[:cohort])}
+  end
+
 
   private
   

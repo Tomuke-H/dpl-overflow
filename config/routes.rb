@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     put 'add_view/:id', to:'questions#add_view'
     get 'leaderboard', to: 'users#leaderboard'
     get 'cohort_leaderboard', to: 'users#cohort_leaderboard'
+    get 'cohort_yearbook', to: 'users#cohort_yearbook'
     get 'tag/:key', to: 'tags#tag_search'
     resources :tags
   end

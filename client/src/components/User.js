@@ -37,5 +37,5 @@ const styles = {
     flexDirection: 'row',
     flexWrap: "wrap",
     justifyContent: "center"
-  },
+ },
 }

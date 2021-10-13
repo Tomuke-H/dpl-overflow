@@ -7,8 +7,22 @@ import EditUser from "./EditUser";
 
 
 export default function OtherUserProfile() {
-  const { user } = useContext(AuthContext)
   const [showForm, setShowForm] = useState(false)
+  const [user, setUser] = useState([])
+
+  useEffect(()=>{
+    getUser()
+  },[])
+
+  const getUser = async (id) => {
+    try {
+    let res = await axios.get (`/api/users/${id}/profile`)
+    setUser(res.data.user)
+    console.log("user:", user)
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
 
   const renderUser = () => {

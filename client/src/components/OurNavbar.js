@@ -12,9 +12,9 @@ const OurNavbar = (props) => {
     if(user){
       return (
         <>
-        <Nav.Link as={Link} to="/user">
+        <Nav.Link as={Link} to={`/users/${user.id}`}>
           <Container>
-            <Image src={user.Image} style={styles.profile}/>
+            <Image roundedCircle src={user.image} style={styles.profile}/>
           </Container>
         </Nav.Link>
 

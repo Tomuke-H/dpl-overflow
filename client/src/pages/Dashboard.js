@@ -7,7 +7,6 @@ const Dashboard = (props) => {
   const history = useHistory()
   return (
     <div>
-      <Button type="submit" onClick={()=>history.push('new_question')}>Ask a Question</Button>
       <Questions history={history}/>
     </div>
   )

@@ -3,7 +3,7 @@ class Api::QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :update, :destroy, :answer_count, :add_view]
 
   def index
-    render json: {questions: Question.page(@page).per(3), total_pages: Question.page(@page).per(3).total_pages}
+    render json: {questions: Question.order(views: :desc).page(@page).per(3), total_pages: Question.order(views: :desc).page(@page).per(3).total_pages}
   end
 
   def show

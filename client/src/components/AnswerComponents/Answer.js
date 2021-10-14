@@ -15,6 +15,7 @@ const Answer = ({answer, props, deleteAnswer}) => {
   const [showForm, setShowForm] = useState(false)
   const { user } = useContext(AuthContext)
   const [showEdit, setShowEdit] = useState(false)
+  const [showCommentForm, setShowCommentForm] = useState(false)
 
   useEffect(() => {
     getComments()
@@ -62,8 +63,8 @@ const Answer = ({answer, props, deleteAnswer}) => {
     if (answer.user_id === user.id) {
       return (        
         <div style={styles.adContainer}>
-        <p style={{margin: "10px"}} onClick={()=>setShowForm(!showForm)}>{showForm ? "Cancel" : "Edit"}</p>
-        <p style={{margin: "10px"}} onClick={()=>deleteAnswer(answer.id)}>Delete</p>
+        <p style={{margin: "10px"}} onClick={()=>setShowForm(!showForm)}>{showForm ? "Cancel" : "Edit Answer"}</p>
+        <p style={{margin: "10px"}} onClick={()=>deleteAnswer(answer.id)}>Delete Answer</p>
         {showForm && <EditAnswer a = {answer} props = {props}/>}
         </div>
       )
@@ -84,6 +85,8 @@ const Answer = ({answer, props, deleteAnswer}) => {
         <div style={styles.answerContainer}>
           <div style={styles.answerDetails}><MarkdownView body = {answer.body}/></div>
           {showEditDelete()}
+        <p style={styles.addComment} onClick={()=>setShowCommentForm(!showCommentForm)}>{showCommentForm ? "Cancel" : "Add Comment"}</p>
+        {showCommentForm && <NewCommentForm answer={answer} addComment={addComment}/>}
         </div>
       </div>
     )
@@ -102,16 +105,18 @@ const Answer = ({answer, props, deleteAnswer}) => {
 
 const styles = {
   theMightyDiv: {
+    padding: "28px",
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
+    borderTop: "1px solid rgba(0, 0, 0, 0.3)",
   },
   likesContainer: {
     marginRight: "66px",
     padding: "0px"
   },
   answerDetails: {
-    maxWidth: "850px",
+    width: "850px",
     marginRight: "10px",
     fontSize: "16px",
     fontFamily: "Inter, sans-serif",
@@ -130,8 +135,15 @@ const styles = {
     marginTop: "30px",
   },
   answerContainer: {
-    diaplsy: "flex",
+    display: "flex",
     flexDirection: "column",
+  },
+  addComment: {
+    margin: "10px",
+    fontSize: "14px",
+    fontFamily: "Inter, sans-serif",
+    fontWeight: "500",
+    color: "#757575"
   }
 }
 

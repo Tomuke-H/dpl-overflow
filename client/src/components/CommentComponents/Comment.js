@@ -11,29 +11,42 @@ const { user } = useContext(AuthContext);
 const showEditDelete = () => {
   if (comment.user_id === user.id) {
     return (
-      <Card.Footer>
-      <Button onClick={()=>deleteComment(comment.id)}>Delete Comment</Button>  
-      <Button onClick={()=>setShowEdit(!showEdit)}> {!showEdit ? "Edit Comment" : "Cancel" }</Button>  
+      <div style={styles.cdContainer}>
+      <p style={{margin: "10px"}} onClick={()=>deleteComment(comment.id)}>Delete Comment</p>  
+      <p style={{margin: "10px"}} onClick={()=>setShowEdit(!showEdit)}> {!showEdit ? "Edit Comment" : "Cancel" }</p>  
       {showEdit && <EditCommentForm updateComments={updateComments} c={comment} showEdit={showEdit} setShowEdit={setShowEdit} answer={answer}/>
       }
-      </Card.Footer>
+      </div>
     )
   }
 }
   
 
   return(
-    <div style={{margin: "66px"}}>
-      {/* <h6>{u.name}</h6> */}
+    <div style={styles.comment}>
       <p>{comment.body}</p>
-      {/* <Button onClick={()=>deleteComment(id)}>Delete Comment</Button>  
-      <Button onClick={()=>setShowEdit(!showEdit)}> {!showEdit ? "Edit Comment" : "Cancel" }</Button>  
-      {showEdit && <EditCommentForm updateComments={updateComments} id={id} body={body} answer={answer} u={u} showEdit={showEdit} setShowEdit={setShowEdit}/>} */}
+      <p>{comment.created_at}</p>
       {showEditDelete()}
     </div>
   )
 }
 
+const styles = {
+  cdContainer: {
+    display: "flex",
+    flexDirection: "row",
+    fontSize: "14px",
+    fontFamily: "Inter, sans-serif",
+    fontWeight: "500",
+    marginTop: "30px",
+  },
+  comment: {
+    marginLeft: "20px",
+    fontSize: "14px",
+    fontFamily: "Inter, sans-serif",
+    fontWeight: "500",
+  }
+}
 
 
 export default Comment

@@ -51,8 +51,8 @@ const Question = ({props, edited,setEdited, history, question}) => {
     if (question.user_id === user.id) {
       return (        
         <div style={styles.qdContainer}>
-        <p style={styles.questionDetails} onClick={()=>setToggleEdit(!toggleEdit)}>{toggleEdit ? "Cancel" : "Edit"}</p>
-        <p style={styles.questionDetails} onClick={()=>deleteQuestion(question.id)}>Delete</p>
+        <p style={styles.questionDetails} onClick={()=>setToggleEdit(!toggleEdit)}>{toggleEdit ? "Cancel" : "Edit Question"}</p>
+        <p style={styles.questionDetails} onClick={()=>deleteQuestion(question.id)}>Delete Question</p>
         {toggleEdit && <EditQuestionForm props={props} setEdited={setEdited} toggleEdit={toggleEdit} setToggleEdit={setToggleEdit}/>}
         </div>
       )

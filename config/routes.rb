@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :users
     resources :questions do
+      resources :qcomments
       resources :answers
     end
     resources :answers do
@@ -26,6 +27,8 @@ Rails.application.routes.draw do
     get 'users/:id/profile', to: 'users#user_profile'
     get 'answer_count/:id', to: 'questions#answer_count'
     get 'tag/:key', to: 'tags#tag_search'
+    get 'comment_author/:id', to: 'comments#author'
+    get 'qcomment_author/:id', to: 'qcomments#author'
     resources :tags
   end
 end

@@ -5,15 +5,20 @@ import WebFont from "webfontloader";
 import { AuthContext } from '../../providers/AuthProvider';
 import QuestionVote from '../QuestionVote';
 import MarkdownView from '../Markdown/MarkdownView';
-import EditQuestionForm from "./EditQuestionForm"
+import EditQuestionForm from "./EditQuestionForm";
+import QComments from "../QCommentComponents/QComments";
+import NewQCommentForm from "../QCommentComponents/NewQCommentForm";
 
 
-const Question = ({props, edited,setEdited, history, question}) => {
+const Question = ({props, edited, setEdited, history, question}) => {
+  const [qcomments, setQComments] = useState([])
   const [toggleEdit, setToggleEdit] = useState(false)
   const [tags, setTags] = useState([])
+  const [showQCommentForm, setShowQCommentForm] = useState(false)
   const { user } = useContext(AuthContext)
 
   useEffect(() => {
+    getQComments();
     getTags();
     WebFont.load({
       google: {
@@ -21,6 +26,44 @@ const Question = ({props, edited,setEdited, history, question}) => {
       }
     })
   }, [])
+
+  const getQComments = async () => {
+    try{
+      let res = await axios.get(`/api/questions/${props.match.params.id}/qcomments/`)
+      // console.log("qcomments:", res.data)
+      setQComments(res.data)
+    } catch(error) {
+      console.log("Error getting qcomments", error)
+    }
+  };
+
+  const addQComment = async (e, qcomment) => {
+    // e.preventDefault()
+    console.log(qcomment)
+    try {
+      await axios.post(`/api/questions/${question.id}/qcomments/`, qcomment)
+      setQComments([...qcomments, qcomment])
+    } catch(err) {
+      console.log(err)
+      alert("somethin ain't right...")
+    }
+  }
+
+  const updateQComments = (qcomment) => {
+    const updatedQComments = qcomments.map((qc) => (qc.id === qcomment.id ? qcomment : qc));
+    setQComments(updatedQComments)
+  }
+
+
+  const deleteQComment = async (id) => {
+    try{
+      await axios.delete(`/api/questions/${question.id}/qcomments/${id}`)
+      const filterQComments = qcomments.filter((qcomment) => qcomment.id !== id);
+      setQComments(filterQComments)
+    } catch {
+      alert("Ah shucks.  I don't know what I'm trying to do, but clearly it ain't workin.")
+    }
+  }
 
   const getTags = async () => {
     try {
@@ -51,8 +94,8 @@ const Question = ({props, edited,setEdited, history, question}) => {
     if (question.user_id === user.id) {
       return (        
         <div style={styles.qdContainer}>
-        <p style={styles.questionDetails} onClick={()=>setToggleEdit(!toggleEdit)}>{toggleEdit ? "Cancel" : "Edit"}</p>
-        <p style={styles.questionDetails} onClick={()=>deleteQuestion(question.id)}>Delete</p>
+        <p style={styles.questionDetails} onClick={()=>setToggleEdit(!toggleEdit)}>{toggleEdit ? "Cancel" : "Edit Question"}</p>
+        <p style={styles.questionDetails} onClick={()=>deleteQuestion(question.id)}>Delete Question</p>
         {toggleEdit && <EditQuestionForm props={props} setEdited={setEdited} toggleEdit={toggleEdit} setToggleEdit={setToggleEdit}/>}
         </div>
       )
@@ -82,6 +125,8 @@ const Question = ({props, edited,setEdited, history, question}) => {
         <div style={styles.questionDetails}><MarkdownView body = {question.body}/></div> 
         <div style={{display:"flex"}}>{renderTags()}</div>
         {showEditDelete()}
+        <p style={styles.addComment} onClick={()=>setShowQCommentForm(!showQCommentForm)}>{showQCommentForm ? "Cancel" : "Add Comment"}</p>
+        {showQCommentForm && <NewQCommentForm question={question} addQComment={addQComment}/>}
       </Container>
       </div>
     )
@@ -91,6 +136,7 @@ const Question = ({props, edited,setEdited, history, question}) => {
   return (
     <div>
       {renderQuestion()}
+      <QComments addQComment={addQComment} updateQComments={updateQComments} deleteQComment={deleteQComment} qcomments={qcomments} setQComments={setQComments} question={question}/>
     </div>
   )
 }
@@ -109,7 +155,6 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     marginLeft: "66px"
-    // alignItems: "left",
   },
   questionHeader: {
     width: "800px",
@@ -150,6 +195,13 @@ const styles = {
     alignItems: "center",
     letterSpacing: ".5px",
     color: "#000000", 
+  },
+  addComment: {
+    margin: "10px",
+    fontSize: "14px",
+    fontFamily: "Inter, sans-serif",
+    fontWeight: "500",
+    color: "#757575"
   }
 };
 

@@ -1,25 +1,25 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
-import Comment from "./Comment"
+import QComment from "./QComment"
 import { Card, Container } from 'react-bootstrap'
-import CommentAuthor from "./CommentAuthor";
+import QCommentAuthor from "./QCommentAuthor";
 
 
 // I anticipate that props passed into this file should/will be answer and user
-const Comments = ({answer, comments, setComments, addComment, updateComments, deleteComment}) => {
+const QComments = ({question, qcomments, setQComments, addQComment, updateQComments, deleteQComment}) => {
   const {user} = useContext(AuthContext)
   // const history = useHistory();
 
 
-  const renderComments = () => {
-    return comments.map((comment) => {
+  const renderQComments = () => {
+    return qcomments.map((qcomment) => {
       return(
         <div 
         style={styles.commentContainer}
-        key = {comment.id}>
-            <CommentAuthor id={comment.id}/>
-        <Comment key={comment.id} comments={comments} deleteComment={deleteComment} updateComments={updateComments} comment={comment} answer={answer}/>
+        key = {qcomment.id}>
+            <QCommentAuthor id={qcomment.id}/>
+        <QComment key={qcomment.id} qcomments={qcomments} deleteQComment={deleteQComment} updateQComments={updateQComments} qcomment={qcomment} question={question}/>
         </div>
       )
     })
@@ -27,7 +27,7 @@ const Comments = ({answer, comments, setComments, addComment, updateComments, de
 
   return (
     <>
-    {renderComments()}
+    {renderQComments()}
     </>
   )
 }
@@ -43,4 +43,4 @@ const styles = {
   },
 }
 
-export default Comments
+export default QComments

@@ -15,13 +15,13 @@ const EditAnswer = ({a, props}) => {
 
   const handleSubmit = async (e) =>{
     try {
-      console.log("body:", body)
-      console.log("answer:", answer)
+      // console.log("body:", body)
+      // console.log("answer:", answer)
       let res = await axios.put(`/api/questions/${props.match.params.id}/answers/${a.id}`, answer)
       setBody(res.data.body)
-      console.log(res)
+      // console.log(res)
     } catch (err) {
-      console.log(err)
+      console.log("Edit Answer Submission Error", err)
     };
   }
 

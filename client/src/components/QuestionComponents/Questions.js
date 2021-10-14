@@ -12,7 +12,7 @@ const Questions = ({history}) => {
   const [page, setPage] = useState(1)
   const [totalPages, setTotalPages] = useState(6)
   const [tags, setTags] = useState([])
-  const [tag, setTag] = useState(null)
+  const [tagSearch, setTagSearch] = useState([])
   const [sortBy, setSortBy] = useState('all')
   const [error, setError] = useState(null)
   const [showTags, setShowTags] = useState(false)
@@ -25,7 +25,6 @@ const Questions = ({history}) => {
   }
 
   const getDataByTag = async (t, p) => {
-    setTag(t)
     setSortBy('tag')
     try{
       let res = await axios.get(`/api/find_questions_by_tag/${t}?page=${p}`)
@@ -37,7 +36,7 @@ const Questions = ({history}) => {
 
   const getDataByUnanswered = async (p) => {
     setSortBy('unanswered')
-    setTag(null)
+    setTagSearch([])
     try{
       let res = await axios.get(`/api/unanswered_questions?page=${p}`)
       setStates(res.data, p)
@@ -48,7 +47,7 @@ const Questions = ({history}) => {
 
   const getAllData = async (p) => {
     setSortBy('all')
-    setTag(null)
+    setTagSearch([])
     try{
       let res = await axios.get(`/api/questions?page=${p}`)
       setStates(res.data, p)
@@ -69,7 +68,6 @@ const Questions = ({history}) => {
   }
 
   const getQuestions = (sC, p, t) => {
-    console.log('called')
     switch (sC){
       case "all" :
         setShowTags(false)
@@ -116,33 +114,27 @@ const Questions = ({history}) => {
     })
   }
 
-  const renderTags = () => {
-    return tags.map(t => {
-      return (
-          <Button key={t.id} onClick={(e)=>getQuestions('tag', 1, t.name)}>{t.name}</Button>
-      )
-    })
-  }
-
-
   return (
     <Container style={{marginTop: '30px'}}>
-      <h2>Page: {page}</h2>
-      <h2>TotalPages: {totalPages}</h2>
-      <h2>Length: {questions.length}</h2>
       <div style={{display: 'flex', justifyContent: 'space-between'}}>
         <div style={{width: '500px'}}>
           <Form.Control value={search} onChange={(e) => getQuestions('search', 1, e.target.value)}/>
         </div>
         <div>
-          <SortSelector showTags={showTags} setShowTags={setShowTags} getQuestions={getQuestions} />
-          {showTags && renderTags()}
+          <SortSelector 
+            tagSearch={tagSearch} 
+            setTagSearch={setTagSearch}
+            showTags={showTags} 
+            tags={tags} 
+            setShowTags={setShowTags} 
+            getQuestions={getQuestions} 
+          />
         </div>
       </div>
       <div style={{maxWidth: '1000px'}}>
         <InfiniteScroll
           dataLength={questions.length}
-          next={(e)=>getQuestions(sortBy, (page + 1), tag)}
+          next={(e)=>getQuestions(sortBy, (page + 1), tagSearch)}
           hasMore={page<totalPages}
           loader={<BoxLoader/>}
         >

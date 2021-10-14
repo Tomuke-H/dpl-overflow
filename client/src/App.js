@@ -22,6 +22,8 @@ import TagsPage from './pages/TagsPage';
 import UserProfile from './components/UserProfile';
 import Footer from './components/Footer';
 import OtherUserProfile from './components/OtherUserProfile';
+import MarkdownTest from './components/Markdown/MarkdownTest';
+import AboutUs from './pages/AboutUs';
 
 function App() {
 
@@ -55,6 +57,7 @@ function App() {
             <Route exact path='/' component={Home}/>
             <Route exact path='/test_page' component={TestPage}/>
             <ProtectedRoute exact path='/tags' component={TagsPage}/>
+            <ProtectedRoute exact path='/about' component={AboutUs}/>
             <Route exact path='/login' component={Login}/>
             <Route exact path='/register' component={Register}/> 
             <ProtectedRoute exact path='/answers' component={Answers}/>

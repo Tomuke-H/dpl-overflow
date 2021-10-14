@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
     .from('users')
     .where('cohort = ?', cohort)
     .order('points DESC')
+    .group('id')
   end
 
   def self.cohort_yearbook(cohort)

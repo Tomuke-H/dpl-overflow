@@ -1,5 +1,5 @@
 class Api::UsersController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!
   before_action :set_page
 
   def index
@@ -36,21 +36,21 @@ class Api::UsersController < ApplicationController
   end
 
   def update_image
-      file = params[:image]
+    file = params[:image]
   
-      if file
-        begin
-          # ext = File.extname(file.tempfile)
+    if file
+      begin
+        # ext = File.extname(file.tempfile)
           
-          cloud_image = Cloudinary::Uploader.upload(file, public_id: file.original_filename, secure: true, resource_type: :auto)
-          current_user.image = cloud_image['secure_url']
-          current_user.save
-          render json: current_user
-        rescue => e
-          render json: { errors: e }, status: 422
-          return
-        end
+        cloud_image = Cloudinary::Uploader.upload(file, public_id: file.original_filename, secure: true, resource_type: :auto)
+        current_user.image = cloud_image['secure_url']
+        current_user.save
+        render json: current_user
+      rescue => e
+        render json: { errors: e }, status: 422
+        return
       end
+    end
   end
     
   def user_profile

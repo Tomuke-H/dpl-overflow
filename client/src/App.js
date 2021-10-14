@@ -9,12 +9,9 @@ import EditUser from './components/EditUser';
 import OurNavbar from './components/OurNavbar';
 import TestPage from './pages/TestPage';
 import User from './components/User';
-import Tags from './pages/Tags';
 import Answers from './components/AnswerComponents/Answers';
 import EditAnswer from './components/AnswerComponents/EditAnswer';
 import Answer from './components/AnswerComponents/Answer'
-import Comments from './components/CommentComponents/Comments';
-import NewCommentForm from './components/CommentComponents/NewCommentForm';
 import QuestionPage from './pages/QuestionPage';
 import Dashboard from './pages/Dashboard';
 import NewQuestionPage from './pages/NewQuestionPage';
@@ -25,6 +22,8 @@ import TagsPage from './pages/TagsPage';
 import UserProfile from './components/UserProfile';
 import Footer from './components/Footer';
 import OtherUserProfile from './components/OtherUserProfile';
+import MarkdownTest from './components/Markdown/MarkdownTest';
+import AboutUs from './pages/AboutUs';
 
 function App() {
 
@@ -50,10 +49,15 @@ function App() {
     return(
       <>
         <OurNavbar /> 
+        <br />
+        <br />
+        <br />
+        <br />
         <Switch>
             <Route exact path='/' component={Home}/>
             <Route exact path='/test_page' component={TestPage}/>
             <ProtectedRoute exact path='/tags' component={TagsPage}/>
+            <ProtectedRoute exact path='/about' component={AboutUs}/>
             <Route exact path='/login' component={Login}/>
             <Route exact path='/register' component={Register}/> 
             <ProtectedRoute exact path='/answers' component={Answers}/>
@@ -73,8 +77,6 @@ function App() {
             {renderProfiles()}
             <Route component={()=><p>react 404 path not found</p>} />
         </Switch>
-        <br />
-        <br />
         <Footer />
     </>
     )

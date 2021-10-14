@@ -8,7 +8,7 @@ import MarkdownView from '../Markdown/MarkdownView';
 import EditQuestionForm from "./EditQuestionForm"
 
 
-const Question = ({props, edited,setEdited, history, question}) => {
+const Question = ({props, edited, setEdited, history, question}) => {
   const [toggleEdit, setToggleEdit] = useState(false)
   const [tags, setTags] = useState([])
   const { user } = useContext(AuthContext)

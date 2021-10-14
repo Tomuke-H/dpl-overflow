@@ -1,4 +1,4 @@
-class Api::CommentsController < ApplicationController
+class Api::QcommentsController < ApplicationController
   before_action :set_question
   before_action :set_qcomment, only: [:show, :update, :destroy]
 
@@ -33,6 +33,10 @@ class Api::CommentsController < ApplicationController
   def destroy
     @qcomment.destroy
     render json: @qcomment
+  end
+
+  def author
+    render json: Qcomment.author(params[:id])
   end
 
   private

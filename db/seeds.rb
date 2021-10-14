@@ -101,6 +101,9 @@ user1 = User.create(email:'test@test.com', points: 2, password:123456, name:'Tes
     (rand(3)+1).times do
       quest.question_tags.create(tag_id:Tag.order('Random()').first.id)
     end
+    (rand(5)+1).times do
+      quest.qcomments.create(user_id: User.order('Random()').first.id, body: Faker::Lorem.sentence)
+    end
     if(rand(8)>0)
       (rand(8)+1).times do
         ans = quest.answers.create(user_id: User.order('Random()').first.id, body: Faker::Lorem.sentence, likes: rand(40), verified: rand(20)>18)
@@ -116,6 +119,7 @@ end
 puts "Users: #{User.all.size}"
 puts "Questions: #{Question.all.size}"
 puts "QuestionTags: #{QuestionTag.all.size}"
+puts "QComments #{Qcomment.all.size}"
 puts "Answers: #{Answer.all.size}"
 puts "Comments: #{Comment.all.size}"
 puts "Tags: #{Tag.all.size}"

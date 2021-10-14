@@ -6,6 +6,7 @@ import { AuthContext } from '../../providers/AuthProvider'
 import EditAnswer from './EditAnswer'
 import AnswerVote from './AnswerVote'
 import MarkdownView from '../Markdown/MarkdownView'
+import NewCommentForm from "../CommentComponents/NewCommentForm"
 
 const Answer = ({answer, props, deleteAnswer}) => {
   const [comments, setComments] = useState([])

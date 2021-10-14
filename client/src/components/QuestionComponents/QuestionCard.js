@@ -24,7 +24,7 @@ const QuestionCard = ({question, history}) => {
 
   const renderTags = () => {
     return tags.map((tag)=>{
-      return <Card.Text style={{marginRight: '10px', color: 'purple'}}>{tag.tag_name}</Card.Text>
+      return <Card.Text key={tag.id} style={{marginRight: '10px', color: 'purple'}}>{tag.tag_name}</Card.Text>
     })
   }
 

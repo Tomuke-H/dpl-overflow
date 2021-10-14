@@ -2,7 +2,6 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Dropdown, ListGroup } from 'react-bootstrap'
 import BoxLoader from '../components/BoxLoader'
-import MyPagination from '../components/QuestionComponents/MyPagination'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
 const Leaderboard = () => {
@@ -42,10 +41,6 @@ const Leaderboard = () => {
   const getUsers = (sortBy, cohort, p, reset) => {
     setSortBy(sortBy)
     setCohort(cohort)
-    if(reset){
-      console.log('reset')
-      setUsers([])
-    }
     switch(sortBy){
       case 'all':
         getAllUsers(p)
@@ -80,26 +75,22 @@ const Leaderboard = () => {
       <Dropdown>
         <Dropdown.Toggle>View By Cohort</Dropdown.Toggle>
         <Dropdown.Menu>
-          <Dropdown.Item onClick={(e) => getUsers('all', null, 1, true)}>View All</Dropdown.Item>
-          <Dropdown.Item onClick={(e) => getUsers('cohort', 'Fall 2021', 1, true)}>Fall 2021</Dropdown.Item>
-          <Dropdown.Item onClick={(e) => getUsers('cohort', 'Winter 2021', 1, true)}>Winter 2021</Dropdown.Item>
-          <Dropdown.Item onClick={(e) => getUsers('cohort', 'Spring 2022', 1, true)}>Spring 2022</Dropdown.Item>
+          <Dropdown.Item onClick={(e) => getUsers('all', null, 1)}>View All</Dropdown.Item>
+          <Dropdown.Item onClick={(e) => getUsers('cohort', 'Fall 2021', 1)}>Fall 2021</Dropdown.Item>
+          <Dropdown.Item onClick={(e) => getUsers('cohort', 'Winter 2021', 1)}>Winter 2021</Dropdown.Item>
+          <Dropdown.Item onClick={(e) => getUsers('cohort', 'Spring 2022', 1)}>Spring 2022</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
 
       <div style={{maxWidth: '1000px'}}>
         <InfiniteScroll
           dataLength={users.length}
-          next={(e)=>getUsers(sortBy, cohort, (page + 1), false)}
-          hasMore={totalPages > 1 ? page<totalPages : false}
+          next={(e)=>getUsers(sortBy, cohort, (page + 1))}
+          hasMore={page<totalPages}
           loader={<BoxLoader/>}
         >
           {renderUsers()}
         </InfiniteScroll>
-        {/* <ListGroup as='ol'>
-          {renderUsers()}
-        </ListGroup>
-        {totalPages > 1 && <MyPagination tag={cohort} page={page} totalPages={totalPages} getData={getUsers} sortBy={sortBy}/>} */}
       </div>
     </div>
   )

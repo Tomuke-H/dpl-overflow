@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import axios from 'axios'
 import QuestionCard from "./QuestionCard";
 import { Container, Button, Form } from "react-bootstrap";
-import MyPagination from "./MyPagination";
 import SortSelector from "./SortSelector";
 import BoxLoader from "../BoxLoader";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const Questions = ({history}) => {
   const [questions, setQuestions] = useState([])
@@ -14,14 +14,14 @@ const Questions = ({history}) => {
   const [tags, setTags] = useState([])
   const [tag, setTag] = useState(null)
   const [sortBy, setSortBy] = useState('all')
-  const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [showTags, setShowTags] = useState(false)
   const [search, setSearch] = useState('')
 
-  const setStates = (data) => {
-    setQuestions(data.questions)
+  const setStates = (data, p) => {
+    setQuestions(p === 1 ? data.questions : questions.concat(data.questions))
     setTotalPages(data.total_pages)
+    setPage(p)
   }
 
   const getDataByTag = async (t, p) => {
@@ -29,7 +29,7 @@ const Questions = ({history}) => {
     setSortBy('tag')
     try{
       let res = await axios.get(`/api/find_questions_by_tag/${t}?page=${p}`)
-      setStates(res.data)
+      setStates(res.data, p)
     } catch (err){
       console.log(err)
     }
@@ -40,7 +40,7 @@ const Questions = ({history}) => {
     setTag(null)
     try{
       let res = await axios.get(`/api/unanswered_questions?page=${p}`)
-      setStates(res.data)
+      setStates(res.data, p)
     }catch(err){
       console.log(err)
     }
@@ -51,7 +51,7 @@ const Questions = ({history}) => {
     setTag(null)
     try{
       let res = await axios.get(`/api/questions?page=${p}`)
-      setStates(res.data)
+      setStates(res.data, p)
     }catch(err){
       console.log(err)
     }
@@ -62,37 +62,31 @@ const Questions = ({history}) => {
     setSortBy('search')
     try{
       let res = await axios.get(`/api/question_search?page=${p}&body=${t}`)
-      setStates(res.data)
+      setStates(res.data, p)
     }catch(err){
       console.log(err)
     }
   }
 
   const getQuestions = (sC, p, t) => {
-    setLoading(true)
-    setPage(p)
+    console.log('called')
     switch (sC){
       case "all" :
         setShowTags(false)
         getAllData(p)
-        setLoading(false)
         break;
       case "tag" :
         getDataByTag(t, p)
-        setLoading(false)
         break;
       case "unanswered" :
         setShowTags(false)
         getDataByUnanswered(p)
-        setLoading(false)
         break;
       case "search":
         getDataSearch(p, t)
-        setLoading(false)
         break;
       default:
         alert('Unsupported search method')
-        setLoading(false)
         break;
     }
   }
@@ -133,6 +127,9 @@ const Questions = ({history}) => {
 
   return (
     <Container style={{marginTop: '30px'}}>
+      <h2>Page: {page}</h2>
+      <h2>TotalPages: {totalPages}</h2>
+      <h2>Length: {questions.length}</h2>
       <div style={{display: 'flex', justifyContent: 'space-between'}}>
         <div style={{width: '500px'}}>
           <Form.Control value={search} onChange={(e) => getQuestions('search', 1, e.target.value)}/>
@@ -142,10 +139,16 @@ const Questions = ({history}) => {
           {showTags && renderTags()}
         </div>
       </div>
-      {totalPages > 1 && <MyPagination tag={tag} sortBy={sortBy} getData={getQuestions} page={page} totalPages={totalPages} />}
-      {loading && <BoxLoader />}
-      {renderQuestions()}
-      {totalPages > 1 && <MyPagination tag={tag} sortBy={sortBy} getData={getQuestions} page={page} totalPages={totalPages} />}
+      <div style={{maxWidth: '1000px'}}>
+        <InfiniteScroll
+          dataLength={questions.length}
+          next={(e)=>getQuestions(sortBy, (page + 1), tag)}
+          hasMore={page<totalPages}
+          loader={<BoxLoader/>}
+        >
+          {renderQuestions()}
+        </InfiniteScroll>
+      </div>
     </Container>
   )
 }

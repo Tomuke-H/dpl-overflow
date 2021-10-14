@@ -20,37 +20,39 @@ const Leaderboard = () => {
     setCohort(null)
     try{
       let res = await axios.get(`/api/leaderboard?page=${p}`)
-      setUsers(users.concat(res.data.users))
       setTotalPages(res.data.total_pages)
-      console.log(users)
+      setUsers(p === 1 ? res.data.users : users.concat(res.data.users))
       setPage(p)
     }catch (err) {
       console.log(err)
     }
   }
 
-  // const getCohortUsers = async (p, cohort) => {
-  //   setCohort(cohort)
-  //   try{
-  //     let res = await axios.get(`/api/cohort_leaderboard?cohort=${cohort}&page=${p}`)
-  //     setUsers(res.data.users)
-  //     setTotalPages(res.data.total_pages)
-  //   }catch(err){
-  //     console.log(err)
-  //   }
-  // }
+  const getCohortUsers = async (p, cohort) => {
+    try{
+      let res = await axios.get(`/api/cohort_leaderboard?cohort=${cohort}&page=${p}`)
+      setTotalPages(res.data.total_pages)
+      setUsers(p === 1 ? res.data.users : users.concat(res.data.users))
+      setPage(p)
+    }catch(err){
+      console.log(err)
+    }
+  }
 
-  const getUsers = (sortBy, cohort, p) => {
-    console.log('called')
-    console.log(sortBy)
+  const getUsers = (sortBy, cohort, p, reset) => {
     setSortBy(sortBy)
+    setCohort(cohort)
+    if(reset){
+      console.log('reset')
+      setUsers([])
+    }
     switch(sortBy){
       case 'all':
         getAllUsers(p)
         break;
-      // case 'cohort':
-      //   getCohortUsers(p, cohort)
-      //   break;
+      case 'cohort':
+        getCohortUsers(p, cohort)
+        break;
       default:
         console.log('Somefin bad happened')
     }
@@ -75,25 +77,21 @@ const Leaderboard = () => {
 
   return (
     <div>
-      <h1>Top Answerer's</h1>
-      <h2>page:{page}</h2>
-      <h2>total pages:{totalPages}</h2>
-
       <Dropdown>
         <Dropdown.Toggle>View By Cohort</Dropdown.Toggle>
         <Dropdown.Menu>
-          <Dropdown.Item onClick={(e) => getUsers('all', null, 1)}>View All</Dropdown.Item>
-          <Dropdown.Item onClick={(e) => getUsers('cohort', 'Fall 2021')}>Fall 2021</Dropdown.Item>
-          <Dropdown.Item onClick={(e) => getUsers('cohort', 'Winter 2021')}>Winter 2021</Dropdown.Item>
-          <Dropdown.Item onClick={(e) => getUsers('cohort', 'Spring 2022')}>Spring 2022</Dropdown.Item>
+          <Dropdown.Item onClick={(e) => getUsers('all', null, 1, true)}>View All</Dropdown.Item>
+          <Dropdown.Item onClick={(e) => getUsers('cohort', 'Fall 2021', 1, true)}>Fall 2021</Dropdown.Item>
+          <Dropdown.Item onClick={(e) => getUsers('cohort', 'Winter 2021', 1, true)}>Winter 2021</Dropdown.Item>
+          <Dropdown.Item onClick={(e) => getUsers('cohort', 'Spring 2022', 1, true)}>Spring 2022</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
 
       <div style={{maxWidth: '1000px'}}>
         <InfiniteScroll
           dataLength={users.length}
-          next={(e)=>getUsers(sortBy, cohort, page + 1)}
-          hasMore={page<totalPages}
+          next={(e)=>getUsers(sortBy, cohort, (page + 1), false)}
+          hasMore={totalPages > 1 ? page<totalPages : false}
           loader={<BoxLoader/>}
         >
           {renderUsers()}

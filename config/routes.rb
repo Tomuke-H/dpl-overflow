@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     get 'users/:id/profile', to: 'users#user_profile'
     get 'answer_count/:id', to: 'questions#answer_count'
     get 'tag/:key', to: 'tags#tag_search'
+    get 'comment_author/:id', to: 'comments#author'
     resources :tags
   end
 end

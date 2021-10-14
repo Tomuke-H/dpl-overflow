@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useContext, useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import { AuthContext } from "../../providers/AuthProvider";
+import MarkdownEditor from "../Markdown/MarkdownEditor";
 
 const NewAnswer = ({props}) => {
   const [body, setBody] = useState("")
@@ -34,10 +35,10 @@ const NewAnswer = ({props}) => {
       <Form onSubmit={handleSubmit}>
         <Form.Group>
         <Form.Label>Answer...</Form.Label>
-        <Form.Control 
-        placeholder="Enter Answer" 
-        onChange={(e) => {
-          setBody(e.target.value)}}/>
+        <MarkdownEditor
+          body = {body}
+          setBody = {setBody}
+          />
         </Form.Group>
       <Button type = "submit">
           Add

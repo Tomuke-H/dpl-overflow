@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
 import { Container, Form, Button } from 'react-bootstrap'
 import { AuthContext } from '../../providers/AuthProvider'
+import MarkdownEditor from '../Markdown/MarkdownEditor'
 
 const NewQuestionForm = ({ handleRedirect }) => {
   const {user} = useContext(AuthContext)
@@ -75,11 +76,9 @@ const NewQuestionForm = ({ handleRedirect }) => {
           />
         </Form.Group>
         <Form.Group className='mb-3'>
-          <Form.Control 
-            as='textarea'
-            value={body}
-            placeholder='Explain your question here'
-            onChange={(e) => setBody(e.target.value)}
+        <MarkdownEditor
+           body = {body}
+           setBody = {setBody}
           />
         </Form.Group>
         <Form.Group>

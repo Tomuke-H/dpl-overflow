@@ -37,7 +37,7 @@ const deleteAnswer = async (id) => {
 const renderAnswers = () => {
   return answers.map (a => {
     return (
-      <Answer answer = {a} props = {props} deleteAnswer = {deleteAnswer}/>
+      <Answer key={a.id} answer = {a} props = {props} deleteAnswer = {deleteAnswer}/>
     )
   })
 }

@@ -15,7 +15,7 @@ const Comments = ({answer, comments, setComments, addComment, updateComments, de
   const renderComments = () => {
     return comments.map((comment) => {
       return(
-        <Card.Footer className="text-muted">
+        <Card.Footer className="text-muted" key = {comment.id}>
         <Comment key={comment.id} comments={comments} deleteComment={deleteComment} updateComments={updateComments} comment={comment} answer={answer}/>
         </Card.Footer>
       )

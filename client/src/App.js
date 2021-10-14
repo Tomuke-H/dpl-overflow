@@ -24,6 +24,7 @@ import useGetUser from './hooks/useGetUser';
 import TagsPage from './pages/TagsPage';
 import UserProfile from './components/UserProfile';
 import Footer from './components/Footer';
+import OtherUserProfile from './components/OtherUserProfile';
 
 function App() {
 
@@ -55,7 +56,6 @@ function App() {
             <ProtectedRoute exact path='/tags' component={TagsPage}/>
             <Route exact path='/login' component={Login}/>
             <Route exact path='/register' component={Register}/> 
-            {/* <ProtectedRoute exact path='/user' component={UserProfile}/> */}
             <ProtectedRoute exact path='/answers' component={Answers}/>
             <ProtectedRoute exact path='/answers/:id' component={Answer}/>
             <ProtectedRoute exact path='/answers/:id/edit' component={EditAnswer}/>
@@ -66,10 +66,11 @@ function App() {
             <Route exact path='/question/:id' component={QuestionPage}/>
 
             <ProtectedRoute exact path='/yearbook' component={Yearbook}/>
+            <ProtectedRoute exact path='/user/edit' component={EditUser}/>
             <ProtectedRoute exact path='/users/:id' component={UserProfile}/>
+            <ProtectedRoute exact path='/users/:id/profile' component={OtherUserProfile}/>
             {renderRoutes()}
             {renderProfiles()}
-            <ProtectedRoute exact path='/user/edit' component={EditUser}/>
             <Route component={()=><p>react 404 path not found</p>} />
         </Switch>
         <br />

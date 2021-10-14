@@ -57,7 +57,7 @@
 
 @tags = [
   'existential',
-  'preperation',
+  'preparation',
   'JavaScript', 
   'Ruby',
   'Rails',

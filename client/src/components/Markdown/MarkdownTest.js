@@ -1,18 +1,15 @@
 import React, { useState } from "react"
-import { Container, Form } from "react-bootstrap";
-import Button from "@restart/ui/esm/Button";
+import { Button, Container, Form } from "react-bootstrap";
 import MarkdownEditor from "./MarkdownEditor";
 import MarkdownView from "./MarkdownView";
 
 
 const MarkdownTest = () => {
-  const [body, setBody] = useState('hi')
+  const [body, setBody] = useState('')
 
   const handleSubmit = (e) => {
     e.preventDefault()
-
   }
-  console.log(body)
   return(
     <div>
       <h1>MarkdownTest</h1>

@@ -11,10 +11,10 @@ useEffect(() => {
 const getCommentAuthor = async () => {
   try{
     let res = await axios.get(`/api/comment_author/${id}`)
-    console.log("commentAuthor:", res.data[0].name)
+    // console.log("commentAuthor:", res.data[0].name)
     setCommentAuthor(res.data[0].name)
   } catch(error) {
-    console.log("error getting author")
+    console.log("Error getting comment author", error)
   }
 };
 

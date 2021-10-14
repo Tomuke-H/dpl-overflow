@@ -1,5 +1,5 @@
 class Api::QcommentsController < ApplicationController
-  before_action :set_question
+  before_action :set_question, except: [:author]
   before_action :set_qcomment, only: [:show, :update, :destroy]
 
 
@@ -49,7 +49,7 @@ class Api::QcommentsController < ApplicationController
     @qcomment = @question.qcomments.find(params[:id])
   end
 
-  def comment_params
+  def qcomment_params
     params.require(:qcomment).permit(:id, :user_id, :question_id, :body)
   end
 

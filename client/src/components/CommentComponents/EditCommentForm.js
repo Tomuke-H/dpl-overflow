@@ -18,11 +18,11 @@ const EditCommentForm = ({updateComments, answer, c, showEdit, setShowEdit}) => 
     }
     try {
       let res = await axios.put(`/api/answers/${answer.id}/comments/${c.id}`, comment)
-      console.log(res);
+      // console.log(res);
       setShowEdit(!showEdit);
       updateComments(res.data)
     } catch(err) {
-      console.log(err)
+      console.log("Edit Comment Submission Error", err)
     }
   }
   return (

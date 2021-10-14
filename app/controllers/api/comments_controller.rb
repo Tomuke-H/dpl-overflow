@@ -39,7 +39,6 @@ class Api::CommentsController < ApplicationController
     render json: Comment.author(params[:id])
   end
 
-
   private
 
   def set_answer

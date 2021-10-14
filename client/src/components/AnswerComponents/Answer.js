@@ -24,22 +24,21 @@ const Answer = ({answer, props, deleteAnswer}) => {
   const getComments = async () => {
     try{
       let res = await axios.get(`/api/answers/${answer.id}/comments/`)
-      console.log("comments:", res.data)
+      // console.log("comments:", res.data)
       setComments(res.data)
     } catch(error) {
-      alert("error getting comments, but that sounds like a YOU problem")
+      console.log("getComments error", error)
     }
   };
 
   const addComment = async (e, comment) => {
     // e.preventDefault()
-    console.log(comment)
+    // console.log(comment)
     try {
       await axios.post(`/api/answers/${answer.id}/comments/`, comment)
       setComments([...comments, comment])
     } catch(err) {
-      console.log(err)
-      alert("somethin ain't right...")
+      console.log("addComment error", err)
     }
   }
 

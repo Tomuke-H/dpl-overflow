@@ -16,9 +16,9 @@ const QuestionVote = ({question}) => {
     let res = await axios.put(`/api/questions/${question.id}`, {
       likes: likes + 1
     })
-    console.log(res)
+    // console.log(res)
   } catch (err) {
-      console.log(err)
+      console.log("upvote error", err)
     }
   }
 
@@ -27,9 +27,9 @@ const QuestionVote = ({question}) => {
     let res = await axios.put(`/api/questions/${question.id}`, {
       likes: likes - 1
     })
-    console.log(res)
+    // console.log(res)
   } catch (err) {
-      console.log(err)
+      console.log("downvote error", err)
     }
   }
   

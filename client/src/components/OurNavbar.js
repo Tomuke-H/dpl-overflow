@@ -12,7 +12,7 @@ const OurNavbar = (props) => {
     if(user){
       return (
         <>
-        <Nav.Link as={Link} to='new_question'>
+        <Nav.Link as={Link} to={'/new_question'}>
           <Button>Ask a Question</Button>
         </Nav.Link>
 

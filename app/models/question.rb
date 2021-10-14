@@ -35,6 +35,14 @@ def self.unanswered_questions
     .group('q.id')
   end
 
+  def self.popular
+    select('DISTINCT q.id, q.views, q.likes, q.title, q.body, count(a.id) AS total_answers, q.created_at')
+    .from('questions AS q')
+    .joins('LEFT JOIN answers AS a ON a.question_id = q.id')
+    .order('q.views DESC')
+    .group('q.id')
+  end
+
   def self.answer_count(id)
     select('count(a.id)')
     .from('questions AS q')

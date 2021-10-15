@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useContext, useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import { AuthContext } from "../../providers/AuthProvider";
+import DPLButton from "../DPLButton";
 import MarkdownEditor from "../Markdown/MarkdownEditor";
 
 const NewAnswer = ({props}) => {
@@ -34,15 +35,15 @@ const NewAnswer = ({props}) => {
       <h1 style={styles.yourAnswer}>Your Answer</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group>
-        <Form.Label>Answer...</Form.Label>
         <MarkdownEditor
           body = {body}
           setBody = {setBody}
           />
         </Form.Group>
-      <Button type = "submit">
-          Add
-      </Button>
+      <DPLButton
+      type = "submit">
+          SUBMIT
+      </DPLButton>
       </Form>
       </Container>
 
@@ -56,6 +57,6 @@ const styles = {
     fontSize: "20px",
     letterSpacing: "0.5px",
   }
-
 }
+
 export default NewAnswer;

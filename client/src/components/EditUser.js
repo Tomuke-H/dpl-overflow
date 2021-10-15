@@ -35,7 +35,7 @@ const EditUser = (id) => {
     const handlePasswordUpdate = async (e) => {
         e.preventDefault();
         try {
-            console.log(user)
+            // console.log(user)
             await axios.put("/api/auth/password", { password: password, password_confirmation: passwordConfirmation, current_password: current_password  })
             history.push("/user")
         } catch (err) {
@@ -73,7 +73,7 @@ const EditUser = (id) => {
         try {
             let res = await axios.put('/api/users/image/update', file)
             setUser(res.data)
-            console.log(res)
+            // console.log(res)
         } catch (err) {
             alert(err)
             console.log(err)

@@ -26,12 +26,12 @@ const NewQuestionForm = ({ handleRedirect }) => {
   }
 
   const handleCheckbox = (event)=>{
-    console.log(event.target.checked, event.target.id)
+    // console.log(event.target.checked, event.target.id)
     setCheckedItems({...checkedItems, [event.target.id]: event.target.checked})
   }
 
   const tagList = () => {
-    console.log(checkedItems)
+    // console.log(checkedItems)
     return tags.map((t) => {
       return (
         <Form.Check inline

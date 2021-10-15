@@ -16,9 +16,9 @@ export default function OtherUserProfile() {
     try {
     let res = await axios.get (`/api/users/${id}/profile`)
     setUser(res.data.user)
-    console.log("user:", user)
+    // console.log("user:", user)
     } catch (err) {
-      console.log(err)
+      console.log("get user error", err)
     }
   }
 

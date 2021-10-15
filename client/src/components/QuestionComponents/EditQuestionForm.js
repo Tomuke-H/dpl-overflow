@@ -46,7 +46,7 @@ const EditQuestionForm = ({props, setEdited, toggleEdit, setToggleEdit}) => {
   const getQuestionTag = async () => {
     try {
       let res = await axios.get(`/api/questionTags/${props.match.params.id}`)
-      console.log("prenorm data",res)
+      // console.log("prenorm data",res)
       normalizeCheckedItems(res.data)
     }catch (err){
       console.log(err)
@@ -70,7 +70,7 @@ const EditQuestionForm = ({props, setEdited, toggleEdit, setToggleEdit}) => {
         }
       }else{norm[tag_id].checked = false}
     }
-    console.log("norm",norm)
+    // console.log("norm",norm)
     setCheckedItems(norm)
     setCheckedNewItems(norm)
     setCheckedTagDone(true)

@@ -7,6 +7,7 @@ import AnswerVote from './AnswerVote'
 import MarkdownView from '../Markdown/MarkdownView'
 import NewCommentForm from "../CommentComponents/NewCommentForm"
 import AnswerAuthor from './AnswerAuthor'
+import { day, time } from "../DayConverter/Dates";
 
 const Answer = ({answer, props, deleteAnswer}) => {
   const [comments, setComments] = useState([])
@@ -50,17 +51,16 @@ const Answer = ({answer, props, deleteAnswer}) => {
       await axios.delete(`/api/answers/${answer.id}/comments/${id}`)
       const filterComments = comments.filter((comment) => comment.id !== id);
       setComments(filterComments)
-    } catch {
-      alert("Ah shucks.  I don't know what I'm trying to do, but clearly it ain't workin.")
-    }
+    } catch(err) {
+      console.log("delete comment error", err)    }
   }
 
   const showEditDelete = () => {
     if (answer.user_id === user.id) {
       return (        
         <div style={styles.adContainer}>
-        <p style={{margin: "10px"}} onClick={()=>setShowForm(!showForm)}>{showForm ? "Cancel" : "Edit Answer"}</p>
-        <p style={{margin: "10px"}} onClick={()=>deleteAnswer(answer.id)}>Delete Answer</p>
+        <p style={{marginRight: "10px"}} onClick={()=>setShowForm(!showForm)}>{showForm ? "Cancel" : "Edit Answer"}</p>
+        <p style={{marginRight: "10px"}} onClick={()=>deleteAnswer(answer.id)}>Delete Answer</p>
         {showForm && <EditAnswer a = {answer} props = {props}/>}
         </div>
       )
@@ -80,7 +80,8 @@ const Answer = ({answer, props, deleteAnswer}) => {
         </div>
         <div style={styles.answerContainer}>
           <div style={styles.answerDetails}><MarkdownView body = {answer.body}/></div>
-          <AnswerAuthor answer={answer} />
+          <p style={styles.answerDetails}> {AnswerAuthor(answer.id)} </p>
+          <p style={styles.answerDetails}> {day(answer.created_at)} / {time(answer.created_at)} </p>
           {showEditDelete()}
         <p style={styles.addComment} onClick={()=>setShowCommentForm(!showCommentForm)}>{showCommentForm ? "Cancel" : "Add Comment"}</p>
         {showCommentForm && <NewCommentForm answer={answer} addComment={addComment}/>}
@@ -114,16 +115,18 @@ const styles = {
   },
   answerDetails: {
     width: "850px",
+    marginLeft: "50px",
     marginRight: "10px",
     fontSize: "16px",
     fontFamily: "Inter, sans-serif",
     fontWeight: "500",
     display: "flex",
-    alignItems: "left",
+    alignItems: "flex-start",
     letterSpacing: ".5px",
     color: "#000000",
   },
   adContainer: {
+    marginLeft: "50px",
     display: "flex",
     flexDirection: "row",
     fontSize: "14px",
@@ -134,8 +137,11 @@ const styles = {
   answerContainer: {
     display: "flex",
     flexDirection: "column",
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
   },
   addComment: {
+    marginLeft: "50px",
     margin: "10px",
     fontSize: "14px",
     fontFamily: "Inter, sans-serif",

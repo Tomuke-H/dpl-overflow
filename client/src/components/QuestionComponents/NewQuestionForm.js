@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
 import { Container, Form, Button } from 'react-bootstrap'
 import { AuthContext } from '../../providers/AuthProvider'
+import DPLButton from '../DPLButton'
 import MarkdownEditor from '../Markdown/MarkdownEditor'
 
 const NewQuestionForm = ({ handleRedirect }) => {
@@ -84,7 +85,7 @@ const NewQuestionForm = ({ handleRedirect }) => {
         <Form.Group>
             {tagList()}
         </Form.Group>
-        <Button variant="primary" type='submit'>Ask Question</Button>
+        <DPLButton variant="primary" type='submit'>SUBMIT</DPLButton>
       </Form>
     </Container>
   )

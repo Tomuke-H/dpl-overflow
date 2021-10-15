@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import {useHistory} from "react-router-dom"
 import Tags from "../../pages/Tags";
+import DPLButton from "../DPLButton";
 
 
 const CreateTag = ({setCreated}) => {
@@ -33,9 +34,9 @@ const CreateTag = ({setCreated}) => {
         onChange={(e) => {
           setName(e.target.value)}}/>
         </Form.Group>
-      <Button type = "submit">
-          Submit
-      </Button>
+      <DPLButton type = "submit">
+          SUBMIT
+      </DPLButton>
       </Form>
       </Container>
 

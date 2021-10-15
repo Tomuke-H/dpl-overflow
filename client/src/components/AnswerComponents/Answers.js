@@ -6,6 +6,70 @@ import NewAnswer from './NewAnswer';
 const Answers = ({props}) => {
 const [answers, setAnswers] = useState([])
 
+// const getDataByTag = async (t, p) => {
+//   setSortBy('tag')
+//   try{
+//     let res = await axios.get(`/api/find_questions_by_tag/${t}?page=${p}`)
+//     setStates(res.data, p)
+//   } catch (err){
+//     console.log(err)
+//   }
+// }
+
+// const getDataByUnanswered = async (p) => {
+//   setSortBy('unanswered')
+//   setTagSearch([])
+//   try{
+//     let res = await axios.get(`/api/unanswered_questions?page=${p}`)
+//     setStates(res.data, p)
+//   }catch(err){
+//     console.log(err)
+//   }
+// }
+
+// const getAllData = async (p) => {
+//   setSortBy('all')
+//   setTagSearch([])
+//   try{
+//     let res = await axios.get(`/api/questions?page=${p}`)
+//     setStates(res.data, p)
+//   }catch(err){
+//     console.log(err)
+//   }
+// }
+
+// const getDataSearch = async (p, t) => {
+//   setSearch(t)
+//   setSortBy('search')
+//   try{
+//     let res = await axios.get(`/api/question_search?page=${p}&body=${t}`)
+//     setStates(res.data, p)
+//   }catch(err){
+//     console.log(err)
+//   }
+// }
+
+// const getQuestions = (sC, p, t) => {
+//   switch (sC){
+//     case "all" :
+//       setShowTags(false)
+//       getAllData(p)
+//       break;
+//     case "tag" :
+//       getDataByTag(t, p)
+//       break;
+//     case "unanswered" :
+//       setShowTags(false)
+//       getDataByUnanswered(p)
+//       break;
+//     case "search":
+//       getDataSearch(p, t)
+//       break;
+//     default:
+//       alert('Unsupported search method')
+//       break;
+//   }
+// }
 
 const getAnswers = async () => {
   try {

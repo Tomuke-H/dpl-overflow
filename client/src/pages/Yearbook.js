@@ -24,7 +24,7 @@ const Yearbook = () => {
   const renderUsers = () => {
     if (users) {
     return (
-      <div>
+      <div style={{display:"flex", flexWrap: 'wrap'}}>
         {users.map((user)=>{
           return (
             <NavLink as={Link} to={`/users/${user.id}/profile`}>
@@ -59,43 +59,35 @@ const Yearbook = () => {
   )}
 
   return (
-    <div>
-      {dropDown()}
-     <div>
-      <h1 style={styles.yearbook}>YEARBOOK</h1>
+    <div style={{display: 'flex', flexDirection: 'column'}}>
+      {/* <div style={{display: 'flex', justifyContent: 'flex-end'}}>
+        {dropDown()}
+       </div> */}
+      <div>
+        <h1 style={styles.yearbook}>YEARBOOK</h1>
+        <div style={{display: 'flex', justifyContent: 'flex-end'}}>
+        {dropDown()}
+       </div>
+      </div>
+      <div>
+        {renderUsers()}
+      </div>
     </div>
-    <div style={styles.grid}>
-      {renderUsers()}
-     </div>
-     </div>
   )};
 
 export default Yearbook;
 
 const styles = {
   yearbook: {
-  position: 'absolute',
   width: '160px',
   height: '41px',
-  left: '94px',
-  top: '147px',
   fontFamily: 'Open Sans',
   fontStyle: 'normal',
   fontWeight: '600',
   fontSize: '30px',
   lineHeight: '41px',
-  display: 'flex',
-  alignItems: 'center',
-  textAlign: 'center',
   textTransform: 'uppercase',
 
   color: '#000000'
-},
-  grid: {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: "wrap",
-    justifyContent: "center",
-    position: 'relative'
-  }
+}
 }

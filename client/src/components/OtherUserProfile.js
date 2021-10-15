@@ -11,7 +11,7 @@ export default function OtherUserProfile(props) {
     getUser()
   },[])
 
-  const Url = props.location.pathname.split("/")
+  const Url = props.location.pathname.split("/") 
   const id = Url[2]
 
 

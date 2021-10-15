@@ -1,7 +1,10 @@
 import React, { useContext, useState } from 'react'
-import { Form, Button, Container } from 'react-bootstrap';
+import { Form, Button, Container, Nav, ToastContainer } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import { AuthContext } from '../providers/AuthProvider'
+import DPLGreyButton from './DPLGreyButton';
+import DPLLightWeightButton from './DPLLightWeightButton';
 
 const Login = (props) => {
     const {handleLogin} = useContext(AuthContext);
@@ -15,27 +18,84 @@ const Login = (props) => {
     }
 
     return (
-        <Container>
-            <h1>Login</h1>
+        <Container style={styles.container}>
+            <h1 style={styles.login}>Login</h1>
             <br />
-            <h5>Email</h5>
             <Form onSubmit={handleSubmit}>
-                <Form.Control
+                <p style={styles.label}>Email</p>
+                <input style={styles.rectangle}
                     value={email}
                     label="Email"
                     onChange={(e) => setEmail(e.target.value)}
                 />
                 <br />
-                <h5>Password</h5>
-                <Form.Control
+                <br />
+                <br />
+                <p style={styles.label}>Password</p>
+                <input style={styles.rectangle}
                     value={password}
                     label="Password"
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                <Button type="submit">Login</Button>
+                <div style={styles.buttonGroup}>
+                <DPLLightWeightButton type="submit">Login</DPLLightWeightButton>
+                <Nav.Link as={Link} to='/register'>
+                    <DPLGreyButton>Create a new account</DPLGreyButton>
+                </Nav.Link>
+                </div>
             </Form>
         </Container>
     );
 };
+
+const styles = {
+    container: {
+        display: "flex",
+        flexFlow: "column wrap",
+        placeContent: "stretch space-around",
+        height: "500px",
+        width: "800px",
+        justifyContent: "center",
+        flexDirection: "column",
+        alignItems: "center",
+    },
+
+    buttonGroup: {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+    },
+
+    label: {
+        height: "22px",
+
+        fontFamily: "Open Sans",
+        fontStyle: "normal",
+        fontWeight: "normal",
+        fontSize: "16px",
+        lineHeight: "22px",
+
+        color: "#000000",
+    },
+
+    rectangle: {
+        height: "50px",
+        width: "600px",
+        borderStyle: "none none solid none",
+
+        background: "rgba(0, 0, 0, 0.0261145)",
+    },
+
+    login: {
+        width: "104px",
+        height: "56px",
+
+        fontFamily: "Open Sans",
+        fontStyle: "normal",
+        fontWeight: "normal",
+        fontSize: "40.8px",
+        lineHeight: "56px",
+    },
+}
 
 export default Login;

@@ -1,1 +1,1 @@
-export const dplPurple = '#533f79';
+export const dplPurple = '#6E54A3';

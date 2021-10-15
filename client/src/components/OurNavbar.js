@@ -3,6 +3,9 @@ import { Container, Image, Nav, Navbar, Button, NavDropdown } from 'react-bootst
 import { Link, useHistory, withRouter } from 'react-router-dom'
 import { AuthContext } from '../providers/AuthProvider'
 import Beaker from '../../src/icons/Beaker-black-60.png'
+import DPLButton from './DPLButton'
+import DPLGetStarted from './DPLGetStartedButton'
+
 
 const OurNavbar = (props) => {
   const { user, handleLogout} = useContext(AuthContext)
@@ -13,7 +16,7 @@ const OurNavbar = (props) => {
       return (
         <>
         <Nav.Link as={Link} to={'/new_question'}>
-          <Button>Ask a Question</Button>
+          <DPLButton>ASK A QUESTION</DPLButton>
         </Nav.Link>
 
         {/* <Nav.Link as={Link} to={`/users/${user.id}`}>
@@ -47,19 +50,48 @@ const OurNavbar = (props) => {
     };
     return (
       <>
-        <Nav.Link as={Link} to='/login'>
-          <Container>
-            Login
-          </Container>
-        </Nav.Link>
         <Nav.Link as={Link} to='/register'>
-          <Container>
-            Register
-          </Container>
+          <DPLGetStarted>
+            GET STARTED
+          </DPLGetStarted>
+        </Nav.Link>
+        <Nav.Link as={Link} to='/login'>
+          <DPLButton>
+            LOGIN
+          </DPLButton>
         </Nav.Link>
       </>
     )
   };
+
+  const leftNavItems = () => {
+    if(user){
+      return (
+        <>
+          <Nav.Link as={Link} to='/Dashboard'>
+            <Container>
+                Questions
+            </Container>
+          </Nav.Link>
+          <Nav.Link as={Link} to='/tags'>
+            <Container>
+                Tags
+            </Container>
+          </Nav.Link>
+          <Nav.Link as={Link} to='/yearbook'>
+            <Container>
+                Yearbook
+            </Container>
+          </Nav.Link>
+          <Nav.Link as={Link} to='/leaderboard'>
+            <Container>
+                Leaderboard
+            </Container>
+          </Nav.Link>
+        </>
+      )
+    }
+  }
 
   return(
     <span>
@@ -69,26 +101,7 @@ const OurNavbar = (props) => {
             <Image src={Beaker} />
         </Container>
       </Nav.Link >
-      <Nav.Link as={Link} to='/Dashboard'>
-        <Container>
-            Questions
-        </Container>
-      </Nav.Link>
-      <Nav.Link as={Link} to='/tags'>
-        <Container>
-            Tags
-        </Container>
-      </Nav.Link>
-      <Nav.Link as={Link} to='/yearbook'>
-        <Container>
-            Yearbook
-        </Container>
-      </Nav.Link>
-      <Nav.Link as={Link} to='/leaderboard'>
-        <Container>
-            Leaderboard
-        </Container>
-      </Nav.Link>
+      <Navbar.Collapse className="justify-content-start">{leftNavItems()}</Navbar.Collapse>
       <Navbar.Collapse className="justify-content-end">{rightNavItems()}</Navbar.Collapse>
     </Navbar>
     </span>

@@ -22,12 +22,20 @@ import TagsPage from './pages/TagsPage';
 import UserProfile from './components/UserProfile';
 import Footer from './components/Footer';
 import OtherUserProfile from './components/OtherUserProfile';
-import MarkdownTest from './components/Markdown/MarkdownTest';
 import AboutUs from './pages/AboutUs';
+import WebFont from 'webfontloader';
+import { useEffect } from 'react';
 
 function App() {
-
   const { users } = useGetUser()
+
+  useEffect(() => {
+    WebFont.load({
+      google: {
+        families: ['Open Sans', 'Inter']
+      }
+    })
+  }, [])
 
   const renderRoutes = () => {
     return users.map((user)=>{
@@ -77,7 +85,7 @@ function App() {
             {renderProfiles()}
             <Route component={()=><p>react 404 path not found</p>} />
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
     </>
     )
   }

@@ -1,8 +1,6 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
-import { Button, Container, Image } from "react-bootstrap";
-import useGetUser from "../hooks/useGetUser";
-import { AuthContext } from '../providers/AuthProvider'
+import React, {  useEffect, useState } from "react";
+import { Button, Image } from "react-bootstrap";
 import EditUser from "./EditUser";
 
 

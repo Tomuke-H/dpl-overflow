@@ -1,7 +1,10 @@
 import React, { useContext, useState } from 'react'
-import { Form, Button, Container } from 'react-bootstrap';
+import { Form, Button, Container, Nav } from 'react-bootstrap';
+import { Link } from "react-router-dom"
 import { useHistory } from 'react-router';
 import { AuthContext } from '../providers/AuthProvider';
+import DPLGreyButton from './DPLGreyButton';
+import DPLLightWeightButton from './DPLLightWeightButton';
 
 const Register = () => {
     const {handleRegister} = useContext(AuthContext);
@@ -21,42 +24,90 @@ const Register = () => {
     };
 
     return (
-        <div>
-            <Container>
-            <h1>New Account</h1>
-            <br />
-            <h5>Username:</h5>
+        <Container style={styles.container}>
+            <h1 style={styles.register}>Register</h1>
             <Form onSubmit={handleSubmit}>
-                <Form.Control
-                    value={name}
-                    label="Username"
-                    onChange={(e) => setName(e.target.value)}
-                    />
-                <br />
-                <h5>Email:</h5>
-                <Form.Control
+            <p style={styles.label}>Email</p>
+                <input style={styles.rectangle}
                     value={email}
                     label="Email"
                     onChange={(e) => setEmail(e.target.value)}
                     />
                 <br />
-                <h5>Password:</h5>
-                <Form.Control
+                <br />
+                <p style={styles.label}>Password</p>
+                <input style={styles.rectangle}
                     value={password}
                     label="New Password"
                     onChange={(e) => setPassword(e.target.value)}
                     />
-                <h6>Confirm password:</h6>
-                <Form.Control
+                <br />
+                <br />
+                <p style={styles.label}>Password confirmation</p>
+                <input style={styles.rectangle}
                     value={passwordConfirmation}
                     label="Confirm Password"
                     onChange={(e) => setPasswordConfirmation(e.target.value)}
                     />
-                <Button type="submit">Create Account</Button>
+                <div style={styles.buttonGroup}>
+                <DPLLightWeightButton type="submit">Register</DPLLightWeightButton>
+                <Nav.Link as={Link} to='/login'>
+                <DPLGreyButton type="submit">Login to existing account</DPLGreyButton>
+                </Nav.Link>
+                </div>
             </Form>
-            </Container>
-        </div>
+        </Container>
     );
+}
+
+const styles = {
+    container: {
+        display: "flex",
+        flexFlow: "column wrap",
+        height: "600px",
+        width: "800px",
+        flexDirection: "column",
+        alignItems: "center",
+        flexWrap: "nowrap",
+        justifyContent: "center",
+    },
+
+    buttonGroup: {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+    },
+
+    label: {
+        height: "22px",
+
+        fontFamily: "Open Sans",
+        fontStyle: "normal",
+        fontWeight: "normal",
+        fontSize: "16px",
+        lineHeight: "22px",
+
+        color: "#000000",
+    },
+
+    rectangle: {
+        height: "50px",
+        width: "600px",
+        borderStyle: "none none solid none",
+
+        background: "rgba(0, 0, 0, 0.0261145)",
+    },
+
+    register: {
+        // width: "104px",
+        // height: "56px",
+
+        fontFamily: "Open Sans",
+        fontStyle: "normal",
+        fontWeight: "normal",
+        fontSize: "40.8px",
+        lineHeight: "56px",
+    },
 }
 
 export default Register;

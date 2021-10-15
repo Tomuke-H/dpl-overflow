@@ -1,10 +1,9 @@
 import React, { useContext } from 'react'
-import { Redirect, Route, useHistory } from 'react-router'
+import { Redirect, Route } from 'react-router'
 import { AuthContext } from '../providers/AuthProvider'
 
 const ProtectedRoute = ({component:Component}) =>{
     const {authenticated} = useContext(AuthContext)
-    const history = useHistory()
 
     return (
         <Route 

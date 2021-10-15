@@ -1,7 +1,6 @@
 import axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
 import { Button, Card, Container } from 'react-bootstrap'
-import WebFont from "webfontloader";
 import { AuthContext } from '../../providers/AuthProvider';
 import QuestionVote from '../QuestionVote';
 import MarkdownView from '../Markdown/MarkdownView';
@@ -20,11 +19,6 @@ const Question = ({props, edited, setEdited, history, question}) => {
   useEffect(() => {
     getQComments();
     getTags();
-    WebFont.load({
-      google: {
-        families: ['Open Sans', 'Inter']
-      }
-    })
   }, [])
 
   const getQComments = async () => {
@@ -194,7 +188,6 @@ const styles = {
     display: "flex",
     alignItems: "center",
     letterSpacing: ".5px",
-    color: "#000000", 
   },
   addComment: {
     margin: "10px",

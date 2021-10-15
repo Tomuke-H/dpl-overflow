@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Container, Form, Button } from 'react-bootstrap'
 import MarkdownEditor from '../Markdown/MarkdownEditor'
+import DPLButton from '../DPLButton'
 
 const EditQuestionForm = ({props, setEdited, toggleEdit, setToggleEdit}) => {
   const [question, setQuestion] = useState(null)
@@ -63,7 +64,7 @@ const EditQuestionForm = ({props, setEdited, toggleEdit, setToggleEdit}) => {
       if(tagID.includes(Number(tag_id))===true){
         norm[tag_id].checked = true
         for(let i = 0; i < data.length; i++){
-          if(data[i].tag_id == tag_id){
+          if(data[i].tag_id === tag_id){
             norm[tag_id].id = data[i].id
           }
         }
@@ -167,7 +168,7 @@ const EditQuestionForm = ({props, setEdited, toggleEdit, setToggleEdit}) => {
         <Form.Group>
             { checkedTagDone && tagList()}
         </Form.Group>
-        <Button variant="primary" type='submit'>Edit Question</Button>
+        <DPLButton type='submit'>SUBMIT</DPLButton>
       </Form>
     </Container>
   )

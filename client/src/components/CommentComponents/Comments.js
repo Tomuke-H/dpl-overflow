@@ -5,8 +5,8 @@ import CommentAuthor from "./CommentAuthor";
 
 
 // I anticipate that props passed into this file should/will be answer and user
-const Comments = ({answer, comments, setComments, addComment, updateComments, deleteComment}) => {
-  const {user} = useContext(AuthContext)
+const Comments = ({answer, comments, addComment, updateComments, deleteComment}) => {
+  // const {user} = useContext(AuthContext)
   // const history = useHistory();
 
 

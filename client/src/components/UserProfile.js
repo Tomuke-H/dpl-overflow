@@ -1,5 +1,6 @@
-import React, { useContext, useState } from "react";
-import { Button, Image } from "react-bootstrap";
+import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
+import { Button, Card, Image } from "react-bootstrap";
 import { AuthContext } from '../providers/AuthProvider'
 import EditUser from "./EditUser";
 
@@ -7,6 +8,21 @@ import EditUser from "./EditUser";
 export default function UserProfile() {
   const { user } = useContext(AuthContext)
   const [showForm, setShowForm] = useState(false)
+  const [currentUser, setCurrentUser] = useState({})
+
+  useEffect(()=>{
+    getCurrentUser()
+  },[])
+
+  const getCurrentUser = async () => {
+    try {
+    let res = await axios.get (`/api/users_profile/${user.id}`)
+    setCurrentUser(res.data.users[0])
+    console.log("user:", user)
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
 
   const renderUser = () => {
@@ -15,7 +31,6 @@ export default function UserProfile() {
       <div>
         <Image style={styles.profilePic} src={user.image} />
         <p style={styles.name}>{user.name}</p>
-      </div>
       <div style={styles.optionsContainer}>
         <Button onClick={()=>{setShowForm(false)}}style={styles.profile}>Profile</Button>
         <Button onClick={()=>{setShowForm(false)}}style={styles.activity}>Activity</Button>
@@ -24,7 +39,12 @@ export default function UserProfile() {
       </div>
       <div>
         <p style={styles.stats}>STATS</p>
+        <Card>
+          <Card.Title>Votes: Answers: Views: Questions:</Card.Title>
+          <Card.Text>{currentUser.votes} {currentUser.answer_count} {currentUser.views} {currentUser.question_count}</Card.Text>
+        </Card>
         <p style={styles.about}>ABOUT</p>
+      </div>
       </div>
       </>
     )

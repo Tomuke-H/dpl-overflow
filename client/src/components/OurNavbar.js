@@ -4,6 +4,7 @@ import { Link, useHistory, withRouter } from 'react-router-dom'
 import { AuthContext } from '../providers/AuthProvider'
 import Beaker from '../../src/icons/Beaker-black-60.png'
 import { DPLButton, DPLGetStarted } from './DPLButtons'
+import DplOLogo from '../../src/icons/DevPointOverflow_LogoOnly.png'
 
 
 const OurNavbar = (props) => {
@@ -17,12 +18,6 @@ const OurNavbar = (props) => {
         <Nav.Link as={Link} to={'/new_question'}>
           <DPLButton>ASK A QUESTION</DPLButton>
         </Nav.Link>
-
-        {/* <Nav.Link as={Link} to={`/users/${user.id}`}>
-          <Container>
-            <Image roundedCircle src={user.image} style={styles.profile}/>
-          </Container>
-        </Nav.Link> */}
           <NavDropdown align='end' title={<Image roundedCircle src={user.image} style={styles.profile}/>} id="basic-nav-dropdown">
             <Nav.Link as={Link} to={`/users/${user.id}`}>
               <Container>
@@ -63,34 +58,42 @@ const OurNavbar = (props) => {
     )
   };
 
+  const leftNavItems = () => {
+    if(user){
+      return (
+        <>
+          <Nav.Link as={Link} to='/Dashboard'>
+            <Container style={styles.navItem}>
+                Questions
+            </Container>
+          </Nav.Link>
+          <Nav.Link as={Link} to='/tags'>
+            <Container style={styles.navItem}>
+                Tags
+            </Container>
+          </Nav.Link>
+          <Nav.Link as={Link} to='/yearbook'>
+            <Container style={styles.navItem}>
+                Yearbook
+            </Container>
+          </Nav.Link>
+          <Nav.Link as={Link} to='/leaderboard'>
+            <Container style={styles.navItem}>
+                Leaderboard
+            </Container>
+          </Nav.Link>
+        </>
+      )
+    }
+  }
+
   return(
     <span>
-    <Navbar bg="white" fixed="top" collapseOnSelect style={{borderBottom: 'solid 2px black'}}>
-      <Nav.Link as={Link} to='/'>
-        <Container>
-            <Image src={Beaker} />
-        </Container>
+    <Navbar bg="white" fixed="top" collapseOnSelect style={{borderBottom: 'solid 2px #757575', padding: '0px'}}>
+      <Nav.Link style={styles.logo} as={Link} to='/'>
+        <Image src={DplOLogo} style={styles.logo}/>
       </Nav.Link >
-      <Nav.Link as={Link} to='/Dashboard'>
-        <Container>
-            Questions
-        </Container>
-      </Nav.Link>
-      <Nav.Link as={Link} to='/tags'>
-        <Container>
-            Tags
-        </Container>
-      </Nav.Link>
-      <Nav.Link as={Link} to='/yearbook'>
-        <Container>
-            Yearbook
-        </Container>
-      </Nav.Link>
-      <Nav.Link as={Link} to='/leaderboard'>
-        <Container>
-            Leaderboard
-        </Container>
-      </Nav.Link>
+      <Navbar.Collapse className="justify-content-start">{leftNavItems()}</Navbar.Collapse>
       <Navbar.Collapse className="justify-content-end">{rightNavItems()}</Navbar.Collapse>
     </Navbar>
     </span>
@@ -100,11 +103,20 @@ const OurNavbar = (props) => {
 export default withRouter(OurNavbar)
 
 const styles = {
-profile: {
-// position: 'absolute',
-width: '46px',
-height: '46px',
-left: '1364px',
-top: '12px'
-}
+  profile: {
+    // position: 'absolute',
+    width: '46px',
+    height: '46px',
+    left: '1364px',
+    top: '12px'
+  },
+  navItem: {
+    color: '#757575'
+  },
+  logo: {
+    width: '90px',
+    height: '90px',
+    margin: '0px',
+    padding: '0px'
+  }
 }

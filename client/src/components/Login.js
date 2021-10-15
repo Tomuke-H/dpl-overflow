@@ -1,7 +1,10 @@
 import React, { useContext, useState } from 'react'
-import { Form, Button, Container } from 'react-bootstrap';
+import { Form, Button, Container, Nav } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import { AuthContext } from '../providers/AuthProvider'
+import DPLGreyButton from './DPLGreyButton';
+import DPLLightWeightButton from './DPLLightWeightButton';
 
 const Login = (props) => {
     const {handleLogin} = useContext(AuthContext);
@@ -32,10 +35,23 @@ const Login = (props) => {
                     label="Password"
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                <Button type="submit">Login</Button>
+                <div style={styles.buttonGroup}>
+                <DPLLightWeightButton type="submit">Login</DPLLightWeightButton>
+                <Nav.Link as={Link} to='/register'>
+                    <DPLGreyButton>Create a new account</DPLGreyButton>
+                </Nav.Link>
+                </div>
             </Form>
         </Container>
     );
 };
+
+const styles = {
+    buttonGroup: {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+      },
+}
 
 export default Login;

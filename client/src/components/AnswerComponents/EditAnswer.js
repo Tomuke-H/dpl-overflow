@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useContext, useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import { AuthContext } from "../../providers/AuthProvider";
+import DPLButton from "../DPLButton";
 import MarkdownEditor from "../Markdown/MarkdownEditor";
 
 const EditAnswer = ({a, props}) => {
@@ -27,7 +28,6 @@ const EditAnswer = ({a, props}) => {
   return(
 
       <Container>
-      <h1>Edit Answer</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group>
         <MarkdownEditor
@@ -35,9 +35,9 @@ const EditAnswer = ({a, props}) => {
           setBody = {setBody}
           />
         </Form.Group>
-      <Button type = "submit" onClick={()=>setAnswer({body: body, question_id: props.match.params.id, user_id: user.id})}>
-          Update
-      </Button>
+      <DPLButton type = "submit" onClick={()=>setAnswer({body: body, question_id: props.match.params.id, user_id: user.id})}>
+          SUBMIT
+      </DPLButton>
       </Form>
       </Container>
 

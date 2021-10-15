@@ -1,7 +1,10 @@
 import React, { useContext, useState } from 'react'
-import { Form, Button, Container } from 'react-bootstrap';
+import { Form, Button, Container, Nav } from 'react-bootstrap';
+import { Link } from "react-router-dom"
 import { useHistory } from 'react-router';
 import { AuthContext } from '../providers/AuthProvider';
+import DPLGreyButton from './DPLGreyButton';
+import DPLLightWeightButton from './DPLLightWeightButton';
 
 const Register = () => {
     const {handleRegister} = useContext(AuthContext);
@@ -52,11 +55,24 @@ const Register = () => {
                     label="Confirm Password"
                     onChange={(e) => setPasswordConfirmation(e.target.value)}
                     />
-                <Button type="submit">Create Account</Button>
+                <div style={styles.buttonGroup}>
+                <DPLLightWeightButton type="submit">Register</DPLLightWeightButton>
+                <Nav.Link as={Link} to='/login'>
+                <DPLGreyButton type="submit">Login to existing account</DPLGreyButton>
+                </Nav.Link>
+                </div>
             </Form>
             </Container>
         </div>
     );
+}
+
+const styles = {
+    buttonGroup: {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+      },
 }
 
 export default Register;

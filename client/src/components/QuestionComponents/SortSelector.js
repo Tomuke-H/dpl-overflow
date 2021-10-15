@@ -16,14 +16,23 @@ const SortSelector = ({getQuestions, setShowTags, tagSearch, setTagSearch, tags,
   const [selectedValue, setSelectedValues] = useState([])
 
   const handleAddTag = (name) => {
-    setTagSearch([...tagSearch, name])
-    getQuestions('tag', 1, tagSearch)
+    if(tagSearch.length === 0){
+      getQuestions('tag', 1, name)
+      setTagSearch([...tagSearch, name])
+    } else {
+      setTagSearch([...tagSearch, name])
+      getQuestions('tag', 1, [...tagSearch, name])
+    }
   }
 
   const handleRemoveTag = (name) => {
+    if(tagSearch.filter(t=>t != name).length === 0){
+      getQuestions('all', 1)
+    } else {
+      getQuestions('tag', 1, tagSearch.filter(t => t != name))
+    }
     let filteredTags = tagSearch.filter(t => t !== name)
     setTagSearch(filteredTags)
-    getQuestions('tag', 1, tagSearch)
   }
   return (
     <div>

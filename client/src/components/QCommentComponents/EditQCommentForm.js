@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom"
 import { AuthContext } from "../../providers/AuthProvider"
 import axios from "axios";
 import { Form, Button } from "react-bootstrap";
+import DPLButton from "../DPLButton";
 
 const EditQCommentForm = ({updateQComments, question, qc, showEdit, setShowEdit}) => {
   const { user } = useContext(AuthContext)
@@ -33,7 +34,7 @@ const EditQCommentForm = ({updateQComments, question, qc, showEdit, setShowEdit}
         label="Body"
         onChange={(e) => setQCommentBody(e.target.value)}
         />
-        <Button type="submit">Update Comment</Button>
+        <DPLButton type="submit">SUBMIT</DPLButton>
       </Form>
     </div>
   )

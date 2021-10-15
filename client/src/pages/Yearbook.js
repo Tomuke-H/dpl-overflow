@@ -26,9 +26,9 @@ const Yearbook = () => {
     if (users) {
     return (
       <div>
-        {users.map((user)=>{
+        {users.map((user,ind)=>{
           return (
-            <NavLink as={Link} to={`/users/${user.id}/profile`}>
+            <NavLink as={Link} to={`/users/${user.id}/profile`} key={ind}>
               <User key={user.id} user={user}/>
             </NavLink>
           )

@@ -1,6 +1,6 @@
 class Api::AnswersController < ApplicationController
 
-before_action :set_question
+before_action :set_question, except: [:author]
 before_action :set_answer, only: [:show, :update, :destroy]
 
 
@@ -29,6 +29,10 @@ end
 
 def destroy
   render json: @answer.destroy
+end
+
+def author
+  render json: Answer.author(params[:id])
 end
 
 private

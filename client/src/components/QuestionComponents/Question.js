@@ -1,13 +1,13 @@
 import axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
-import { Button, Card, Container } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 import { AuthContext } from '../../providers/AuthProvider';
 import QuestionVote from '../QuestionVote';
 import MarkdownView from '../Markdown/MarkdownView';
 import EditQuestionForm from "./EditQuestionForm";
 import QComments from "../QCommentComponents/QComments";
 import NewQCommentForm from "../QCommentComponents/NewQCommentForm";
-
+import { day, time } from "../DayConverter/Dates";
 
 const Question = ({props, edited, setEdited, history, question}) => {
   const [qcomments, setQComments] = useState([])
@@ -111,7 +111,7 @@ const Question = ({props, edited, setEdited, history, question}) => {
         {/* <h1>{question.user_id}</h1> */}
         <h1 style={styles.questionHeader}>{question.title}</h1>
         <div style={styles.qdContainer}>
-        <h2 style={styles.questionDetails}>Asked: {question.created_at}</h2>
+        <h2 style={styles.questionDetails}>Asked: {day(question.created_at)} / {time(question.created_at)}</h2>
         {/* need some help getting the date to look different - either google or classmates but nOT RIGHT NOW */}
         <h2 style={styles.questionDetails}>Active: Today</h2>
         <h2 style={styles.questionDetails}>Viewed: {question.views} times</h2>
@@ -188,7 +188,6 @@ const styles = {
     display: "flex",
     alignItems: "center",
     letterSpacing: ".5px",
-    color: "#000000", 
   },
   addComment: {
     margin: "10px",

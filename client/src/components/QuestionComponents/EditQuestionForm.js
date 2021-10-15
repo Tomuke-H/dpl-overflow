@@ -64,7 +64,7 @@ const EditQuestionForm = ({props, setEdited, toggleEdit, setToggleEdit}) => {
       if(tagID.includes(Number(tag_id))===true){
         norm[tag_id].checked = true
         for(let i = 0; i < data.length; i++){
-          if(data[i].tag_id == tag_id){
+          if(data[i].tag_id === tag_id){
             norm[tag_id].id = data[i].id
           }
         }

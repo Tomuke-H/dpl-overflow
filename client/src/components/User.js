@@ -1,10 +1,6 @@
 import React, { useContext } from "react";
-import { useState, useEffect } from "react";
-import axios from 'axios';
-import { Button, Card, CardGroup, Container, Image, NavLink, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Container, Image} from "react-bootstrap";
 import { AuthContext } from "../providers/AuthProvider";
-import EditUser from "./EditUser";
 
 const User = ({user}) => {
  const { user: currentUser } = useContext(AuthContext)

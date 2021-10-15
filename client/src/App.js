@@ -22,7 +22,6 @@ import TagsPage from './pages/TagsPage';
 import UserProfile from './components/UserProfile';
 import Footer from './components/Footer';
 import OtherUserProfile from './components/OtherUserProfile';
-import MarkdownTest from './components/Markdown/MarkdownTest';
 import AboutUs from './pages/AboutUs';
 import WebFont from 'webfontloader';
 import { useEffect } from 'react';

@@ -59,6 +59,10 @@ class Api::QuestionsController < ApplicationController
     render json: Question.answer_count(params[:id])
   end
 
+  def author
+    render json: Question.author(params[:id])
+  end
+
   private
 
   def question_params

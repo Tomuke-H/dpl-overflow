@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
+import MarkdownView from "../Markdown/MarkdownView";
 
 const QuestionCard = ({question, history}) => {
   const handleRedirect = (id) => {
@@ -23,7 +24,7 @@ const QuestionCard = ({question, history}) => {
 
   const renderTags = () => {
     return tags.map((tag)=>{
-      return <Card.Text style={{marginRight: '10px', color: 'purple'}}>{tag.tag_name}</Card.Text>
+      return <Card.Text key={tag.id} style={{marginRight: '10px', color: 'purple'}}>{tag.tag_name}</Card.Text>
     })
   }
 
@@ -51,6 +52,12 @@ const QuestionCard = ({question, history}) => {
         </div>
         <Card.Text className="text-muted">Created {question.created_at}</Card.Text>
       </div>
+      <Card.Body>
+        <Card.Text as={"div"}>
+        <MarkdownView body = {question.body}/>
+        </Card.Text>
+      </Card.Body>
+      <Card.Footer className="text-muted">Created {question.created_at}</Card.Footer>
     </Card>
   )
 }

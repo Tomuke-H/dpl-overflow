@@ -2,19 +2,19 @@ import axios from "axios";
 import React, { useContext, useState } from "react"
 import { Button, Card } from "react-bootstrap";
 import { AuthContext } from "../../providers/AuthProvider";
-import EditCommentForm from "./EditCommentForm";
+import EditQCommentForm from "./EditQCommentForm";
 
-const Comment = ({comment, answer, deleteComment, updateComments}) => {
+const QComment = ({qcomment, question, deleteQComment, updateQComments}) => {
 const [showEdit, setShowEdit] = useState(false);
 const { user } = useContext(AuthContext);
 
 const showEditDelete = () => {
-  if (comment.user_id === user.id) {
+  if (qcomment.user_id === user.id) {
     return (
       <div style={styles.cdContainer}>
-      <p style={{margin: "10px"}} onClick={()=>deleteComment(comment.id)}>Delete Comment</p>  
+      <p style={{margin: "10px"}} onClick={()=>deleteQComment(qcomment.id)}>Delete Comment</p>  
       <p style={{margin: "10px"}} onClick={()=>setShowEdit(!showEdit)}> {!showEdit ? "Edit Comment" : "Cancel" }</p>  
-      {showEdit && <EditCommentForm updateComments={updateComments} c={comment} showEdit={showEdit} setShowEdit={setShowEdit} answer={answer}/>
+      {showEdit && <EditQCommentForm updateQComments={updateQComments} qc={qcomment} showEdit={showEdit} setShowEdit={setShowEdit} question={question}/>
       }
       </div>
     )
@@ -24,8 +24,8 @@ const showEditDelete = () => {
 
   return(
     <div style={styles.comment}>
-      <p>{comment.body}</p>
-      <p>{comment.created_at}</p>
+      <p>{qcomment.body}</p>
+      <p>{qcomment.created_at}</p>
       {showEditDelete()}
     </div>
   )
@@ -49,4 +49,4 @@ const styles = {
 }
 
 
-export default Comment
+export default QComment

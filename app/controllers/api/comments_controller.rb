@@ -1,5 +1,5 @@
 class Api::CommentsController < ApplicationController
-  before_action :set_answer
+  before_action :set_answer, except: [:author]
   before_action :set_comment, only: [:show, :update, :destroy]
 
 
@@ -33,6 +33,10 @@ class Api::CommentsController < ApplicationController
   def destroy
     @comment.destroy
     render json: @comment
+  end
+
+  def author
+    render json: Comment.author(params[:id])
   end
 
   private

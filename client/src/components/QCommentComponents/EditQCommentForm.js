@@ -1,36 +1,37 @@
 import React, { useContext, useState } from "react";
+import { useHistory } from "react-router-dom"
 import { AuthContext } from "../../providers/AuthProvider"
 import axios from "axios";
 import { Form, Button } from "react-bootstrap";
 
-const EditCommentForm = ({updateComments, answer, c, showEdit, setShowEdit}) => {
+const EditQCommentForm = ({updateQComments, question, qc, showEdit, setShowEdit}) => {
   const { user } = useContext(AuthContext)
-  const [commentBody, setCommentBody] = useState(c.body)
+  const [qcommentBody, setQCommentBody] = useState(qc.body)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    let comment = {
-      id: c.id,
-      body: commentBody,
+    let qcomment = {
+      id: qc.id,
+      body: qcommentBody,
       user_id: user.id,
-      answer_id: answer.id
+      question_id: question.id
     }
     try {
-      let res = await axios.put(`/api/answers/${answer.id}/comments/${c.id}`, comment)
+      let res = await axios.put(`/api/questions/${question.id}/qcomments/${qc.id}`, qcomment)
       // console.log(res);
       setShowEdit(!showEdit);
-      updateComments(res.data)
+      updateQComments(res.data)
     } catch(err) {
-      console.log("Edit Comment Submission Error", err)
+      console.log("Edit QComment Submission Error", err)
     }
   }
   return (
     <div>
       <Form onSubmit={handleSubmit}>
         <Form.Control
-        value={commentBody}
+        value={qcommentBody}
         label="Body"
-        onChange={(e) => setCommentBody(e.target.value)}
+        onChange={(e) => setQCommentBody(e.target.value)}
         />
         <Button type="submit">Update Comment</Button>
       </Form>
@@ -39,4 +40,4 @@ const EditCommentForm = ({updateComments, answer, c, showEdit, setShowEdit}) => 
 
 }
 
-export default EditCommentForm
+export default EditQCommentForm

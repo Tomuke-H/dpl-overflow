@@ -1,15 +1,17 @@
 import axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
-import { Card, Button } from 'react-bootstrap'
 import Comments from '../CommentComponents/Comments'
 import { AuthContext } from '../../providers/AuthProvider'
 import EditAnswer from './EditAnswer'
+import AnswerVote from './AnswerVote'
+import MarkdownView from '../Markdown/MarkdownView'
+import NewCommentForm from "../CommentComponents/NewCommentForm"
 
 const Answer = ({answer, props, deleteAnswer}) => {
   const [comments, setComments] = useState([])
   const [showForm, setShowForm] = useState(false)
   const { user } = useContext(AuthContext)
-
+  const [showCommentForm, setShowCommentForm] = useState(false)
 
   useEffect(() => {
     getComments()
@@ -18,22 +20,18 @@ const Answer = ({answer, props, deleteAnswer}) => {
   const getComments = async () => {
     try{
       let res = await axios.get(`/api/answers/${answer.id}/comments/`)
-      console.log("comments:", res.data)
       setComments(res.data)
     } catch(error) {
-      alert("error getting comments, but that sounds like a YOU problem")
+      console.log("getComments error", error)
     }
   };
 
   const addComment = async (e, comment) => {
-    // e.preventDefault()
-    console.log(comment)
     try {
       await axios.post(`/api/answers/${answer.id}/comments/`, comment)
       setComments([...comments, comment])
     } catch(err) {
-      console.log(err)
-      alert("somethin ain't right...")
+      console.log("addComment error", err)
     }
   }
 
@@ -53,6 +51,18 @@ const Answer = ({answer, props, deleteAnswer}) => {
     }
   }
 
+  const showEditDelete = () => {
+    if (answer.user_id === user.id) {
+      return (        
+        <div style={styles.adContainer}>
+        <p style={{margin: "10px"}} onClick={()=>setShowForm(!showForm)}>{showForm ? "Cancel" : "Edit Answer"}</p>
+        <p style={{margin: "10px"}} onClick={()=>deleteAnswer(answer.id)}>Delete Answer</p>
+        {showForm && <EditAnswer a = {answer} props = {props}/>}
+        </div>
+      )
+    }
+  }
+
   const renderAnswer = () => {
     if(!answer){
       return(
@@ -60,50 +70,73 @@ const Answer = ({answer, props, deleteAnswer}) => {
       )
     }
     return(
-      <Card>
-        <Card.Header>{answer.user_id}</Card.Header>
-        <Card.Subtitle className="mb-2 text-muted">Created {answer.created_at}</Card.Subtitle>
-        <Card.Body>
-          <Card.Text>{answer.body}</Card.Text>
-        </Card.Body>
-      </Card>
+      <div style={styles.theMightyDiv}>
+        <div style={styles.likesContainer}>
+          <AnswerVote answer={answer}/>
+        </div>
+        <div style={styles.answerContainer}>
+          <div style={styles.answerDetails}><MarkdownView body = {answer.body}/></div>
+          {showEditDelete()}
+        <p style={styles.addComment} onClick={()=>setShowCommentForm(!showCommentForm)}>{showCommentForm ? "Cancel" : "Add Comment"}</p>
+        {showCommentForm && <NewCommentForm answer={answer} addComment={addComment}/>}
+        </div>
+      </div>
     )
   }
 
-  const showEditForm = () => {
-  return (<Button onClick={()=>setShowForm(!showForm)}>Edit</Button>
-  )}
 
-
-  const userEdit = () => {
-    if (answer.user_id === user.id) {
-      return showEditForm()
-    } else {
-      console.log("not your answer")
-    }
-  }
-
-  const userDelete = () => {
-   if (answer.user_id === user.id) {
-     return showDeleteButton() 
-   } else {
-     console.log("not your answer")
-   }
-  }
-
-  const showDeleteButton = () => {
- return (<Button type="submit" onClick={()=>deleteAnswer(answer.id)}>Delete</Button>)
-  }
+ 
 
   return (
     <div>
       {renderAnswer()}
-      {userEdit()}
-      {userDelete()}
-      {showForm && <EditAnswer a = {answer} props = {props}/>}
       <Comments addComment={addComment} updateComments={updateComments} deleteComment={deleteComment} comments={comments} setComments={setComments} answer={answer}/>
     </div>
   )
+}
+
+const styles = {
+  theMightyDiv: {
+    padding: "28px",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    borderTop: "1px solid rgba(0, 0, 0, 0.3)",
+  },
+  likesContainer: {
+    marginRight: "66px",
+    padding: "0px"
+  },
+  answerDetails: {
+    width: "850px",
+    marginRight: "10px",
+    fontSize: "16px",
+    fontFamily: "Inter, sans-serif",
+    fontWeight: "500",
+    display: "flex",
+    alignItems: "left",
+    letterSpacing: ".5px",
+    color: "#000000",
+  },
+  adContainer: {
+    display: "flex",
+    flexDirection: "row",
+    fontSize: "14px",
+    fontFamily: "Inter, sans-serif",
+    fontWeight: "500",
+    marginTop: "30px",
+  },
+  answerContainer: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  addComment: {
+    margin: "10px",
+    fontSize: "14px",
+    fontFamily: "Inter, sans-serif",
+    fontWeight: "500",
+    color: "#757575"
+  }
 }
 
 export default Answer;

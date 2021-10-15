@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useContext, useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import { AuthContext } from "../../providers/AuthProvider";
+import MarkdownEditor from "../Markdown/MarkdownEditor";
 
 const NewAnswer = ({props}) => {
   const [body, setBody] = useState("")
@@ -18,11 +19,11 @@ const NewAnswer = ({props}) => {
     }
     // e.preventDefault()
     try {
-      console.log(body)
+      // console.log(body)
       let res = await axios.post(`/api/questions/${props.match.params.id}/answers`, answer)
-      console.log(res)
+      // console.log(res)
     } catch (err) {
-      console.log(err)
+      console.log("New Answer Submission Error", err)
     };
   }
 
@@ -30,14 +31,14 @@ const NewAnswer = ({props}) => {
   return(
 
       <Container>
-      <h1>New Answer</h1>
+      <h1 style={styles.yourAnswer}>Your Answer</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group>
         <Form.Label>Answer...</Form.Label>
-        <Form.Control 
-        placeholder="Enter Answer" 
-        onChange={(e) => {
-          setBody(e.target.value)}}/>
+        <MarkdownEditor
+          body = {body}
+          setBody = {setBody}
+          />
         </Form.Group>
       <Button type = "submit">
           Add
@@ -46,5 +47,15 @@ const NewAnswer = ({props}) => {
       </Container>
 
   )
+}
+
+const styles = {
+  yourAnswer: {
+    fontFamily: "Inter",
+    fontWeight: "500",
+    fontSize: "20px",
+    letterSpacing: "0.5px",
+  }
+
 }
 export default NewAnswer;

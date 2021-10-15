@@ -1,5 +1,6 @@
 class Question < ApplicationRecord
   belongs_to :user
+  has_many :qcomments, dependent: :destroy
   has_many :answers, dependent: :destroy
   has_many :question_tags, dependent: :destroy
   has_many :tags, through: :question_tags
@@ -30,6 +31,14 @@ def self.unanswered_questions
     .from('questions AS q')
     .joins('LEFT JOIN answers AS a ON a.question_id = q.id')
     .where('q.body ILIKE ANY (array[:body]) OR q.title ILIKE ANY (array[:title])', body: arr, title: arr)
+    .order('q.views DESC')
+    .group('q.id')
+  end
+
+  def self.popular
+    select('DISTINCT q.id, q.views, q.likes, q.title, q.body, count(a.id) AS total_answers, q.created_at')
+    .from('questions AS q')
+    .joins('LEFT JOIN answers AS a ON a.question_id = q.id')
     .order('q.views DESC')
     .group('q.id')
   end

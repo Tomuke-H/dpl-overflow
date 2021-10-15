@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   has_many :questions, dependent: :destroy
   has_many :answers, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :qcomments, dependent: :destroy
+
 
   def self.leaderboard
     select('name, points, id, cohort')
@@ -16,6 +18,7 @@ class User < ActiveRecord::Base
     .from('users')
     .where('cohort = ?', cohort)
     .order('points DESC')
+    .group('id')
   end
 
   def self.cohort_yearbook(cohort)

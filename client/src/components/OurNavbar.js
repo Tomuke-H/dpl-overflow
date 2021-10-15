@@ -12,7 +12,7 @@ const OurNavbar = (props) => {
     if(user){
       return (
         <>
-        <Nav.Link as={Link} to='new_question'>
+        <Nav.Link as={Link} to={'/new_question'}>
           <Button>Ask a Question</Button>
         </Nav.Link>
 
@@ -63,7 +63,7 @@ const OurNavbar = (props) => {
 
   return(
     <span>
-    <Navbar collapseOnSelect style={{borderBottom: 'solid 2px black'}}>
+    <Navbar bg="white" fixed="top" collapseOnSelect style={{borderBottom: 'solid 2px black'}}>
       <Nav.Link as={Link} to='/'>
         <Container>
             <Image src={Beaker} />

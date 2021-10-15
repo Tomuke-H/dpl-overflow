@@ -2,9 +2,10 @@ import axios from "axios";
 import React, { useContext, useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import { AuthContext } from "../../providers/AuthProvider";
+import MarkdownEditor from "../Markdown/MarkdownEditor";
 
 const EditAnswer = ({a, props}) => {
-  const [body, setBody] = useState("")
+  const [body, setBody] = useState(a.body)
   const [answer, setAnswer] = useState([])
   const { user } = useContext(AuthContext)
 
@@ -12,13 +13,13 @@ const EditAnswer = ({a, props}) => {
 
   const handleSubmit = async (e) =>{
     try {
-      console.log("body:", body)
-      console.log("answer:", answer)
+      // console.log("body:", body)
+      // console.log("answer:", answer)
       let res = await axios.put(`/api/questions/${props.match.params.id}/answers/${a.id}`, answer)
       setBody(res.data.body)
-      console.log(res)
+      // console.log(res)
     } catch (err) {
-      console.log(err)
+      console.log("Edit Answer Submission Error", err)
     };
   }
 
@@ -30,10 +31,10 @@ const EditAnswer = ({a, props}) => {
       <Form onSubmit={handleSubmit}>
         <Form.Group>
         <Form.Label>edit</Form.Label>
-        <Form.Control 
-        placeholder="Edit Answer"
-        onChange={(e) => {
-          setBody(e.target.value)}}/>
+        <MarkdownEditor
+          body = {body}
+          setBody = {setBody}
+          />
         </Form.Group>
       <Button type = "submit" onClick={()=>setAnswer({body: body, question_id: props.match.params.id, user_id: user.id})}>
           Update

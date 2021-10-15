@@ -22,6 +22,8 @@ import TagsPage from './pages/TagsPage';
 import UserProfile from './components/UserProfile';
 import Footer from './components/Footer';
 import OtherUserProfile from './components/OtherUserProfile';
+import MarkdownTest from './components/Markdown/MarkdownTest';
+import AboutUs from './pages/AboutUs';
 
 function App() {
 
@@ -47,13 +49,17 @@ function App() {
     return(
       <>
         <OurNavbar /> 
+        <br />
+        <br />
+        <br />
+        <br />
         <Switch>
             <Route exact path='/' component={Home}/>
             <Route exact path='/test_page' component={TestPage}/>
             <ProtectedRoute exact path='/tags' component={TagsPage}/>
+            <ProtectedRoute exact path='/about' component={AboutUs}/>
             <Route exact path='/login' component={Login}/>
             <Route exact path='/register' component={Register}/> 
-            {/* <ProtectedRoute exact path='/user' component={UserProfile}/> */}
             <ProtectedRoute exact path='/answers' component={Answers}/>
             <ProtectedRoute exact path='/answers/:id' component={Answer}/>
             <ProtectedRoute exact path='/answers/:id/edit' component={EditAnswer}/>
@@ -71,8 +77,6 @@ function App() {
             {renderProfiles()}
             <Route component={()=><p>react 404 path not found</p>} />
         </Switch>
-        <br />
-        <br />
         <Footer />
     </>
     )

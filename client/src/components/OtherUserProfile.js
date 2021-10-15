@@ -28,36 +28,36 @@ export default function OtherUserProfile(props) {
 
   const renderUser = () => {
     return (
-      <>
-      <div>
-        <Image style={styles.profilePic} src={user.image} />
-        <p style={styles.name}>{user.name}</p>
-      </div>
-      <div style={styles.optionsContainer}>
-        <Button onClick={()=>{setShowForm(false)}}style={styles.profile}>Profile</Button>
-        <Button onClick={()=>{setShowForm(false)}}style={styles.activity}>Activity</Button>
-        <Button onClick={()=>{setShowForm(!showForm)}}style={styles.settings}>Settings</Button>
-      </div>
-      <div>
-        <p style={styles.stats}>STATS</p>
-        <Card>
-          <Card.Body>Votes: {user.votes}</Card.Body>
-          <Card.Body>Answers: {user.answer_count}</Card.Body>
-          <Card.Body>Views: {user.views}</Card.Body>
-          <Card.Body>Questions: {user.question_count}</Card.Body>
-        </Card>
-      </div>
-        
+      <div style={{display: 'flex', flexDirection: 'column'}}>
         <div>
-        <p style={styles.about}>ABOUT</p>
+          <Image style={styles.profilePic} src={user.image} />
+          <p style={styles.name}>{user.name}</p>
+        </div>
+        <div style={styles.optionsContainer}>
+          <Button onClick={()=>{setShowForm(false)}}style={styles.profile}>Profile</Button>
+          <Button onClick={()=>{setShowForm(false)}}style={styles.activity}>Activity</Button>
+          <Button onClick={()=>{setShowForm(!showForm)}}style={styles.settings}>Settings</Button>
+        </div>
+        <div>
+          <p style={styles.stats}>STATS</p>
+          <Card>
+            <Card.Body>Votes: {user.votes}</Card.Body>
+            <Card.Body>Answers: {user.answer_count}</Card.Body>
+            <Card.Body>Views: {user.views}</Card.Body>
+            <Card.Body>Questions: {user.question_count}</Card.Body>
+          </Card>
+        </div>
+          
+          <div>
+          <p style={styles.about}>ABOUT</p>
+        </div>
       </div>
-      </>
     )
   }
 
 
   return (
-    <div>
+    <div style={{display: 'flex'}}>
         {renderUser()}
     </div>
   )

@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider"
 import { Form, Button } from "react-bootstrap";
+import DPLButton from "../DPLButton";
 
 
 
@@ -29,7 +30,7 @@ const handleSubmit = (e, qcomment) => {
         onChange={(e) => setQCommentBody(e.target.value)}
         placeholder={"Add a comment!"}
         />
-        <Button type="submit">Submit Comment</Button>
+        <DPLButton type="submit">SUBMIT</DPLButton>
       </Form>
     </div>
   )

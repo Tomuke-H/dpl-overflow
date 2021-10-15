@@ -3,6 +3,9 @@ import { Container, Image, Nav, Navbar, Button, NavDropdown } from 'react-bootst
 import { Link, useHistory, withRouter } from 'react-router-dom'
 import { AuthContext } from '../providers/AuthProvider'
 import Beaker from '../../src/icons/Beaker-black-60.png'
+import DPLButton from './DPLButton'
+import DPLGetStarted from './DPLGetStartedButton'
+
 
 const OurNavbar = (props) => {
   const { user, handleLogout} = useContext(AuthContext)
@@ -13,7 +16,7 @@ const OurNavbar = (props) => {
       return (
         <>
         <Nav.Link as={Link} to={'/new_question'}>
-          <Button>Ask a Question</Button>
+          <DPLButton>ASK A QUESTION</DPLButton>
         </Nav.Link>
 
         {/* <Nav.Link as={Link} to={`/users/${user.id}`}>
@@ -48,14 +51,14 @@ const OurNavbar = (props) => {
     return (
       <>
         <Nav.Link as={Link} to='/register'>
-          <Container>
-            Get Started
-          </Container>
+          <DPLGetStarted>
+            GET STARTED
+          </DPLGetStarted>
         </Nav.Link>
         <Nav.Link as={Link} to='/login'>
-          <Container>
-            Login
-          </Container>
+          <DPLButton>
+            LOGIN
+          </DPLButton>
         </Nav.Link>
       </>
     )

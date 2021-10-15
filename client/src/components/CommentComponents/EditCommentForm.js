@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider"
 import axios from "axios";
 import { Form, Button } from "react-bootstrap";
+import DPLButton from "../DPLButton";
 
 const EditCommentForm = ({updateComments, answer, c, showEdit, setShowEdit}) => {
   const { user } = useContext(AuthContext)
@@ -32,7 +33,9 @@ const EditCommentForm = ({updateComments, answer, c, showEdit, setShowEdit}) => 
         label="Body"
         onChange={(e) => setCommentBody(e.target.value)}
         />
-        <Button type="submit">Update Comment</Button>
+        <DPLButton type="submit">
+          SUBMIT
+        </DPLButton>
       </Form>
     </div>
   )

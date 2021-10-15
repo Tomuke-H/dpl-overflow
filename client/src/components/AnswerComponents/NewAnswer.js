@@ -21,7 +21,7 @@ const NewAnswer = ({props}) => {
     try {
       // console.log(body)
       let res = await axios.post(`/api/questions/${props.match.params.id}/answers`, answer)
-      // console.log(res)
+      console.log(res)
     } catch (err) {
       console.log("New Answer Submission Error", err)
     };

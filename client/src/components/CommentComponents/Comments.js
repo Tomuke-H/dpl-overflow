@@ -1,13 +1,11 @@
-import React, { useContext } from "react";
-import { AuthContext } from "../../providers/AuthProvider";
+import React from "react";
 import Comment from "./Comment"
-import { Card, Container } from 'react-bootstrap'
 import CommentAuthor from "./CommentAuthor";
 
 
 // I anticipate that props passed into this file should/will be answer and user
 const Comments = ({answer, comments, addComment, updateComments, deleteComment}) => {
-  const {user} = useContext(AuthContext)
+  // const {user} = useContext(AuthContext)
   // const history = useHistory();
 
 

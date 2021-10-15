@@ -1,9 +1,6 @@
 import axios from "axios";
-import React, { useContext, useEffect, useReducer } from "react";
-import { Button } from "react-bootstrap";
+import React, { useReducer } from "react";
 import { AiFillCaretUp, AiFillCaretDown } from "react-icons/ai"
-import { AuthContext } from "../../providers/AuthProvider";
-
 
 const AnswerVote = ({answer}) => {
   // const {user} = useContext(AuthContext)

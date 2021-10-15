@@ -19,6 +19,7 @@ export default function OtherUserProfile(props) {
     try {
     let res = await axios.get (`/api/users_profile/${id}`)
     setUser(res.data.users[0])
+    console.log("user:", user)
     } catch (err) {
       console.log(err)
     }
@@ -37,9 +38,14 @@ export default function OtherUserProfile(props) {
         <Button onClick={()=>{setShowForm(false)}}style={styles.activity}>Activity</Button>
         <Button onClick={()=>{setShowForm(!showForm)}}style={styles.settings}>Settings</Button>
       </div>
-      <div style={styles.stats}>
-        <p>STATS</p>
-        <Card></Card>
+      <div>
+        <p style={styles.stats}>STATS</p>
+        <Card>
+          <Card.Body>Votes: {user.votes}</Card.Body>
+          <Card.Body>Answers: {user.answer_count}</Card.Body>
+          <Card.Body>Views: {user.views}</Card.Body>
+          <Card.Body>Questions: {user.question_count}</Card.Body>
+        </Card>
       </div>
         
         <div>

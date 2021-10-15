@@ -7,7 +7,6 @@ import User from '../components/User';
 
 const Yearbook = () => {
   const [users, setUsers] = useState([])
-  const [cohort, setCohort] = useState("")
 
   const getAllUsers = async () => {
     try {
@@ -39,7 +38,6 @@ const Yearbook = () => {
   }
 
   const getCohortUsers = async (cohort) => {
-    setCohort(cohort)
     try{
       let res = await axios.get(`/api/cohort_yearbook?cohort=${cohort}`)
       setUsers(res.data.users)

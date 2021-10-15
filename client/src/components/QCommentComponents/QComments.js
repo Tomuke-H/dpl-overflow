@@ -1,14 +1,12 @@
-import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../providers/AuthProvider";
+import React from "react";
+// import { AuthContext } from "../../providers/AuthProvider";
 import QComment from "./QComment"
-import { Card, Container } from 'react-bootstrap'
 import QCommentAuthor from "./QCommentAuthor";
 
 
 // I anticipate that props passed into this file should/will be answer and user
 const QComments = ({question, qcomments, setQComments, addQComment, updateQComments, deleteQComment}) => {
-  const {user} = useContext(AuthContext)
+  // const {user} = useContext(AuthContext)
   // const history = useHistory();
 
 

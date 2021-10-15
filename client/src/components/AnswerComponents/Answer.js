@@ -20,7 +20,6 @@ const Answer = ({answer, props, deleteAnswer}) => {
   const getComments = async () => {
     try{
       let res = await axios.get(`/api/answers/${answer.id}/comments/`)
-      // console.log("comments:", res.data)
       setComments(res.data)
     } catch(error) {
       console.log("getComments error", error)
@@ -28,8 +27,6 @@ const Answer = ({answer, props, deleteAnswer}) => {
   };
 
   const addComment = async (e, comment) => {
-    // e.preventDefault()
-    // console.log(comment)
     try {
       await axios.post(`/api/answers/${answer.id}/comments/`, comment)
       setComments([...comments, comment])

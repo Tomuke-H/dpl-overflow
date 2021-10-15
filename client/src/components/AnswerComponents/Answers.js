@@ -87,6 +87,7 @@ useEffect(()=>{
 const deleteAnswer = async (id) => {
   try {
     let res = await axios.delete(`/api/questions/${props.match.params.id}/answers/${id}`)
+    console.log(res)
     let newAnswers = answers.filter((a) => a.id !== id)
     setAnswers(newAnswers)
   } catch (err) {

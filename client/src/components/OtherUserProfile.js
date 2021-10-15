@@ -1,21 +1,25 @@
 import axios from "axios";
 import React, {  useEffect, useState } from "react";
-import { Button, Image } from "react-bootstrap";
+import { Button, Card, Image } from "react-bootstrap";
 import EditUser from "./EditUser";
 
 
-export default function OtherUserProfile() {
+export default function OtherUserProfile(props) {
+  const [user, setUser] = useState({})
   const [showForm, setShowForm] = useState(false)
-  const [user, setUser] = useState([])
 
   useEffect(()=>{
     getUser()
   },[])
 
-  const getUser = async (id) => {
+  const Url = props.location.pathname.split("/") 
+  const id = Url[2]
+
+
+  const getUser = async () => {
     try {
-    let res = await axios.get (`/api/users/${id}/profile`)
-    setUser(res.data.user)
+    let res = await axios.get (`/api/users_profile/${id}`)
+    setUser(res.data.users[0])
     console.log("user:", user)
     } catch (err) {
       console.log(err)
@@ -25,28 +29,36 @@ export default function OtherUserProfile() {
 
   const renderUser = () => {
     return (
-      <>
-      <div>
-        <Image style={styles.profilePic} src={user.image} />
-        <p style={styles.name}>{user.name}</p>
+      <div style={{display: 'flex', flexDirection: 'column'}}>
+        <div>
+          <Image style={styles.profilePic} src={user.image} />
+          <p style={styles.name}>{user.name}</p>
+        </div>
+        <div style={styles.optionsContainer}>
+          <Button onClick={()=>{setShowForm(false)}}style={styles.profile}>Profile</Button>
+          <Button onClick={()=>{setShowForm(false)}}style={styles.activity}>Activity</Button>
+          <Button onClick={()=>{setShowForm(!showForm)}}style={styles.settings}>Settings</Button>
+        </div>
+        <div>
+          <p style={styles.stats}>STATS</p>
+          <Card>
+            <Card.Body>Votes: {user.votes}</Card.Body>
+            <Card.Body>Answers: {user.answer_count}</Card.Body>
+            <Card.Body>Views: {user.views}</Card.Body>
+            <Card.Body>Questions: {user.question_count}</Card.Body>
+          </Card>
+        </div>
+          
+          <div>
+          <p style={styles.about}>ABOUT</p>
+        </div>
       </div>
-      <div style={styles.optionsContainer}>
-        <Button onClick={()=>{setShowForm(false)}}style={styles.profile}>Profile</Button>
-        <Button onClick={()=>{setShowForm(false)}}style={styles.activity}>Activity</Button>
-        <Button onClick={()=>{setShowForm(!showForm)}}style={styles.settings}>Settings</Button>
-        {showForm && <EditUser />}
-      </div>
-      <div>
-        <p style={styles.stats}>OTHER USERRRRRRRRRR</p>
-        <p style={styles.about}>ABOUT</p>
-      </div>
-      </>
     )
   }
 
 
   return (
-    <div>
+    <div style={{display: 'flex'}}>
         {renderUser()}
     </div>
   )

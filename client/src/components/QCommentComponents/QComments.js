@@ -1,12 +1,11 @@
-import React, { useContext} from "react";
-import { AuthContext } from "../../providers/AuthProvider";
+import React from "react";
 import QComment from "./QComment"
 import QCommentAuthor from "./QCommentAuthor";
 
 
 // I anticipate that props passed into this file should/will be answer and user
 const QComments = ({question, qcomments, setQComments, addQComment, updateQComments, deleteQComment}) => {
-  const {user} = useContext(AuthContext)
+  // const {user} = useContext(AuthContext)
   // const history = useHistory();
 
 

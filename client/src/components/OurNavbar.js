@@ -47,19 +47,48 @@ const OurNavbar = (props) => {
     };
     return (
       <>
+        <Nav.Link as={Link} to='/register'>
+          <Container>
+            Get Started
+          </Container>
+        </Nav.Link>
         <Nav.Link as={Link} to='/login'>
           <Container>
             Login
           </Container>
         </Nav.Link>
-        <Nav.Link as={Link} to='/register'>
-          <Container>
-            Register
-          </Container>
-        </Nav.Link>
       </>
     )
   };
+
+  const leftNavItems = () => {
+    if(user){
+      return (
+        <>
+          <Nav.Link as={Link} to='/Dashboard'>
+            <Container>
+                Questions
+            </Container>
+          </Nav.Link>
+          <Nav.Link as={Link} to='/tags'>
+            <Container>
+                Tags
+            </Container>
+          </Nav.Link>
+          <Nav.Link as={Link} to='/yearbook'>
+            <Container>
+                Yearbook
+            </Container>
+          </Nav.Link>
+          <Nav.Link as={Link} to='/leaderboard'>
+            <Container>
+                Leaderboard
+            </Container>
+          </Nav.Link>
+        </>
+      )
+    }
+  }
 
   return(
     <span>
@@ -69,26 +98,7 @@ const OurNavbar = (props) => {
             <Image src={Beaker} />
         </Container>
       </Nav.Link >
-      <Nav.Link as={Link} to='/Dashboard'>
-        <Container>
-            Questions
-        </Container>
-      </Nav.Link>
-      <Nav.Link as={Link} to='/tags'>
-        <Container>
-            Tags
-        </Container>
-      </Nav.Link>
-      <Nav.Link as={Link} to='/yearbook'>
-        <Container>
-            Yearbook
-        </Container>
-      </Nav.Link>
-      <Nav.Link as={Link} to='/leaderboard'>
-        <Container>
-            Leaderboard
-        </Container>
-      </Nav.Link>
+      <Navbar.Collapse className="justify-content-start">{leftNavItems()}</Navbar.Collapse>
       <Navbar.Collapse className="justify-content-end">{rightNavItems()}</Navbar.Collapse>
     </Navbar>
     </span>

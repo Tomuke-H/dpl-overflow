@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react"
 import axios from "axios"
 
-const AnswerAuthor = ({id}) => {
+const AnswerAuthor = ({answer}) => {
   const [answerAuthor, setAnswerAuthor] = useState("")
+  console.log("ID HERE", answer.id)
 
 useEffect(() => {
   getAnswerAuthor()
@@ -10,7 +11,7 @@ useEffect(() => {
 
 const getAnswerAuthor = async () => {
   try{
-    let res = await axios.get(`/api/answer_author/${id}`)
+    let res = await axios.get(`/api/answer_author/${answer.id}`)
     console.log("answerAuthor:", res.data[0].name)
     setAnswerAuthor(res.data[0].name)
   } catch(error) {

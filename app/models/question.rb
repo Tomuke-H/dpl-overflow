@@ -50,4 +50,11 @@ def self.unanswered_questions
     .where('q.id = ?', id)
   end
 
+  def self.author(id)
+    select('u.name')
+    .from('users AS u')
+    .joins('INNER JOIN questions AS q ON u.id = q.user_id')
+    .where('q.id = ?', id)
+  end
+
 end

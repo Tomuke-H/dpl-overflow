@@ -1,5 +1,4 @@
 import React from "react";
-// import { AuthContext } from "../../providers/AuthProvider";
 import QComment from "./QComment"
 import QCommentAuthor from "./QCommentAuthor";
 

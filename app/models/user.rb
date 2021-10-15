@@ -8,13 +8,13 @@ class User < ActiveRecord::Base
 
 
   def self.leaderboard
-    select('name, points, id, cohort')
+    select('name, points, id, cohort, image')
     .from('users')
     .order('points DESC')
   end
 
   def self.cohort_leaderboard(cohort)
-    select('name, points, id, cohort')
+    select('name, points, id, cohort, image')
     .from('users')
     .where('cohort = ?', cohort)
     .order('points DESC')

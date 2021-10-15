@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext} from "react";
+import { AuthContext } from "../../providers/AuthProvider";
 import Comment from "./Comment"
 import CommentAuthor from "./CommentAuthor";
 

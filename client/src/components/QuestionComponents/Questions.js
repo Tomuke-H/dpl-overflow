@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import axios from 'axios'
 import QuestionCard from "./QuestionCard";
-import { Container, Button, Form } from "react-bootstrap";
+import { Container, Form } from "react-bootstrap";
 import SortSelector from "./SortSelector";
 import BoxLoader from "../BoxLoader";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -14,7 +14,6 @@ const Questions = ({history}) => {
   const [tags, setTags] = useState([])
   const [tagSearch, setTagSearch] = useState([])
   const [sortBy, setSortBy] = useState('all')
-  const [error, setError] = useState(null)
   const [showTags, setShowTags] = useState(false)
   const [search, setSearch] = useState('')
 
@@ -117,13 +116,14 @@ const Questions = ({history}) => {
 
   return (
     <Container style={{marginTop: '30px'}}>
-      <h2>{JSON.stringify(tagSearch)}</h2>
+      {/* <h2>{JSON.stringify(tagSearch)}</h2> */}
       <div style={{display: 'flex', justifyContent: 'space-between'}}>
-        <div style={{width: '500px'}}>
+        <div>
           <Form.Control value={search} onChange={(e) => getQuestions('search', 1, e.target.value)}/>
         </div>
         <div>
           <SortSelector 
+            sortBy={sortBy}
             tagSearch={tagSearch} 
             setTagSearch={setTagSearch}
             showTags={showTags} 
@@ -133,7 +133,7 @@ const Questions = ({history}) => {
           />
         </div>
       </div>
-      <div style={{maxWidth: '1000px'}}>
+      <div>
         <InfiniteScroll
           dataLength={questions.length}
           next={(e)=>getQuestions(sortBy, (page + 1), tagSearch)}

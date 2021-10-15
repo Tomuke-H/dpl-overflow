@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react"
 import { AuthContext } from "../../providers/AuthProvider";
+import { shorthand } from "../DayConverter/Dates";
 import EditCommentForm from "./EditCommentForm";
 
 const Comment = ({comment, answer, deleteComment, updateComments}) => {
@@ -23,7 +24,7 @@ const showEditDelete = () => {
   return(
     <div style={styles.comment}>
       <p>{comment.body}</p>
-      <p>{comment.created_at}</p>
+      <p>{shorthand(comment.created_at)}</p>
       {showEditDelete()}
     </div>
   )

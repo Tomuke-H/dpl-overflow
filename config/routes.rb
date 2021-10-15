@@ -27,6 +27,8 @@ Rails.application.routes.draw do
     get 'users_profile/:id', to: 'users#user_profile'
     get 'answer_count/:id', to: 'questions#answer_count'
     get 'tag/:key', to: 'tags#tag_search'
+    get 'question_author/:id', to: 'questions#author'
+    get 'answer_author/:id', to: 'answers#author'
     get 'comment_author/:id', to: 'comments#author'
     get 'qcomment_author/:id', to: 'qcomments#author'
     resources :tags

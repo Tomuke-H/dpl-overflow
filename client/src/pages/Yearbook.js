@@ -27,9 +27,9 @@ const Yearbook = () => {
     if (users) {
     return (
       <div style={{display:"flex", flexWrap: 'wrap', margin: '32px'}}>
-        {users.map((user)=>{
+        {users.map((user,ind)=>{
           return (
-            <NavLink as={Link} to={`/users/${user.id}/profile`}>
+            <NavLink as={Link} to={`/users/${user.id}/profile`} key={ind}>
               <User key={user.id} user={user}/>
             </NavLink>
           )

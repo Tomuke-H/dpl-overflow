@@ -4,6 +4,7 @@ import { AuthContext } from '../providers/AuthProvider';
 import { Button, Container, Form } from 'react-bootstrap';
 import { Image } from "cloudinary-react";
 import axios from 'axios';
+import DPLButton from './DPLButton';
 
 
 const EditUser = (id) => {
@@ -125,7 +126,7 @@ const EditUser = (id) => {
                     label="About Me"
                     onChange={(e) => setAbout_me(e.target.value)}
                     />
-                <Button type="submit">Update Profile</Button>
+                <DPLButton type="submit">Update Profile</DPLButton>
             </Form>
                 <br />
                 <br />
@@ -143,12 +144,12 @@ const EditUser = (id) => {
                     label="Confirm New Password"
                     onChange={(e) => setPasswordConfirmation(e.target.value)}
                     />
-                <Button type="submit">Update Password</Button>
+                <DPLButton type="submit">Update Password</DPLButton>
             </Form>
             <br />
             <br />
             <br />
-            <Button onClick={() => deleteAccount(id)}>Delete Account</Button>
+            <DPLButton onClick={() => deleteAccount(id)}>Delete Account</DPLButton>
             </Container>
         </div>
     );

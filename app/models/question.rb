@@ -6,12 +6,13 @@ class Question < ApplicationRecord
   has_many :tags, through: :question_tags
 
   def self.find_questions_by_tag(tag_name)
+    p tag_name
     select('DISTINCT q.id, q.views, q.likes, count(t.id) AS tags, count(a.id) AS total_answers, q.title, q.body, q.created_at')
     .from('questions AS q')
     .joins('LEFT JOIN question_tags AS qt ON q.id=qt.question_id
     INNER JOIN tags AS t ON qt.tag_id=t.id
     LEFT JOIN answers AS a ON a.question_id = q.id')
-    .where('t.name= ?', tag_name)
+    .where('t.name IN ?', tag_name.split(',').map { |t| "#{t}"})
     .order('q.views DESC')
     .group('q.id')
   end

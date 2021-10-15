@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Dropdown, ListGroup } from 'react-bootstrap'
+import { Dropdown, Table } from 'react-bootstrap'
 import BoxLoader from '../components/BoxLoader'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
@@ -56,22 +56,22 @@ const Leaderboard = () => {
   const renderUsers = () => {
     return users.map((u, index)=> {
       return (
-        <ListGroup.Item className='d-flex justify-content-between' as='li' key={u.id}>
-          <h2>{(index + 1)}</h2>
-          <div>
-            Name: {u.name}
-          </div>
-            Cohort: {u.cohort}
-          <div>
-            Points: {u.points}
-          </div>
-        </ListGroup.Item>
+        <tr key={u.id}>
+          <img style={styles.img} src={u.image} />
+          <td>{(index + 1)}</td>
+          <td>{u.name}</td>
+          <td>{u.points}</td>
+          <td>{u.cohort}</td>
+          <td>Num 1</td>
+          <td>Num 2</td>
+          <td>Num 3</td>
+        </tr>
       )
     })
   }
 
   return (
-    <div>
+    <div style={styles.wrapper}>
       <Dropdown>
         <Dropdown.Toggle>View By Cohort</Dropdown.Toggle>
         <Dropdown.Menu>
@@ -82,18 +82,50 @@ const Leaderboard = () => {
         </Dropdown.Menu>
       </Dropdown>
 
-      <div style={{maxWidth: '1000px'}}>
+      <Table hover responsive>
         <InfiniteScroll
           dataLength={users.length}
           next={(e)=>getUsers(sortBy, cohort, (page + 1))}
           hasMore={page<totalPages}
           loader={<BoxLoader/>}
+          style={styles.table}
         >
-          {renderUsers()}
+          <thead>
+            <tr>
+              <th></th>
+              <th>Rank</th>
+              <th>Name</th>
+              <th>Points</th>
+              <th>Cohort</th>
+              <th>Stat 1</th>
+              <th>Stat 2</th>
+              <th>Stat 3</th>
+            </tr>
+          </thead>
+          <tbody>
+            {renderUsers()}
+          </tbody>
         </InfiniteScroll>
-      </div>
+      </Table>
     </div>
   )
+}
+
+const styles ={
+  img: {
+    height: '50px',
+    width: '50px'
+  },
+  tableWrapper: {
+    display: 'flex',
+    width: '2000px',
+    justifyContent: 'center'
+  },
+  wrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  }
 }
 
 export default Leaderboard;

@@ -12,7 +12,7 @@ class Question < ApplicationRecord
     .joins('LEFT JOIN question_tags AS qt ON q.id=qt.question_id
     INNER JOIN tags AS t ON qt.tag_id=t.id
     LEFT JOIN answers AS a ON a.question_id = q.id')
-    .where('t.name IN ?', tag_name.split(',').map { |t| "#{t}"})
+    .where('t.name = ?', tag_name)
     .order('q.views DESC')
     .group('q.id')
   end
@@ -31,7 +31,7 @@ def self.unanswered_questions
     select('DISTINCT q.id, q.views, q.likes, q.title, q.body, count(a.id) AS total_answers, q.created_at')
     .from('questions AS q')
     .joins('LEFT JOIN answers AS a ON a.question_id = q.id')
-    .where('q.body ILIKE ANY (array[:body]) OR q.title ILIKE ANY (array[:title])', body: arr, title: arr)
+    .where('q.body ILIKE ALL (array[:body]) OR q.title ILIKE ANY (array[:title])', body: arr, title: arr)
     .order('q.views DESC')
     .group('q.id')
   end

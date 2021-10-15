@@ -30,7 +30,6 @@ const EditAnswer = ({a, props}) => {
       <h1>Edit Answer</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group>
-        <Form.Label>edit</Form.Label>
         <MarkdownEditor
           body = {body}
           setBody = {setBody}

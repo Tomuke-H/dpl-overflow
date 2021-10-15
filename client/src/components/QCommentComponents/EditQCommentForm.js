@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom"
 import { AuthContext } from "../../providers/AuthProvider"
 import axios from "axios";
 import { Form, Button } from "react-bootstrap";
-import DPLButton from "../DPLButton";
+import { DPLButton } from "../DPLButtons";
 
 const EditQCommentForm = ({updateQComments, question, qc, showEdit, setShowEdit}) => {
   const { user } = useContext(AuthContext)

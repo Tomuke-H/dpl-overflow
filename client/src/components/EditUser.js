@@ -4,7 +4,7 @@ import { AuthContext } from '../providers/AuthProvider';
 import { Button, Container, Form } from 'react-bootstrap';
 import { Image } from "cloudinary-react";
 import axios from 'axios';
-import DPLButton from './DPLButton';
+import { DPLButton } from './DPLButtons';
 
 
 const EditUser = (id) => {

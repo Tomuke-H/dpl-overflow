@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
-import DPLButton from "../DPLButton";
+import { DPLButton } from "../DPLButtons";
 import MarkdownEditor from "../Markdown/MarkdownEditor";
 
 const EditAnswer = ({a, props}) => {

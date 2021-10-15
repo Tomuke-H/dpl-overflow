@@ -3,8 +3,7 @@ import { Container, Image, Nav, Navbar, Button, NavDropdown } from 'react-bootst
 import { Link, useHistory, withRouter } from 'react-router-dom'
 import { AuthContext } from '../providers/AuthProvider'
 import Beaker from '../../src/icons/Beaker-black-60.png'
-import DPLButton from './DPLButton'
-import DPLGetStarted from './DPLGetStartedButton'
+import { DPLButton, DPLGetStarted } from './DPLButtons'
 
 
 const OurNavbar = (props) => {

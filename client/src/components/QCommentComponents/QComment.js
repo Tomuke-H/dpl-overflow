@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react"
 import { AuthContext } from "../../providers/AuthProvider";
+import { shorthand } from "../QuestionComponents/DayConverter/Dates";
 import EditQCommentForm from "./EditQCommentForm";
 
 const QComment = ({qcomment, question, deleteQComment, updateQComments}) => {
@@ -23,7 +24,7 @@ const showEditDelete = () => {
   return(
     <div style={styles.comment}>
       <p>{qcomment.body}</p>
-      <p>{qcomment.created_at}</p>
+      <p>{shorthand(qcomment.created_at)}</p>
       {showEditDelete()}
     </div>
   )

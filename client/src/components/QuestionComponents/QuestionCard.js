@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import MarkdownView from "../Markdown/MarkdownView";
+import {day, time} from "./DayConverter/Dates"
 
 const QuestionCard = ({question, history}) => {
   const handleRedirect = (id) => {
@@ -50,14 +51,14 @@ const QuestionCard = ({question, history}) => {
           <div style={{display:"flex"}}>{renderTags()}</div>
           {/* <Card.Text>{question.body}</Card.Text> */}
         </div>
-        <Card.Text className="text-muted">Created {question.created_at}</Card.Text>
+        <Card.Text className="text-muted"> {day(question.created_at)} / {time(question.created_at)} </Card.Text>
       </div>
       <Card.Body>
         <Card.Text as={"div"}>
         <MarkdownView body = {question.body}/>
         </Card.Text>
       </Card.Body>
-      <Card.Footer className="text-muted">Created {question.created_at}</Card.Footer>
+      <Card.Footer className="text-muted">Created {day(question.created_at)} / {time(question.created_at)}</Card.Footer>
     </Card>
   )
 }

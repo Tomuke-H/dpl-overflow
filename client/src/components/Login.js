@@ -79,7 +79,7 @@ const styles = {
     },
 
     rectangle: {
-        height: "20%",
+        height: "50px",
         width: "600px",
         borderStyle: "none none solid none",
 

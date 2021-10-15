@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, {  useEffect, useState } from "react";
-import { Button, Image } from "react-bootstrap";
+import { Button, Card, Image } from "react-bootstrap";
 import EditUser from "./EditUser";
 
 

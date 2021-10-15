@@ -1,10 +1,6 @@
 import axios from "axios";
 import React, { useReducer } from "react";
 import { AiFillCaretUp, AiFillCaretDown } from "react-icons/ai"
-<<<<<<< HEAD
-=======
-
->>>>>>> c789af0f03671316b099b6d3e02fab387166eb98
 
 const AnswerVote = ({answer}) => {
   // const {user} = useContext(AuthContext)

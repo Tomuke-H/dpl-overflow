@@ -16,6 +16,7 @@ const DPLGetStarted = styled.button`
  color:#121212;
  background-color:#FFFFFF;
  text-align:center;
+ text-transform: uppercase;
  transition: all 0.15s;
 }
  &:hover{

@@ -7,7 +7,7 @@ import MarkdownView from '../Markdown/MarkdownView';
 import EditQuestionForm from "./EditQuestionForm";
 import QComments from "../QCommentComponents/QComments";
 import NewQCommentForm from "../QCommentComponents/NewQCommentForm";
-import { day, time } from './DayConverter/Dates';
+import { day, time } from "../DayConverter/Dates";
 
 const Question = ({props, edited, setEdited, history, question}) => {
   const [qcomments, setQComments] = useState([])

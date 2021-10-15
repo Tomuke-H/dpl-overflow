@@ -14,6 +14,7 @@ const DPLButton = styled.button`
  color:#FFFFFF;
  background-color:#6E54A3;
  text-align:center;
+ text-transform: uppercase;
  transition: all 0.15s;
 }
   &:hover{

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react"
 import { AuthContext } from "../../providers/AuthProvider";
-import { shorthand } from "../QuestionComponents/DayConverter/Dates";
+import { shorthand } from "../DayConverter/Dates";
 import EditCommentForm from "./EditCommentForm";
 
 const Comment = ({comment, answer, deleteComment, updateComments}) => {

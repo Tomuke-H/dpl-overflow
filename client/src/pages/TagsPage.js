@@ -86,7 +86,7 @@ const TagsPage = () => {
       <div style={styles.grid}>
       {renderTags()}
       </div>
-      {tags.length == 0 && renderBadSearch()}
+      {tags.length === 0 && renderBadSearch()}
     </div>
   )
 }

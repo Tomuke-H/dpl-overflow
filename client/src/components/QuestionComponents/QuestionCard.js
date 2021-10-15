@@ -1,7 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
-import MarkdownView from "../Markdown/MarkdownView";
+import { day, time } from "../DayConverter/Dates";
+import QuestionAuthor from "./QuestionAuthor";
+
 
 const QuestionCard = ({question, history}) => {
   const handleRedirect = (id) => {
@@ -11,6 +13,7 @@ const QuestionCard = ({question, history}) => {
   useEffect(()=>{
     getTags()
   },[])
+
   const [tags, setTags] = useState([])
 
   const getTags = async () => {
@@ -33,10 +36,6 @@ const QuestionCard = ({question, history}) => {
       <div style={{display:"flex", justifyContent: 'space-between'}}>
         <div style={{display: 'flex', justifyContent: 'space-around', margin: '25px'}}>
           <div style={{margin: '10px'}}>
-            <Card.Text>{question.views}</Card.Text>
-            <Card.Text>Views</Card.Text>
-          </div>
-          <div style={{margin: '10px'}}>
             <Card.Text>{question.likes}</Card.Text>
             <Card.Text>Votes</Card.Text>
           </div>
@@ -44,22 +43,27 @@ const QuestionCard = ({question, history}) => {
             <Card.Text>{question.total_answers}</Card.Text>
             <Card.Text>Answers</Card.Text>
           </div>
+          <div style={{margin: '10px'}}>
+            <Card.Text>{question.views}</Card.Text>
+            <Card.Text>Views</Card.Text>
+          </div>
         </div>
         <div>
           <Card.Text style={{flexGrow:1}}>{question.title}</Card.Text>
           <div style={{display:"flex"}}>{renderTags()}</div>
           {/* <Card.Text>{question.body}</Card.Text> */}
         </div>
-        <Card.Text className="text-muted">Created {question.created_at}</Card.Text>
+        <Card.Text className="text-muted"> {QuestionAuthor(question.id)} / {day(question.created_at)} / {time(question.created_at)} </Card.Text>
       </div>
-      <Card.Body>
-        <Card.Text as={"div"}>
-        <MarkdownView body = {question.body}/>
-        </Card.Text>
-      </Card.Body>
-      <Card.Footer className="text-muted">Created {question.created_at}</Card.Footer>
     </Card>
   )
+}
+
+const styles = {
+  vav:{
+    
+  }
+
 }
 
 export default QuestionCard; 

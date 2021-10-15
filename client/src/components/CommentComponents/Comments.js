@@ -1,8 +1,6 @@
-import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext} from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import Comment from "./Comment"
-import { Card, Container } from 'react-bootstrap'
 import CommentAuthor from "./CommentAuthor";
 
 

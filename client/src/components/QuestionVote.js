@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useContext, useReducer, useEffect } from "react";
+import React, { useContext, useReducer } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { AiFillCaretUp, AiFillCaretDown } from "react-icons/ai"
 

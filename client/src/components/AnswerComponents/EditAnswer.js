@@ -1,7 +1,6 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { DPLButton } from "../DPLButtons";
 import MarkdownEditor from "../Markdown/MarkdownEditor";
@@ -10,7 +9,6 @@ const EditAnswer = ({a, props}) => {
   const [body, setBody] = useState(a.body)
   const [answer, setAnswer] = useState([])
   const { user } = useContext(AuthContext)
-  const history = useHistory();
 
 
 

@@ -54,7 +54,7 @@ const AboutUs = () =>{
     return teamInfo.map((member,ind)=>{
       return(
       <Card style={styles.gridteam} key={ind}>
-        <Card.Img variant="top" src={member.img} />
+        <Card.Img variant="top" src={member.img} style={styles.img} />
         <Card.Title>{member.name}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">{member.position}</Card.Subtitle>
         <Card.Body>{member.description}</Card.Body>
@@ -67,7 +67,7 @@ const AboutUs = () =>{
     return staff.map((member,ind)=>{
       return(
       <Card style={styles.gridstaff} key={ind}>
-        <Card.Img variant="top" src={member.img} />
+        <Card.Img variant="top" src={member.img} style={styles.img} />
         <Card.Title>{member.name}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">{member.position}</Card.Subtitle>
         <Card.Body>{member.description}</Card.Body>
@@ -80,8 +80,10 @@ const AboutUs = () =>{
   return(
     <div>
       <h1>Our Team</h1>
-      <Container style={styles.grid}>
+      <Container style={styles.gridlayoutforteam}>
       {team()}
+      </Container>
+      <Container style={styles.gridlayoutforstaff}>
       {teachers()}
       </Container>
     </div>
@@ -90,10 +92,18 @@ const AboutUs = () =>{
 }
 
 const styles ={
-  grid:{
+  gridlayoutforteam:{
     display:"flex",
     flexWrap:"wrap",
-    margin: "20px"
+    margin: "20px",
+    justifyContent:"center"
+  },
+  
+  gridlayoutforstaff:{
+    display:"flex",
+    flexWrap:"wrap",
+    margin: "20px",
+    justifyContent:"center"
   },
 
   gridteam:{
@@ -103,7 +113,12 @@ const styles ={
 
   gridstaff:{
     margin: "5px",
-    flexBasis: `calc(100% / 6 - 10px)`,
+    flexBasis: `calc(100% / 5 - 10px)`,
+  },
+
+  img:{
+    height:"auto",
+    width:"100%"
   }
 }
 

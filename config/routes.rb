@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     get 'cohort_leaderboard', to: 'users#cohort_leaderboard'
     get 'cohort_yearbook', to: 'users#cohort_yearbook'
     put 'users/image/update', to: 'users#update_image'
-    get 'users/:id/profile', to: 'users#user_profile'
+    get 'users_profile/:id', to: 'users#user_profile'
     get 'answer_count/:id', to: 'questions#answer_count'
     get 'tag/:key', to: 'tags#tag_search'
     resources :tags

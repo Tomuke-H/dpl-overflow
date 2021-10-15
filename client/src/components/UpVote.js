@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useContext, useReducer, useEffect } from "react";
-import { Button } from "react-bootstrap";
 import { AuthContext } from "../providers/AuthProvider";
 import { AiFillCaretUp, AiFillCaretDown } from "react-icons/ai"
 import WebFont from "webfontloader";

@@ -1,24 +1,24 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
-import { Button, Container, Image } from "react-bootstrap";
-import useGetUser from "../hooks/useGetUser";
-import { AuthContext } from '../providers/AuthProvider'
-import EditUser from "./EditUser";
+import React, { useEffect, useState } from "react";
+import { Button, Card, Image } from "react-bootstrap";
 
 
-export default function OtherUserProfile() {
+export default function OtherUserProfile(props) {
+  const [user, setUser] = useState({})
   const [showForm, setShowForm] = useState(false)
-  const [user, setUser] = useState([])
 
   useEffect(()=>{
     getUser()
   },[])
 
-  const getUser = async (id) => {
+  const Url = props.location.pathname.split("/")
+  const id = Url[2]
+
+
+  const getUser = async () => {
     try {
-    let res = await axios.get (`/api/users/${id}/profile`)
-    setUser(res.data.user)
-    console.log("user:", user)
+    let res = await axios.get (`/api/users_profile/${id}`)
+    setUser(res.data.users[0])
     } catch (err) {
       console.log(err)
     }
@@ -36,10 +36,13 @@ export default function OtherUserProfile() {
         <Button onClick={()=>{setShowForm(false)}}style={styles.profile}>Profile</Button>
         <Button onClick={()=>{setShowForm(false)}}style={styles.activity}>Activity</Button>
         <Button onClick={()=>{setShowForm(!showForm)}}style={styles.settings}>Settings</Button>
-        {showForm && <EditUser />}
       </div>
-      <div>
-        <p style={styles.stats}>OTHER USERRRRRRRRRR</p>
+      <div style={styles.stats}>
+        <p>STATS</p>
+        <Card></Card>
+      </div>
+        
+        <div>
         <p style={styles.about}>ABOUT</p>
       </div>
       </>

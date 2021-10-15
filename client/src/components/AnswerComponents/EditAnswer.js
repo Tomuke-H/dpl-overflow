@@ -1,14 +1,12 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 
 const EditAnswer = ({a, props}) => {
   const [body, setBody] = useState("")
   const [answer, setAnswer] = useState([])
   const { user } = useContext(AuthContext)
-  const history = useHistory();
 
 
 

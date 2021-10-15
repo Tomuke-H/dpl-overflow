@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Container, Image, Nav, Navbar, Button, Dropdown, NavDropdown } from 'react-bootstrap'
+import { Container, Image, Nav, Navbar, Button, NavDropdown } from 'react-bootstrap'
 import { Link, useHistory, withRouter } from 'react-router-dom'
 import { AuthContext } from '../providers/AuthProvider'
 import Beaker from '../../src/icons/Beaker-black-60.png'
@@ -7,7 +7,6 @@ import Beaker from '../../src/icons/Beaker-black-60.png'
 const OurNavbar = (props) => {
   const { user, handleLogout} = useContext(AuthContext)
   const history = useHistory();
-  const { location } = props;
 
   const rightNavItems = () =>{
     if(user){

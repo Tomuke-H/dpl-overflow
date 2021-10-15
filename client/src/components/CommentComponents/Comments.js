@@ -1,5 +1,4 @@
-import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import Comment from "./Comment"
 import NewCommentForm from "./NewCommentForm";
@@ -7,7 +6,7 @@ import { Card } from 'react-bootstrap'
 
 
 // I anticipate that props passed into this file should/will be answer and user
-const Comments = ({answer, comments, setComments, addComment, updateComments, deleteComment}) => {
+const Comments = ({answer, comments, addComment, updateComments, deleteComment}) => {
   const {user} = useContext(AuthContext)
   // const history = useHistory();
 

@@ -1,18 +1,15 @@
 import axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
 import { Card, Button } from 'react-bootstrap'
-import { useHistory } from 'react-router-dom'
 import Comments from '../CommentComponents/Comments'
-import NewCommentForm from '../CommentComponents/NewCommentForm'
 import { AuthContext } from '../../providers/AuthProvider'
 import EditAnswer from './EditAnswer'
 
 const Answer = ({answer, props, deleteAnswer}) => {
   const [comments, setComments] = useState([])
-  const history = useHistory();
   const [showForm, setShowForm] = useState(false)
   const { user } = useContext(AuthContext)
-  const [showEdit, setShowEdit] = useState(false)
+
 
   useEffect(() => {
     getComments()

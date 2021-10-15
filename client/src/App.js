@@ -9,12 +9,9 @@ import EditUser from './components/EditUser';
 import OurNavbar from './components/OurNavbar';
 import TestPage from './pages/TestPage';
 import User from './components/User';
-import Tags from './pages/Tags';
 import Answers from './components/AnswerComponents/Answers';
 import EditAnswer from './components/AnswerComponents/EditAnswer';
 import Answer from './components/AnswerComponents/Answer'
-import Comments from './components/CommentComponents/Comments';
-import NewCommentForm from './components/CommentComponents/NewCommentForm';
 import QuestionPage from './pages/QuestionPage';
 import Dashboard from './pages/Dashboard';
 import NewQuestionPage from './pages/NewQuestionPage';

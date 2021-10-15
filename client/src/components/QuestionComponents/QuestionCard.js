@@ -52,12 +52,12 @@ const QuestionCard = ({question, history}) => {
         </div>
         <Card.Text className="text-muted">Created {question.created_at}</Card.Text>
       </div>
-      <Card.Body>
+      {/* <Card.Body>
         <Card.Text as={"div"}>
         <MarkdownView body = {question.body}/>
         </Card.Text>
       </Card.Body>
-      <Card.Footer className="text-muted">Created {question.created_at}</Card.Footer>
+      <Card.Footer className="text-muted">Created {question.created_at}</Card.Footer> */}
     </Card>
   )
 }

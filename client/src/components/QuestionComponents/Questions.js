@@ -118,7 +118,7 @@ const Questions = ({history}) => {
     <Container style={{marginTop: '30px'}}>
       <h2>{JSON.stringify(tagSearch)}</h2>
       <div style={{display: 'flex', justifyContent: 'space-between'}}>
-        <div style={{width: '500px'}}>
+        <div>
           <Form.Control value={search} onChange={(e) => getQuestions('search', 1, e.target.value)}/>
         </div>
         <div>
@@ -132,7 +132,7 @@ const Questions = ({history}) => {
           />
         </div>
       </div>
-      <div style={{maxWidth: '1000px'}}>
+      <div>
         <InfiniteScroll
           dataLength={questions.length}
           next={(e)=>getQuestions(sortBy, (page + 1), tagSearch)}

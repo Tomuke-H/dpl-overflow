@@ -1,6 +1,5 @@
 import axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
 import Comments from '../CommentComponents/Comments'
 import { AuthContext } from '../../providers/AuthProvider'
 import EditAnswer from './EditAnswer'
@@ -10,10 +9,8 @@ import NewCommentForm from "../CommentComponents/NewCommentForm"
 
 const Answer = ({answer, props, deleteAnswer}) => {
   const [comments, setComments] = useState([])
-  const history = useHistory();
   const [showForm, setShowForm] = useState(false)
   const { user } = useContext(AuthContext)
-  const [showEdit, setShowEdit] = useState(false)
   const [showCommentForm, setShowCommentForm] = useState(false)
 
   useEffect(() => {

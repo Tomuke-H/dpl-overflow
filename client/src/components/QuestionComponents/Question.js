@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
-import { Button, Card, Container } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 import WebFont from "webfontloader";
 import { AuthContext } from '../../providers/AuthProvider';
 import QuestionVote from '../QuestionVote';
@@ -194,7 +194,6 @@ const styles = {
     display: "flex",
     alignItems: "center",
     letterSpacing: ".5px",
-    color: "#000000", 
   },
   addComment: {
     margin: "10px",

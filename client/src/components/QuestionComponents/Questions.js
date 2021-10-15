@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import axios from 'axios'
 import QuestionCard from "./QuestionCard";
-import { Container, Button, Form } from "react-bootstrap";
+import { Container, Form } from "react-bootstrap";
 import SortSelector from "./SortSelector";
 import BoxLoader from "../BoxLoader";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -14,7 +14,6 @@ const Questions = ({history}) => {
   const [tags, setTags] = useState([])
   const [tagSearch, setTagSearch] = useState([])
   const [sortBy, setSortBy] = useState('all')
-  const [error, setError] = useState(null)
   const [showTags, setShowTags] = useState(false)
   const [search, setSearch] = useState('')
 

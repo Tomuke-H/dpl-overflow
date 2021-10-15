@@ -1,6 +1,4 @@
-import axios from "axios";
 import React, { useContext, useState } from "react"
-import { Button, Card } from "react-bootstrap";
 import { AuthContext } from "../../providers/AuthProvider";
 import EditCommentForm from "./EditCommentForm";
 

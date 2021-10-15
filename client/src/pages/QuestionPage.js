@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import Question from "../components/QuestionComponents/Question";
 import { useState } from "react";
-import { Button } from 'react-bootstrap'
 import { useHistory } from "react-router";
 import Answers from "../components/AnswerComponents/Answers";
 import axios from "axios";

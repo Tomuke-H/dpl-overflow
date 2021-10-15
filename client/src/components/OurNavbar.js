@@ -64,6 +64,35 @@ const OurNavbar = (props) => {
     )
   };
 
+  const leftNavItems = () => {
+    if(user){
+      return (
+        <>
+          <Nav.Link as={Link} to='/Dashboard'>
+            <Container>
+                Questions
+            </Container>
+          </Nav.Link>
+          <Nav.Link as={Link} to='/tags'>
+            <Container>
+                Tags
+            </Container>
+          </Nav.Link>
+          <Nav.Link as={Link} to='/yearbook'>
+            <Container>
+                Yearbook
+            </Container>
+          </Nav.Link>
+          <Nav.Link as={Link} to='/leaderboard'>
+            <Container>
+                Leaderboard
+            </Container>
+          </Nav.Link>
+        </>
+      )
+    }
+  }
+
   return(
     <span>
     <Navbar bg="white" fixed="top" collapseOnSelect style={{borderBottom: 'solid 2px black'}}>
@@ -72,26 +101,7 @@ const OurNavbar = (props) => {
             <Image src={Beaker} />
         </Container>
       </Nav.Link >
-      <Nav.Link as={Link} to='/Dashboard'>
-        <Container>
-            Questions
-        </Container>
-      </Nav.Link>
-      <Nav.Link as={Link} to='/tags'>
-        <Container>
-            Tags
-        </Container>
-      </Nav.Link>
-      <Nav.Link as={Link} to='/yearbook'>
-        <Container>
-            Yearbook
-        </Container>
-      </Nav.Link>
-      <Nav.Link as={Link} to='/leaderboard'>
-        <Container>
-            Leaderboard
-        </Container>
-      </Nav.Link>
+      <Navbar.Collapse className="justify-content-start">{leftNavItems()}</Navbar.Collapse>
       <Navbar.Collapse className="justify-content-end">{rightNavItems()}</Navbar.Collapse>
     </Navbar>
     </span>

@@ -29,6 +29,9 @@ class Api::QuestionsController < ApplicationController
 
 
   def find_questions_by_tag
+    puts '---------------------------------------------'
+    puts params[:tag_name]
+    puts '---------------------------------------------'
     render json: {questions: Question.find_questions_by_tag(params[:tag_name]).page(@page).per(5), total_pages: Question.find_questions_by_tag(params[:tag_name]).page(@page).per(5).total_pages}
   end
 

@@ -28,24 +28,24 @@ export default function UserProfile() {
   const renderUser = () => {
     return (
       <div style={{display: 'flex', flexDirection: 'column'}}>
-      <div>
-        <Image style={styles.profilePic} src={user.image} />
-        <p style={styles.name}>{user.name}</p>
-      <div style={styles.optionsContainer}>
-        <Button onClick={()=>{setShowForm(false)}}style={styles.profile}>Profile</Button>
-        <Button onClick={()=>{setShowForm(false)}}style={styles.activity}>Activity</Button>
-        <Button onClick={()=>{setShowForm(!showForm)}}style={styles.settings}>Settings</Button>
-        {showForm && <EditUser />}
-      </div>
-      <div>
-        <p style={styles.stats}>STATS</p>
-        <Card>
-          <Card.Title>Votes: Answers: Views: Questions:</Card.Title>
-          <Card.Text>{currentUser.votes} {currentUser.answer_count} {currentUser.views} {currentUser.question_count}</Card.Text>
-        </Card>
-        <p style={styles.about}>ABOUT</p>
-      </div>
-      </div>
+        <div>
+          <Image roundedCircle style={styles.profilePic} src={user.image} />
+          <p style={styles.name}>{user.name}</p>
+        <div style={styles.optionsContainer}>
+          <Button onClick={()=>{setShowForm(false)}}style={styles.profile}>Profile</Button>
+          <Button onClick={()=>{setShowForm(false)}}style={styles.activity}>Activity</Button>
+          <Button onClick={()=>{setShowForm(!showForm)}}style={styles.settings}>Settings</Button>
+          {showForm && <EditUser />}
+        </div>
+        <div>
+          <p style={styles.stats}>STATS</p>
+          <Card>
+            <Card.Title>Votes: Answers: Views: Questions:</Card.Title>
+            <Card.Text>{currentUser.votes} {currentUser.answer_count} {currentUser.views} {currentUser.question_count}</Card.Text>
+          </Card>
+          <p style={styles.about}>ABOUT</p>
+        </div>
+        </div>
       </div>
     )
   }

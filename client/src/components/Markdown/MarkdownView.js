@@ -14,6 +14,7 @@ const MarkdownView = ({body}) => {
 
   const CodeBlock = {
     code({node, inline, className, children, ...props}) {
+      className = className !== undefined ? className : 'language-js'
       const match = /language-(\w+)/.exec(className || '')
       return !inline && match ? (
       <SyntaxHighlighter 

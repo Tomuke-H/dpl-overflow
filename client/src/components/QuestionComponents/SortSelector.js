@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
-import { Button } from 'react-bootstrap'
+import { Button, ListGroup } from 'react-bootstrap'
 import Multiselect from 'multiselect-react-dropdown'
+import DPLButton from '../DPLButtons'
+import { dplPurple } from '../Color'
 
 // const renderTags = () => {
 //   return tags.map(t => {
@@ -10,7 +12,7 @@ import Multiselect from 'multiselect-react-dropdown'
 //   })
 // }
 
-const SortSelector = ({getQuestions, setShowTags, tagSearch, setTagSearch, tags, showTags}) => {
+const SortSelector = ({sortBy, getQuestions, setShowTags, tagSearch, setTagSearch, tags, showTags}) => {
   const options = tags
 
   const [selectedValue, setSelectedValues] = useState([])
@@ -36,9 +38,11 @@ const SortSelector = ({getQuestions, setShowTags, tagSearch, setTagSearch, tags,
   }
   return (
     <div>
-      <Button onClick={(e)=> getQuestions('all', 1)}>Popular</Button>
-      <Button onClick={(e)=> getQuestions('unanswered', 1)}>Unanswered</Button>
-      <Button onClick={(e)=> setShowTags(!showTags)}>Search by Tag</Button>
+      <ListGroup horizontal>
+        <ListGroup.Item style={sortBy == 'all' && !showTags ? styles.tabActive : styles.tab} onClick={(e)=> getQuestions('all', 1)}>Popular</ListGroup.Item >
+        <ListGroup.Item style={(sortBy == 'unanswered' && !showTags) ? styles.tabActive : styles.tab} onClick={(e)=> getQuestions('unanswered', 1)}>Unanswered</ListGroup.Item >
+        <ListGroup.Item style={showTags ? styles.tabActive : styles.tab} onClick={(e)=> setShowTags(!showTags)}>Search by Tag</ListGroup.Item >
+      </ListGroup>
       
       {showTags && <Multiselect 
         options={options}
@@ -49,6 +53,16 @@ const SortSelector = ({getQuestions, setShowTags, tagSearch, setTagSearch, tags,
       />}
     </div>
   )
+}
+
+const styles = {
+  tab: {
+    backgroundColor: 'white',
+  }, 
+  tabActive: {
+    backgroundColor: '#757575',
+    color: 'white',
+  }
 }
 
 export default SortSelector;

@@ -3,7 +3,6 @@ import { Container, Image} from "react-bootstrap";
 import { AuthContext } from "../providers/AuthProvider";
 
 const User = ({user}) => {
- const { user: currentUser } = useContext(AuthContext)
 
 
 return (

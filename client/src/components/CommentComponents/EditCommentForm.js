@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider"
 import axios from "axios";
 import { Form, Button } from "react-bootstrap";
-import DPLButton from "../DPLButton";
+import { DPLButton } from "../DPLButtons";
 
 const EditCommentForm = ({updateComments, answer, c, showEdit, setShowEdit}) => {
   const { user } = useContext(AuthContext)

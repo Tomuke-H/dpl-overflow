@@ -1,13 +1,13 @@
 import axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
-import { Button, Card, Container } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 import { AuthContext } from '../../providers/AuthProvider';
 import QuestionVote from '../QuestionVote';
 import MarkdownView from '../Markdown/MarkdownView';
 import EditQuestionForm from "./EditQuestionForm";
 import QComments from "../QCommentComponents/QComments";
 import NewQCommentForm from "../QCommentComponents/NewQCommentForm";
-
+import { day, time } from "../DayConverter/Dates";
 
 const Question = ({props, edited, setEdited, history, question}) => {
   const [qcomments, setQComments] = useState([])
@@ -33,13 +33,12 @@ const Question = ({props, edited, setEdited, history, question}) => {
 
   const addQComment = async (e, qcomment) => {
     // e.preventDefault()
-    console.log(qcomment)
+    // console.log(qcomment)
     try {
       await axios.post(`/api/questions/${question.id}/qcomments/`, qcomment)
       setQComments([...qcomments, qcomment])
     } catch(err) {
-      console.log(err)
-      alert("somethin ain't right...")
+      console.log("add qcomment error", err)
     }
   }
 
@@ -54,9 +53,8 @@ const Question = ({props, edited, setEdited, history, question}) => {
       await axios.delete(`/api/questions/${question.id}/qcomments/${id}`)
       const filterQComments = qcomments.filter((qcomment) => qcomment.id !== id);
       setQComments(filterQComments)
-    } catch {
-      alert("Ah shucks.  I don't know what I'm trying to do, but clearly it ain't workin.")
-    }
+    } catch(err) {
+    console.log("delete qcomment error", err)    }
   }
 
   const getTags = async () => {
@@ -69,7 +67,7 @@ const Question = ({props, edited, setEdited, history, question}) => {
   }
 
   const renderTags = () => {
-    console.log(tags)
+    // console.log(tags)
     return tags.map((tag)=>{
       return <div style={styles.qTagBox}>{tag.tag_name}</div>
     })
@@ -111,7 +109,7 @@ const Question = ({props, edited, setEdited, history, question}) => {
         {/* <h1>{question.user_id}</h1> */}
         <h1 style={styles.questionHeader}>{question.title}</h1>
         <div style={styles.qdContainer}>
-        <h2 style={styles.questionDetails}>Asked: {question.created_at}</h2>
+        <h2 style={styles.questionDetails}>Asked: {day(question.created_at)} / {time(question.created_at)}</h2>
         {/* need some help getting the date to look different - either google or classmates but nOT RIGHT NOW */}
         <h2 style={styles.questionDetails}>Active: Today</h2>
         <h2 style={styles.questionDetails}>Viewed: {question.views} times</h2>

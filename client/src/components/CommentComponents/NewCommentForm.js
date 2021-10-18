@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider"
 import { Form, Button } from "react-bootstrap";
-import DPLButton from "../DPLButton";
+import { DPLButton } from "../DPLButtons";
 
 
 

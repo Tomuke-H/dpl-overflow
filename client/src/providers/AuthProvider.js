@@ -8,6 +8,14 @@ const AuthProvider = (props) => {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false)
 
+    // const wait = (ms) => {
+    //     return new Promise((res, rej) => {
+    //       setTimeout(() => {
+    //         res("yo");
+    //       }, ms);
+    //     });
+    //   };
+
     const handleRegister = async (user, history) => {
         try {
             setError(null)

@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useContext, useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import { AuthContext } from "../../providers/AuthProvider";
-import DPLButton from "../DPLButton";
+import { DPLButton } from "../DPLButtons";
 import MarkdownEditor from "../Markdown/MarkdownEditor";
 
 const NewAnswer = ({props}) => {
@@ -22,7 +22,7 @@ const NewAnswer = ({props}) => {
     try {
       // console.log(body)
       let res = await axios.post(`/api/questions/${props.match.params.id}/answers`, answer)
-      // console.log(res)
+      console.log(res)
     } catch (err) {
       console.log("New Answer Submission Error", err)
     };

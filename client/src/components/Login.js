@@ -3,8 +3,7 @@ import { Form, Container, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import { AuthContext } from '../providers/AuthProvider'
-import DPLGreyButton from './DPLGreyButton';
-import DPLLightWeightButton from './DPLLightWeightButton';
+import { DPLGreyButton, DPLLightWeightButton } from './DPLButtons';
 
 const Login = (props) => {
     const {handleLogin} = useContext(AuthContext);

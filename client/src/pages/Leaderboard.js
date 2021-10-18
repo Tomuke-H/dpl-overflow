@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { useHistory } from 'react-router';
 import React, { useEffect, useState } from 'react'
 import { Dropdown, Table } from 'react-bootstrap'
 import BoxLoader from '../components/BoxLoader'
@@ -10,6 +11,7 @@ const Leaderboard = () => {
   const [page, setPage] = useState(1)
   const [sortBy, setSortBy] = useState('all')
   const [cohort, setCohort] = useState(null)
+  const history = useHistory()
 
   useEffect(()=>{
     getUsers(sortBy, null, page)
@@ -56,8 +58,8 @@ const Leaderboard = () => {
   const renderUsers = () => {
     return users.map((u, index)=> {
       return (
-        <tr key={u.id}>
-          <img style={styles.img} src={u.image} />
+        <tr key={u.id} onClick={(e) => history.push(`/users/${u.id}/profile`)}>
+          <td><img style={styles.img} src={u.image} /></td>
           <td>{(index + 1)}</td>
           <td>{u.name}</td>
           <td>{u.points}</td>
@@ -82,14 +84,14 @@ const Leaderboard = () => {
         </Dropdown.Menu>
       </Dropdown>
 
-      <Table hover responsive>
-        <InfiniteScroll
-          dataLength={users.length}
-          next={(e)=>getUsers(sortBy, cohort, (page + 1))}
-          hasMore={page<totalPages}
-          loader={<BoxLoader/>}
-          style={styles.table}
-        >
+      <InfiniteScroll
+        dataLength={users.length}
+        next={(e)=>getUsers(sortBy, cohort, (page + 1))}
+        hasMore={page<totalPages}
+        loader={<BoxLoader/>}
+        style={styles.table}
+      >
+        <Table hover responsive>
           <thead>
             <tr>
               <th></th>
@@ -105,8 +107,8 @@ const Leaderboard = () => {
           <tbody>
             {renderUsers()}
           </tbody>
-        </InfiniteScroll>
-      </Table>
+        </Table>
+      </InfiniteScroll>
     </div>
   )
 }

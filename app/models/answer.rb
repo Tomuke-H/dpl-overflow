@@ -10,4 +10,21 @@ class Answer < ApplicationRecord
     .where('a.id = ?', id)
   end
 
+  def self.by_datetime(question_id)
+    select('a.body, a.likes, a.verified, a.user_id, a.question_id, a.created_at, a.updated_at')
+    .from('answers AS a')
+    .joins('INNER JOIN questions AS q ON a.question_id = q.id')
+    .where('a.question_id = ?', question_id)
+    .order('a.created_at')
+  end
+
+  def self.by_likes(question_id)
+    select('a.body, a.likes, a.verified, a.user_id, a.question_id, a.created_at, a.updated_at')
+    .from('answers AS a')
+    .joins('INNER JOIN questions AS q ON a.question_id = q.id')
+    .where('a.question_id = ?', question_id)
+    .order('a.likes DESC')
+  end
+
+
 end

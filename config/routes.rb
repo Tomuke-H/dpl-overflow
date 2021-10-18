@@ -31,6 +31,8 @@ Rails.application.routes.draw do
     get 'answer_author/:id', to: 'answers#author'
     get 'comment_author/:id', to: 'comments#author'
     get 'qcomment_author/:id', to: 'qcomments#author'
+    get 'answers_by_datetime/:question_id', to:'answers#index_by_datetime'
+    get 'answers_by_likes/:question_id', to:'answers#index_by_likes'
     resources :tags
   end
 end

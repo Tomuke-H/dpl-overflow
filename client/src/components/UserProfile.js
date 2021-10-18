@@ -27,7 +27,7 @@ export default function UserProfile() {
 
   const renderUser = () => {
     return (
-      <>
+      <div style={{display: 'flex', flexDirection: 'column'}}>
       <div>
         <Image style={styles.profilePic} src={user.image} />
         <p style={styles.name}>{user.name}</p>
@@ -46,7 +46,7 @@ export default function UserProfile() {
         <p style={styles.about}>ABOUT</p>
       </div>
       </div>
-      </>
+      </div>
     )
   }
 

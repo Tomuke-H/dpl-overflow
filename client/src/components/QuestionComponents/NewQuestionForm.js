@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
 import { Container, Form, Button } from 'react-bootstrap'
 import { AuthContext } from '../../providers/AuthProvider'
-import DPLButton from '../DPLButton'
+import { DPLButton } from '../DPLButtons'
 import MarkdownEditor from '../Markdown/MarkdownEditor'
 
 const NewQuestionForm = ({ handleRedirect }) => {
@@ -26,12 +26,12 @@ const NewQuestionForm = ({ handleRedirect }) => {
   }
 
   const handleCheckbox = (event)=>{
-    console.log(event.target.checked, event.target.id)
+    // console.log(event.target.checked, event.target.id)
     setCheckedItems({...checkedItems, [event.target.id]: event.target.checked})
   }
 
   const tagList = () => {
-    console.log(checkedItems)
+    // console.log(checkedItems)
     return tags.map((t) => {
       return (
         <Form.Check inline

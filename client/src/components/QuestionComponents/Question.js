@@ -33,13 +33,12 @@ const Question = ({props, edited, setEdited, history, question}) => {
 
   const addQComment = async (e, qcomment) => {
     // e.preventDefault()
-    console.log(qcomment)
+    // console.log(qcomment)
     try {
       await axios.post(`/api/questions/${question.id}/qcomments/`, qcomment)
       setQComments([...qcomments, qcomment])
     } catch(err) {
-      console.log(err)
-      alert("somethin ain't right...")
+      console.log("add qcomment error", err)
     }
   }
 
@@ -54,9 +53,8 @@ const Question = ({props, edited, setEdited, history, question}) => {
       await axios.delete(`/api/questions/${question.id}/qcomments/${id}`)
       const filterQComments = qcomments.filter((qcomment) => qcomment.id !== id);
       setQComments(filterQComments)
-    } catch {
-      alert("Ah shucks.  I don't know what I'm trying to do, but clearly it ain't workin.")
-    }
+    } catch(err) {
+    console.log("delete qcomment error", err)    }
   }
 
   const getTags = async () => {
@@ -69,7 +67,7 @@ const Question = ({props, edited, setEdited, history, question}) => {
   }
 
   const renderTags = () => {
-    console.log(tags)
+    // console.log(tags)
     return tags.map((tag)=>{
       return <div style={styles.qTagBox}>{tag.tag_name}</div>
     })

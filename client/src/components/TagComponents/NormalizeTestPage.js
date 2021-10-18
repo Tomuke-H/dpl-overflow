@@ -32,14 +32,14 @@ const normalizeCheckedItems = (data) =>{
   for (let i = 0; i < data[data.length-1].tag_id+1; i++) {
     norm.push({tag_id: i})
   }
-  console.log(norm)
+  // console.log(norm)
   for (let i = 0; i < data.length; i++) {
     tagID.push(data[i].tag_id)
   }
-  console.log(tagID)
+  // console.log(tagID)
   for( var tag_id in norm){
     if(tagID.includes(Number(tag_id))===true){
-      console.log(norm[tag_id])
+      // console.log(norm[tag_id])
       norm[tag_id].checked = "true"
     }else{norm[tag_id].checked = "false"}
   }
@@ -47,4 +47,4 @@ const normalizeCheckedItems = (data) =>{
   return checkedItems
 }
 
-console.log(normalizeCheckedItems(data))
+// console.log(normalizeCheckedItems(data))

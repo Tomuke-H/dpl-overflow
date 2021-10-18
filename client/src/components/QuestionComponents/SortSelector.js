@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button, ListGroup } from 'react-bootstrap'
 import Multiselect from 'multiselect-react-dropdown'
-import DPLButton from '../DPLButton'
+import DPLButton from '../DPLButtons'
 import { dplPurple } from '../Color'
 
 // const renderTags = () => {

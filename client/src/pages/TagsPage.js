@@ -39,7 +39,7 @@ const TagsPage = () => {
     e.preventDefault()
     try {
       let res = await axios.get(`/api/tag/${tagSearch}`)
-      console.log(res)
+      // console.log(res)
       if(res.data.length > 0){
         setTags(res.data)
       }else{

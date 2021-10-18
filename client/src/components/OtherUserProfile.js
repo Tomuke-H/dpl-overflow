@@ -22,7 +22,7 @@ export default function OtherUserProfile(props) {
     setUser(res.data.users[0])
     console.log("user:", user)
     } catch (err) {
-      console.log(err)
+      console.log("get user error", err)
     }
   }
 

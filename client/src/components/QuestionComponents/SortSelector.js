@@ -17,23 +17,23 @@ const SortSelector = ({sortBy, getQuestions, setShowTags, tagSearch, setTagSearc
 
   const [selectedValue, setSelectedValues] = useState([])
 
-  const handleAddTag = (name) => {
+  const handleAddTag = (id) => {
     if(tagSearch.length === 0){
-      getQuestions('tag', 1, name)
-      setTagSearch([...tagSearch, name])
+      getQuestions('tag', 1, id)
+      setTagSearch([...tagSearch, id])
     } else {
-      setTagSearch([...tagSearch, name])
-      getQuestions('tag', 1, [...tagSearch, name])
+      setTagSearch([...tagSearch, id])
+      getQuestions('tag', 1, [...tagSearch, id])
     }
   }
 
-  const handleRemoveTag = (name) => {
-    if(tagSearch.filter(t=>t != name).length === 0){
+  const handleRemoveTag = (id) => {
+    if(tagSearch.filter(t=>t != id).length === 0){
       getQuestions('all', 1)
     } else {
-      getQuestions('tag', 1, tagSearch.filter(t => t != name))
+      getQuestions('tag', 1, tagSearch.filter(t => t != id))
     }
-    let filteredTags = tagSearch.filter(t => t !== name)
+    let filteredTags = tagSearch.filter(t => t !== id)
     setTagSearch(filteredTags)
   }
   return (
@@ -47,8 +47,8 @@ const SortSelector = ({sortBy, getQuestions, setShowTags, tagSearch, setTagSearc
       {showTags && <Multiselect 
         options={options}
         selectedValues={selectedValue}
-        onSelect={(selectedList, selectedItem) => handleAddTag(selectedItem.name)}
-        onRemove={(selectedList, selectedItem) => handleRemoveTag(selectedItem.name)}
+        onSelect={(selectedList, selectedItem) => handleAddTag(selectedItem.id)}
+        onRemove={(selectedList, selectedItem) => handleRemoveTag(selectedItem.id)}
         displayValue="name"
       />}
     </div>

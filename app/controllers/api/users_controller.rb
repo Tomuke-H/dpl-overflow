@@ -54,9 +54,15 @@ class Api::UsersController < ApplicationController
   end
     
   def user_profile
-    id = params[:id]
-    user = User.find(params[:id])
-    render json: {user: user, views: User.question_views(id)}
+    render json: {user: User.user_profile(params[:id])}
+  end
+
+  def user_questions
+    render json: {user: User.user_questions(params[:id])}
+  end
+
+  def user_answers
+    render json: {user: User.user_answers(params[:id])}
   end
 
 

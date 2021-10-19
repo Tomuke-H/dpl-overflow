@@ -1,15 +1,19 @@
 import axios from "axios";
-import React, {  useEffect, useState } from "react";
+import React, {  useContext, useEffect, useState } from "react";
 import { Button, Card, Image } from "react-bootstrap";
 import CardHeader from "react-bootstrap/esm/CardHeader";
+import Activity from "../pages/Activity";
+import { AuthContext } from "../providers/AuthProvider";
 import EditUser from "./EditUser";
 
 
 export default function OtherUserProfile(props) {
   const [user, setUser] = useState({})
   const [showForm, setShowForm] = useState(false)
-  const [views, setViews] = useState(0)
-
+  const [showActivity, setShowActivity] = useState(false)
+  const { user: currentUser } = useContext(AuthContext);
+  const [activityUser, setActivityUser] = useState({})
+;
   useEffect(()=>{
     getUser()
   },[])
@@ -21,14 +25,15 @@ export default function OtherUserProfile(props) {
   const getUser = async () => {
     try {
     let res = await axios.get (`/api/users_profile/${id}`)
-    setUser(res.data.user)
-    console.log("res.data:", res.data)
-    setViews(res.data.views[0].question_views)
+    setUser(res.data.user[0])
+    console.log("res.data.user.name:", res.data.user[0].name)
     // console.log("user:", user)
     } catch (err) {
       console.log("get user error", err)
     }
   }
+
+
 
 
   return (
@@ -39,8 +44,9 @@ export default function OtherUserProfile(props) {
       </div>
         <div style={styles.optionsContainer}>
           <Button onClick={()=>{setShowForm(false)}}style={styles.profile}>Profile</Button>
-          <Button onClick={()=>{setShowForm(false)}}style={styles.activity}>Activity</Button>
+          <Button onClick={()=>{setShowActivity(!showActivity)}}style={styles.activity}>Activity</Button>
           <Button onClick={()=>{setShowForm(!showForm)}}style={styles.settings}>Settings</Button>
+          {showActivity && <Activity user = {user}/>}
         </div>
         <div style={{display: 'flex', flexDirection: 'row'}}>
         <p style={styles.stats}>STATS</p>
@@ -50,7 +56,10 @@ export default function OtherUserProfile(props) {
         <Card style={{width: '600px', height: '79px', flexDirection: 'row'}}>
             {/* <Card.Body>Votes: {user.votes}</Card.Body> */}
             {/* <Card.Body>Answers: {user.answer_count}</Card.Body> */}
-            <Card.Body>Views: {views}</Card.Body>
+            <Card.Body>Votes: {user.answer_likes + user.question_likes + user.comment_likes}</Card.Body>
+            <Card.Body>Answers: {user.answer_count}</Card.Body>
+            <Card.Body>Views: {user.question_views}</Card.Body>
+            <Card.Body>Questions: {user.question_count}</Card.Body>
             {/* <Card.Body>Questions: {user.question_count}</Card.Body> */}
           </Card>
         <Card style={{width: '600px', height: '79px'}}>

@@ -93,8 +93,8 @@ const Answer = ({answer, props, deleteAnswer}) => {
   return (
     <div>
       {renderAnswer()}
-      <div style={styles.answerBottom}/>
       <Comments addComment={addComment} updateComments={updateComments} deleteComment={deleteComment} comments={comments} setComments={setComments} answer={answer}/>
+      <div style={styles.answerBottom}/>
     </div>
   )
 }
@@ -157,7 +157,6 @@ const styles = {
   },
   addComment: {
     marginLeft: "50px",
-    margin: "10px",
     fontSize: "14px",
     fontFamily: "Inter, sans-serif",
     fontWeight: "500",

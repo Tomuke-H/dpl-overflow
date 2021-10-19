@@ -38,6 +38,7 @@ const styles = {
     fontFamily: "Inter, sans-serif",
     fontWeight: "500",
     marginTop: "30px",
+    marginBottom: "30px",
   },
   comment: {
     marginLeft: "20px",

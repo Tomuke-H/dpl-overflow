@@ -35,7 +35,7 @@ const styles = {
     marginLeft: "207px",
     marginRight: "285px",
     paddingTop: "28px",
-    borderBottom: "1px solid rgba(0, 0, 0, 0.3)",
+    borderTop: "1px solid rgba(0, 0, 0, 0.3)",
     display: "flex",
     flexDirection: "row",
     justifyContent: "flex-start"

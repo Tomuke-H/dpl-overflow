@@ -8,6 +8,8 @@ import EditQuestionForm from "./EditQuestionForm";
 import QComments from "../QCommentComponents/QComments";
 import NewQCommentForm from "../QCommentComponents/NewQCommentForm";
 import { day, time } from "../DayConverter/Dates";
+import AuthorBox from './AuthorBox';
+import QuestionAuthor from './QuestionAuthor';
 
 const Question = ({props, edited, setEdited, history, question}) => {
   const [qcomments, setQComments] = useState([])
@@ -113,9 +115,16 @@ const Question = ({props, edited, setEdited, history, question}) => {
         </div>
         <div style={styles.questionDetails}><MarkdownView body = {question.body}/></div> 
         <div style={{display:"flex"}}>{renderTags()}</div>
-        {showEditDelete()}
-        <p style={styles.addComment} onClick={()=>setShowQCommentForm(!showQCommentForm)}>{showQCommentForm ? "Cancel" : "Add Comment"}</p>
-        {showQCommentForm && <NewQCommentForm question={question} addQComment={addQComment}/>}
+        <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+          <div style={{display: "flex", flexDirection: "column"}}>
+            {showEditDelete()}
+             <p style={styles.addComment} onClick={()=>setShowQCommentForm(!showQCommentForm)}>{showQCommentForm ? "Cancel" : "Add Comment"}</p>
+            {showQCommentForm && <NewQCommentForm question={question} addQComment={addQComment}/>}
+          </div>
+        <div style={styles.authorBox}>
+        <AuthorBox question={question}/>
+        </div>
+        </div>
       </Container>
       </div>
     )
@@ -137,6 +146,7 @@ const styles = {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
+    marginBottom: "30px"
   },
   likesContainer: {
     marginRight: "66px",
@@ -156,6 +166,7 @@ const styles = {
     color: "#000000",
   },
   questionDetails: {
+    marginRight: "15px",
     marginTop: "30px",
     fontSize: "14px",
     fontFamily: "Inter, sans-serif",
@@ -194,7 +205,7 @@ const styles = {
     marginLeft: "207px",
     marginRight: "285px",
     borderBottom: "1px solid rgba(0, 0, 0, 0.3)",
-  }
+  },
 };
 
 export default Question;

@@ -3,7 +3,7 @@ class Api::QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :update, :destroy, :answer_count, :add_view]
 
   def index
-    render json: {questions: Question.popular.page(@page).per(5), total_pages: Question.popular.page(@page).per(5).total_pages}
+    render json: {questions: Question.popular.page(@page).per(10), total_pages: Question.popular.page(@page).per(10).total_pages}
   end
 
   def show
@@ -30,17 +30,17 @@ class Api::QuestionsController < ApplicationController
 
   def find_questions_by_tag
     puts '---------------------------------------------'
-    puts params[:tag_name]
+    puts params[:tag_ids]
     puts '---------------------------------------------'
-    render json: {questions: Question.find_questions_by_tag(params[:tag_name]).page(@page).per(5), total_pages: Question.find_questions_by_tag(params[:tag_name]).page(@page).per(5).total_pages}
+    render json: {questions: Question.find_questions_by_tag(params[:tag_ids]).page(@page).per(10), total_pages: Question.find_questions_by_tag(params[:tag_ids]).page(@page).per(10).total_pages}
   end
 
   def unanswered_questions
-    render json: {questions: Question.unanswered_questions.page(@page).per(5), total_pages: Question.unanswered_questions.page(@page).per(5).total_pages}
+    render json: {questions: Question.unanswered_questions.page(@page).per(10), total_pages: Question.unanswered_questions.page(@page).per(10).total_pages}
   end
 
   def search
-    render json: {questions: Question.search(params[:body]).page(@page).per(5), total_pages: Question.search(params[:body]).page(@page).per(5).total_pages}
+    render json: {questions: Question.search(params[:body]).page(@page).per(10), total_pages: Question.search(params[:body]).page(@page).per(10).total_pages}
   end
 
   def update

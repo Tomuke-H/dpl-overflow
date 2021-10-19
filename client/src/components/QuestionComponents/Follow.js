@@ -25,9 +25,7 @@ const Follow = ({user,follow,question}) =>{
         let res = await axios.put(`/api/follow`, {follow: unfollow})
         setUser(res.data)
         setFollowed(unfollow)
-        setIsFollowed(false)
-        console.log("unfollowing",followed)
-        
+        setIsFollowed(false)        
       } catch (err) {
         console.log(err)
       }
@@ -37,7 +35,7 @@ const Follow = ({user,follow,question}) =>{
         let res = await axios.put(`/api/follow`, {follow: followed})
         setFollowed(followed)
         setIsFollowed(true)
-        console.log("following",followed)
+        setUser(res.data)
       } catch (err) {
         console.log(err)
       }

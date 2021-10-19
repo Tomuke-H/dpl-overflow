@@ -1,17 +1,19 @@
 import axios from "axios";
-import React, { useContext, useReducer } from "react";
+import React, { useContext, useEffect, useReducer, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { AiFillCaretUp, AiFillCaretDown } from "react-icons/ai"
 
 
-const QuestionVote = ({question}) => {
-  const {user} = useContext(AuthContext)
-
+const QuestionVote = ({question, liked_questions}) => {
+  const{setUser} = useContext(AuthContext)
+  const [lq, setLQ] = useState(liked_questions); // lq = liked Questions
+  const [isLQ, setIsLQ] = useState(false);
+  
   // okay got it working but would like to keep track of whether a user has already liked or not - limit one like per user, right?
-
+  
   const saveUpVote = async () => {
     try{
-    let res = await axios.put(`/api/questions/${question.id}`, {
+    await axios.put(`/api/questions/${question.id}`, {
       likes: likes + 1
     })
     // console.log(res)
@@ -22,7 +24,7 @@ const QuestionVote = ({question}) => {
 
   const saveDownVote = async () => {
     try{
-    let res = await axios.put(`/api/questions/${question.id}`, {
+    await axios.put(`/api/questions/${question.id}`, {
       likes: likes - 1
     })
     // console.log(res)
@@ -31,13 +33,51 @@ const QuestionVote = ({question}) => {
     }
   }
   
-    const upVote = () =>
-    {dispatch("add");
-    saveUpVote(likes)}
+    const upVote = () =>{
+      dispatch("add");
+      saveUpVote(likes)
+    }
 
-    const downVote = () =>
-    {dispatch("subtract");
-    saveDownVote(likes)}
+    const downVote = () =>{
+      dispatch("subtract");
+      saveDownVote(likes)
+    }
+
+    useEffect(()=>{
+      checkLQ()
+    },[])
+
+  const checkLQ = () => {
+    if(liked_questions.length !==0 ){
+      if(lq.includes(question.id) === true){
+        setIsLQ(true)
+      }
+    }
+  }
+
+  const handleLQ = async () =>{
+    if(isLQ){
+      try {
+        let unLQ = lq.filter((i) => i !== question.id)
+        let res = await axios.put(`/api/likequestion`, {liked_questions: unLQ})
+        setUser(res.data)
+        setLQ(unLQ)
+        setIsLQ(false)        
+      } catch (err) {
+        console.log(err)
+      }
+    }else{
+      try {
+        lq.push(question.id)
+        let res = await axios.put(`/api/likequestion`, {liked_questions: lq})
+        setLQ(lq)
+        setUser(res.data)
+        setIsLQ(true)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+  }
 
   
     const [likes, dispatch] = useReducer((state, action) => {

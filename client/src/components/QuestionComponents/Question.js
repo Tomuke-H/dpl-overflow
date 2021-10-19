@@ -104,7 +104,7 @@ const Question = ({props, edited, setEdited, history, question}) => {
     return(
       <div style={styles.theMightyDiv}>
         <div style={styles.likesContainer}>
-        <QuestionVote question={question}/>
+        <QuestionVote question={question} liked_questions = {user.liked_questions}/>
         </div>
       <Container style={styles.questionContainer}>
         {/* <h1>{question.user_id}</h1> */}

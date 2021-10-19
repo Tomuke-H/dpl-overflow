@@ -19,7 +19,6 @@ import Leaderboard from './pages/Leaderboard';
 import Yearbook from './pages/Yearbook';
 import useGetUser from './hooks/useGetUser';
 import TagsPage from './pages/TagsPage';
-import UserProfile from './components/UserProfile';
 import Footer from './components/Footer';
 import OtherUserProfile from './components/OtherUserProfile';
 import AboutUs from './pages/AboutUs';

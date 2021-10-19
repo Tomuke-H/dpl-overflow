@@ -48,7 +48,7 @@ function App() {
   const renderProfiles = () => {
     return users.map((user) => {
       return (
-      <ProtectedRoute exact path={`users/${user.id}`} render={(props)=> <UserProfile {...props} user={user} />} />
+      <ProtectedRoute exact path={`users/${user.id}`} render={(props)=> <OtherUserProfile {...props} user={user} />} />
       )
     })
   }
@@ -79,7 +79,7 @@ function App() {
 
             <ProtectedRoute exact path='/yearbook' component={Yearbook}/>
             <ProtectedRoute exact path='/user/edit' component={EditUser}/>
-            <ProtectedRoute exact path='/users/:id' component={UserProfile}/>
+            <ProtectedRoute exact path='/users/:id' component={OtherUserProfile}/>
             <ProtectedRoute exact path='/users/:id/profile' component={OtherUserProfile}/>
             {renderRoutes()}
             {renderProfiles()}

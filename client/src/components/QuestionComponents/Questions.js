@@ -66,7 +66,6 @@ const Questions = ({history}) => {
   }
 
   const getDataSearch = async (p, t) => {
-    setSearch(t)
     setSortBy('search')
     try{
       let res = await axios.get(`/api/question_search?page=${p}&body=${t}`)
@@ -90,7 +89,12 @@ const Questions = ({history}) => {
         getDataByUnanswered(p)
         break;
       case "search":
-        getDataSearch(p, t)
+        setSearch(t)
+        if(!t){
+          getAllData(1)
+        }else {
+          getDataSearch(p, t)
+        }
         break;
       case "follow":
         getFollow(p)
@@ -131,7 +135,7 @@ const Questions = ({history}) => {
       {/* <h2>{JSON.stringify(tagSearch)}</h2> */}
       <div style={{display: 'flex', justifyContent: 'space-between'}}>
         <div>
-          <Form.Control value={search} onChange={(e) => getQuestions('search', 1, e.target.value)}/>
+          <Form.Control placeholder='Search' value={search} onChange={(e) => getQuestions('search', 1, e.target.value)}/>
         </div>
         <div>
           <SortSelector 
@@ -145,6 +149,7 @@ const Questions = ({history}) => {
           />
         </div>
       </div>
+      <br/>
       <div>
         <InfiniteScroll
           dataLength={questions.length}

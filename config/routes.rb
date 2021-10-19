@@ -29,12 +29,15 @@ Rails.application.routes.draw do
     put 'likeanswer', to: 'users#like_answer'
     put 'likequestion', to: 'users#like_question'
     get 'users_profile/:id', to: 'users#user_profile'
+    get 'user_questions/:id', to: 'users#user_questions'
+    get 'user_answers/:id', to: 'users#user_answers'
     get 'answer_count/:id', to: 'questions#answer_count'
     get 'tag/:key', to: 'tags#tag_search'
     get 'question_author/:id', to: 'questions#author'
     get 'answer_author/:id', to: 'answers#author'
     get 'comment_author/:id', to: 'comments#author'
     get 'qcomment_author/:id', to: 'qcomments#author'
+    get 'user_has_questions/:id', to: 'users#user_has_questions'
     resources :tags
   end
 end

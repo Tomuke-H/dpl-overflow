@@ -74,16 +74,18 @@ const Leaderboard = () => {
 
   return (
     <div style={styles.wrapper}>
-      <Dropdown>
-        <Dropdown.Toggle>View By Cohort</Dropdown.Toggle>
-        <Dropdown.Menu>
-          <Dropdown.Item onClick={(e) => getUsers('all', null, 1)}>View All</Dropdown.Item>
-          <Dropdown.Item onClick={(e) => getUsers('cohort', 'Fall 2021', 1)}>Fall 2021</Dropdown.Item>
-          <Dropdown.Item onClick={(e) => getUsers('cohort', 'Winter 2021', 1)}>Winter 2021</Dropdown.Item>
-          <Dropdown.Item onClick={(e) => getUsers('cohort', 'Spring 2022', 1)}>Spring 2022</Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
-
+      <div style={styles.header}>
+        <h1>Leaderboard</h1>
+        <Dropdown>
+          <Dropdown.Toggle>View By Cohort</Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item onClick={(e) => getUsers('all', null, 1)}>View All</Dropdown.Item>
+            <Dropdown.Item onClick={(e) => getUsers('cohort', 'Fall 2021', 1)}>Fall 2021</Dropdown.Item>
+            <Dropdown.Item onClick={(e) => getUsers('cohort', 'Winter 2021', 1)}>Winter 2021</Dropdown.Item>
+            <Dropdown.Item onClick={(e) => getUsers('cohort', 'Spring 2022', 1)}>Spring 2022</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </div>
       <InfiniteScroll
         dataLength={users.length}
         next={(e)=>getUsers(sortBy, cohort, (page + 1))}
@@ -127,6 +129,20 @@ const styles ={
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center'
+  },
+  table: {
+    width: '90vw',
+    border: 'solid black 1px',
+    borderRadius: '8px',
+    padding: '25px 100px 25px 100px',
+    margin: '20px 5px 40px 5px'
+  },
+  header: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: '90vw',
+    alignItems: 'center',
+    margin: '70px 0px 40px 0px',
   }
 }
 

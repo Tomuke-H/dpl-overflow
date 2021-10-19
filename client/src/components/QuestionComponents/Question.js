@@ -8,6 +8,9 @@ import EditQuestionForm from "./EditQuestionForm";
 import QComments from "../QCommentComponents/QComments";
 import NewQCommentForm from "../QCommentComponents/NewQCommentForm";
 import { day, time } from "../DayConverter/Dates";
+import Follow from './Follow';
+import AuthorBox from './AuthorBox';
+import QuestionAuthor from './QuestionAuthor';
 
 const Question = ({props, edited, setEdited, history, question}) => {
   const [qcomments, setQComments] = useState([])
@@ -103,22 +106,27 @@ const Question = ({props, edited, setEdited, history, question}) => {
     return(
       <div style={styles.theMightyDiv}>
         <div style={styles.likesContainer}>
-        <QuestionVote question={question}/>
+        <QuestionVote question={question} liked_questions = {user.liked_questions}/>
         </div>
       <Container style={styles.questionContainer}>
-        {/* <h1>{question.user_id}</h1> */}
         <h1 style={styles.questionHeader}>{question.title}</h1>
         <div style={styles.qdContainer}>
         <h2 style={styles.questionDetails}>Asked: {day(question.created_at)} / {time(question.created_at)}</h2>
-        {/* need some help getting the date to look different - either google or classmates but nOT RIGHT NOW */}
-        <h2 style={styles.questionDetails}>Active: Today</h2>
         <h2 style={styles.questionDetails}>Viewed: {question.views} times</h2>
         </div>
         <div style={styles.questionDetails}><MarkdownView body = {question.body}/></div> 
         <div style={{display:"flex"}}>{renderTags()}</div>
-        {showEditDelete()}
-        <p style={styles.addComment} onClick={()=>setShowQCommentForm(!showQCommentForm)}>{showQCommentForm ? "Cancel" : "Add Comment"}</p>
-        {showQCommentForm && <NewQCommentForm question={question} addQComment={addQComment}/>}
+        <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+          <div style={{display: "flex", flexDirection: "column"}}>
+            {showEditDelete()}
+        <Follow user={user} follow ={user.follow} question={question.id}/>
+             <p style={styles.addComment} onClick={()=>setShowQCommentForm(!showQCommentForm)}>{showQCommentForm ? "Cancel" : "Add Comment"}</p>
+            {showQCommentForm && <NewQCommentForm question={question} addQComment={addQComment}/>}
+          </div>
+        <div style={styles.authorBox}>
+        <AuthorBox question={question}/>
+        </div>
+        </div>
       </Container>
       </div>
     )
@@ -128,6 +136,7 @@ const Question = ({props, edited, setEdited, history, question}) => {
   return (
     <div>
       {renderQuestion()}
+      <div style={styles.littleBorder}/>
       <QComments addQComment={addQComment} updateQComments={updateQComments} deleteQComment={deleteQComment} qcomments={qcomments} setQComments={setQComments} question={question}/>
     </div>
   )
@@ -135,9 +144,11 @@ const Question = ({props, edited, setEdited, history, question}) => {
 
 const styles = {
   theMightyDiv: {
+    marginRight: "260px",
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
+    marginBottom: "30px"
   },
   likesContainer: {
     marginRight: "66px",
@@ -149,7 +160,6 @@ const styles = {
     marginLeft: "66px"
   },
   questionHeader: {
-    width: "800px",
     textTransform: "uppercase",
     marginTop: "70px",
     fontSize: "30px",
@@ -158,9 +168,8 @@ const styles = {
     color: "#000000",
   },
   questionDetails: {
-    maxWidth: "850px",
+    marginRight: "15px",
     marginTop: "30px",
-    marginRight: "10px",
     fontSize: "14px",
     fontFamily: "Inter, sans-serif",
     fontWeight: "500",
@@ -193,7 +202,12 @@ const styles = {
     fontFamily: "Inter, sans-serif",
     fontWeight: "500",
     color: "#757575"
-  }
+  },
+  littleBorder:{
+    marginLeft: "207px",
+    marginRight: "285px",
+    borderBottom: "1px solid rgba(0, 0, 0, 0.3)",
+  },
 };
 
 export default Question;

@@ -57,4 +57,16 @@ class Question < ApplicationRecord
     .where('q.id = ?', id)
   end
 
+
+  def self.follow(follow)
+    follow = follow.empty? ? [0] : follow
+    select('q.id, q.views, q.likes, q.title, q.body, count(a.id) AS total_answers, q.created_at')
+    .from('questions AS q')
+    .joins('LEFT JOIN answers AS a ON a.question_id = q.id
+            FUll OUTER JOIN users AS u on q.user_id = u.id')
+    .where('q.id IN (?)', follow)
+    .order('q.id')
+    .group('q.id')
+  end 
+
 end

@@ -5,7 +5,9 @@ class User < ActiveRecord::Base
   has_many :answers, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :qcomments, dependent: :destroy
-
+  serialize :follow, Array
+  serialize :liked_answers, Array
+  serialize :liked_questions, Array
 
   def self.leaderboard
     select('name, points, id, cohort, image')
@@ -28,39 +30,36 @@ class User < ActiveRecord::Base
   end
 
 
-  # def self.user_profile(id)
-  #   select('u.name, u.id, u.cohort, u.about_me, u.image, COUNT(q.likes + a.likes + c.likes) AS votes, COUNT(q.views) AS views, COUNT(a.id) AS answer_count, COUNT(q.id) AS question_count')
-  #   .from('users AS u')
-  #   .joins('INNER JOIN answers AS a ON u.id = a.user_id
-  #   INNER JOIN questions AS q ON u.id = q.user_id
-  #   INNER JOIN comments AS c ON u.id = c.user_id')
-  #   .where('u.id = ?', id)
-  #   .group('u.id')
-  # end
-
-#   SELECT  q.user_id, SUM(q.views) as question_views
-# from questions q
-# GROUP BY q.user_id;
-
-# SELECT  a.user_id, SUM(a.likes) as answer_likes 
-# from answers a
-# GROUP BY a.user_id;
-
-def self.question_views(id)
-  select('q.user_id, SUM(q.views) as question_views')
-  .from('questions as q')
-  .where('q.user_id = ?', id)
-  .group('q.user_id')
-  
+def self.user_profile(id)
+  ActiveRecord::Base.connection.exec_query("SELECT u.name, u.id, u.cohort, u.about_me, u.image,  count(*) as answer_count,
+    (SELECT SUM(q.views) as question_views from questions q WHERE q.user_id = #{id}),
+    (SELECT COUNT(*) as question_count from questions q WHERE q.user_id = #{id}),
+    (SELECT SUM(q.likes) as question_likes from questions q WHERE q.user_id = #{id}),
+    (SELECT SUM(a.likes) as answer_likes from answers a WHERE a.user_id = #{id}),
+    (SELECT SUM(c.likes) as comment_likes from comments c WHERE c.user_id = #{id})
+from answers a
+INNER JOIN users u on a.user_id = u.id AND a.user_id = #{id}
+GROUP BY u.id")
 end
 
-def self.answer_likes(id)
-  select('a.user_id, SUM(a.likes) as answer_likes')
-  .from('answers a')
-  .group('a.user_id;')
-  .where('a.user_id = ?', id)
+
+def self.user_questions(id)
+  select('u.id, q.id AS question_id, q.title, q.body AS question_body, q.views, q.created_at AS question_created')
+  .from('questions as q ')
+  .joins('FULL JOIN users as u ON q.user_id = u.id')
+  .where('u.id = ?', id)
+  .order('q.created_at DESC')
 end
 
+
+def self.user_answers(id)
+  select('u.id, q.id AS question_id, a.id AS answer_id, q.title, q.body AS question_body, q.views, a.body AS answer_body, a.created_at AS answer_created, q.created_at AS question_created, a.verified')
+  .from('questions AS q')
+  .joins('FULL JOIN users as u ON q.user_id = u.id
+          FULL JOIN answers AS a ON a.question_id = q.id')
+  .where('u.id = ?', id)
+  .order('a.created_at DESC')
+end
 
 
   extend Devise::Models

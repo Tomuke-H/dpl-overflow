@@ -18,6 +18,14 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def follow
+    if current_user.update(user_follow)
+      render json: current_user
+    else
+      render json: {errors: current_user.errors}, status: 422
+    end
+  end
+
   def destroy
     current_user.destroy
     render json: current_user
@@ -54,12 +62,34 @@ class Api::UsersController < ApplicationController
   end
     
   def user_profile
-    id = params[:id]
-    user = User.find(params[:id])
-    render json: {user: user, views: User.question_views(id)}
+    render json: {user: User.user_profile(params[:id])}
   end
 
+  def like_answer
+    if current_user.update(user_liked_answers)
+      render json: current_user
+    else
+      render json: {errors: current_user.errors}, status: 422
+    end
+  end
 
+  def like_question
+    if current_user.update(user_liked_question)
+      render json: current_user
+    else
+      render json: {errors: current_user.errors}, status: 422
+    end
+  def user_questions
+    render json: {user: User.user_questions(params[:id])}
+  end
+
+  def user_answers
+    render json: {user: User.user_answers(params[:id])}
+  end
+
+  def user_has_questions
+    render json: current_user.questions.length
+  end
 
   private
 
@@ -69,7 +99,17 @@ class Api::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :cohort, :about_me, :image)
+    params.require(:user).permit(:name, :email, :cohort, :about_me, :image,)
+  end 
+
+  def user_follow
+    params.require(:user).permit(:follow => [])
+  end 
+  def user_liked_question
+    params.require(:user).permit(:liked_questions => [])
+  end 
+  def user_liked_answers
+    params.require(:user).permit(:liked_answers => [])
   end 
 
 end

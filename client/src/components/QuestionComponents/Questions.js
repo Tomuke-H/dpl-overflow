@@ -44,6 +44,16 @@ const Questions = ({history}) => {
     }
   }
 
+  const getFollow = async (p) => {
+    setSortBy('follow')
+    setTagSearch([])
+    try{
+      let res = await axios.get(`/api/follow?page=${p}`)
+      setStates(res.data, p)
+    }catch(err){
+      console.log(err)
+    }
+  }
   const getAllData = async (p) => {
     setSortBy('all')
     setTagSearch([])
@@ -81,6 +91,9 @@ const Questions = ({history}) => {
         break;
       case "search":
         getDataSearch(p, t)
+        break;
+      case "follow":
+        getFollow(p)
         break;
       default:
         alert('Unsupported search method')

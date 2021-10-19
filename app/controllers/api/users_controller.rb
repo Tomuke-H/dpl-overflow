@@ -59,7 +59,9 @@ class Api::UsersController < ApplicationController
     render json: {user: user, views: User.question_views(id)}
   end
 
-
+  def user_has_questions
+    render json: current_user.questions.length
+  end
 
   private
 

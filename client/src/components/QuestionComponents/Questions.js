@@ -136,6 +136,7 @@ const Questions = ({history}) => {
           />
         </div>
       </div>
+      <br/>
       <div>
         <InfiniteScroll
           dataLength={questions.length}

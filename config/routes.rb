@@ -25,6 +25,8 @@ Rails.application.routes.draw do
     get 'cohort_yearbook', to: 'users#cohort_yearbook'
     put 'users/image/update', to: 'users#update_image'
     get 'users_profile/:id', to: 'users#user_profile'
+    get 'user_questions/:id', to: 'users#user_questions'
+    get 'user_answers/:id', to: 'users#user_answers'
     get 'answer_count/:id', to: 'questions#answer_count'
     get 'tag/:key', to: 'tags#tag_search'
     get 'question_author/:id', to: 'questions#author'

@@ -4,6 +4,10 @@ export const day = (dateunformated) => {
   return DateTime.fromISO(`${dateunformated}`).toFormat('DD');
 }
 
+export const seconds = (dateunformated) => { 
+  return DateTime.fromISO(`${dateunformated}`).toFormat('X');
+}
+
 export const time = (dateunformated) => { 
   return DateTime.fromISO(`${dateunformated}`).toFormat('tt');
 }

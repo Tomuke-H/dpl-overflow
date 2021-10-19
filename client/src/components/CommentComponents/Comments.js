@@ -33,6 +33,7 @@ const Comments = ({answer, comments, addComment, updateComments, deleteComment})
 const styles = {
   commentContainer: {
     marginLeft: "207px",
+    marginRight: "285px",
     paddingTop: "28px",
     borderTop: "1px solid rgba(0, 0, 0, 0.3)",
     display: "flex",

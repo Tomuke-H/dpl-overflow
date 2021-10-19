@@ -8,6 +8,7 @@ import EditQuestionForm from "./EditQuestionForm";
 import QComments from "../QCommentComponents/QComments";
 import NewQCommentForm from "../QCommentComponents/NewQCommentForm";
 import { day, time } from "../DayConverter/Dates";
+import Follow from './Follow';
 import AuthorBox from './AuthorBox';
 import QuestionAuthor from './QuestionAuthor';
 
@@ -105,7 +106,7 @@ const Question = ({props, edited, setEdited, history, question}) => {
     return(
       <div style={styles.theMightyDiv}>
         <div style={styles.likesContainer}>
-        <QuestionVote question={question}/>
+        <QuestionVote question={question} liked_questions = {user.liked_questions}/>
         </div>
       <Container style={styles.questionContainer}>
         <h1 style={styles.questionHeader}>{question.title}</h1>
@@ -118,6 +119,7 @@ const Question = ({props, edited, setEdited, history, question}) => {
         <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
           <div style={{display: "flex", flexDirection: "column"}}>
             {showEditDelete()}
+        <Follow user={user} follow ={user.follow} question={question.id}/>
              <p style={styles.addComment} onClick={()=>setShowQCommentForm(!showQCommentForm)}>{showQCommentForm ? "Cancel" : "Add Comment"}</p>
             {showQCommentForm && <NewQCommentForm question={question} addQComment={addQComment}/>}
           </div>

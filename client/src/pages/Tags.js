@@ -4,7 +4,6 @@ import { Badge, } from "react-bootstrap"
 import CreateTag from "../components/TagComponents/CreateTag"
 
 const Tags = () => {
-  const [show, setShow] = useState("false")
   const [tags, setTags] = useState([])
   const [created, setCreated] = useState(false)
 

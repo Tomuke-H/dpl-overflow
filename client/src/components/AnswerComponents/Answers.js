@@ -9,6 +9,7 @@ const Answers = ({props}) => {
 const [answers, setAnswers] = useState([])
 const [sortBy, setSortBy] = useState("")
 const [axiosProp, setAxiosProp] = useState("answers")
+const [answerCount, setAnswerCount] = useState([])
 
 const getUnsortedAnswers = async () => {
   try {
@@ -20,7 +21,8 @@ const getUnsortedAnswers = async () => {
 }
 
 useEffect(()=>{
-  getUnsortedAnswers()
+  getUnsortedAnswers();
+  getAnswerCount();
 }, [])
 
 const getAnswersByOldest = async () => {
@@ -66,6 +68,15 @@ const deleteAnswer = async (id) => {
   }
 }
 
+const getAnswerCount = async () => {
+  try {
+    let res = await axios.get(`/api/answer_count/${props.match.params.id}`)
+    setAnswerCount(res.data[0].count) 
+  } catch(err) {
+    console.log(err)
+  }
+}
+
 const renderAnswers = () => {
   return answers.map (a => {
     return (
@@ -75,11 +86,14 @@ const renderAnswers = () => {
 }
   return (
     <div>
-      <div>
+      <div style={styles.headerStuff}>
+      <p style={styles.answerCount}>{answerCount} Answers </p>
+      <div style={styles.toggleGrid}>
         <AnswerSort 
         sortBy={sortBy}
         setSortBy={setSortBy}
         getAnswers={getAnswers}/>
+      </div>
       </div>
       {renderAnswers()}
       <br />
@@ -90,9 +104,22 @@ const renderAnswers = () => {
 };
 
 const styles = {
-  toggleGrid: {
+  headerStuff: {
+    marginTop: "33px",
     display: "flex",
-
+    flexDirection: "row",
+    justifyContent: "space-between"
+  },
+  toggleGrid: {
+    marginRight: "193px",
+    display: "flex",
+    justifyContent: "right",
+  },
+  answerCount: {
+    marginLeft: "137px",
+    fontSize: "20px",
+    fontWeight: "500",
+    fontFamily: "Inter"
   }
 }
 

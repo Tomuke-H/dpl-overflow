@@ -32,8 +32,9 @@ const QComments = ({question, qcomments, setQComments, addQComment, updateQComme
 const styles = {
   commentContainer: {
     marginLeft: "207px",
+    marginRight: "285px",
     paddingTop: "28px",
-    borderTop: "1px solid rgba(0, 0, 0, 0.3)",
+    borderBottom: "1px solid rgba(0, 0, 0, 0.3)",
     display: "flex",
     flexDirection: "row",
     justifyContent: "flex-start"

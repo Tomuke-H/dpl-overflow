@@ -125,6 +125,7 @@ const Question = ({props, edited, setEdited, history, question}) => {
   return (
     <div>
       {renderQuestion()}
+      <div style={styles.littleBorder}/>
       <QComments addQComment={addQComment} updateQComments={updateQComments} deleteQComment={deleteQComment} qcomments={qcomments} setQComments={setQComments} question={question}/>
     </div>
   )
@@ -132,6 +133,7 @@ const Question = ({props, edited, setEdited, history, question}) => {
 
 const styles = {
   theMightyDiv: {
+    marginRight: "260px",
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
@@ -146,7 +148,6 @@ const styles = {
     marginLeft: "66px"
   },
   questionHeader: {
-    width: "800px",
     textTransform: "uppercase",
     marginTop: "70px",
     fontSize: "30px",
@@ -155,9 +156,7 @@ const styles = {
     color: "#000000",
   },
   questionDetails: {
-    maxWidth: "850px",
     marginTop: "30px",
-    marginRight: "10px",
     fontSize: "14px",
     fontFamily: "Inter, sans-serif",
     fontWeight: "500",
@@ -190,6 +189,11 @@ const styles = {
     fontFamily: "Inter, sans-serif",
     fontWeight: "500",
     color: "#757575"
+  },
+  littleBorder:{
+    marginLeft: "207px",
+    marginRight: "285px",
+    borderBottom: "1px solid rgba(0, 0, 0, 0.3)",
   }
 };
 

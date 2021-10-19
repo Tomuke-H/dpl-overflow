@@ -93,6 +93,7 @@ const Answer = ({answer, props, deleteAnswer}) => {
   return (
     <div>
       {renderAnswer()}
+      <div style={styles.answerBottom}/>
       <Comments addComment={addComment} updateComments={updateComments} deleteComment={deleteComment} comments={comments} setComments={setComments} answer={answer}/>
     </div>
   )
@@ -104,7 +105,6 @@ const styles = {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    borderTop: "1px solid rgba(0, 0, 0, 0.3)",
   },
   likesContainer: {
     marginRight: "66px",
@@ -144,10 +144,16 @@ const styles = {
     marginTop: "30px",
   },
   answerContainer: {
+    padding: "10px",
     display: "flex",
     flexDirection: "column",
     justifyContent: "flex-start",
     alignItems: "flex-start",
+  },
+  answerBottom: {
+    marginLeft: "137px",
+    marginRight: "193px",
+    borderBottom: "1px solid rgba(0, 0, 0, 0.3)",
   },
   addComment: {
     marginLeft: "50px",

@@ -24,7 +24,6 @@ const Questions = ({history}) => {
   }
 
   const getDataByTag = async (p, t) => {
-    console.log('axios', tagSearch)
     setSortBy('tag')
     try{
       let res = await axios.get(`/api/find_questions_by_tag/${t}?page=${p}`)

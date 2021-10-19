@@ -54,8 +54,17 @@ class Api::UsersController < ApplicationController
   end
     
   def user_profile
-    render json: {users: User.user_profile(params[:id])}
+    render json: {user: User.user_profile(params[:id])}
   end
+
+  def user_questions
+    render json: {user: User.user_questions(params[:id])}
+  end
+
+  def user_answers
+    render json: {user: User.user_answers(params[:id])}
+  end
+
 
 
   private

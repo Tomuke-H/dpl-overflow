@@ -18,6 +18,13 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def follow
+    if current_user.update(user_follow)
+      render json: current_user
+    else
+      render json: {errors: current_user.errors}, status: 422
+    end
+  end
   def destroy
     current_user.destroy
     render json: current_user
@@ -66,7 +73,10 @@ class Api::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :cohort, :about_me, :image)
+    params.require(:user).permit(:name, :email, :cohort, :about_me, :image,)
+  end 
+  def user_follow
+    params.require(:user).permit(:follow => [])
   end 
 
 end

@@ -8,6 +8,7 @@ import EditQuestionForm from "./EditQuestionForm";
 import QComments from "../QCommentComponents/QComments";
 import NewQCommentForm from "../QCommentComponents/NewQCommentForm";
 import { day, time } from "../DayConverter/Dates";
+import Follow from './Follow';
 
 const Question = ({props, edited, setEdited, history, question}) => {
   const [qcomments, setQComments] = useState([])
@@ -117,6 +118,7 @@ const Question = ({props, edited, setEdited, history, question}) => {
         <div style={styles.questionDetails}><MarkdownView body = {question.body}/></div> 
         <div style={{display:"flex"}}>{renderTags()}</div>
         {showEditDelete()}
+        <Follow user={user} follow ={user.follow} question={question.id}/>
         <p style={styles.addComment} onClick={()=>setShowQCommentForm(!showQCommentForm)}>{showQCommentForm ? "Cancel" : "Add Comment"}</p>
         {showQCommentForm && <NewQCommentForm question={question} addQComment={addQComment}/>}
       </Container>

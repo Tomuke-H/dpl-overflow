@@ -106,12 +106,9 @@ const Question = ({props, edited, setEdited, history, question}) => {
         <QuestionVote question={question}/>
         </div>
       <Container style={styles.questionContainer}>
-        {/* <h1>{question.user_id}</h1> */}
         <h1 style={styles.questionHeader}>{question.title}</h1>
         <div style={styles.qdContainer}>
         <h2 style={styles.questionDetails}>Asked: {day(question.created_at)} / {time(question.created_at)}</h2>
-        {/* need some help getting the date to look different - either google or classmates but nOT RIGHT NOW */}
-        <h2 style={styles.questionDetails}>Active: Today</h2>
         <h2 style={styles.questionDetails}>Viewed: {question.views} times</h2>
         </div>
         <div style={styles.questionDetails}><MarkdownView body = {question.body}/></div> 

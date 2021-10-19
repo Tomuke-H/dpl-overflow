@@ -76,7 +76,7 @@ const Answer = ({answer, props, deleteAnswer}) => {
           <AnswerVote answer={answer}/>
         </div>
         <div style={styles.answerContainer}>
-          <div style={styles.answerDetails}><MarkdownView body = {answer.body}/></div>
+          <div style={styles.answerBody}><MarkdownView body = {answer.body}/></div>
           <p style={styles.answerDetails}> {AnswerAuthor(answer.id)} </p>
           <p style={styles.answerDetails}> {day(answer.created_at)} / {time(answer.created_at)} </p>
           {showEditDelete()}
@@ -110,11 +110,23 @@ const styles = {
     marginRight: "66px",
     padding: "0px"
   },
+  answerBody: {
+    width: "850px",
+    marginLeft: "40px",
+    marginRight: "10px",
+    fontSize: "16px",
+    fontFamily: "Inter, sans-serif",
+    fontWeight: "500",
+    display: "flex",
+    alignItems: "flex-start",
+    letterSpacing: ".5px",
+    color: "#000000",
+  },
   answerDetails: {
     width: "850px",
     marginLeft: "50px",
     marginRight: "10px",
-    fontSize: "16px",
+    fontSize: "14px",
     fontFamily: "Inter, sans-serif",
     fontWeight: "500",
     display: "flex",

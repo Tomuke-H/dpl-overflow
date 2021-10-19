@@ -1,19 +1,11 @@
 class Api::AnswersController < ApplicationController
 
-before_action :set_question, except: [:author, :index_by_datetime]
+before_action :set_question, except: [:author, :index_by_likes, :index_by_newest, :index_by_oldest]
 before_action :set_answer, only: [:show, :update, :destroy]
 
 
 def index
   render json: @question.answers.all
-end
-
-def index_by_datetime
-  render json: Answer.by_datetime(params[:question_id])
-end
-
-def index_by_likes
-  render json: Answer.by_likes(params[:question_id])
 end
 
 def show

@@ -30,7 +30,7 @@ const styles = {
   Author: {
     fontFamily: "Inter",
     fontWeight: "500",
-    fontSize: "16px",
+    fontSize: "14px",
     letterSpacing: "0.5px",
     color: "#000000"
   }

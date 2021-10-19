@@ -73,7 +73,7 @@ const Answer = ({answer, props, deleteAnswer}) => {
     return(
       <div style={styles.theMightyDiv}>
         <div style={styles.likesContainer}>
-          <AnswerVote answer={answer}/>
+          <AnswerVote answer={answer} liked_answers = {user.liked_answers}/>
         </div>
         <div style={styles.answerContainer}>
           <div style={styles.answerBody}><MarkdownView body = {answer.body}/></div>

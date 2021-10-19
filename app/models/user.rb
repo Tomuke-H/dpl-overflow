@@ -5,7 +5,9 @@ class User < ActiveRecord::Base
   has_many :answers, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :qcomments, dependent: :destroy
-
+  serialize :follow, Array
+  serialize :liked_answers, Array
+  serialize :liked_questions, Array
 
   def self.leaderboard
     select('name, points, id, cohort, image')

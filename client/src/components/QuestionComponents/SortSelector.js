@@ -41,6 +41,7 @@ const SortSelector = ({sortBy, getQuestions, setShowTags, tagSearch, setTagSearc
       <ListGroup horizontal>
         <ListGroup.Item style={sortBy == 'all' && !showTags ? styles.tabActive : styles.tab} onClick={(e)=> getQuestions('all', 1)}>Popular</ListGroup.Item >
         <ListGroup.Item style={(sortBy == 'unanswered' && !showTags) ? styles.tabActive : styles.tab} onClick={(e)=> getQuestions('unanswered', 1)}>Unanswered</ListGroup.Item >
+        <ListGroup.Item style={(sortBy == 'follow' && !showTags) ? styles.tabActive : styles.tab} onClick={(e)=> getQuestions('follow', 1)}>Following</ListGroup.Item >
         <ListGroup.Item style={showTags ? styles.tabActive : styles.tab} onClick={(e)=> setShowTags(!showTags)}>Search by Tag</ListGroup.Item >
       </ListGroup>
       

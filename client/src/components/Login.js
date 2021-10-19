@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Form, Container, Nav} from 'react-bootstrap';
+import { Form, Container, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import { AuthContext } from '../providers/AuthProvider'
@@ -27,7 +27,6 @@ const Login = (props) => {
                     label="Email"
                     onChange={(e) => setEmail(e.target.value)}
                 />
-                <br />
                 <br />
                 <br />
                 <p style={styles.label}>Password</p>

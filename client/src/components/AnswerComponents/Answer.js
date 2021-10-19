@@ -76,7 +76,7 @@ const Answer = ({answer, props, deleteAnswer}) => {
           <AnswerVote answer={answer}/>
         </div>
         <div style={styles.answerContainer}>
-          <div style={styles.answerDetails}><MarkdownView body = {answer.body}/></div>
+          <div style={styles.answerBody}><MarkdownView body = {answer.body}/></div>
           <p style={styles.answerDetails}> {AnswerAuthor(answer.id)} </p>
           <p style={styles.answerDetails}> {day(answer.created_at)} / {time(answer.created_at)} </p>
           {showEditDelete()}
@@ -94,6 +94,7 @@ const Answer = ({answer, props, deleteAnswer}) => {
     <div>
       {renderAnswer()}
       <Comments addComment={addComment} updateComments={updateComments} deleteComment={deleteComment} comments={comments} setComments={setComments} answer={answer}/>
+      <div style={styles.answerBottom}/>
     </div>
   )
 }
@@ -104,17 +105,28 @@ const styles = {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    borderTop: "1px solid rgba(0, 0, 0, 0.3)",
   },
   likesContainer: {
     marginRight: "66px",
     padding: "0px"
   },
+  answerBody: {
+    width: "850px",
+    marginLeft: "40px",
+    marginRight: "10px",
+    fontSize: "16px",
+    fontFamily: "Inter, sans-serif",
+    fontWeight: "500",
+    display: "flex",
+    alignItems: "flex-start",
+    letterSpacing: ".5px",
+    color: "#000000",
+  },
   answerDetails: {
     width: "850px",
     marginLeft: "50px",
     marginRight: "10px",
-    fontSize: "16px",
+    fontSize: "14px",
     fontFamily: "Inter, sans-serif",
     fontWeight: "500",
     display: "flex",
@@ -132,14 +144,19 @@ const styles = {
     marginTop: "30px",
   },
   answerContainer: {
+    padding: "10px",
     display: "flex",
     flexDirection: "column",
     justifyContent: "flex-start",
     alignItems: "flex-start",
   },
+  answerBottom: {
+    marginLeft: "137px",
+    marginRight: "193px",
+    borderBottom: "1px solid rgba(0, 0, 0, 0.3)",
+  },
   addComment: {
     marginLeft: "50px",
-    margin: "10px",
     fontSize: "14px",
     fontFamily: "Inter, sans-serif",
     fontWeight: "500",

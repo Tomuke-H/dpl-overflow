@@ -27,23 +27,41 @@ class User < ActiveRecord::Base
     .where('cohort = ?', cohort)
   end
 
-# SELECT u.name, u.id, u.cohort, u.about_me, u.image, COUNT(q.likes + a.likes + c.likes) AS votes, COUNT(q.views) AS views, COUNT(a.id) AS answer_count, COUNT(q.id) AS question_count FROM users AS u
-# INNER JOIN answers AS a ON u.id = a.user_id
-# INNER JOIN questions AS q ON u.id = q.user_id
-# INNER JOIN comments AS c ON u.id = c.user_id
-# WHERE u.id = 8
-# GROUP BY u.id
+
+  # def self.user_profile(id)
+  #   select('u.name, u.id, u.cohort, u.about_me, u.image, COUNT(q.likes + a.likes + c.likes) AS votes, COUNT(q.views) AS views, COUNT(a.id) AS answer_count, COUNT(q.id) AS question_count')
+  #   .from('users AS u')
+  #   .joins('INNER JOIN answers AS a ON u.id = a.user_id
+  #   INNER JOIN questions AS q ON u.id = q.user_id
+  #   INNER JOIN comments AS c ON u.id = c.user_id')
+  #   .where('u.id = ?', id)
+  #   .group('u.id')
+  # end
+
+#   SELECT  q.user_id, SUM(q.views) as question_views
+# from questions q
+# GROUP BY q.user_id;
+
+# SELECT  a.user_id, SUM(a.likes) as answer_likes 
+# from answers a
+# GROUP BY a.user_id;
+
+def self.question_views(id)
+  select('q.user_id, SUM(q.views) as question_views')
+  .from('questions as q')
+  .where('q.user_id = ?', id)
+  .group('q.user_id')
+  
+end
+
+def self.answer_likes(id)
+  select('a.user_id, SUM(a.likes) as answer_likes')
+  .from('answers a')
+  .group('a.user_id;')
+  .where('a.user_id = ?', id)
+end
 
 
-  def self.user_profile(id)
-    select('u.name, u.id, u.cohort, u.about_me, u.image, COUNT(q.likes + a.likes + c.likes) AS votes, COUNT(q.views) AS views, COUNT(a.id) AS answer_count, COUNT(q.id) AS question_count')
-    .from('users AS u')
-    .joins('INNER JOIN answers AS a ON u.id = a.user_id
-    INNER JOIN questions AS q ON u.id = q.user_id
-    INNER JOIN comments AS c ON u.id = c.user_id')
-    .where('u.id = ?', id)
-    .group('u.id')
-  end
 
   extend Devise::Models
   # Include default devise modules. Others available are:

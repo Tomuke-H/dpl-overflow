@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     get 'questionTags/:question_id', to:'question_tags#find_tags_for_question'
     get 'tagwithname/:question_id', to:'question_tags#find_tagname_for_question'
     delete 'questionTags/:id', to:'question_tags#destroy'
-    get 'find_questions_by_tag/:tag_name', to:'questions#find_questions_by_tag'
+    get 'find_questions_by_tag/:tag_ids', to:'questions#find_questions_by_tag'
     get 'unanswered_questions', to:'questions#unanswered_questions'
     get 'question_search', to:'questions#search'
     put 'add_view/:id', to:'questions#add_view'

@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     get 'answer_author/:id', to: 'answers#author'
     get 'comment_author/:id', to: 'comments#author'
     get 'qcomment_author/:id', to: 'qcomments#author'
+    get 'user_has_questions/:id', to: 'users#user_has_questions'
     resources :tags
   end
 end

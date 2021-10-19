@@ -4,6 +4,7 @@ import { Container, Form, Button } from 'react-bootstrap'
 import { AuthContext } from '../../providers/AuthProvider'
 import { DPLButton } from '../DPLButtons'
 import MarkdownEditor from '../Markdown/MarkdownEditor'
+import FirstQuestionModal from './FirstQuestionModal'
 
 const NewQuestionForm = ({ handleRedirect }) => {
   const {user} = useContext(AuthContext)
@@ -11,10 +12,21 @@ const NewQuestionForm = ({ handleRedirect }) => {
   const [body, setBody] = useState('')
   const [tags, setTags] = useState([])
   const [checkedItems, setCheckedItems] = useState({})
+  const [showModal, setShowModal] = useState(false)
 
   useEffect(()=>{
     getTags()
+    checkQuestions()
   },[])
+
+  const checkQuestions = async() => {
+    try {
+      let res = await axios.get(`api/user_has_questions/${user.id}`)
+      setShowModal(res.data < 1)
+    } catch(err) {
+      console.log(err)
+    }
+  }
 
   const getTags = async () => {
     try {
@@ -66,6 +78,7 @@ const NewQuestionForm = ({ handleRedirect }) => {
   }
   return (
     <Container>
+      <FirstQuestionModal showModal={showModal} setShowModal={setShowModal} />
       <h2>New Question</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group className='mb-3'>

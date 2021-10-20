@@ -80,7 +80,6 @@ class Api::UsersController < ApplicationController
       render json: {errors: current_user.errors}, status: 422
     end
   end
-  
   def user_questions
     render json: {user: User.user_questions(params[:id])}
   end

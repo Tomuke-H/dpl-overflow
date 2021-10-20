@@ -10,6 +10,7 @@ import NewQCommentForm from "../QCommentComponents/NewQCommentForm";
 import { day, time } from "../DayConverter/Dates";
 import Follow from './Follow';
 import AuthorBox from './AuthorBox';
+import Share from './Share';
 
 const Question = ({props, edited, setEdited, history, question}) => {
   const [qcomments, setQComments] = useState([])
@@ -119,6 +120,7 @@ const Question = ({props, edited, setEdited, history, question}) => {
           <div style={{display: "flex", flexDirection: "column"}}>
             {showEditDelete()}
         <Follow user={user} follow ={user.follow} question={question.id}/>
+        <Share/>
              <p style={styles.addComment} onClick={()=>setShowQCommentForm(!showQCommentForm)}>{showQCommentForm ? "Cancel" : "Add Comment"}</p>
             {showQCommentForm && <NewQCommentForm question={question} addQComment={addQComment}/>}
           </div>

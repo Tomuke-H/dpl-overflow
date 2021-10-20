@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react'
 import { Dropdown, Table } from 'react-bootstrap'
 import BoxLoader from '../components/BoxLoader'
 import InfiniteScroll from 'react-infinite-scroll-component'
+import {cohorts} from '../components/Cohorts';
+import '../stylesheets/Leaderboard.css'
 
 const Leaderboard = () => {
   const [users, setUsers] = useState([])
@@ -72,17 +74,26 @@ const Leaderboard = () => {
     })
   }
 
+  const renderDropdownItems = () => {
+    return cohorts.map(c => {
+      return( 
+        <Dropdown.Item onClick={(e) => getUsers('cohort', c, 1)}>{c}</Dropdown.Item>
+      )
+    })
+  }
+
   return (
     <div style={styles.wrapper}>
       <div style={styles.header}>
         <h1 style={styles.leaderboard}>Leaderboard</h1>
-        <Dropdown>
-          <Dropdown.Toggle style={styles.button}>Sort By Cohort</Dropdown.Toggle>
+        <Dropdown variant='leaderboard'>
+          <Dropdown.Toggle>Sort By Cohort</Dropdown.Toggle>
           <Dropdown.Menu>
             <Dropdown.Item onClick={(e) => getUsers('all', null, 1)}>View All</Dropdown.Item>
-            <Dropdown.Item onClick={(e) => getUsers('cohort', 'Fall 2021', 1)}>Fall 2021</Dropdown.Item>
+            {/* <Dropdown.Item onClick={(e) => getUsers('cohort', 'Fall 2021', 1)}>Fall 2021</Dropdown.Item>
             <Dropdown.Item onClick={(e) => getUsers('cohort', 'Winter 2021', 1)}>Winter 2021</Dropdown.Item>
-            <Dropdown.Item onClick={(e) => getUsers('cohort', 'Spring 2022', 1)}>Spring 2022</Dropdown.Item>
+            <Dropdown.Item onClick={(e) => getUsers('cohort', 'Spring 2022', 1)}>Spring 2022</Dropdown.Item> */}
+            {renderDropdownItems()}
           </Dropdown.Menu>
         </Dropdown>
       </div>
@@ -144,35 +155,8 @@ const styles ={
     justifyContent: 'space-between',
     width: '86.1vw',
     alignItems: 'center',
-    margin: '90px 0px 0px 0px',
+    margin: '70px 0px 40px 0px',
   },
-
-  button: {
-    display: "inline-block",
-    borderStyle: "solid",
-    borderColor: "#6E54A3",
-    borderRadius: "5px",
-    fontFamily:'Open Sans',
-    fontWeight:"600px",
-    fontSize: "14px",
-    letterSpacing: ".7px",
-    color:"#FFFFFF",
-    backgroundColor:"#6E54A3",
-    textAlign:"center",
-    textTransform: "uppercase",
-    width: "165px",
-    height: "40px",
-  },
-
-  leaderboard: {
-    fontFamily: 'Open Sans',
-    fontStyle: 'normal',
-    fontWeight: '600px',
-    textTransform: 'uppercase',
-    flexDirection: 'flex-end',
-    color: '#000000',
-    },
-
 }
 
 export default Leaderboard;

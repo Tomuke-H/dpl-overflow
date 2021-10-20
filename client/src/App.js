@@ -57,10 +57,7 @@ function App() {
     return(
       <>
         <OurNavbar /> 
-        <br />
-        <br />
-        <br />
-        <br />
+        <div style={{height: '92px'}}></div>
         <Switch>
             <Route exact path='/' component={Home}/>
             <Route exact path='/test_page' component={TestPage}/>

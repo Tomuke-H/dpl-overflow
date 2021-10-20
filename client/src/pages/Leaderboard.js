@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react'
 import { Dropdown, Table } from 'react-bootstrap'
 import BoxLoader from '../components/BoxLoader'
 import InfiniteScroll from 'react-infinite-scroll-component'
+import {cohorts} from '../components/Cohorts';
+import '../stylesheets/Leaderboard.css'
 
 const Leaderboard = () => {
   const [users, setUsers] = useState([])
@@ -72,17 +74,26 @@ const Leaderboard = () => {
     })
   }
 
+  const renderDropdownItems = () => {
+    return cohorts.map(c => {
+      return( 
+        <Dropdown.Item onClick={(e) => getUsers('cohort', c, 1)}>{c}</Dropdown.Item>
+      )
+    })
+  }
+
   return (
     <div style={styles.wrapper}>
       <div style={styles.header}>
         <h1>Leaderboard</h1>
-        <Dropdown>
+        <Dropdown variant='leaderboard'>
           <Dropdown.Toggle>View By Cohort</Dropdown.Toggle>
           <Dropdown.Menu>
             <Dropdown.Item onClick={(e) => getUsers('all', null, 1)}>View All</Dropdown.Item>
-            <Dropdown.Item onClick={(e) => getUsers('cohort', 'Fall 2021', 1)}>Fall 2021</Dropdown.Item>
+            {/* <Dropdown.Item onClick={(e) => getUsers('cohort', 'Fall 2021', 1)}>Fall 2021</Dropdown.Item>
             <Dropdown.Item onClick={(e) => getUsers('cohort', 'Winter 2021', 1)}>Winter 2021</Dropdown.Item>
-            <Dropdown.Item onClick={(e) => getUsers('cohort', 'Spring 2022', 1)}>Spring 2022</Dropdown.Item>
+            <Dropdown.Item onClick={(e) => getUsers('cohort', 'Spring 2022', 1)}>Spring 2022</Dropdown.Item> */}
+            {renderDropdownItems()}
           </Dropdown.Menu>
         </Dropdown>
       </div>
@@ -143,7 +154,7 @@ const styles ={
     width: '90vw',
     alignItems: 'center',
     margin: '70px 0px 40px 0px',
-  }
+  },
 }
 
 export default Leaderboard;

@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react';
 import { Dropdown, NavLink } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
 import User from '../components/User';
-import styled from "styled-components";
 
 
 const Yearbook = () => {

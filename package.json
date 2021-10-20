@@ -1,0 +1,28 @@
+{
+  "name": "dpl-overflow",
+  "version": "1.0.0",
+  "description": "TLDR: need to clone with a unique project name and rename database",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "build": "cd client && npm install --only=dev && npm install && npm run build && cd ..",
+    "deploy": "cp -a client/build/. public/",
+    "heroku-postbuild": "npm run build && npm run deploy && echo 'Client Built'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tomuke-H/dpl-overflow.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tomuke-H/dpl-overflow/issues"
+  },
+  "homepage": "https://github.com/Tomuke-H/dpl-overflow#readme"
+}

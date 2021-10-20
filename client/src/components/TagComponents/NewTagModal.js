@@ -2,7 +2,7 @@ import React from "react";
 import { Modal, Button } from "react-bootstrap";
 import CreateTag from "./CreateTag";
 
-const NewTagModal = ({tags, setTags, showTagModal, setShowTagModal}) => {
+const NewTagModal = ({checkedItems, setCheckedItems, showTagModal, setShowTagModal}) => {
   const handleClose = () => setShowTagModal(false)
   return (
     <Modal 
@@ -11,7 +11,7 @@ const NewTagModal = ({tags, setTags, showTagModal, setShowTagModal}) => {
     >
       <Modal.Header>New Tag</Modal.Header>
       <Modal.Body>
-        <CreateTag tags={tags} setTags={setTags} setShowTagModal={setShowTagModal}/>
+        <CreateTag checkedItems={checkedItems} setCheckedItems={setCheckedItems} setShowTagModal={setShowTagModal}/>
       </Modal.Body>
     </Modal>
   )

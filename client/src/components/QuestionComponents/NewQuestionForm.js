@@ -46,12 +46,12 @@ const NewQuestionForm = ({ handleRedirect }) => {
   //   setCheckedItems({...checkedItems, [event.target.id]: event.target.checked})
   // }
 
-  const handleAddTag = (id) => {
-    setCheckedItems([...checkedItems, id])
+  const handleAddTag = (list) => {
+    setCheckedItems(list)
   }
 
-  const handleRemoveTag = (id) => {
-    setCheckedItems(checkedItems.filter(i => i != id))
+  const handleRemoveTag = (list) => {
+    setCheckedItems(list)
   }
 
   // const tagList = () => {
@@ -80,7 +80,7 @@ const NewQuestionForm = ({ handleRedirect }) => {
   const handleTagSubmit = async (questionRes) =>{
     for (const t of checkedItems){
       try{
-        let res = await axios.post('/api/questionTags', {tag_id: t, question_id: questionRes.data.id})
+        let res = await axios.post('/api/questionTags', {tag_id: t.id, question_id: questionRes.data.id})
         console.log(res)
       }catch (err) {
         console.log(err)
@@ -101,7 +101,7 @@ const NewQuestionForm = ({ handleRedirect }) => {
   return (
     <Container>
       <FirstQuestionModal showModal={showModal} setShowModal={setShowModal} />
-      <NewTagModal tags={tags} setTags={setTags} showTagModal={showTagModal} setShowTagModal={setShowTagModal} />
+      <NewTagModal checkedItems={checkedItems} setCheckedItems={setCheckedItems} showTagModal={showTagModal} setShowTagModal={setShowTagModal} />
       <h2>New Question</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group className='mb-3'>
@@ -123,8 +123,8 @@ const NewQuestionForm = ({ handleRedirect }) => {
           <Multiselect 
           options={tags}
           selectedValues={selectedValues}
-          onSelect={(selectedList, selectedItem) => handleAddTag(selectedItem.id)}
-          onRemove={(selectedList, selectedItem) => handleRemoveTag(selectedItem.id)}
+          onSelect={(selectedList, selectedItem) => handleAddTag(selectedList)}
+          onRemove={(selectedList, selectedItem) => handleRemoveTag(selectedList)}
           displayValue="name"
           />
           {/* {tagList()} */}

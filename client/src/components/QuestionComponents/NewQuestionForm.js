@@ -1,9 +1,11 @@
 import axios from 'axios'
+import Multiselect from 'multiselect-react-dropdown'
 import React, { useContext, useEffect, useState } from 'react'
 import { Container, Form } from 'react-bootstrap'
 import { AuthContext } from '../../providers/AuthProvider'
 import { DPLButton } from '../DPLButtons'
 import MarkdownEditor from '../Markdown/MarkdownEditor'
+import NewTagModal from '../TagComponents/NewTagModal'
 import FirstQuestionModal from './FirstQuestionModal'
 
 const NewQuestionForm = ({ handleRedirect }) => {
@@ -11,8 +13,10 @@ const NewQuestionForm = ({ handleRedirect }) => {
   const [title, setTitle] = useState('')
   const [body, setBody] = useState('')
   const [tags, setTags] = useState([])
-  const [checkedItems, setCheckedItems] = useState({})
+  const [checkedItems, setCheckedItems] = useState([])
   const [showModal, setShowModal] = useState(false)
+  const [showTagModal, setShowTagModal] = useState(false)
+  const [selectedValues, setSelectedValues] = useState([])
 
   useEffect(()=>{
     getTags()
@@ -37,31 +41,49 @@ const NewQuestionForm = ({ handleRedirect }) => {
     }
   }
 
-  const handleCheckbox = (event)=>{
-    // console.log(event.target.checked, event.target.id)
-    setCheckedItems({...checkedItems, [event.target.id]: event.target.checked})
+  // const handleCheckbox = (event)=>{
+  //   // console.log(event.target.checked, event.target.id)
+  //   setCheckedItems({...checkedItems, [event.target.id]: event.target.checked})
+  // }
+
+  const handleAddTag = (list) => {
+    setCheckedItems(list)
   }
 
-  const tagList = () => {
-    // console.log(checkedItems)
-    return tags.map((t) => {
-      return (
-        <Form.Check inline
-        type='checkbox'
-        id={t.id}
-        label={t.name}
-        value={t.id}
-        checked= {checkedItems[t.id]}
-        onClick={handleCheckbox}
-        />
-      )
-    })
+  const handleRemoveTag = (list) => {
+    setCheckedItems(list)
   }
 
-  const handleTagSubmit = async (res) =>{
-    for (const [key, value] of Object.entries(checkedItems)) {
-      if(value === true){
-        let tagRes = await axios.post('/api/questionTags', {tag_id: key,question_id: res.data.id})
+  // const tagList = () => {
+  //   // console.log(checkedItems)
+  //   return tags.map((t) => {
+  //     return (
+  //       <Form.Check inline
+  //       type='checkbox'
+  //       id={t.id}
+  //       label={t.name}
+  //       value={t.id}
+  //       checked= {checkedItems[t.id]}
+  //       onClick={handleCheckbox}
+  //       />
+  //     )
+  //   })
+  // }
+
+  // const handleTagSubmit = async (res) =>{
+  //   for (const [key, value] of Object.entries(checkedItems)) {
+  //     if(value === true){
+  //       let tagRes = await axios.post('/api/questionTags', {tag_id: key,question_id: res.data.id})
+  //     }
+  //   }
+  // }
+  const handleTagSubmit = async (questionRes) =>{
+    for (const t of checkedItems){
+      try{
+        let res = await axios.post('/api/questionTags', {tag_id: t.id, question_id: questionRes.data.id})
+        console.log(res)
+      }catch (err) {
+        console.log(err)
       }
     }
   }
@@ -79,6 +101,7 @@ const NewQuestionForm = ({ handleRedirect }) => {
   return (
     <Container>
       <FirstQuestionModal showModal={showModal} setShowModal={setShowModal} />
+      <NewTagModal checkedItems={checkedItems} setCheckedItems={setCheckedItems} showTagModal={showTagModal} setShowTagModal={setShowTagModal} />
       <h2>New Question</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group className='mb-3'>
@@ -95,8 +118,16 @@ const NewQuestionForm = ({ handleRedirect }) => {
            setBody = {setBody}
           />
         </Form.Group>
+        <DPLButton type='button' onClick={(e)=>setShowTagModal(true)}>New Tag</DPLButton>
         <Form.Group>
-            {tagList()}
+          <Multiselect 
+          options={tags}
+          selectedValues={selectedValues}
+          onSelect={(selectedList, selectedItem) => handleAddTag(selectedList)}
+          onRemove={(selectedList, selectedItem) => handleRemoveTag(selectedList)}
+          displayValue="name"
+          />
+          {/* {tagList()} */}
         </Form.Group>
         <DPLButton variant="primary" type='submit'>SUBMIT</DPLButton>
       </Form>

@@ -2,20 +2,19 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import {useHistory} from "react-router-dom"
-import Tags from "../../pages/Tags";
+// import Tags from "../../pages/Tags";
 import{ DPLButton } from "../DPLButtons";
 
 
-const CreateTag = ({setCreated}) => {
+const CreateTag = ({checkedItems, setCheckedItems, setShowTagModal}) => {
   const [name, setName] = useState("")
-  let history = useHistory()
 
   const handleSubmit = async (e) =>{
     e.preventDefault()
     try {
       let res = await axios.post("/api/tags", {name})
-      setCreated(true)
-      setName("")
+      setShowTagModal(false)
+      setCheckedItems([res.data, ...checkedItems])
     } catch (err) {
       console.log(err)
     }}

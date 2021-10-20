@@ -17,6 +17,7 @@ const NewQuestionForm = ({ handleRedirect }) => {
   const [showModal, setShowModal] = useState(false)
   const [showTagModal, setShowTagModal] = useState(false)
   const [selectedValues, setSelectedValues] = useState([])
+  const [errors, setErrors] = useState(null)
 
   useEffect(()=>{
     getTags()
@@ -81,7 +82,6 @@ const NewQuestionForm = ({ handleRedirect }) => {
     for (const t of checkedItems){
       try{
         let res = await axios.post('/api/questionTags', {tag_id: t.id, question_id: questionRes.data.id})
-        console.log(res)
       }catch (err) {
         console.log(err)
       }
@@ -101,11 +101,12 @@ const NewQuestionForm = ({ handleRedirect }) => {
   return (
     <Container>
       <FirstQuestionModal showModal={showModal} setShowModal={setShowModal} />
-      <NewTagModal checkedItems={checkedItems} setCheckedItems={setCheckedItems} showTagModal={showTagModal} setShowTagModal={setShowTagModal} />
-      <h2>New Question</h2>
+      <NewTagModal checkedItems={checkedItems} setCheckedItems={setCheckedItems} tags={tags} setTags={setTags} selectedValues={selectedValues} setSelectedValues={setSelectedValues} showTagModal={showTagModal} setShowTagModal={setShowTagModal} />
+      <h2>Ask a Question</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group className='mb-3'>
           <Form.Control 
+            required
             size='lg'
             value={title}
             placeholder='Title'
@@ -126,6 +127,7 @@ const NewQuestionForm = ({ handleRedirect }) => {
           onSelect={(selectedList, selectedItem) => handleAddTag(selectedList)}
           onRemove={(selectedList, selectedItem) => handleRemoveTag(selectedList)}
           displayValue="name"
+          placeholder='Select Tags'
           />
           {/* {tagList()} */}
         </Form.Group>
@@ -134,5 +136,16 @@ const NewQuestionForm = ({ handleRedirect }) => {
     </Container>
   )
 } 
+
+const styles = {
+questionHeader: {
+  textTransform: "uppercase",
+  marginTop: "70px",
+  fontSize: "30px",
+  fontFamily: "Open Sans, sans-serif",
+  fontWeight: "600px",
+  color: "#000000",
+}
+}
 
 export default NewQuestionForm;

@@ -97,6 +97,7 @@ const Questions = ({history}) => {
         }
         break;
       case "follow":
+        setShowTags(false)
         getFollow(p)
         break;
       default:

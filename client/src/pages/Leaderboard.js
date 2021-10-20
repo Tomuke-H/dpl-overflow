@@ -87,7 +87,7 @@ const Leaderboard = () => {
       <div style={styles.header}>
         <h1 style={styles.leaderboard}>Leaderboard</h1>
         <Dropdown variant='leaderboard'>
-          <Dropdown.Toggle>Sort By Cohort</Dropdown.Toggle>
+          <Dropdown.Toggle style={styles.button}>Sort By Cohort</Dropdown.Toggle>
           <Dropdown.Menu>
             <Dropdown.Item onClick={(e) => getUsers('all', null, 1)}>View All</Dropdown.Item>
             {/* <Dropdown.Item onClick={(e) => getUsers('cohort', 'Fall 2021', 1)}>Fall 2021</Dropdown.Item>
@@ -155,7 +155,33 @@ const styles ={
     justifyContent: 'space-between',
     width: '86.1vw',
     alignItems: 'center',
-    margin: '70px 0px 40px 0px',
+    margin: '90px 0px 0px 0px',
+  },
+
+  button: {
+    display: "inline-block",
+    borderStyle: "solid",
+    borderColor: "#6E54A3",
+    borderRadius: "5px",
+    fontFamily:'Open Sans',
+    fontWeight:"600px",
+    fontSize: "14px",
+    letterSpacing: ".7px",
+    color:"#FFFFFF",
+    backgroundColor:"#6E54A3",
+    textAlign:"center",
+    textTransform: "uppercase",
+    width: "165px",
+    height: "40px",
+  },
+
+  leaderboard: {
+    fontFamily: 'Open Sans',
+    fontStyle: 'normal',
+    fontWeight: '600px',
+    textTransform: 'uppercase',
+    flexDirection: 'flex-end',
+    color: '#000000',
   },
 }
 

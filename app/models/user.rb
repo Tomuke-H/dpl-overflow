@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   serialize :follow, Array
   serialize :liked_answers, Array
   serialize :liked_questions, Array
+  serialize :downvote_questions, Array
+  serialize :downvote_answers, Array
 
   def self.leaderboard
     select('name, points, id, cohort, image')

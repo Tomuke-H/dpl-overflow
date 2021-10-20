@@ -3,10 +3,12 @@ import React, { useContext, useEffect, useReducer, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { AiFillCaretUp, AiFillCaretDown } from "react-icons/ai"
 
-const AnswerVote = ({answer, liked_answers}) => {
+const AnswerVote = ({answer, liked_answers, downvote_answers}) => {
   const{setUser} = useContext(AuthContext)
   const [la, setLA] = useState(liked_answers); // la = liked answers
   const [isLA, setIsLA] = useState(false);
+  const [da, setDA] = useState(downvote_answers); // Da = downvote answers
+  const [isDA, setIsDA] = useState(false);
   // okay got it working but would like to keep track of whether a user has already liked or not - limit one like per user, right?
 
   const saveUpVote = async () => {
@@ -42,6 +44,7 @@ const AnswerVote = ({answer, liked_answers}) => {
 
     useEffect(()=>{
       checkLA()
+      checkDA()
     },[])
 
   const checkLA = () => {
@@ -75,17 +78,46 @@ const AnswerVote = ({answer, liked_answers}) => {
       }
     }
   }
-
-
-  
-    const [answerLikes, dispatch] = useReducer((state, action) => {
-      switch (action) {
-        case "add":
-          return state + 1;
-        case "subtract":
-          return state - 1;
+  const checkDA = () => {
+    if(liked_answers.length !==0 ){
+      if(la.includes(answer.id) === true){
+        setIsDA(true)
       }
-    }, answer.likes);
+    }
+  }
+
+  const handleDA = async () =>{
+    if(isDA){
+      try {
+        let unDA = la.filter((i) => i !== answer.id)
+        let res = await axios.put(`/api/downvoteanswer`, {downvote_answers: unDA})
+        setUser(res.data)
+        setDA(unDA)
+        setIsDA(false)        
+      } catch (err) {
+        console.log(err)
+      }
+    }else{
+      try {
+        da.push(answer.id)
+        let res = await axios.put(`/api/downvoteanswer`, {downvote_answers: da})
+        setDA(da)
+        setUser(res.data)
+        setIsDA(true)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+  }
+
+  const [answerLikes, dispatch] = useReducer((state, action) => {
+    switch (action) {
+      case "add":
+        return state + 1;
+      case "subtract":
+        return state - 1;
+    }
+  }, answer.likes);
   
     return (
       <div style={styles.likeBox}>

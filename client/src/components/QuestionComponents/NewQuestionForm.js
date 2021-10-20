@@ -102,7 +102,7 @@ const NewQuestionForm = ({ handleRedirect }) => {
     <Container>
       <FirstQuestionModal showModal={showModal} setShowModal={setShowModal} />
       <NewTagModal checkedItems={checkedItems} setCheckedItems={setCheckedItems} tags={tags} setTags={setTags} selectedValues={selectedValues} setSelectedValues={setSelectedValues} showTagModal={showTagModal} setShowTagModal={setShowTagModal} />
-      <h2>New Question</h2>
+      <h2>Ask a Question</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group className='mb-3'>
           <Form.Control 
@@ -136,5 +136,16 @@ const NewQuestionForm = ({ handleRedirect }) => {
     </Container>
   )
 } 
+
+const styles = {
+questionHeader: {
+  textTransform: "uppercase",
+  marginTop: "70px",
+  fontSize: "30px",
+  fontFamily: "Open Sans, sans-serif",
+  fontWeight: "600px",
+  color: "#000000",
+}
+}
 
 export default NewQuestionForm;

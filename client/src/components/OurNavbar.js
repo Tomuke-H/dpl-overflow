@@ -24,11 +24,11 @@ const OurNavbar = (props) => {
               </Container>
             </Nav.Link>
 
-            <Nav.Link as={Link} to='/user/edit'>
+            {/* <Nav.Link as={Link} to='/user/edit'>
               <Container>
                 Edit Profile
               </Container>
-            </Nav.Link>
+            </Nav.Link> */}
 
 
             <Nav.Link as={Link} onClick={()=> handleLogout(history)} to='/login'>

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useHistory } from 'react-router';
 import React, { useEffect, useState } from 'react';
 import { Dropdown, NavLink } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
@@ -9,6 +10,7 @@ import styled from "styled-components";
 const Yearbook = () => {
   const [users, setUsers] = useState([])
   const [showDropDown, setShowDropDown] = useState(false)
+  const history = useHistory();
 
   const getAllUsers = async () => {
     try {
@@ -26,7 +28,7 @@ const Yearbook = () => {
   const renderUsers = () => {
     if (users) {
     return (
-      <div style={{display:"flex", flexWrap: 'wrap', margin: '32px'}}>
+      <div style={{display:"flex", flexWrap: 'wrap', margin: '35px'}}>
         {users.map((user,ind)=>{
           return (
             <NavLink as={Link} to={`/users/${user.id}/profile`} key={ind}>

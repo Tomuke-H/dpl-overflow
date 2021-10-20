@@ -10,7 +10,6 @@ import NewQCommentForm from "../QCommentComponents/NewQCommentForm";
 import { day, time } from "../DayConverter/Dates";
 import Follow from './Follow';
 import AuthorBox from './AuthorBox';
-import QuestionAuthor from './QuestionAuthor';
 
 const Question = ({props, edited, setEdited, history, question}) => {
   const [qcomments, setQComments] = useState([])

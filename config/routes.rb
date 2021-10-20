@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   mount_devise_token_auth_for 'User', at: 'api/auth'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  get '*other', to: 'static#index'
+  
 
   namespace :api do
     resources :users
@@ -41,4 +41,6 @@ Rails.application.routes.draw do
     get 'user_has_questions/:id', to: 'users#user_has_questions'
     resources :tags
   end
+
+  get '*other', to: 'static#index'
 end

@@ -57,10 +57,7 @@ function App() {
     return(
       <>
         <OurNavbar /> 
-        <br />
-        <br />
-        <br />
-        <br />
+        <div style={{height: '92px'}}></div>
         <Switch>
             <Route exact path='/' component={Home}/>
             <Route exact path='/test_page' component={TestPage}/>
@@ -85,6 +82,7 @@ function App() {
             {renderProfiles()}
             <Route component={()=><p>react 404 path not found</p>} />
         </Switch>
+        <div style={{height: '92px'}}></div>
         <Footer />
     </>
     )

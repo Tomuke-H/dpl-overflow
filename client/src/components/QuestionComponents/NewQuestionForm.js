@@ -17,6 +17,7 @@ const NewQuestionForm = ({ handleRedirect }) => {
   const [showModal, setShowModal] = useState(false)
   const [showTagModal, setShowTagModal] = useState(false)
   const [selectedValues, setSelectedValues] = useState([])
+  const [errors, setErrors] = useState(null)
 
   useEffect(()=>{
     getTags()
@@ -105,6 +106,7 @@ const NewQuestionForm = ({ handleRedirect }) => {
       <Form onSubmit={handleSubmit}>
         <Form.Group className='mb-3'>
           <Form.Control 
+            required
             size='lg'
             value={title}
             placeholder='Title'
@@ -125,6 +127,7 @@ const NewQuestionForm = ({ handleRedirect }) => {
           onSelect={(selectedList, selectedItem) => handleAddTag(selectedList)}
           onRemove={(selectedList, selectedItem) => handleRemoveTag(selectedList)}
           displayValue="name"
+          placeholder='Select Tags'
           />
           {/* {tagList()} */}
         </Form.Group>

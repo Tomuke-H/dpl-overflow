@@ -6,7 +6,7 @@ import {useHistory} from "react-router-dom"
 import{ DPLButton } from "../DPLButtons";
 
 
-const CreateTag = ({checkedItems, setCheckedItems, setShowTagModal}) => {
+const CreateTag = ({tags, setTags, selectedValues, setSelectedValues, setShowTagModal, checkedItems, setCheckedItems}) => {
   const [name, setName] = useState("")
 
   const handleSubmit = async (e) =>{
@@ -14,7 +14,9 @@ const CreateTag = ({checkedItems, setCheckedItems, setShowTagModal}) => {
     try {
       let res = await axios.post("/api/tags", {name})
       setShowTagModal(false)
+      setSelectedValues([res.data, ...selectedValues])
       setCheckedItems([res.data, ...checkedItems])
+      setTags([res.data, ...tags])
     } catch (err) {
       console.log(err)
     }}

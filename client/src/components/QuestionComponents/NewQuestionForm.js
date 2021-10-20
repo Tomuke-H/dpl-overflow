@@ -81,7 +81,6 @@ const NewQuestionForm = ({ handleRedirect }) => {
     for (const t of checkedItems){
       try{
         let res = await axios.post('/api/questionTags', {tag_id: t.id, question_id: questionRes.data.id})
-        console.log(res)
       }catch (err) {
         console.log(err)
       }
@@ -101,7 +100,7 @@ const NewQuestionForm = ({ handleRedirect }) => {
   return (
     <Container>
       <FirstQuestionModal showModal={showModal} setShowModal={setShowModal} />
-      <NewTagModal checkedItems={checkedItems} setCheckedItems={setCheckedItems} showTagModal={showTagModal} setShowTagModal={setShowTagModal} />
+      <NewTagModal checkedItems={checkedItems} setCheckedItems={setCheckedItems} tags={tags} setTags={setTags} selectedValues={selectedValues} setSelectedValues={setSelectedValues} showTagModal={showTagModal} setShowTagModal={setShowTagModal} />
       <h2>New Question</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group className='mb-3'>

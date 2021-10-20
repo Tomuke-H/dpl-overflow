@@ -25,7 +25,7 @@ const EditUser = (id) => {
         try {
             let res = await axios.put(`/api/users/${user.id}`, { name: name, email: email, cohort: cohort, about_me: about_me, password: password, passwordConfirmation: passwordConfirmation })
             setUser(res.data)
-            history.push("/user")
+            history.push(`/users/${user.id}/profile`)
         } catch (err) {
             alert("error updating user")
             console.log(err)

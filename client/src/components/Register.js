@@ -20,7 +20,7 @@ const Register = () => {
         e.preventDefault();
 
         if (check !== key) {
-            alert("Passwords do not match!");
+            alert(`Invalid Key for Registration!\nPlease reconfirm your key.\nYour Input: ${check}`);
             return;
           }
         if (password !== passwordConfirmation) {

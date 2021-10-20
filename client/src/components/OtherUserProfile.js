@@ -1,10 +1,8 @@
 import axios from "axios";
 import React, {  useContext, useEffect, useState } from "react";
 import { Button, Card, Image } from "react-bootstrap";
-import CardHeader from "react-bootstrap/esm/CardHeader";
 import Activity from "../pages/Activity";
 import { AuthContext } from "../providers/AuthProvider";
-import EditUser from "./EditUser";
 
 
 export default function OtherUserProfile(props) {

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Container, Form, Button } from 'react-bootstrap'
+import { Container, Form } from 'react-bootstrap'
 import MarkdownEditor from '../Markdown/MarkdownEditor'
 import { DPLButton } from '../DPLButtons'
 

@@ -36,7 +36,7 @@ const styles = {
     flexDirection: "row",
     fontSize: "14px",
     fontFamily: "Inter, sans-serif",
-    fontWeight: "500",
+    fontWeight: "500px",
     marginTop: "30px",
     marginBottom: "30px",
   },
@@ -44,7 +44,7 @@ const styles = {
     marginLeft: "20px",
     fontSize: "14px",
     fontFamily: "Inter, sans-serif",
-    fontWeight: "500",
+    fontWeight: "500px",
   }
 }
 

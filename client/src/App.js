@@ -19,7 +19,6 @@ import Leaderboard from './pages/Leaderboard';
 import Yearbook from './pages/Yearbook';
 import useGetUser from './hooks/useGetUser';
 import TagsPage from './pages/TagsPage';
-import UserProfile from './components/UserProfile';
 import Footer from './components/Footer';
 import OtherUserProfile from './components/OtherUserProfile';
 import AboutUs from './pages/AboutUs';
@@ -57,10 +56,7 @@ function App() {
     return(
       <>
         <OurNavbar /> 
-        <br />
-        <br />
-        <br />
-        <br />
+        <div style={{height: '92px'}}></div>
         <Switch>
             <Route exact path='/' component={Home}/>
             <Route exact path='/test_page' component={TestPage}/>
@@ -85,6 +81,7 @@ function App() {
             {renderProfiles()}
             <Route component={()=><p>react 404 path not found</p>} />
         </Switch>
+        <div style={{height: '92px'}}></div>
         <Footer />
     </>
     )

@@ -1,10 +1,8 @@
 import axios from "axios";
 import React, {  useContext, useEffect, useState } from "react";
 import { Button, Card, Image } from "react-bootstrap";
-import CardHeader from "react-bootstrap/esm/CardHeader";
 import Activity from "../pages/Activity";
 import { AuthContext } from "../providers/AuthProvider";
-import EditUser from "./EditUser";
 import { TagPill } from "./TagComponents/TagPill";
 
 
@@ -14,7 +12,7 @@ export default function OtherUserProfile(props) {
   const [showActivity, setShowActivity] = useState(false)
   const { user: currentUser } = useContext(AuthContext);
   const [activityUser, setActivityUser] = useState({})
-;
+
   useEffect(()=>{
     getUser()
   },[])
@@ -91,7 +89,7 @@ const styles = {
     height: '41px',
     fontFamily: 'Open Sans',
     fontStyle: 'normal',
-    fontWeight: '600',
+    fontWeight: '600px',
     fontSize: '30px',
     lineHeight: '41px',
     display: 'flex',
@@ -120,7 +118,7 @@ const styles = {
 
     fontFamily: 'Open Sans',
     fontStyle: 'normal',
-    fontWeight: '600',
+    fontWeight: '600px',
     fontSize: '30px',
     lineHeight: '41px',
     display: 'flex',
@@ -137,7 +135,7 @@ const styles = {
 
     fontFamily: 'Open Sans',
     fontStyle: 'normal',
-    fontWeight: '600',
+    fontWeight: '600px',
     fontSize: '30px',
     lineHeight: '41px',
     display: 'flex',

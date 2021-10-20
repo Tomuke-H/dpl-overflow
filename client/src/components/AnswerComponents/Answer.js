@@ -116,7 +116,7 @@ const styles = {
     marginRight: "10px",
     fontSize: "16px",
     fontFamily: "Inter, sans-serif",
-    fontWeight: "500",
+    fontWeight: "500px",
     display: "flex",
     alignItems: "flex-start",
     letterSpacing: ".5px",
@@ -128,7 +128,7 @@ const styles = {
     marginRight: "10px",
     fontSize: "14px",
     fontFamily: "Inter, sans-serif",
-    fontWeight: "500",
+    fontWeight: "500px",
     display: "flex",
     alignItems: "flex-start",
     letterSpacing: ".5px",
@@ -140,7 +140,7 @@ const styles = {
     flexDirection: "row",
     fontSize: "14px",
     fontFamily: "Inter, sans-serif",
-    fontWeight: "500",
+    fontWeight: "500px",
     marginTop: "30px",
   },
   answerContainer: {
@@ -159,7 +159,7 @@ const styles = {
     marginLeft: "50px",
     fontSize: "14px",
     fontFamily: "Inter, sans-serif",
-    fontWeight: "500",
+    fontWeight: "500px",
     color: "#757575"
   }
 }

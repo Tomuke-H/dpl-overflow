@@ -25,7 +25,7 @@ const EditUser = (id) => {
         try {
             let res = await axios.put(`/api/users/${user.id}`, { name: name, email: email, cohort: cohort, about_me: about_me, password: password, passwordConfirmation: passwordConfirmation })
             setUser(res.data)
-            history.push("/user")
+            history.push(`/users/${user.id}/profile`)
         } catch (err) {
             alert("error updating user")
             console.log(err)
@@ -37,7 +37,7 @@ const EditUser = (id) => {
         try {
             // console.log(user)
             await axios.put("/api/auth/password", { password: password, password_confirmation: passwordConfirmation, current_password: current_password  })
-            history.push("/user")
+            history.push(`/users/${user.id}/profile`)
         } catch (err) {
             alert("error updating password")
             console.log(err)
@@ -91,6 +91,7 @@ const EditUser = (id) => {
             <input type="file" onChange={fileSelectedHandler} />
             <button onClick={fileUploadHandler}>Upload</button>
             <br />
+            <br />
             <Image
                 style={{ width: '137px', height: '137px'}}
                 cloudName="dm7eqie1u" 
@@ -126,8 +127,10 @@ const EditUser = (id) => {
                     label="About Me"
                     onChange={(e) => setAbout_me(e.target.value)}
                     />
+                <br />
                 <DPLButton type="submit">Update Profile</DPLButton>
             </Form>
+                <br />
                 <br />
                 <br />
                 <br />
@@ -144,12 +147,15 @@ const EditUser = (id) => {
                     label="Confirm New Password"
                     onChange={(e) => setPasswordConfirmation(e.target.value)}
                     />
-                <DPLButton type="submit">Update Password</DPLButton>
+                <br />
+                <DPLButton type="submit" style={{width: "160px"}}>Update Password</DPLButton>
             </Form>
             <br />
             <br />
             <br />
-            <DPLButton onClick={() => deleteAccount(id)}>Delete Account</DPLButton>
+            <br />
+            <br />
+            <DPLButton onClick={() => deleteAccount(id)} style={{width: "145px"}}>Delete Account</DPLButton>
             </Container>
         </div>
     );

@@ -1,17 +1,16 @@
 import axios from "axios";
 import React, {  useContext, useEffect, useState } from "react";
-import { Button, Card, Image } from "react-bootstrap";
+import { Card, Image, NavLink } from "react-bootstrap";
 import Activity from "../pages/Activity";
 import { AuthContext } from "../providers/AuthProvider";
-import { TagPill } from "./TagComponents/TagPill";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 
 export default function OtherUserProfile(props) {
   const [user, setUser] = useState({})
-  const [showForm, setShowForm] = useState(false)
   const [showActivity, setShowActivity] = useState(false)
   const { user: currentUser } = useContext(AuthContext);
-  const [activityUser, setActivityUser] = useState({})
 
   useEffect(()=>{
     getUser()
@@ -24,7 +23,7 @@ export default function OtherUserProfile(props) {
   const getUser = async () => {
     try {
     let res = await axios.get (`/api/users_profile/${id}`)
-    res.data.user[0].id === currentUser.id ? setUser(currentUser) : setUser(res.data.user[0])
+    setUser(res.data.user[0])
     } catch (err) {
       console.log("get user error", err)
     }
@@ -40,11 +39,13 @@ export default function OtherUserProfile(props) {
           <p style={styles.name}>{user.name}</p>
       </div>
         <div style={styles.optionsContainer}>
-          <TagPill onClick={()=>setShowActivity(false)}>Profile</TagPill>
-          <TagPill onClick={()=>{setShowActivity(!showActivity)}}>Activity</TagPill>
-          {user.id === currentUser.id && <Button onClick={()=>{setShowForm(!showForm)}}>Settings</Button>}
+          <ProfilePill onClick={()=>setShowActivity(false)}>Profile</ProfilePill>
+          <ProfilePill onClick={()=>{setShowActivity(!showActivity)}}>Activity</ProfilePill>
+          {user.id === currentUser.id && <NavLink as={Link} to={`/user/edit`}><ProfilePill>Settings</ProfilePill></NavLink>}
+          </div>
+          <ShowActivityStyle>
           {showActivity && <Activity user = {user}/>}
-        </div>
+        </ShowActivityStyle>
         <div style={{display: 'flex', flexDirection: 'row'}}>
         <p style={styles.stats}>STATS</p>
         <p style={styles.about}>ABOUT</p>
@@ -145,3 +146,28 @@ const styles = {
     color: '#000000',
   }
 }
+
+export const ProfilePill = styled.div`
+width: 64px;
+height: 25px;
+background: rgba(110, 84, 163, 0.7);
+border-radius: 10px;
+font-family: Inter;
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 15px;
+
+display: flex;
+justify-content: space-around;
+align-items: center;
+letter-spacing: 0.5px;
+text-align: center;
+margin: 18px;
+
+color: #000000;
+`
+
+export const ShowActivityStyle = styled.div`
+margin-left: 78px;
+`

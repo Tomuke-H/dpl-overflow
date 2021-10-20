@@ -118,7 +118,7 @@ const QuestionVote = ({question, liked_questions}) => {
     margin: "10px",
     fontSize: "30px",
     fontFamily: "Inter, sans-serif",
-    fontWeight: "500",
+    fontWeight: "500px",
     display: "flex",
     alignItems: "center",
     letterSpacing: ".5px",

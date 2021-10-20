@@ -78,7 +78,7 @@ const styles = {
 
     fontFamily: 'Open Sans',
     fontStyle: 'normal',
-    fontWeight: '600',
+    fontWeight: '600px',
     fontSize: '30px',
     lineHeight: '41px',
     display: 'flex',
@@ -101,7 +101,7 @@ const styles = {
 
     fontFamily: 'Open Sans',
     fontStyle: 'normal',
-    fontWeight: '600',
+    fontWeight: '600px',
     fontSize: '30px',
     lineHeight: '41px',
     display: 'flex',
@@ -121,7 +121,7 @@ const styles = {
 
     fontFamily: 'Inter',
     fontStyle: 'normal',
-    fontWeight: '500',
+    fontWeight: '500px',
     fontSize: '12px',
     lineHeight: '15px',
     display: 'flex',
@@ -139,7 +139,7 @@ const styles = {
 
     fontFamily: 'Inter',
     fontStyle: 'normal',
-    fontWeight: '500',
+    fontWeight: '500px',
     fontSize: '12px',
     lineHeight: '15px',
     display: 'flex',
@@ -157,7 +157,7 @@ const styles = {
 
     fontFamily: 'Inter',
     fontStyle: 'normal',
-    fontWeight: '500',
+    fontWeight: '500px',
     fontSize: '12px',
     lineHeight: '15px',
     display: 'flex',
@@ -175,7 +175,7 @@ const styles = {
 
     fontFamily: 'Open Sans',
     fontStyle: 'normal',
-    fontWeight: '600',
+    fontWeight: '600px',
     fontSize: '30px',
     lineHeight: '41px',
     display: 'flex',

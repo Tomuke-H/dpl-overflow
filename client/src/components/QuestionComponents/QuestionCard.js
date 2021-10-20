@@ -73,7 +73,7 @@ const styles = {
   vav:{
     margin: "10px 10px 0px 10px",
     fontSize: "1.3em",
-    fontWeight:"600",
+    fontWeight:"600px",
     textAlign: "center"
   },
   
@@ -90,7 +90,7 @@ const styles = {
 
   titleWords:{
     fontFamily:'Open Sans',
-    fontWeight:"600",
+    fontWeight:"600px",
     fontSize: "1.3em",
     letterSpacing: "1px",
     color:"#FFFFFF;",

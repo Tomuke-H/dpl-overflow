@@ -9,8 +9,6 @@ import styled from "styled-components";
 
 const Yearbook = () => {
   const [users, setUsers] = useState([])
-  const [showDropDown, setShowDropDown] = useState(false)
-  const history = useHistory();
 
   const getAllUsers = async () => {
     try {

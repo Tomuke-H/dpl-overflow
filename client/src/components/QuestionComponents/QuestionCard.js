@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import { day, time } from "../DayConverter/Dates";
+import { TagPill } from "../TagComponents/TagPill";
 import QuestionAuthor from "./QuestionAuthor";
 
 
@@ -27,14 +28,14 @@ const QuestionCard = ({question, history}) => {
 
   const renderTags = () => {
     return tags.map((tag)=>{
-      return <Card.Text key={tag.id} style={{marginRight: '10px', color: 'purple'}}>{tag.tag_name}</Card.Text>
+      return <TagPill>{tag.tag_name}</TagPill>
     })
   }
 
   return(
     <Card onClick={()=>handleRedirect(question.id)}>
-      <div style={{display:"flex", justifyContent: 'space-between'}}>
-        <div style={{display: 'flex', justifyContent: 'space-around', margin: '25px'}}>
+      <div style={styles.maindiv}>
+        <div style={styles.vavdiv}>
           <div >
             <Card.Text style={styles.vav}>{question.likes}</Card.Text>
             <Card.Text style={styles.vavcat}>Votes</Card.Text>
@@ -49,20 +50,30 @@ const QuestionCard = ({question, history}) => {
           </div>
         </div>
         <div style={styles.title}>
-          <Card.Text>{question.title}</Card.Text>
+          <Card.Text style={styles.titleWords}>{question.title}</Card.Text>
           <div style={styles.tags}>{renderTags()}</div>
-          {/* <Card.Text>{question.body}</Card.Text> */}
+        <Card.Text className="text-muted" style={styles.info}> {QuestionAuthor(question.id)} / {day(question.created_at)} / {time(question.created_at)} </Card.Text>
         </div>
-        <Card.Text className="text-muted"> {QuestionAuthor(question.id)} / {day(question.created_at)} / {time(question.created_at)} </Card.Text>
       </div>
     </Card>
   )
 }
 
 const styles = {
+  maindiv:{
+    display:"flex",
+    justifyContent: 'space-between'
+  },
+  vavdiv:{
+    display: 'flex',
+    justifyContent: 'space-around', 
+    margin: '20px'
+  },
 
   vav:{
     margin: "10px 10px 0px 10px",
+    fontSize: "1.3em",
+    fontWeight:"600",
     textAlign: "center"
   },
   
@@ -71,10 +82,29 @@ const styles = {
   },
 
   title:{
+    display:"flex",
+    flexDirection:"column",
     flex: "1"
+    
   },
+
+  titleWords:{
+    fontFamily:'Open Sans',
+    fontWeight:"600",
+    fontSize: "1.3em",
+    letterSpacing: "1px",
+    color:"#FFFFFF;",
+    textAlign:"left",
+    margin:"1em 0em .5em 5px",
+  },
+
   tags:{
     display:"flex"
+  },
+
+  info:{
+    textAlign:"end",
+    padding:"0px 10px 10px 0px",
   },
   
 }

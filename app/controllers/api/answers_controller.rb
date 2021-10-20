@@ -1,6 +1,6 @@
 class Api::AnswersController < ApplicationController
 
-before_action :set_question, except: [:author]
+before_action :set_question, except: [:author, :index_by_likes, :index_by_newest, :index_by_oldest]
 before_action :set_answer, only: [:show, :update, :destroy]
 
 

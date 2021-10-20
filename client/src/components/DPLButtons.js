@@ -2,20 +2,21 @@ import styled from "styled-components";
 
 export const DPLButton = styled.button`
  display:inline-block;
- padding: 8px 16px;
- margin: 9px;
  border-style: solid;
  border-color: #6E54A3;
  border-radius: 5px;
- font-family:'Open Sans';
- font-weight:600;
+ font-family: 'Open Sans';
+ font-weight: 600px;
  font-size: 14px;
  letter-spacing: .7px;
- color:#FFFFFF;
- background-color:#6E54A3;
- text-align:center;
+ color: #FFFFFF;
+ background-color: #6E54A3;
+ text-align: center;
  text-transform: uppercase;
  transition: all 0.15s;
+  width: 140px;
+  height: 33px;
+
 }
   &:hover{
    transform: translateY(-2px);
@@ -24,22 +25,21 @@ export const DPLButton = styled.button`
 
 export const DPLGetStarted = styled.button`
  display:inline-block;
- padding: 8px 16px;
- margin: 9px;
  border: 2px;
- border-radius: 5px;
  border-style: solid;
  border-color: #6E54A3;
  border-radius: 5px;
- font-family:'Open Sans';
- font-weight:600;
+ font-family: 'Open Sans';
+ font-weight: 600px;
  font-size: 14px;
  letter-spacing: .7px;
  color:#121212;
- background-color:#FFFFFF;
- text-align:center;
+ background-color: #FFFFFF;
+ text-align: center;
  text-transform: uppercase;
  transition: all 0.15s;
+  width: 140px;
+  height: 33px;
 }
  &:hover{
   transform: translateY(-2px);
@@ -48,19 +48,18 @@ export const DPLGetStarted = styled.button`
 
 export const DPLGreyButton = styled.button`
  display:inline-block;
- padding: 8px 16px;
- margin: 9px;
- border-radius: 5px;
  border-style: solid;
  border-color: #F5F5F5;
  border-radius: 5px;
- font-family:'Open Sans';
- font-weight:400;
+ font-family: 'Open Sans';
+ font-weight: 400px;
  font-size: 18px;
  color:#000000;
  background-color:#F5F5F5;
- text-align:center;
+ text-align: center;
  transition: all 0.15s;
+  width: 250px;
+  height: 41px;
 }
  &:hover{
   transform: translateY(-2px);
@@ -69,18 +68,18 @@ export const DPLGreyButton = styled.button`
 
 export const DPLLightWeightButton = styled.button`
  display:inline-block;
- padding: 8px 16px;
- margin: 9px;
  border-style: solid;
  border-color: #6E54A3;
  border-radius: 5px;
  font-family:'Open Sans';
- font-weight:400;
+ font-weight: 400px;
  font-size: 18px;
- color:#FFFFFF;
- background-color:#6E54A3;
- text-align:center;
+ color: #FFFFFF;
+ background-color: #6E54A3;
+ text-align: center;
  transition: all 0.15s;
+  width: 85px;
+  height: 41px;
 }
   &:hover{
    transform: translateY(-2px);

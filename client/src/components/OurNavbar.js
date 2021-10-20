@@ -89,7 +89,7 @@ const OurNavbar = (props) => {
 
   return(
     <span>
-    <Navbar bg="white" fixed="top" collapseOnSelect style={{borderBottom: 'solid 2px #757575', padding: '0px'}}>
+    <Navbar bg="white" fixed="top" collapseOnSelect style={{borderBottom: 'solid 2px #C4C4C4', padding: '0px'}}>
       <Nav.Link style={styles.logo} as={Link} to='/'>
         <Image src={DplOLogo} style={styles.logo}/>
       </Nav.Link >

@@ -19,11 +19,15 @@ Rails.application.routes.draw do
     get 'find_questions_by_tag/:tag_ids', to:'questions#find_questions_by_tag'
     get 'unanswered_questions', to:'questions#unanswered_questions'
     get 'question_search', to:'questions#search'
+    get 'follow', to:'questions#follow'
     put 'add_view/:id', to:'questions#add_view'
     get 'leaderboard', to: 'users#leaderboard'
     get 'cohort_leaderboard', to: 'users#cohort_leaderboard'
     get 'cohort_yearbook', to: 'users#cohort_yearbook'
     put 'users/image/update', to: 'users#update_image'
+    put 'follow', to: 'users#follow'
+    put 'likeanswer', to: 'users#like_answer'
+    put 'likequestion', to: 'users#like_question'
     get 'users_profile/:id', to: 'users#user_profile'
     get 'user_questions/:id', to: 'users#user_questions'
     get 'user_answers/:id', to: 'users#user_answers'
@@ -33,6 +37,7 @@ Rails.application.routes.draw do
     get 'answer_author/:id', to: 'answers#author'
     get 'comment_author/:id', to: 'comments#author'
     get 'qcomment_author/:id', to: 'qcomments#author'
+    get 'user_has_questions/:id', to: 'users#user_has_questions'
     resources :tags
   end
 end

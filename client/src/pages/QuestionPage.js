@@ -9,12 +9,10 @@ const QuestionPage = (props) => {
   const history = useHistory()
   const [question, setQuestion] = useState(null)
   const [edited, setEdited] = useState(false)
-  const [answerCount, setAnswerCount] = useState([])
 
   useEffect(()=>{
       getQuestion()
       setEdited(false)
-      getAnswerCount()
       addView()
   }, [edited])
 
@@ -23,15 +21,6 @@ const QuestionPage = (props) => {
       let res = await axios.get(`/api/questions/${props.match.params.id}`)
       setQuestion(res.data)
     }catch (err) {
-      console.log(err)
-    }
-  }
-
-  const getAnswerCount = async () => {
-    try {
-      let res = await axios.get(`/api/answer_count/${props.match.params.id}`)
-      setAnswerCount(res.data[0].count) 
-    } catch(err) {
       console.log(err)
     }
   }
@@ -48,19 +37,9 @@ const QuestionPage = (props) => {
   return (
     <div>
       <Question props={props} edited = {edited} setEdited={setEdited} history={history} question={question}/>
-      <p style={styles.answerCount}>{answerCount} Answers </p>
       <Answers props = {props} /> 
     </div>
   )
 }
 
-const styles = {
-  answerCount: {
-    marginTop: "33px",
-    marginLeft: "137px",
-    fontSize: "20px",
-    fontWeight: "500",
-    fontFamily: "Inter"
-  }
-}
 export default QuestionPage;

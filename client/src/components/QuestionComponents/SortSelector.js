@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import { Button, ListGroup } from 'react-bootstrap'
+import { ListGroup } from 'react-bootstrap'
 import Multiselect from 'multiselect-react-dropdown'
-import DPLButton from '../DPLButtons'
-import { dplPurple } from '../Color'
+
 
 // const renderTags = () => {
 //   return tags.map(t => {
@@ -28,10 +27,10 @@ const SortSelector = ({sortBy, getQuestions, setShowTags, tagSearch, setTagSearc
   }
 
   const handleRemoveTag = (id) => {
-    if(tagSearch.filter(t=>t != id).length === 0){
+    if(tagSearch.filter(t=>t !== id).length === 0){
       getQuestions('all', 1)
     } else {
-      getQuestions('tag', 1, tagSearch.filter(t => t != id))
+      getQuestions('tag', 1, tagSearch.filter(t => t !== id))
     }
     let filteredTags = tagSearch.filter(t => t !== id)
     setTagSearch(filteredTags)
@@ -39,9 +38,9 @@ const SortSelector = ({sortBy, getQuestions, setShowTags, tagSearch, setTagSearc
   return (
     <div>
       <ListGroup horizontal>
-        <ListGroup.Item style={sortBy == 'all' && !showTags ? styles.tabActive : styles.tab} onClick={(e)=> getQuestions('all', 1)}>Popular</ListGroup.Item >
-        <ListGroup.Item style={(sortBy == 'unanswered' && !showTags) ? styles.tabActive : styles.tab} onClick={(e)=> getQuestions('unanswered', 1)}>Unanswered</ListGroup.Item >
-        <ListGroup.Item style={(sortBy == 'follow' && !showTags) ? styles.tabActive : styles.tab} onClick={(e)=> getQuestions('follow', 1)}>Following</ListGroup.Item >
+        <ListGroup.Item style={sortBy === 'all' && !showTags ? styles.tabActive : styles.tab} onClick={(e)=> getQuestions('all', 1)}>Popular</ListGroup.Item >
+        <ListGroup.Item style={(sortBy === 'unanswered' && !showTags) ? styles.tabActive : styles.tab} onClick={(e)=> getQuestions('unanswered', 1)}>Unanswered</ListGroup.Item >
+        <ListGroup.Item style={(sortBy === 'follow' && !showTags) ? styles.tabActive : styles.tab} onClick={(e)=> getQuestions('follow', 1)}>Following</ListGroup.Item >
         <ListGroup.Item style={showTags ? styles.tabActive : styles.tab} onClick={(e)=> setShowTags(!showTags)}>Search by Tag</ListGroup.Item >
       </ListGroup>
       

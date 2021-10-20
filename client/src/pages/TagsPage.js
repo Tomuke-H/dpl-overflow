@@ -31,7 +31,7 @@ const TagsPage = () => {
   }
   const renderBadSearch = () => {
       return(
-        <Alert variant="danger"> No Results</Alert>
+        <Alert variant="danger">No Results</Alert>
       )
   }
 
@@ -59,8 +59,7 @@ const TagsPage = () => {
       <div style={{display:"flex", justifyContent:"space-between"}}>
         <div>
           <Form onSubmit={handleSubmit}>
-            <Form.Label>Search</Form.Label>
-            <Form.Control placeholder="Search Tags"
+            <Form.Control placeholder="Search"
             value = {tagSearch}
             onChange={(e) => {
             setTagSearch(e.target.value)}}/>
@@ -81,7 +80,7 @@ const TagsPage = () => {
 
   return(
     <div style={{margin:"10px", padding:"10px"}}>
-      <h1>Tags</h1>
+      <h1 style={styles.header}>Tags</h1>
       {renderBelowHeader()}
       <div style={styles.grid}>
       {renderTags()}
@@ -101,7 +100,22 @@ const styles ={
   gridChild:{
     margin: "5px",
     flexBasis: `calc(100% / 4 - 10px)`,
-  }
+  },
+
+  header: {
+    fontFamily: "Inter",
+    fontStyle: "normal",
+    fontWeight: "500px",
+    display: "flex",
+    alignItems: "center",
+    textAlign: "center",
+
+    color: "#000000",
+  },
+
+
 }
+
+
 
 export default TagsPage

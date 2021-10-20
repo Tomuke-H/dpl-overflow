@@ -1,10 +1,9 @@
 import axios from "axios";
 import React, {  useContext, useEffect, useState } from "react";
 import { Button, Card, Image } from "react-bootstrap";
-import CardHeader from "react-bootstrap/esm/CardHeader";
 import Activity from "../pages/Activity";
 import { AuthContext } from "../providers/AuthProvider";
-import EditUser from "./EditUser";
+import { TagPill } from "./TagComponents/TagPill";
 
 
 export default function OtherUserProfile(props) {
@@ -13,7 +12,7 @@ export default function OtherUserProfile(props) {
   const [showActivity, setShowActivity] = useState(false)
   const { user: currentUser } = useContext(AuthContext);
   const [activityUser, setActivityUser] = useState({})
-;
+
   useEffect(()=>{
     getUser()
   },[])
@@ -25,9 +24,7 @@ export default function OtherUserProfile(props) {
   const getUser = async () => {
     try {
     let res = await axios.get (`/api/users_profile/${id}`)
-    setUser(res.data.user[0])
-    console.log("res.data.user.name:", res.data.user[0].name)
-    // console.log("user:", user)
+    res.data.user[0].id === currentUser.id ? setUser(currentUser) : setUser(res.data.user[0])
     } catch (err) {
       console.log("get user error", err)
     }
@@ -43,9 +40,9 @@ export default function OtherUserProfile(props) {
           <p style={styles.name}>{user.name}</p>
       </div>
         <div style={styles.optionsContainer}>
-          <Button onClick={()=>{setShowForm(false)}}style={styles.profile}>Profile</Button>
-          <Button onClick={()=>{setShowActivity(!showActivity)}}style={styles.activity}>Activity</Button>
-          <Button onClick={()=>{setShowForm(!showForm)}}style={styles.settings}>Settings</Button>
+          <TagPill onClick={()=>setShowActivity(false)}>Profile</TagPill>
+          <TagPill onClick={()=>{setShowActivity(!showActivity)}}>Activity</TagPill>
+          {user.id === currentUser.id && <Button onClick={()=>{setShowForm(!showForm)}}>Settings</Button>}
           {showActivity && <Activity user = {user}/>}
         </div>
         <div style={{display: 'flex', flexDirection: 'row'}}>
@@ -53,16 +50,21 @@ export default function OtherUserProfile(props) {
         <p style={styles.about}>ABOUT</p>
         </div>
         <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-        <Card style={{width: '600px', height: '79px', flexDirection: 'row'}}>
-            {/* <Card.Body>Votes: {user.votes}</Card.Body> */}
-            {/* <Card.Body>Answers: {user.answer_count}</Card.Body> */}
-            <Card.Body>Votes: {user.answer_likes + user.question_likes + user.comment_likes}</Card.Body>
-            <Card.Body>Answers: {user.answer_count}</Card.Body>
-            <Card.Body>Views: {user.question_views}</Card.Body>
-            <Card.Body>Questions: {user.question_count}</Card.Body>
-            {/* <Card.Body>Questions: {user.question_count}</Card.Body> */}
+        <Card style={{width: '600px', flexDirection: 'column', marginLeft: '78px', flex: 1}}>
+          <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', textAlign: 'center'}}>
+            <Card.Body>{user.answer_likes + user.question_likes + user.comment_likes}</Card.Body>
+            <Card.Body>{user.answer_count}</Card.Body>
+            <Card.Body>{user.question_views}</Card.Body>
+            <Card.Body>{user.question_count}</Card.Body>
+          </div>
+          <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', textAlign: 'center'}}>
+          <Card.Body>Votes</Card.Body>
+          <Card.Body>Answers</Card.Body>
+          <Card.Body>Views</Card.Body>
+          <Card.Body>Questions</Card.Body>
+          </div>
           </Card>
-        <Card style={{width: '600px', height: '79px'}}>
+        <Card style={{width: '600px', height: '79px', flex: 1}}>
           <Card.Body>{user.about_me}</Card.Body>
         </Card>
         </div>
@@ -87,7 +89,7 @@ const styles = {
     height: '41px',
     fontFamily: 'Open Sans',
     fontStyle: 'normal',
-    fontWeight: '600',
+    fontWeight: '600px',
     fontSize: '30px',
     lineHeight: '41px',
     display: 'flex',
@@ -103,6 +105,8 @@ const styles = {
   optionsContainer: {
     display: "flex",
     flexDirection: "row",
+    marginLeft: '74px',
+    marginBottom: '51px'
   },
   stats: {
     flex: 1,
@@ -110,85 +114,28 @@ const styles = {
     height: '41px',
     left: '78px',
     top: '293px',
+    marginLeft: '78px',
 
     fontFamily: 'Open Sans',
     fontStyle: 'normal',
-    fontWeight: '600',
+    fontWeight: '600px',
     fontSize: '30px',
     lineHeight: '41px',
     display: 'flex',
-    alignItems: 'center',
     textAlign: 'center',
     textTransform: 'uppercase',
 
     color: '#000000',
 
   },
-  profile: {
-    // position: 'absolute',
-    width: '40px',
-    height: '15px',
-    left: '81px',
-    top: '227px',
-
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: '500',
-    fontSize: '12px',
-    lineHeight: '15px',
-    display: 'flex',
-    alignItems: 'center',
-    letterSpacing: '0.5px',
-
-    color: '#000000',
-  },
-  activity: {
-    // position: 'absolute',
-    width: '40px',
-    height: '15px',
-    // left: '151px',
-    // top: '227px',
-
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: '500',
-    fontSize: '12px',
-    lineHeight: '15px',
-    display: 'flex',
-    alignItems: 'center',
-    letterSpacing: '0.5px',
-
-    color: '#000000',
-  },
-  settings: {
-    // position: 'absolute',
-    width: '40px',
-    height: '15px',
-    // left: '229px',
-    // top: '227px',
-
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: '500',
-    fontSize: '12px',
-    lineHeight: '15px',
-    display: 'flex',
-    alignItems: 'center',
-    letterSpacing: '0.5px',
-
-    color: '#000000',
-  },
   about: {
-    // position: 'absolute',
     width: '103px',
     flex: 1,
     height: '41px',
-    // left: '711px',
-    // top: '293px',
 
     fontFamily: 'Open Sans',
     fontStyle: 'normal',
-    fontWeight: '600',
+    fontWeight: '600px',
     fontSize: '30px',
     lineHeight: '41px',
     display: 'flex',

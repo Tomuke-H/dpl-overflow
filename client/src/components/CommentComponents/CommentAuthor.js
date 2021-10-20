@@ -29,7 +29,7 @@ return(
 const styles = {
   commentAuthor: {
     fontFamily: "Inter",
-    fontWeight: "500",
+    fontWeight: "500px",
     fontSize: "16px",
     letterSpacing: "0.5px",
     color: "#000000"

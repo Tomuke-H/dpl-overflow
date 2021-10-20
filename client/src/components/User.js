@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Container, Image} from "react-bootstrap";
-import { AuthContext } from "../providers/AuthProvider";
 
 const User = ({user}) => {
 

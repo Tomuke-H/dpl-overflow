@@ -10,7 +10,7 @@ export const TagPill = styled.div`
   border-color: #6E54A3;
   border-radius: 10px;
   font-family:'Open Sans';
-  font-weight:600;
+  font-weight:600px;
   font-size: 10px;
   letter-spacing: 1px;
   color:#FFFFFF;

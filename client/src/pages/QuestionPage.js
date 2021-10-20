@@ -27,7 +27,7 @@ const QuestionPage = (props) => {
   
   const addView = async () => {
     try{
-      let res = await axios.put(`/api/add_view/${props.match.params.id}`)
+      await axios.put(`/api/add_view/${props.match.params.id}`)
       // console.log(res)
     }catch(err){
       console.log(err)

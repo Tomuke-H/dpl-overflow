@@ -29,7 +29,7 @@ return(
 const styles = {
   Author: {
     fontFamily: "Inter",
-    fontWeight: "500",
+    fontWeight: "500px",
     fontSize: "14px",
     letterSpacing: "0.5px",
     color: "#000000"

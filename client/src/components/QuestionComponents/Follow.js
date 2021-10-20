@@ -43,9 +43,7 @@ const Follow = ({user,follow,question}) =>{
   }
 
   return(
-    <div>
     <p onClick={()=>{handleFollow()}}>{isFollowed?"Unfollow":"Follow"}</p>
-    </div>
   )
 }
 

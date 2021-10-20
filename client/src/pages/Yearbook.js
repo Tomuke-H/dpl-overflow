@@ -48,37 +48,29 @@ const Yearbook = () => {
     }
   }
 
-  const dropDownItems = () => (
-    <div>
-    <Dropdown.Item onClick={(e) => getAllUsers()}>View All</Dropdown.Item>
-    <Dropdown.Item onClick={(e) => getCohortUsers('Fall 2021')}>Fall 2021</Dropdown.Item>
-    <Dropdown.Item onClick={(e) => getCohortUsers('Winter 2021')}>Winter 2021</Dropdown.Item>
-    <Dropdown.Item onClick={(e) => getCohortUsers('Spring 2022')}>Spring 2022</Dropdown.Item>
-    </div>
-  )
 
   let dropDown = () => {
     return (
-      <div class="dropdown">
-         <DPLDropDownButton 
-         class="dropbtn" 
-         title="View by Cohort"
-         onClick={()=>setShowDropDown(!showDropDown)}>
-           Search by Cohort
-        </DPLDropDownButton>
-         {showDropDown && dropDownItems()}
-    </div>
+        <Dropdown>
+          <Dropdown.Toggle style={styles.button}>Sort By Cohort</Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item onClick={(e) => getAllUsers()}>View All</Dropdown.Item>
+            <Dropdown.Item onClick={(e) => getCohortUsers('Fall 2021')}>Fall 2021</Dropdown.Item>
+            <Dropdown.Item onClick={(e) => getCohortUsers('Winter 2021')}>Winter 2021</Dropdown.Item>
+            <Dropdown.Item onClick={(e) => getCohortUsers('Spring 2022')}>Spring 2022</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
   )}
 
   return (
     <div style={{display: 'flex', flexDirection: 'column'}}>
       <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
         <h1 style={styles.yearbook}>YEARBOOK</h1>
-        <div style={{display: 'flex', justifyContent: 'flex-end', marginRight: '149px', marginTop: '90px'}}>
+        <div style={{display: 'flex', justifyContent: 'flex-end', marginRight: '100px', marginTop: '90px'}}>
         {dropDown()}
        </div>
       </div>
-      <div style={{border: '1px solid rgba(0, 0, 0, 0.3)', marginRight: '149px', marginLeft: '149px', marginTop: '90px', borderRadius: '6px'}}>
+      <div style={{border: '1.5px solid rgba(0, 0, 0, 0.3)', marginRight: '100px', marginLeft: '100px', marginTop: '30px', marginBottom: '30px', borderRadius: '6px'}}>
         <div style={{justifyContent: 'flex-start'}}>
           {renderUsers()}
         </div>
@@ -88,37 +80,36 @@ const Yearbook = () => {
 
 export default Yearbook;
 
-const DPLDropDownButton = styled.button`
-display:inline-block;
-padding: 8px 16px;
-margin: 9px;
-border-style: solid;
-border-color: #6E54A3;
-border-radius: 5px;
-font-family:'Open Sans';
-font-weight:600px;
-font-size: 14px;
-letter-spacing: .7px;
-color:#FFFFFF;
-background-color:#6E54A3;
-text-align:center;
-text-transform: uppercase;
-`
 
 const styles = {
   yearbook: {
-  width: '160px',
-  height: '41px',
   fontFamily: 'Open Sans',
   fontStyle: 'normal',
   fontWeight: '600px',
-  fontSize: '30px',
-  lineHeight: '41px',
   textTransform: 'uppercase',
   flexDirection: 'flex-end',
   color: '#000000',
-  marginLeft: '149px',
+  marginLeft: '100px',
   marginTop: '90px'
-}
+  },
+
+  button: {
+    display: "inline-block",
+    borderStyle: "solid",
+    borderColor: "#6E54A3",
+    borderRadius: "5px",
+    fontFamily:'Open Sans',
+    fontWeight:"600px",
+    fontSize: "14px",
+    letterSpacing: ".7px",
+    color:"#FFFFFF",
+    backgroundColor:"#6E54A3",
+    textAlign:"center",
+    textTransform: "uppercase",
+    width: "165px",
+    height: "40px",
+    marginTop: "8px",
+  },
+
 }
 

@@ -35,7 +35,9 @@ const renderQuestions = () => {
   return (
     userQuestions.map((ques)=> {
       return (
-        <p>{ques.title}, {ques.question_body}, {ques.question_created}</p>
+        <Card>
+          <Card.Body>{ques.title}, {ques.question_body}, {ques.question_created}</Card.Body>
+        </Card>
       )
     })
   )
@@ -65,6 +67,7 @@ useEffect(()=>{
     <div>
       <DPLButton onClick={()=>renderQuestions()}>Questions</DPLButton>
       <DPLButton onClick={()=>renderAnswers()}>Answers</DPLButton>  
+      {renderAnswers()}
     </div>
   );
 };

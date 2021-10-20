@@ -96,7 +96,7 @@ border-style: solid;
 border-color: #6E54A3;
 border-radius: 5px;
 font-family:'Open Sans';
-font-weight:600;
+font-weight:600px;
 font-size: 14px;
 letter-spacing: .7px;
 color:#FFFFFF;
@@ -111,7 +111,7 @@ const styles = {
   height: '41px',
   fontFamily: 'Open Sans',
   fontStyle: 'normal',
-  fontWeight: '600',
+  fontWeight: '600px',
   fontSize: '30px',
   lineHeight: '41px',
   textTransform: 'uppercase',

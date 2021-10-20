@@ -164,7 +164,7 @@ const styles = {
     marginTop: "70px",
     fontSize: "30px",
     fontFamily: "Open Sans, sans-serif",
-    fontWeight: "600",
+    fontWeight: "600px",
     color: "#000000",
   },
   questionDetails: {
@@ -172,7 +172,7 @@ const styles = {
     marginTop: "30px",
     fontSize: "14px",
     fontFamily: "Inter, sans-serif",
-    fontWeight: "500",
+    fontWeight: "500px",
     display: "flex",
     alignItems: "left",
     letterSpacing: ".5px",
@@ -191,7 +191,7 @@ const styles = {
     boxSizing: "borderBox",
     fontSize: "10px",
     fontFamily: "Inter, sans-serif",
-    fontWeight: "500",
+    fontWeight: "500px",
     display: "flex",
     alignItems: "center",
     letterSpacing: ".5px",
@@ -200,13 +200,13 @@ const styles = {
     margin: "10px",
     fontSize: "14px",
     fontFamily: "Inter, sans-serif",
-    fontWeight: "500",
+    fontWeight: "500px",
     color: "#757575"
   },
   littleBorder:{
     marginLeft: "207px",
     marginRight: "285px",
-    borderBottom: "1px solid rgba(0, 0, 0, 0.3)",
+    borderBottom: "1.5px solid rgba(0, 0, 0, 0.3)",
   },
 };
 

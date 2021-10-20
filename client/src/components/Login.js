@@ -31,6 +31,7 @@ const Login = (props) => {
                 <br />
                 <p style={styles.label}>Password</p>
                 <input style={styles.rectangle}
+                    type = "password"
                     value={password}
                     label="Password"
                     onChange={(e) => setPassword(e.target.value)}

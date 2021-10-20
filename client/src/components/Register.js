@@ -4,17 +4,25 @@ import { Link } from "react-router-dom"
 import { useHistory } from 'react-router';
 import { AuthContext } from '../providers/AuthProvider';
 import { DPLGreyButton, DPLLightWeightButton} from './DPLButtons';
+import {Key} from './Key';
 
 const Register = () => {
     const {handleRegister} = useContext(AuthContext);
     const [email, setEmail] = useState('test1@test.com')
     const [name, setName] = useState('Tester1')
+    const [check, setCheck] = useState('4DPLstud3nts0n1y')
     const [password, setPassword] = useState('123456')
     const [passwordConfirmation, setPasswordConfirmation] = useState('123456')
     const history = useHistory();
+    const key = Key;
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if (check !== key) {
+            alert("Passwords do not match!");
+            return;
+          }
         if (password !== passwordConfirmation) {
             alert("Passwords do not match!");
             return;
@@ -36,6 +44,7 @@ const Register = () => {
                 <br />
                 <p style={styles.label}>Password</p>
                 <input style={styles.rectangle}
+                    type = "password"
                     value={password}
                     label="New Password"
                     onChange={(e) => setPassword(e.target.value)}
@@ -44,9 +53,19 @@ const Register = () => {
                 <br />
                 <p style={styles.label}>Password confirmation</p>
                 <input style={styles.rectangle}
+                    type = "password"
                     value={passwordConfirmation}
                     label="Confirm Password"
                     onChange={(e) => setPasswordConfirmation(e.target.value)}
+                    />
+                <br />
+                <br />
+                <p style={styles.label}>DPL Key</p>
+                <input style={styles.rectangle}
+                    type = "password"
+                    value={check}
+                    label="Enter Key"
+                    onChange={(e) => setCheck(e.target.value)}
                     />
                 <div style={styles.buttonGroup}>
                 <DPLLightWeightButton type="submit">Register</DPLLightWeightButton>

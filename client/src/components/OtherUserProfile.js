@@ -26,8 +26,6 @@ export default function OtherUserProfile(props) {
     try {
     let res = await axios.get (`/api/users_profile/${id}`)
     setUser(res.data.user[0])
-    console.log("res.data.user.name:", res.data.user[0].name)
-    // console.log("user:", user)
     } catch (err) {
       console.log("get user error", err)
     }
@@ -43,9 +41,9 @@ export default function OtherUserProfile(props) {
           <p style={styles.name}>{user.name}</p>
       </div>
         <div style={styles.optionsContainer}>
-          <Button onClick={()=>{setShowForm(false)}}style={styles.profile}>Profile</Button>
+          <Button>Profile</Button>
           <Button onClick={()=>{setShowActivity(!showActivity)}}style={styles.activity}>Activity</Button>
-          <Button onClick={()=>{setShowForm(!showForm)}}style={styles.settings}>Settings</Button>
+          {user.id === currentUser.id && <Button onClick={()=>{setShowForm(!showForm)}}style={styles.settings}>Settings</Button>}
           {showActivity && <Activity user = {user}/>}
         </div>
         <div style={{display: 'flex', flexDirection: 'row'}}>
@@ -54,13 +52,10 @@ export default function OtherUserProfile(props) {
         </div>
         <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
         <Card style={{width: '600px', height: '79px', flexDirection: 'row'}}>
-            {/* <Card.Body>Votes: {user.votes}</Card.Body> */}
-            {/* <Card.Body>Answers: {user.answer_count}</Card.Body> */}
             <Card.Body>Votes: {user.answer_likes + user.question_likes + user.comment_likes}</Card.Body>
             <Card.Body>Answers: {user.answer_count}</Card.Body>
             <Card.Body>Views: {user.question_views}</Card.Body>
             <Card.Body>Questions: {user.question_count}</Card.Body>
-            {/* <Card.Body>Questions: {user.question_count}</Card.Body> */}
           </Card>
         <Card style={{width: '600px', height: '79px'}}>
           <Card.Body>{user.about_me}</Card.Body>

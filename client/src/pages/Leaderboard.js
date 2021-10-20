@@ -131,7 +131,7 @@ const styles ={
     alignItems: 'center'
   },
   table: {
-    width: '86vw',
+    width: '86.1vw',
     border: '1.5px solid rgba(0, 0, 0, 0.3)',
     borderRadius: '6px',
     padding: '25px 50px 25px 50px',
@@ -142,7 +142,7 @@ const styles ={
   header: {
     display: 'flex',
     justifyContent: 'space-between',
-    width: '86vw',
+    width: '86.1vw',
     alignItems: 'center',
     margin: '90px 0px 0px 0px',
   },

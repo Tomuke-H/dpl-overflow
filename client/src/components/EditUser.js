@@ -25,7 +25,7 @@ const EditUser = (id) => {
         try {
             let res = await axios.put(`/api/users/${user.id}`, { name: name, email: email, cohort: cohort, about_me: about_me, password: password, passwordConfirmation: passwordConfirmation })
             setUser(res.data)
-            history.push(`/users/${user.id}`)
+            history.push(`/users/${user.id}/profile`)
         } catch (err) {
             alert("error updating user")
             console.log(err)
@@ -37,7 +37,7 @@ const EditUser = (id) => {
         try {
             // console.log(user)
             await axios.put("/api/auth/password", { password: password, password_confirmation: passwordConfirmation, current_password: current_password  })
-            history.push(`/users/${user.id}`)
+            history.push(`/users/${user.id}/profile`)
         } catch (err) {
             alert("error updating password")
             console.log(err)

@@ -79,6 +79,9 @@ const AnswerVote = ({answer, liked_answers, downvote_answers}) => {
         console.log(err)
       }
     }else{
+      if(isDA === true){
+        handleDA()
+      }
       try {
         la.push(answer.id)
         let res = await axios.put(`/api/likeanswer`, {liked_answers: la})
@@ -106,6 +109,9 @@ const AnswerVote = ({answer, liked_answers, downvote_answers}) => {
       }
     }else{
       try {
+        if(isLA === true){
+          handleLA()
+        }
         da.push(answer.id)
         let res = await axios.put(`/api/downvoteanswer`, {downvote_answers: da})
         setDA(da)

@@ -79,6 +79,9 @@ const QuestionVote = ({question, liked_questions,downvote_questions}) => {
         console.log(err)
       }
     }else{
+      if(isLQ === true){
+        handleLQ()
+      }
       try {
         dq.push(question.id)
         let res = await axios.put(`/api/downvotequestion`, {downvote_questions: dq})
@@ -105,6 +108,9 @@ const QuestionVote = ({question, liked_questions,downvote_questions}) => {
         console.log(err)
       }
     }else{
+      if(isDQ === true){
+        handleDQ()
+      }
       try {
         lq.push(question.id)
         let res = await axios.put(`/api/likequestion`, {liked_questions: lq})

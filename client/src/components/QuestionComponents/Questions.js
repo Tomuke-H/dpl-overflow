@@ -75,7 +75,7 @@ const Questions = ({history}) => {
     }
   }
 
-  const getQuestions = (sC, p, t) => {
+  const getQuestions = (sC, p, t, s) => {
     switch (sC){
       case "all" :
         setShowTags(false)
@@ -89,11 +89,11 @@ const Questions = ({history}) => {
         getDataByUnanswered(p)
         break;
       case "search":
-        setSearch(t)
-        if(!t){
+        setSearch(s)
+        if(!s){
           getAllData(1)
         }else {
-          getDataSearch(p, t)
+          getDataSearch(p, s)
         }
         break;
       case "follow":
@@ -136,7 +136,7 @@ const Questions = ({history}) => {
       {/* <h2>{JSON.stringify(tagSearch)}</h2> */}
       <div style={{display: 'flex', justifyContent: 'space-between'}}>
         <div>
-          <Form.Control placeholder='Search' value={search} onChange={(e) => getQuestions('search', 1, e.target.value)}/>
+          <Form.Control placeholder='Search' value={search} onChange={(e) => getQuestions('search', 1, null, e.target.value)}/>
         </div>
         <div>
           <SortSelector 
@@ -154,7 +154,7 @@ const Questions = ({history}) => {
       <div>
         <InfiniteScroll
           dataLength={questions.length}
-          next={(e)=>getQuestions(sortBy, (page + 1), tagSearch)}
+          next={(e)=>getQuestions(sortBy, (page + 1), tagSearch, search)}
           hasMore={page<totalPages}
           loader={<BoxLoader/>}
         >

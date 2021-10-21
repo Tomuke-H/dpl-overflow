@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
-import { AuthContext } from '../providers/AuthProvider'
+import { AuthContext } from '../../providers/AuthProvider'
 
 const FetchUser = (props) => {
     let {user, setUser} = useContext(AuthContext)

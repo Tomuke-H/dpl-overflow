@@ -45,10 +45,12 @@ const SortSelector = ({sortBy, getQuestions, setShowTags, tagSearch, setTagSearc
       </ListGroup>
       
       {showTags && <Multiselect 
+        style={styles.multiSelect}
         options={options}
         selectedValues={selectedValue}
         onSelect={(selectedList, selectedItem) => handleAddTag(selectedItem.id)}
         onRemove={(selectedList, selectedItem) => handleRemoveTag(selectedItem.id)}
+        closeIcon='cancel'
         displayValue="name"
       />}
     </div>
@@ -62,6 +64,11 @@ const styles = {
   tabActive: {
     backgroundColor: '#757575',
     color: 'white',
+  },
+  multiSelect: {
+    chips: {
+      background: '#6E54A3',
+    },
   }
 }
 

@@ -1,10 +1,11 @@
 import axios from "axios";
 import React, {  useContext, useEffect, useState } from "react";
 import { Card, Image, NavLink } from "react-bootstrap";
-import Activity from "../pages/Activity";
-import { AuthContext } from "../providers/AuthProvider";
+import Activity from "../../pages/Activity";
+import { AuthContext } from "../../providers/AuthProvider";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { ProfilePill, StatsAndAbout, StatsBox } from "./ProfileStyles";
 
 
 export default function OtherUserProfile(props) {
@@ -46,25 +47,25 @@ export default function OtherUserProfile(props) {
         <p style={styles.stats}>STATS</p>
         <p style={styles.about}>ABOUT</p>
         </div>
-        <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-        <Card style={{width: '600px', flexDirection: 'column', marginLeft: '78px', flex: 1}}>
-          <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', textAlign: 'center'}}>
+        <StatsAndAbout>
+        <Card style={styles.statsCard}>
+          <StatsBox>
             <Card.Body>{user.answer_likes + user.question_likes + user.comment_likes}</Card.Body>
             <Card.Body>{user.answer_count}</Card.Body>
             <Card.Body>{user.question_views? user.question_views : 0}</Card.Body>
             <Card.Body>{user.question_count}</Card.Body>
-          </div>
-          <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', textAlign: 'center'}}>
+          </StatsBox>
+          <StatsBox>
           <Card.Body>Votes</Card.Body>
           <Card.Body>Answers</Card.Body>
           <Card.Body>Views</Card.Body>
           <Card.Body>Questions</Card.Body>
-          </div>
+          </StatsBox>
           </Card>
         <Card style={{width: '600px', height: '79px', flex: 1}}>
           <Card.Body>{user.about_me}</Card.Body>
         </Card>
-        </div>
+        </StatsAndAbout>
     </div>
   )
 
@@ -73,6 +74,12 @@ export default function OtherUserProfile(props) {
 }
 
 const styles = {
+  statsCard: {
+    width: '600px',
+    flexDirection: 'column',
+    marginLeft: '78px',
+    flex: 1,
+  },
   profilePic: {
     borderRadius: '4px',
     width: '59px',
@@ -143,27 +150,9 @@ const styles = {
   }
 }
 
-export const ProfilePill = styled.div`
-width: 64px;
-height: 25px;
-background: rgba(110, 84, 163, 0.7);
-border-radius: 10px;
-font-family: Inter;
-font-style: normal;
-font-weight: 500;
-font-size: 12px;
-line-height: 15px;
 
-display: flex;
-justify-content: space-around;
-align-items: center;
-letter-spacing: 0.5px;
-text-align: center;
-margin: 18px;
-
-color: #000000;
-`
 
 export const ShowActivityStyle = styled.div`
 margin-left: 78px;
 `
+

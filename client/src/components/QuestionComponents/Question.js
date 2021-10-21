@@ -35,11 +35,10 @@ const Question = ({props, edited, setEdited, history, question}) => {
   };
 
   const addQComment = async (e, qcomment) => {
-    // e.preventDefault()
-    // console.log(qcomment)
+    e.preventDefault()
     try {
-      await axios.post(`/api/questions/${question.id}/qcomments/`, qcomment)
-      setQComments([...qcomments, qcomment])
+      let res = await axios.post(`/api/questions/${question.id}/qcomments/`, qcomment)
+      setQComments([...qcomments, res.data])
     } catch(err) {
       console.log("add qcomment error", err)
     }
@@ -62,9 +61,7 @@ const Question = ({props, edited, setEdited, history, question}) => {
 
   const getTags = async () => {
     try {
-      let res = await axios.get(`/api/tagwithname/${question.id}`)
-      console.log("uqestio", question.id)
-      console.log(tags)
+      let res = await axios.get(`/api/tagwithname/${props.match.params.id}`)
       setTags(res.data)
     } catch (error) {
       console.log(error)

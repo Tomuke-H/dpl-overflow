@@ -13,7 +13,7 @@ const Activity = ({user}) => {
 const getUserAnswers = async () => {
   try {
     let res = await axios.get(`/api/user_answers/${user.id}`)
-    console.log("res:", res)
+    console.log("answers:", res)
     setUserAnswers(res.data.user)
     console.log("user:", userAnswers)
   } catch (err) {
@@ -23,7 +23,7 @@ const getUserAnswers = async () => {
 const getUserQuestions = async () => {
   try {
     let res = await axios.get(`/api/user_questions/${user.id}`)
-    console.log("res:", res)
+    console.log("quetsions:", res)
     setUserQuestions(res.data.user)
     console.log("user:", userQuestions)
   } catch (err) {
@@ -55,9 +55,8 @@ const renderAnswers = () => {
   
 }
 
-
 useEffect(()=>{
-  getUserQuestions();
+  getUserAnswers();
 },[])
 useEffect(()=>{
   getUserQuestions();
@@ -65,9 +64,10 @@ useEffect(()=>{
 
   return (
     <div>
-      <DPLButton onClick={()=>renderQuestions()}>Questions</DPLButton>
-      <DPLButton onClick={()=>renderAnswers()}>Answers</DPLButton>  
-      {renderAnswers()}
+      <DPLButton onClick={()=>setShowQuestions(!showQuestions)}>Questions</DPLButton>
+      {showQuestions && renderQuestions()}
+      <DPLButton onClick={()=>setShowAnswers(!showAnswers)}>Answers</DPLButton>  
+      {showAnswers && renderAnswers()}
     </div>
   );
 };

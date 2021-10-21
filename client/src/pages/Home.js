@@ -47,7 +47,7 @@ const styles = {
     flexDirection: "column",
     float: "left",
     width: "50%",
-    height: "600px",
+    height: "550px",
   },
 
   consize: {
@@ -69,6 +69,6 @@ const styles = {
     justifyContent: "center",
     float: "right",
     width: "50%",
-    height: "600px",
+    height: "550px",
   },
 }

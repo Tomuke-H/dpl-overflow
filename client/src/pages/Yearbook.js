@@ -4,13 +4,10 @@ import React, { useEffect, useState } from 'react';
 import { Dropdown, NavLink } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
 import User from '../components/User';
-import styled from "styled-components";
 
 
 const Yearbook = () => {
   const [users, setUsers] = useState([])
-  const [showDropDown, setShowDropDown] = useState(false)
-  const history = useHistory();
 
   const getAllUsers = async () => {
     try {

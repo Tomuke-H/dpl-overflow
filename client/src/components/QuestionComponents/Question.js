@@ -63,6 +63,8 @@ const Question = ({props, edited, setEdited, history, question}) => {
   const getTags = async () => {
     try {
       let res = await axios.get(`/api/tagwithname/${question.id}`)
+      console.log("uqestio", question.id)
+      console.log(tags)
       setTags(res.data)
     } catch (error) {
       console.log(error)
@@ -70,9 +72,11 @@ const Question = ({props, edited, setEdited, history, question}) => {
   }
 
   const renderTags = () => {
-    // console.log(tags)
+    // console.log("tags", tags)
     return tags.map((tag)=>{
-      return <div style={styles.qTagBox}>{tag.tag_name}</div>
+      return(
+         <p style={styles.qTagBox}>{tag.tag_name}</p>
+      )
     })
   }
 
@@ -115,7 +119,9 @@ const Question = ({props, edited, setEdited, history, question}) => {
         <h2 style={styles.questionDetails}>Viewed: {question.views} times</h2>
         </div>
         <div style={styles.questionDetails}><MarkdownView body = {question.body}/></div> 
-        <div style={{display:"flex"}}>{renderTags()}</div>
+        <div style={{display: "flex", height: "66px"}}>
+        {renderTags()}
+        </div>
         <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
           <div style={{display: "flex", flexDirection: "column"}}>
             {showEditDelete()}

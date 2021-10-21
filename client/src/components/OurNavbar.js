@@ -18,18 +18,11 @@ const OurNavbar = (props) => {
           <DPLButton>ASK A QUESTION</DPLButton>
         </Nav.Link>
           <NavDropdown align='end' title={<Image roundedCircle src={user.image} style={styles.profile}/>} id="basic-nav-dropdown">
-            <Nav.Link as={Link} to={`/users/${user.id}`}>
+            <Nav.Link as={Link} to={`/users/${user.id}/profile`}>
               <Container>
                 View Profile
               </Container>
             </Nav.Link>
-
-            <Nav.Link as={Link} to='/user/edit'>
-              <Container>
-                Edit Profile
-              </Container>
-            </Nav.Link>
-
 
             <Nav.Link as={Link} onClick={()=> handleLogout(history)} to='/login'>
               <Container>

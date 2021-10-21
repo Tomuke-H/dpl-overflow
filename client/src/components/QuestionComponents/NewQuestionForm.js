@@ -128,6 +128,8 @@ const NewQuestionForm = ({ handleRedirect }) => {
           onRemove={(selectedList, selectedItem) => handleRemoveTag(selectedList)}
           displayValue="name"
           placeholder='Select Tags'
+          style={styles.multiSelect}
+          closeIcon="cancel"
           />
           {/* {tagList()} */}
         </Form.Group>
@@ -138,14 +140,19 @@ const NewQuestionForm = ({ handleRedirect }) => {
 } 
 
 const styles = {
-questionHeader: {
-  textTransform: "uppercase",
-  marginTop: "70px",
-  fontSize: "30px",
-  fontFamily: "Open Sans, sans-serif",
-  fontWeight: "600px",
-  color: "#000000",
-}
+  questionHeader: {
+    textTransform: "uppercase",
+    marginTop: "70px",
+    fontSize: "30px",
+    fontFamily: "Open Sans, sans-serif",
+    fontWeight: "600px",
+    color: "#000000",
+  },
+  multiSelect: {
+    chips: {
+      background: '#6E54A3',
+    },
+  }
 }
 
 export default NewQuestionForm;

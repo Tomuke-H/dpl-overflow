@@ -6,7 +6,7 @@ import {useHistory} from "react-router-dom"
 import{ DPLButton } from "../DPLButtons";
 
 
-const CreateTag = ({tags, setTags, selectedValues, setSelectedValues, setShowTagModal, checkedItems, setCheckedItems}) => {
+const CreateTag = ({handleClose, tags, setTags, selectedValues, setSelectedValues, setShowTagModal, checkedItems, setCheckedItems}) => {
   const [name, setName] = useState("")
 
   const handleSubmit = async (e) =>{
@@ -24,23 +24,30 @@ const CreateTag = ({tags, setTags, selectedValues, setSelectedValues, setShowTag
 
   return(
 
-      <Container>
-      <h1>Create a Tag</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group>
-        <Form.Label>Tag Name</Form.Label>
-        <Form.Control 
-        placeholder="Enter Tag Name" 
-        value = {name}
-        onChange={(e) => {
-          setName(e.target.value)}}/>
+          <Form.Control 
+            placeholder="Enter Tag Name" 
+            value = {name}
+            onChange={(e) => {
+              setName(e.target.value)}}
+          />
         </Form.Group>
-      <DPLButton type = "submit">
-          SUBMIT
-      </DPLButton>
+        <div style={styles.buttonWrapper}>
+          <DPLButton type ="submit">
+              Add Tag
+          </DPLButton>
+        </div>
       </Form>
-      </Container>
 
   )
+}
+
+const styles= {
+  buttonWrapper: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    marginTop: '5px'
+  }
 }
 export default CreateTag

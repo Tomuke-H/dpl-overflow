@@ -101,8 +101,8 @@ const NewQuestionForm = ({ handleRedirect }) => {
   return (
     <Container>
       <FirstQuestionModal showModal={showModal} setShowModal={setShowModal} />
-      <NewTagModal checkedItems={checkedItems} setCheckedItems={setCheckedItems} tags={tags} setTags={setTags} selectedValues={selectedValues} setSelectedValues={setSelectedValues} showTagModal={showTagModal} setShowTagModal={setShowTagModal} />
       <h2>Ask a Question</h2>
+      <NewTagModal checkedItems={checkedItems} setCheckedItems={setCheckedItems} tags={tags} setTags={setTags} selectedValues={selectedValues} setSelectedValues={setSelectedValues} showTagModal={showTagModal} setShowTagModal={setShowTagModal} />
       <Form onSubmit={handleSubmit}>
         <Form.Group className='mb-3'>
           <Form.Control 

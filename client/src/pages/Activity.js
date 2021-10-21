@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
-import { Button, Card } from 'react-bootstrap';
+import { Button, Card, NavLink } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { DPLButton } from '../components/DPLButtons';
 import { AuthContext } from '../providers/AuthProvider';
 
@@ -35,9 +36,11 @@ const renderQuestions = () => {
   return (
     userQuestions.map((ques)=> {
       return (
+        <NavLink as={Link} to={`/question/${ques.question_id}`}>
         <Card>
           <Card.Body>{ques.title}, {ques.question_body}, {ques.question_created}</Card.Body>
         </Card>
+        </NavLink>
       )
     })
   )
@@ -46,9 +49,11 @@ const renderAnswers = () => {
   return (
     userAnswers.map((ans)=> {
       return (
+        <NavLink as={Link} to={`/question/${ans.question_id}`}>
         <Card>
         <Card.Body>{ans.answer_body} {ans.answer_created}</Card.Body>
         </Card>
+        </NavLink>
       )
     })
     )

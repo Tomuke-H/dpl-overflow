@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { Button, Card, Image } from "react-bootstrap";
-import { AuthContext } from '../providers/AuthProvider'
-import EditUser from "./EditUser";
+import { AuthContext } from '../../providers/AuthProvider'
+import EditUser from "./components/UserComponents/EditUser";
 
 
 export default function UserProfile() {

@@ -7,8 +7,8 @@ import { DPLGreyButton, DPLLightWeightButton } from './DPLButtons';
 
 const Login = (props) => {
     const {handleLogin} = useContext(AuthContext);
-    const [email, setEmail] = useState('test@test.com')
-    const [password, setPassword] = useState('123456')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
     const history = useHistory();
 
     const handleSubmit = (e) => {

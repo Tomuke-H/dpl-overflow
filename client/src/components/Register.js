@@ -8,11 +8,11 @@ import {Key} from './Key';
 
 const Register = () => {
     const {handleRegister} = useContext(AuthContext);
-    const [email, setEmail] = useState('test1@test.com')
-    const [name, setName] = useState('Tester1')
+    const [email, setEmail] = useState('')
+    const [name, setName] = useState('')
     const [check, setCheck] = useState('4DPLstud3nts0n1y')
-    const [password, setPassword] = useState('123456')
-    const [passwordConfirmation, setPasswordConfirmation] = useState('123456')
+    const [password, setPassword] = useState('')
+    const [passwordConfirmation, setPasswordConfirmation] = useState('')
     const history = useHistory();
     const key = Key;
 

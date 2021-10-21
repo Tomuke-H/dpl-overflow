@@ -4,12 +4,15 @@ import { Container, Form, Button } from "react-bootstrap";
 import {useHistory} from "react-router-dom"
 // import Tags from "../../pages/Tags";
 import{ DPLButton } from "../DPLButtons";
+import TagErrorMessage from "./TagErrorMessage";
 
 
 const CreateTag = ({handleClose, tags, setTags, selectedValues, setSelectedValues, setShowTagModal, checkedItems, setCheckedItems}) => {
   const [name, setName] = useState("")
+  const [error, setError] = useState(null)
 
   const handleSubmit = async (e) =>{
+    setError(null)
     e.preventDefault()
     try {
       let res = await axios.post("/api/tags", {name})
@@ -18,12 +21,13 @@ const CreateTag = ({handleClose, tags, setTags, selectedValues, setSelectedValue
       setCheckedItems([res.data, ...checkedItems])
       setTags([res.data, ...tags])
     } catch (err) {
-      console.log(err)
+      setError(`The tag ${name} already exists`)
     }}
 
 
   return(
-
+    <div>
+      {error && <TagErrorMessage err={error} />}
       <Form onSubmit={handleSubmit}>
         <Form.Group>
           <Form.Control 
@@ -31,7 +35,7 @@ const CreateTag = ({handleClose, tags, setTags, selectedValues, setSelectedValue
             value = {name}
             onChange={(e) => {
               setName(e.target.value)}}
-          />
+              />
         </Form.Group>
         <div style={styles.buttonWrapper}>
           <DPLButton type ="submit">
@@ -39,7 +43,7 @@ const CreateTag = ({handleClose, tags, setTags, selectedValues, setSelectedValue
           </DPLButton>
         </div>
       </Form>
-
+    </div>
   )
 }
 

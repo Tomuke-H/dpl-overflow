@@ -10,12 +10,33 @@ const QuestionVote = ({question, liked_questions,downvote_questions}) => {
   const [isLQ, setIsLQ] = useState(false);
   const [dq, setDQ] = useState(downvote_questions); // dq = disliked Questions
   const [isDQ, setIsDQ] = useState(false);
-  
+
   // okay got it working but would like to keep track of whether a user has already liked or not - limit one like per user, right?
+  
+  const checkLQ = () => {
+    if(liked_questions.length !==0 ){
+      if(lq.includes(question.id) === true){
+        setIsLQ(true)
+      }
+    }
+  }
+  
+  const checkDQ = () => {
+    if(liked_questions.length !==0 ){
+      if(dq.includes(question.id) === true){
+        setIsDQ(true)
+      }
+    }
+  }
+
+  useEffect(()=>{
+    checkDQ()
+    checkLQ()
+  },[])
   
   const saveUpVote = async () => {
     try{
-    await axios.put(`/api/questions/${question.id}`, {
+      await axios.put(`/api/questions/${question.id}`, {
       likes: likes + 1
     })
     // console.log(res)
@@ -35,27 +56,14 @@ const QuestionVote = ({question, liked_questions,downvote_questions}) => {
     }
   }
   
-    const upVote = () =>{
-      dispatch("add");
-      saveUpVote(likes)
-    }
+  const upVote = () =>{
+    dispatch("add");
+    saveUpVote(likes)
+  }
 
-    const downVote = () =>{
-      dispatch("subtract");
-      saveDownVote(likes)
-    }
-
-    useEffect(()=>{
-      checkDQ()
-      checkLQ()
-    },[])
-
-  const checkDQ = () => {
-    if(liked_questions.length !==0 ){
-      if(dq.includes(question.id) === true){
-        setIsDQ(true)
-      }
-    }
+  const downVote = () =>{
+    dispatch("subtract");
+    saveDownVote(likes)
   }
 
   const handleDQ = async () =>{
@@ -65,7 +73,8 @@ const QuestionVote = ({question, liked_questions,downvote_questions}) => {
         let res = await axios.put(`/api/downvotequestion`, {downvote_questions: unDQ})
         setUser(res.data)
         setDQ(unDQ)
-        setIsDQ(false)        
+        setIsDQ(false)
+        upVote()
       } catch (err) {
         console.log(err)
       }
@@ -76,43 +85,38 @@ const QuestionVote = ({question, liked_questions,downvote_questions}) => {
         setDQ(dq)
         setUser(res.data)
         setIsDQ(true)
+        downVote()
       } catch (err) {
         console.log(err)
       }
     }
   }
 
-  const checkLQ = () => {
-  if(liked_questions.length !==0 ){
-    if(lq.includes(question.id) === true){
-      setIsLQ(true)
+  const handleLQ = async () =>{
+    if(isLQ){
+      try {
+        let unLQ = lq.filter((i) => i !== question.id)
+        let res = await axios.put(`/api/likequestion`, {liked_questions: unLQ})
+        setUser(res.data)
+        setLQ(unLQ)
+        setIsLQ(false)
+        downVote()      
+      } catch (err) {
+        console.log(err)
+      }
+    }else{
+      try {
+        lq.push(question.id)
+        let res = await axios.put(`/api/likequestion`, {liked_questions: lq})
+        setLQ(lq)
+        setUser(res.data)
+        setIsLQ(true)
+        upVote()
+      } catch (err) {
+        console.log(err)
+      }
     }
   }
-}
-
-const handleLQ = async () =>{
-  if(isLQ){
-    try {
-      let unLQ = lq.filter((i) => i !== question.id)
-      let res = await axios.put(`/api/likequestion`, {liked_questions: unLQ})
-      setUser(res.data)
-      setLQ(unLQ)
-      setIsLQ(false)        
-    } catch (err) {
-      console.log(err)
-    }
-  }else{
-    try {
-      lq.push(question.id)
-      let res = await axios.put(`/api/likequestion`, {liked_questions: lq})
-      setLQ(lq)
-      setUser(res.data)
-      setIsLQ(true)
-    } catch (err) {
-      console.log(err)
-    }
-  }
-}
 
 const [likes, dispatch] = useReducer((state, action) => {
   switch (action) {
@@ -127,13 +131,13 @@ const [likes, dispatch] = useReducer((state, action) => {
     <div style={styles.voteBox}>
       <AiFillCaretUp
       size="40px"
-      color="#757575"
-        onClick={() => {upVote()}}/>
+      color={isLQ ? "#6E54A3":"#757575"}
+        onClick={() => {handleLQ()}}/>
       <p style={styles.likesNumber}>{likes}</p>
       <AiFillCaretDown
       size="40px"
-      color="#757575"
-      onClick={() => {downVote()}}/>
+      color={isDQ ? "#6E54A3":"#757575"}
+      onClick={() => {handleDQ()}}/>
     </div>
   );
 };

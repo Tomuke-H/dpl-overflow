@@ -29,6 +29,8 @@ Rails.application.routes.draw do
     put 'follow', to: 'users#follow'
     put 'likeanswer', to: 'users#like_answer'
     put 'likequestion', to: 'users#like_question'
+    put 'downvoteanswer', to: 'users#downvote_answer'
+    put 'downvotequestion', to: 'users#downvote_question'
     get 'users_profile/:id', to: 'users#user_profile'
     get 'user_questions/:id', to: 'users#user_questions'
     get 'user_answers/:id', to: 'users#user_answers'

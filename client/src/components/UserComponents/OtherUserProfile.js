@@ -15,11 +15,10 @@ export default function OtherUserProfile(props) {
 
   useEffect(()=>{
     getUser()
-  },[])
-
+  },[window.location.href])
+  
   const Url = props.location.pathname.split("/") 
   const id = Url[2]
-
 
   const getUser = async () => {
     try {
@@ -29,9 +28,6 @@ export default function OtherUserProfile(props) {
       console.log("get user error", err)
     }
   }
-
-
-
 
   return (
     <div style={{display: 'flex', flexDirection: 'column'}}>
@@ -56,7 +52,7 @@ export default function OtherUserProfile(props) {
           <StatsBox>
             <Card.Body>{user.answer_likes + user.question_likes + user.comment_likes}</Card.Body>
             <Card.Body>{user.answer_count}</Card.Body>
-            <Card.Body>{user.question_views}</Card.Body>
+            <Card.Body>{user.question_views? user.question_views : 0}</Card.Body>
             <Card.Body>{user.question_count}</Card.Body>
           </StatsBox>
           <StatsBox>

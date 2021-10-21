@@ -13,10 +13,11 @@ class Api::TagsController < ApplicationController
   end
 
   def create
-    tag = Tag.create(tag_params)
-    if tag.save
+    tag = Tag.new(tag_params)
+    begin 
+      tag.save
       render json: tag
-    else
+    rescue
       render json: {errors: tag.errors}, status: 422
     end
   end

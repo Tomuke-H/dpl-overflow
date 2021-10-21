@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router';
-import { AuthContext } from '../providers/AuthProvider';
 import {  Container, Form } from 'react-bootstrap';
 import { Image } from "cloudinary-react";
 import axios from 'axios';
-import { DPLButton } from './DPLButtons';
+import { AuthContext } from '../../providers/AuthProvider';
+import { DPLButton } from '../DPLButtons';
 
 
 const EditUser = (id) => {

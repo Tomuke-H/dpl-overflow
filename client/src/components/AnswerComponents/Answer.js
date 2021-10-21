@@ -29,9 +29,10 @@ const Answer = ({answer, props, deleteAnswer}) => {
   };
 
   const addComment = async (e, comment) => {
+    e.preventDefault()
     try {
-      await axios.post(`/api/answers/${answer.id}/comments/`, comment)
-      setComments([...comments, comment])
+      let res = await axios.post(`/api/answers/${answer.id}/comments/`, comment)
+      setComments([...comments, res.data])
     } catch(err) {
       console.log("addComment error", err)
     }
@@ -73,7 +74,7 @@ const Answer = ({answer, props, deleteAnswer}) => {
     return(
       <div style={styles.theMightyDiv}>
         <div style={styles.likesContainer}>
-          <AnswerVote answer={answer} liked_answers = {user.liked_answers}/>
+          <AnswerVote answer={answer} liked_answers = {user.liked_answers} downvote_answers = {user.downvote_answers}/>
         </div>
         <div style={styles.answerContainer}>
           <div style={styles.answerBody}><MarkdownView body = {answer.body}/></div>

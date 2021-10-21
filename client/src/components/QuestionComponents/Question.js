@@ -35,11 +35,10 @@ const Question = ({props, edited, setEdited, history, question}) => {
   };
 
   const addQComment = async (e, qcomment) => {
-    // e.preventDefault()
-    // console.log(qcomment)
+    e.preventDefault()
     try {
-      await axios.post(`/api/questions/${question.id}/qcomments/`, qcomment)
-      setQComments([...qcomments, qcomment])
+      let res = await axios.post(`/api/questions/${question.id}/qcomments/`, qcomment)
+      setQComments([...qcomments, res.data])
     } catch(err) {
       console.log("add qcomment error", err)
     }
@@ -62,9 +61,7 @@ const Question = ({props, edited, setEdited, history, question}) => {
 
   const getTags = async () => {
     try {
-      let res = await axios.get(`/api/tagwithname/${question.id}`)
-      console.log("uqestio", question.id)
-      console.log(tags)
+      let res = await axios.get(`/api/tagwithname/${props.match.params.id}`)
       setTags(res.data)
     } catch (error) {
       console.log(error)
@@ -110,7 +107,7 @@ const Question = ({props, edited, setEdited, history, question}) => {
     return(
       <div style={styles.theMightyDiv}>
         <div style={styles.likesContainer}>
-        <QuestionVote question={question} liked_questions = {user.liked_questions}/>
+        <QuestionVote question={question} liked_questions = {user.liked_questions} downvote_questions = {user.downvote_questions}/>
         </div>
       <Container style={styles.questionContainer}>
         <h1 style={styles.questionHeader}>{question.title}</h1>

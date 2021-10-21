@@ -3,7 +3,7 @@ import { useHistory } from 'react-router';
 import React, { useEffect, useState } from 'react';
 import { Dropdown, NavLink } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
-import User from '../components/User';
+import User from '../components/UserComponents/User';
 
 
 const Yearbook = () => {

@@ -74,6 +74,11 @@ const OurNavbar = (props) => {
                 Leaderboard
             </Container>
           </Nav.Link>
+          <Nav.Link as={Link} to='/about'>
+            <Container style={styles.navItem}>
+                About Us
+            </Container>
+          </Nav.Link>
         </>
       )
     }

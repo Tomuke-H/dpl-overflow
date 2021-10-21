@@ -29,9 +29,10 @@ const Answer = ({answer, props, deleteAnswer}) => {
   };
 
   const addComment = async (e, comment) => {
+    e.preventDefault()
     try {
-      await axios.post(`/api/answers/${answer.id}/comments/`, comment)
-      setComments([...comments, comment])
+      let res = await axios.post(`/api/answers/${answer.id}/comments/`, comment)
+      setComments([...comments, res.data])
     } catch(err) {
       console.log("addComment error", err)
     }

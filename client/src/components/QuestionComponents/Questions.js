@@ -133,6 +133,7 @@ const Questions = ({history}) => {
 
   return (
     <Container style={{marginTop: '30px'}}>
+      <BoxLoader />
       {/* <h2>{JSON.stringify(tagSearch)}</h2> */}
       <div style={{display: 'flex', justifyContent: 'space-between'}}>
         <div>

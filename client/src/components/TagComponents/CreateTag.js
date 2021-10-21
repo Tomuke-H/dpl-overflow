@@ -22,7 +22,13 @@ const CreateTag = ({handleClose, tags, setTags, selectedValues, setSelectedValue
       setTags([res.data, ...tags])
     } catch (err) {
       setError(`The tag ${name} already exists`)
-    }}
+    }
+  }
+
+  const handleChange = (e) => {
+    setError(null)
+    setName(e.target.value)
+  }
 
 
   return(
@@ -33,9 +39,8 @@ const CreateTag = ({handleClose, tags, setTags, selectedValues, setSelectedValue
           <Form.Control 
             placeholder="Enter Tag Name" 
             value = {name}
-            onChange={(e) => {
-              setName(e.target.value)}}
-              />
+            onChange={handleChange}
+          />
         </Form.Group>
         <div style={styles.buttonWrapper}>
           <DPLButton type ="submit">

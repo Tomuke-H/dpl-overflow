@@ -14,6 +14,9 @@ const NewTagModal = ({tags, setTags, selectedValues, setSelectedValues, showTagM
         <h2>Create New Tag</h2>
       </Modal.Header>
       <Modal.Body>
+        Try to keep tags short and concise to convey the most amount of meaning in a word or two.
+      </Modal.Body>
+      <Modal.Body>
         <CreateTag handleClose={handleClose} tags={tags} setTags={setTags} selectedValues={selectedValues} setSelectedValues={setSelectedValues} setShowTagModal={setShowTagModal} checkedItems={checkedItems} setCheckedItems={setCheckedItems}/>
       </Modal.Body>
     </Modal>

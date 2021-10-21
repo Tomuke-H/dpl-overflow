@@ -97,7 +97,9 @@ const NewQuestionForm = ({ handleRedirect }) => {
            setBody = {setBody}
           />
         </Form.Group>
-        <DPLButton type='button' onClick={(e)=>setShowTagModal(true)}>New Tag</DPLButton>
+        <DPLButton type='button' onClick={(e)=>setShowTagModal(true)}>Add New Tag</DPLButton>
+        <br />
+        <br />
         <Form.Group>
           <Multiselect 
           options={tags}
@@ -111,6 +113,7 @@ const NewQuestionForm = ({ handleRedirect }) => {
           />
           {/* {tagList()} */}
         </Form.Group>
+        <br />
         <DPLButton variant="primary" type='submit'>SUBMIT</DPLButton>
       </Form>
     </Container>

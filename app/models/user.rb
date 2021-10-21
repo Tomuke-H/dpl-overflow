@@ -33,14 +33,16 @@ class User < ActiveRecord::Base
 
 
 def self.user_profile(id)
-  ActiveRecord::Base.connection.exec_query("SELECT u.name, u.id, u.cohort, u.about_me, u.image,  count(*) as answer_count,
+  ActiveRecord::Base.connection.exec_query("SELECT u.name, u.id, u.cohort, u.about_me, u.image,
     (SELECT SUM(q.views) as question_views from questions q WHERE q.user_id = #{id}),
     (SELECT COUNT(*) as question_count from questions q WHERE q.user_id = #{id}),
+    (SELECT COUNT(*) as answer_count from answers a WHERE a.user_id = #{id}),
     (SELECT SUM(q.likes) as question_likes from questions q WHERE q.user_id = #{id}),
     (SELECT SUM(a.likes) as answer_likes from answers a WHERE a.user_id = #{id}),
     (SELECT SUM(c.likes) as comment_likes from comments c WHERE c.user_id = #{id})
-from answers a
-INNER JOIN users u on a.user_id = u.id AND a.user_id = #{id}
+from users as u
+Full JOIN answers as a on u.id = a.user_id 
+where u.id = #{id}
 GROUP BY u.id")
 end
 

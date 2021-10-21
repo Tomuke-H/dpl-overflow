@@ -42,11 +42,6 @@ const NewQuestionForm = ({ handleRedirect }) => {
     }
   }
 
-  // const handleCheckbox = (event)=>{
-  //   // console.log(event.target.checked, event.target.id)
-  //   setCheckedItems({...checkedItems, [event.target.id]: event.target.checked})
-  // }
-
   const handleAddTag = (list) => {
     setCheckedItems(list)
   }
@@ -55,29 +50,6 @@ const NewQuestionForm = ({ handleRedirect }) => {
     setCheckedItems(list)
   }
 
-  // const tagList = () => {
-  //   // console.log(checkedItems)
-  //   return tags.map((t) => {
-  //     return (
-  //       <Form.Check inline
-  //       type='checkbox'
-  //       id={t.id}
-  //       label={t.name}
-  //       value={t.id}
-  //       checked= {checkedItems[t.id]}
-  //       onClick={handleCheckbox}
-  //       />
-  //     )
-  //   })
-  // }
-
-  // const handleTagSubmit = async (res) =>{
-  //   for (const [key, value] of Object.entries(checkedItems)) {
-  //     if(value === true){
-  //       let tagRes = await axios.post('/api/questionTags', {tag_id: key,question_id: res.data.id})
-  //     }
-  //   }
-  // }
   const handleTagSubmit = async (questionRes) =>{
     for (const t of checkedItems){
       try{
@@ -89,17 +61,23 @@ const NewQuestionForm = ({ handleRedirect }) => {
   }
 
   const handleSubmit = async (e) => {
+    setErrors(null)
     e.preventDefault()
-    try {
-      let res = await axios.post('/api/questions', {title, body, user_id: user.id})
-      handleTagSubmit(res)
-      handleRedirect(res.data.id)
-    }catch (err) {
-      console.log(err)
+    if(!body){
+      setErrors('Body cannot be empty')
+    } else {
+      try {
+        let res = await axios.post('/api/questions', {title, body, user_id: user.id})
+        handleTagSubmit(res)
+        handleRedirect(res.data.id)
+      }catch (err) {
+        console.log(err)
+      }
     }
   }
   return (
     <Container>
+      {errors && <h2 style={{border: 'solid 2px red', color: 'red'}}>{errors}</h2>}
       <FirstQuestionModal showModal={showModal} setShowModal={setShowModal} />
       <h2>Ask a Question</h2>
       <NewTagModal checkedItems={checkedItems} setCheckedItems={setCheckedItems} tags={tags} setTags={setTags} selectedValues={selectedValues} setSelectedValues={setSelectedValues} showTagModal={showTagModal} setShowTagModal={setShowTagModal} />

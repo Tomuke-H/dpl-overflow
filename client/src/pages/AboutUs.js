@@ -33,13 +33,13 @@ const AboutUs = () =>{
 
   const staff = [
     {name: "James Yeates",
-    position:"Student of Fall 2021",
-    description:"Put something here",
+    position:"Instructor of Fall 2021",
+    description:"Took over Dani's position for guiding the project after her departure",
     img:"https://images-na.ssl-images-amazon.com/images/I/61LLhx0YtdL.jpg"
     },
     {name: "Will Liang",
-    position:"Student of Fall 2021",
-    description:"Put something here",
+    position:"Layout Provider",
+    description:"Provided guidelines for how they wanted the interface to look as well as what functionality was desired.",
     img:"https://images-na.ssl-images-amazon.com/images/I/61LLhx0YtdL.jpg"
     },
     {name: "Dani Dona",

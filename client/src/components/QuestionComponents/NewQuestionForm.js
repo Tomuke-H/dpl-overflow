@@ -62,6 +62,7 @@ const NewQuestionForm = ({ handleRedirect }) => {
 
   const handleSubmit = async (e) => {
     setErrors(null)
+    console.log(e)
     e.preventDefault()
     if(!body){
       setErrors('Body cannot be empty')
@@ -75,13 +76,18 @@ const NewQuestionForm = ({ handleRedirect }) => {
       }
     }
   }
+
+  const checkKeyDown = (e) => {
+    if (e.code === 'Enter') e.preventDefault();
+  };
+
   return (
     <Container>
       {errors && <h2 style={{border: 'solid 2px red', color: 'red'}}>{errors}</h2>}
       <FirstQuestionModal showModal={showModal} setShowModal={setShowModal} />
       <h2>Ask a Question</h2>
       <NewTagModal checkedItems={checkedItems} setCheckedItems={setCheckedItems} tags={tags} setTags={setTags} selectedValues={selectedValues} setSelectedValues={setSelectedValues} showTagModal={showTagModal} setShowTagModal={setShowTagModal} />
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} onKeyDown={(e)=>{checkKeyDown(e)}}>
         <Form.Group className='mb-3'>
           <Form.Control 
             required
@@ -102,6 +108,7 @@ const NewQuestionForm = ({ handleRedirect }) => {
           <Multiselect 
           options={tags}
           selectedValues={selectedValues}
+          emptyRecordMsg = "Not an Option, please consider making new tag"
           onSelect={(selectedList, selectedItem) => handleAddTag(selectedList)}
           onRemove={(selectedList, selectedItem) => handleRemoveTag(selectedList)}
           displayValue="name"

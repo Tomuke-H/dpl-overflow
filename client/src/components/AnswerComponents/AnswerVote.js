@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useReducer, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { AiFillCaretUp, AiFillCaretDown } from "react-icons/ai"
 
-const AnswerVote = ({answer, liked_answers, downvote_answers}) => {
+const AnswerVote = ({answer}) => {
   const{setUser} = useContext(AuthContext)
   const [la, setLA] = useState(liked_answers); // la = liked answers
   const [isLA, setIsLA] = useState(false);
@@ -11,7 +11,7 @@ const AnswerVote = ({answer, liked_answers, downvote_answers}) => {
   const [isDA, setIsDA] = useState(false);
   // okay got it working but would like to keep track of whether a user has already liked or not - limit one like per user, right?
   
-  const checkLA = () => {
+  const getAnswerVotes = () => {
     if(liked_answers.length !==0 ){
       if(la.includes(answer.id) === true){
         setIsLA(true)

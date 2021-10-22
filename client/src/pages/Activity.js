@@ -38,7 +38,7 @@ const renderQuestions = () => {
       return (
         <NavLink as={Link} to={`/question/${ques.question_id}`}>
         <Card>
-          <Card.Body>{ques.title}, {ques.question_body}, {ques.question_created}</Card.Body>
+          <Card.Body>{ques.title} {ques.question_body} {ques.question_created}</Card.Body>
         </Card>
         </NavLink>
       )

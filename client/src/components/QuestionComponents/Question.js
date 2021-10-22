@@ -22,7 +22,7 @@ const Question = ({props, edited, setEdited, history, question}) => {
   useEffect(() => {
     getQComments();
     getTags();
-  }, [])
+  }, [edited])
 
   const getQComments = async () => {
     try{

@@ -55,7 +55,7 @@ const AuthProvider = (props) => {
         }catch (err) {
             setError(err)
             console.log(err)
-            alert("Login failed.")
+            alert("Login failed.  Check email and password.")
         }
     };
 

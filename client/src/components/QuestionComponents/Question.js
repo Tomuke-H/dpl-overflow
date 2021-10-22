@@ -11,8 +11,10 @@ import { day, time } from "../DayConverter/Dates";
 import Follow from './Follow';
 import AuthorBox from './AuthorBox';
 import Share from './Share';
+import BoxLoader from "../BoxLoader";
 
-const Question = ({props, edited, setEdited, history, question}) => {
+
+const Question = ({props, edited, setEdited, history, question, loading}) => {
   const [qcomments, setQComments] = useState([])
   const [toggleEdit, setToggleEdit] = useState(false)
   const [tags, setTags] = useState([])
@@ -99,6 +101,10 @@ const Question = ({props, edited, setEdited, history, question}) => {
   }
 
   const renderQuestion = () => {
+    if(loading)
+    return(
+      <BoxLoader />
+    )
     if(!question){
       return(
         <h2>404 Question Not Found</h2>

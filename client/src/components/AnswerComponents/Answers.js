@@ -97,7 +97,7 @@ const renderAnswers = () => {
       </div>
       {renderAnswers()}
       <br />
-      <NewAnswer props = {props}/>
+      <NewAnswer props={props} answers={answers} setAnswers={setAnswers}/>
       
     </div>
   );

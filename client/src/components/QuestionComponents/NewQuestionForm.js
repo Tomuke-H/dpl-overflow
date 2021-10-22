@@ -44,10 +44,12 @@ const NewQuestionForm = ({ handleRedirect }) => {
 
   const handleAddTag = (list) => {
     setCheckedItems(list)
+    setSelectedValues(list)
   }
 
   const handleRemoveTag = (list) => {
     setCheckedItems(list)
+    setSelectedValues(list)
   }
 
   const handleTagSubmit = async (questionRes) =>{

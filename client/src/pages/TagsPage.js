@@ -1,10 +1,12 @@
 import axios from "axios"
 import React, { useEffect, useState } from "react"
 import { Alert, Button, ButtonGroup, Card, Form } from "react-bootstrap"
+import { useHistory } from "react-router"
 
 const TagsPage = () => {
   const [tags, setTags] = useState([])
   const [tagSearch, setTagSearch] = useState([])
+  const history = useHistory()
 
   useEffect(()=>{
     getTags();
@@ -22,7 +24,7 @@ const TagsPage = () => {
   const renderTags = () => {
     return tags.map((t,ind)=>{
       return(
-        <Card style={styles.gridChild} key={ind}>
+        <Card style={styles.gridChild} key={ind} onClick={()=> history.push('/dashboard', t)}>
           <Card.Title style={{border:"1px solid black", padding: "5px",margin:"10px"}}>{t.name}</Card.Title>
           <Card.Body>Tag description</Card.Body>
         </Card> 

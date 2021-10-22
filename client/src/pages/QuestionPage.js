@@ -9,6 +9,7 @@ const QuestionPage = (props) => {
   const history = useHistory()
   const [question, setQuestion] = useState(null)
   const [edited, setEdited] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   useEffect(()=>{
       getQuestion()
@@ -20,6 +21,7 @@ const QuestionPage = (props) => {
     try {
       let res = await axios.get(`/api/questions/${props.match.params.id}`)
       setQuestion(res.data)
+      setLoading(false)
     }catch (err) {
       console.log(err)
     }
@@ -36,7 +38,7 @@ const QuestionPage = (props) => {
 
   return (
     <div>
-      <Question props={props} edited = {edited} setEdited={setEdited} history={history} question={question}/>
+      <Question props={props} edited = {edited} setEdited={setEdited} history={history} question={question} loading={loading}/>
       <Answers props = {props} /> 
     </div>
   )

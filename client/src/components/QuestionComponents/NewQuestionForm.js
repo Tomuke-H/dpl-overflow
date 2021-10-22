@@ -87,13 +87,14 @@ const NewQuestionForm = ({ handleRedirect }) => {
       <FirstQuestionModal showModal={showModal} setShowModal={setShowModal} />
       <h2>Ask a Question</h2>
       <NewTagModal checkedItems={checkedItems} setCheckedItems={setCheckedItems} tags={tags} setTags={setTags} selectedValues={selectedValues} setSelectedValues={setSelectedValues} showTagModal={showTagModal} setShowTagModal={setShowTagModal} />
-      <Form onSubmit={handleSubmit} onKeyDown={(e)=>{checkKeyDown(e)}}>
+      <Form onSubmit={handleSubmit}>
         <Form.Group className='mb-3'>
           <Form.Control 
             required
             size='lg'
             value={title}
             placeholder='Title'
+            onKeyDown={(e)=>{checkKeyDown(e)}}
             onChange={(e) => setTitle(e.target.value)}
           />
         </Form.Group>
@@ -104,7 +105,7 @@ const NewQuestionForm = ({ handleRedirect }) => {
           />
         </Form.Group>
         <DPLButton type='button' onClick={(e)=>setShowTagModal(true)}>New Tag</DPLButton>
-        <Form.Group>
+        <Form.Group onKeyDown={(e)=>{checkKeyDown(e)}}>
           <Multiselect 
           options={tags}
           selectedValues={selectedValues}

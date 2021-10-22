@@ -54,23 +54,25 @@ const EditQuestionForm = ({props, setEdited, toggleEdit, setToggleEdit}) => {
   }
 
   const normalizeCheckedItems = (data) =>{
-    for (let i = 0; i < tags[tags.length-1].id+1; i++) {
+    for(let i = 0; i < tags[tags.length-1].id+1; i++){
       norm.push({tag_id: i})
     }
-    for (let i = 0; i < data.length; i++) {
+    for(let i = 0; i < data.length; i++){
       tagID.push(data[i].tag_id)
     }
     for( var tag_id in norm){
       if(tagID.includes(Number(tag_id))===true){
         norm[tag_id].checked = true
-        for(let i = 0; i < data.length; i++){
-          if(data[i].tag_id === tag_id){
-            norm[tag_id].id = data[i].id
+        data.forEach((check)=>{
+          console.log(check,tag_id,check.tag_id)
+          if(check.tag_id === Number(tag_id)){
+            console.log("infi")
+            norm[tag_id].id = check.id
           }
-        }
+        })
       }else{norm[tag_id].checked = false}
     }
-    // console.log("norm",norm)
+    console.log("norm",norm)
     setCheckedItems(norm)
     setCheckedNewItems(norm)
     setCheckedTagDone(true)

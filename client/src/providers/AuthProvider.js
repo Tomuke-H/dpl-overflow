@@ -22,7 +22,7 @@ const AuthProvider = (props) => {
             setLoading(true)
             let res = await axios.post('/api/auth', user)
             setUser(res.data.data)
-            history.push('/')
+            history.push(`/users/${res.data.data.id}/profile`)
         }catch(err){
             setError(err.response.data.errors ? err.response.data.errors : err.response.data)
             console.log(err)

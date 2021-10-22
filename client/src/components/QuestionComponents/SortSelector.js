@@ -11,22 +11,24 @@ import Multiselect from 'multiselect-react-dropdown'
 //   })
 // }
 
-const SortSelector = ({sortBy, getQuestions, setShowTags, tagSearch, setTagSearch, tags, showTags}) => {
+const SortSelector = ({selectedValues, setSelectedValues, sortBy, getQuestions, setShowTags, tagSearch, setTagSearch, tags, showTags}) => {
   const options = tags
 
-  const [selectedValue, setSelectedValues] = useState([])
+  
 
-  const handleAddTag = (id) => {
+  const handleAddTag = (id, list) => {
     if(tagSearch.length === 0){
       getQuestions('tag', 1, id)
+      setSelectedValues(list)
       setTagSearch([...tagSearch, id])
     } else {
       setTagSearch([...tagSearch, id])
+      setSelectedValues(list)
       getQuestions('tag', 1, [...tagSearch, id])
     }
   }
 
-  const handleRemoveTag = (id) => {
+  const handleRemoveTag = (id, list) => {
     if(tagSearch.filter(t=>t !== id).length === 0){
       getQuestions('all', 1)
     } else {
@@ -34,6 +36,7 @@ const SortSelector = ({sortBy, getQuestions, setShowTags, tagSearch, setTagSearc
     }
     let filteredTags = tagSearch.filter(t => t !== id)
     setTagSearch(filteredTags)
+    setSelectedValues(list)
   }
   return (
     <div>
@@ -47,9 +50,9 @@ const SortSelector = ({sortBy, getQuestions, setShowTags, tagSearch, setTagSearc
       {showTags && <Multiselect 
         style={styles.multiSelect}
         options={options}
-        selectedValues={selectedValue}
-        onSelect={(selectedList, selectedItem) => handleAddTag(selectedItem.id)}
-        onRemove={(selectedList, selectedItem) => handleRemoveTag(selectedItem.id)}
+        selectedValues={selectedValues}
+        onSelect={(selectedList, selectedItem) => handleAddTag(selectedItem.id, selectedList)}
+        onRemove={(selectedList, selectedItem) => handleRemoveTag(selectedItem.id, selectedList)}
         closeIcon='cancel'
         displayValue="name"
       />}

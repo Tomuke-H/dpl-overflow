@@ -26,13 +26,16 @@ const getUserQuestions = async () => {
     let res = await axios.get(`/api/user_questions/${user.id}`)
     console.log("quetsions:", res)
     setUserQuestions(res.data.user)
-    console.log("user:", userQuestions)
+    console.log("userq:", userQuestions)
   } catch (err) {
     console.log(err)
   }
 }
 
 const renderQuestions = () => {
+  if (userQuestions[0].question_id === null) {
+    return <p>{userQuestions[0].name} has no questions.</p>
+  } else {
   return (
     userQuestions.map((ques)=> {
       return (
@@ -44,8 +47,12 @@ const renderQuestions = () => {
       )
     })
   )
+  }
 }
 const renderAnswers = () => {
+  if (userAnswers[0].answer_id === null) {
+    return <p>{userAnswers[0].name} has no answers.</p>
+  } else {
   return (
     userAnswers.map((ans)=> {
       return (
@@ -57,7 +64,7 @@ const renderAnswers = () => {
       )
     })
     )
-  
+  }
 }
 
 useEffect(()=>{

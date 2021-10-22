@@ -6,7 +6,7 @@ const Dashboard = (props) => {
   const history = useHistory()
   return (
     <div>
-      <Questions history={history}/>
+      <Questions location={props.location} history={history}/>
     </div>
   )
 }

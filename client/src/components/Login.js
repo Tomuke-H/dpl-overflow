@@ -7,13 +7,17 @@ import { DPLGreyButton, DPLLightWeightButton } from './DPLButtons';
 
 const Login = (props) => {
     const {handleLogin} = useContext(AuthContext);
-    const [email, setEmail] = useState('test@test.com')
-    const [password, setPassword] = useState('123456')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
     const history = useHistory();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        handleLogin({email, password}, history)
+        if (!email)
+        alert("Email cannot be blank.")
+        else if (!password)
+        alert("Password cannot be blank.")
+        else handleLogin({email, password}, history)
     }
 
     return (

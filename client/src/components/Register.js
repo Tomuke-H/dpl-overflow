@@ -8,26 +8,27 @@ import {Key} from './Key';
 
 const Register = () => {
     const {handleRegister} = useContext(AuthContext);
-    const [email, setEmail] = useState('test1@test.com')
-    const [name, setName] = useState('Tester1')
-    const [check, setCheck] = useState('4DPLstud3nts0n1y')
-    const [password, setPassword] = useState('123456')
-    const [passwordConfirmation, setPasswordConfirmation] = useState('123456')
+    const [email, setEmail] = useState('')
+    const [name, setName] = useState('')
+    const [check, setCheck] = useState('')
+    const [password, setPassword] = useState('')
+    const [passwordConfirmation, setPasswordConfirmation] = useState('')
     const history = useHistory();
     const key = Key;
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        if (check !== key) {
-            alert(`Invalid Key for Registration!\nPlease reconfirm your key.\nYour Input: ${check}`);
-            return;
-          }
-        if (password !== passwordConfirmation) {
+        if (!email)
+            alert("Email cannot be blank.")
+        else if (password !== passwordConfirmation) {
             alert("Passwords do not match!");
             return;
           }
-        handleRegister({email, password, name}, history)
+          else if (check !== key) {
+            alert(`Invalid Key for Registration!\nPlease reconfirm your key.\nYour Input: ${check}`);
+            return;
+          }
+        else handleRegister({email, password, name}, history)
     };
 
     return (

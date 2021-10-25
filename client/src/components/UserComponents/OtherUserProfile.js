@@ -29,6 +29,11 @@ export default function OtherUserProfile(props) {
     }
   }
 
+  const showProfile = () => {
+    setShowActivity(false)
+    return console.log('profile')
+  }
+
   return (
     <div style={{display: 'flex', flexDirection: 'column'}}>
       <div style={{display: 'flex', flexDirection: 'row'}}>
@@ -84,14 +89,15 @@ const styles = {
     borderRadius: '4px',
     width: '59px',
     height: '59px',
-    margin:'78px',
+    margin:'47px',
     marginBottom: '51px',
-    marginRight: '20px'
+    marginRight: '20px',
+    marginLeft: '78px'
   },
   name: {
     width: '180px',
     height: '41px',
-    fontFamily: 'Open Sans',
+    fontFamily: 'Lato',
     fontStyle: 'normal',
     fontWeight: '600px',
     fontSize: '30px',
@@ -101,7 +107,8 @@ const styles = {
     textAlign: 'center',
     textTransform: 'uppercase',
     margin: '20px',
-    marginTop: '85px',
+    marginLeft: '18px',
+    marginTop: '58px',
     color: '#000000',
     left: '157px',
     top: '126px',
@@ -109,7 +116,7 @@ const styles = {
   optionsContainer: {
     display: "flex",
     flexDirection: "row",
-    marginLeft: '74px',
+    marginLeft: '69px',
     marginBottom: '51px'
   },
   stats: {
@@ -147,7 +154,7 @@ const styles = {
     textTransform: 'uppercase',
 
     color: '#000000',
-  }
+  },
 }
 
 

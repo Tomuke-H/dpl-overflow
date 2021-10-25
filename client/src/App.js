@@ -31,7 +31,7 @@ function App() {
   useEffect(() => {
     WebFont.load({
       google: {
-        families: ['Open Sans', 'Inter']
+        families: ['Lato', 'Inter']
       }
     })
   }, [])

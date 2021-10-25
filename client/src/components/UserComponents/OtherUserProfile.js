@@ -5,7 +5,7 @@ import Activity from "../../pages/Activity";
 import { AuthContext } from "../../providers/AuthProvider";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { ProfilePill, StatsAndAbout, StatsBox } from "./ProfileStyles";
+import { AboutBox, AboutMe, AnswerTitle, ProfilePill, QuestionTitle, StatsAndAbout, StatsBox, ViewTitle, VotesStat, VoteTitle } from "./ProfileStyles";
 
 
 export default function OtherUserProfile(props) {
@@ -50,26 +50,20 @@ export default function OtherUserProfile(props) {
         </ShowActivityStyle>
         <div style={{display: 'flex', flexDirection: 'row'}}>
         <p style={styles.stats}>STATS</p>
-        <p style={styles.about}>ABOUT</p>
+        <p style={styles.about}>about</p>
         </div>
         <StatsAndAbout>
-        <Card style={styles.statsCard}>
-          <StatsBox>
-            <Card.Body>{user.answer_likes + user.question_likes + user.comment_likes}</Card.Body>
-            <Card.Body>{user.answer_count}</Card.Body>
-            <Card.Body>{user.question_views? user.question_views : 0}</Card.Body>
-            <Card.Body>{user.question_count}</Card.Body>
-          </StatsBox>
-          <StatsBox>
-          <Card.Body>Votes</Card.Body>
-          <Card.Body>Answers</Card.Body>
-          <Card.Body>Views</Card.Body>
-          <Card.Body>Questions</Card.Body>
-          </StatsBox>
-          </Card>
-        <Card style={{width: '600px', height: '79px', flex: 1}}>
-          <Card.Body>{user.about_me}</Card.Body>
-        </Card>
+          <StatsBox />
+            <VotesStat>{user.answer_likes + user.question_likes + user.comment_likes}</VotesStat>
+            <p>{user.answer_count}</p>
+            <p>{user.question_views? user.question_views : 0}</p>
+            <p>{user.question_count}</p>
+          <VoteTitle>Votes</VoteTitle>
+          <AnswerTitle>Answers</AnswerTitle>
+          <ViewTitle>Views</ViewTitle>
+          <QuestionTitle>Questions</QuestionTitle>
+        <AboutBox />
+          <AboutMe>{user.about_me}</AboutMe>
         </StatsAndAbout>
     </div>
   )
@@ -119,38 +113,34 @@ const styles = {
     marginBottom: '51px'
   },
   stats: {
-    flex: 1,
-    width: '87px',
-    height: '41px',
-    left: '78px',
-    top: '293px',
-    marginLeft: '78px',
-
-    fontStyle: 'normal',
-    fontWeight: '600px',
+    position: 'absolute',
+    width: '85px',
+    height: '36px',
+    left: '79px',
+    top: '295px',
+    fontWeight: '600',
     fontSize: '30px',
-    lineHeight: '41px',
+    lineHeight: '36px',
     display: 'flex',
     textAlign: 'center',
     textTransform: 'uppercase',
-
     color: '#000000',
 
   },
   about: {
-    width: '103px',
-    flex: 1,
-    height: '41px',
-
-    fontStyle: 'normal',
-    fontWeight: '600px',
-    fontSize: '30px',
-    lineHeight: '41px',
+    position: 'absolute',
+    width: '36px',
+    height: '22px',
+    left: '711px',
+    top: '302px',
+    // font-style: 'normal',
+    fontWeight: '500',
+    fontSize: '14px',
+    lineHeight: '22px',
     display: 'flex',
     alignItems: 'center',
-    textTransform: 'uppercase',
-
-    color: '#000000',
+    
+    color: '#000000'
   },
 }
 

@@ -91,7 +91,7 @@ const styles = {
   name: {
     width: '180px',
     height: '41px',
-    fontFamily: 'Open Sans',
+    fontFamily: 'Lato',
     fontStyle: 'normal',
     fontWeight: '600px',
     fontSize: '30px',
@@ -120,7 +120,7 @@ const styles = {
     top: '293px',
     marginLeft: '78px',
 
-    fontFamily: 'Open Sans',
+    fontFamily: 'Lato',
     fontStyle: 'normal',
     fontWeight: '600px',
     fontSize: '30px',
@@ -137,7 +137,7 @@ const styles = {
     flex: 1,
     height: '41px',
 
-    fontFamily: 'Open Sans',
+    fontFamily: 'Lato',
     fontStyle: 'normal',
     fontWeight: '600px',
     fontSize: '30px',

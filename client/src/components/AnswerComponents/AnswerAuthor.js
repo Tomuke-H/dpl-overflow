@@ -28,7 +28,7 @@ return(
 
 const styles = {
   Author: {
-    fontFamily: "Inter",
+    fontFamily: "Lato",
     fontWeight: "500px",
     fontSize: "14px",
     letterSpacing: "0.5px",

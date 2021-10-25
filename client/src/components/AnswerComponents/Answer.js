@@ -116,7 +116,7 @@ const styles = {
     marginLeft: "40px",
     marginRight: "10px",
     fontSize: "16px",
-    fontFamily: "Inter, sans-serif",
+    fontFamily: "Lato",
     fontWeight: "500px",
     display: "flex",
     alignItems: "flex-start",
@@ -128,7 +128,7 @@ const styles = {
     marginLeft: "50px",
     marginRight: "10px",
     fontSize: "14px",
-    fontFamily: "Inter, sans-serif",
+    fontFamily: "Lato",
     fontWeight: "500px",
     display: "flex",
     alignItems: "flex-start",
@@ -140,7 +140,7 @@ const styles = {
     display: "flex",
     flexDirection: "row",
     fontSize: "14px",
-    fontFamily: "Inter, sans-serif",
+    fontFamily: "Lato",
     fontWeight: "500px",
     marginTop: "30px",
   },
@@ -159,7 +159,7 @@ const styles = {
   addComment: {
     marginLeft: "50px",
     fontSize: "14px",
-    fontFamily: "Inter, sans-serif",
+    fontFamily: "Lato",
     fontWeight: "500px",
     color: "#757575"
   }

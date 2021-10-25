@@ -31,7 +31,7 @@ function App() {
   useEffect(() => {
     WebFont.load({
       google: {
-        families: ['Open Sans', 'Inter']
+        families: ['Lato']
       }
     })
   }, [])
@@ -54,7 +54,7 @@ function App() {
 
   const hasNavBar = () =>{
     return(
-      <>
+      <div style = {{backgroundColor:"#9E9E9E"}}>
         <OurNavbar /> 
         <div style={{height: '92px'}}></div>
         <Switch>
@@ -82,7 +82,7 @@ function App() {
         </Switch>
         <div style={{height: '92px'}}></div>
         <Footer />
-    </>
+    </div>
     )
   }
   return (

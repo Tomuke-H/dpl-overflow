@@ -55,7 +55,7 @@ const styles = {
   },
 
   textstyle: {
-    fontFamily: "Open Sans",
+    fontFamily: "Lato",
     fontStyle: "normal",
     fontWeight: "normal",
     fontSize: "20px",

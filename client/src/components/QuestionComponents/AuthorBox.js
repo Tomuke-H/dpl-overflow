@@ -18,7 +18,7 @@ const styles= {
     width: "120px",
     height: "50px",
     backgroundColor: "#C4C4C4",
-    fontFamily: "Inter",
+    fontFamily: "Lato",
     fontWeight: "500px",
     fontSize: "10px",
 

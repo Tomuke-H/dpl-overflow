@@ -105,7 +105,7 @@ const styles ={
   },
 
   header: {
-    fontFamily: "Inter",
+    fontFamily: "Lato",
     fontStyle: "normal",
     fontWeight: "500px",
     display: "flex",

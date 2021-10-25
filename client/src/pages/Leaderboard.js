@@ -1,10 +1,11 @@
 import axios from 'axios'
 import { useHistory } from 'react-router';
 import React, { useEffect, useState } from 'react'
-import { Dropdown, Table } from 'react-bootstrap'
+import { ButtonGroup, Dropdown, Table } from 'react-bootstrap'
 import BoxLoader from '../components/BoxLoader'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import {cohorts} from '../components/Cohorts';
+import { DPLButton } from '../components/DPLButtons';
 import '../stylesheets/Leaderboard.css'
 
 const Leaderboard = () => {
@@ -60,7 +61,7 @@ const Leaderboard = () => {
   const renderUsers = () => {
     return users.map((u, index)=> {
       return (
-        <tr key={u.id} onClick={(e) => history.push(`/users/${u.id}/profile`)}>
+        <tr style={styles.tbody} key={u.id} onClick={(e) => history.push(`/users/${u.id}/profile`)}>
           <td><img style={styles.img} src={u.image} /></td>
           <td>{(index + 1)}</td>
           <td>{u.name}</td>
@@ -86,6 +87,8 @@ const Leaderboard = () => {
     <div style={styles.wrapper}>
       <div style={styles.header}>
         <h1 style={styles.leaderboard}>Leaderboard</h1>
+        <ButtonGroup>
+        <DPLButton></DPLButton>
         <Dropdown variant='leaderboard'>
           <Dropdown.Toggle style={styles.button}>Sort By Cohort</Dropdown.Toggle>
           <Dropdown.Menu>
@@ -96,6 +99,7 @@ const Leaderboard = () => {
             {renderDropdownItems()}
           </Dropdown.Menu>
         </Dropdown>
+        </ButtonGroup>
       </div>
       <InfiniteScroll
         dataLength={users.length}
@@ -105,7 +109,7 @@ const Leaderboard = () => {
         style={styles.table}
       >
         <Table hover responsive>
-          <thead>
+          <thead style={styles.theader}>
             <tr>
               <th></th>
               <th>Rank</th>
@@ -148,6 +152,7 @@ const styles ={
     padding: '25px 50px 25px 50px',
     marginTop: '30px',
     marginBottom: '30px',
+    backgroundColor:'#FFFFFF'
   },
 
   header: {
@@ -163,7 +168,7 @@ const styles ={
     borderStyle: "solid",
     borderColor: "#6E54A3",
     borderRadius: "5px",
-    fontFamily:'Open Sans',
+    fontFamily:'Lato',
     fontWeight:"600px",
     fontSize: "14px",
     letterSpacing: ".7px",
@@ -176,12 +181,18 @@ const styles ={
   },
 
   leaderboard: {
-    fontFamily: 'Open Sans',
+    fontFamily: 'Lato',
     fontStyle: 'normal',
     fontWeight: '600px',
     textTransform: 'uppercase',
     flexDirection: 'flex-end',
     color: '#000000',
+  },
+  theader: {
+    textDecoration:"underline"
+  },
+  tbody: {
+    borderStyle:"hidden"
   },
 }
 

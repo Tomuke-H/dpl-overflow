@@ -89,7 +89,7 @@ const styles = {
   },
 
   titleWords:{
-    fontFamily:'Open Sans',
+    fontFamily:'Lato',
     fontWeight:"600px",
     fontSize: "1.3em",
     letterSpacing: "1px",

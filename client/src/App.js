@@ -102,7 +102,7 @@ function App() {
 
 const styles = {
   everything: {
-    fontFamily: 'Lato'
+    fontFamily: 'Lato',
   }
 }
 

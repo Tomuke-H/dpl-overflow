@@ -1,0 +1,128 @@
+.tab {
+  background-color: white;
+  height: 30px;
+  width: 110px;
+  font-size: 12px;
+  text-align: center;
+  padding-top: 7px;
+  border-right: solid 1px black;
+  border-left: solid 1px black;
+}
+
+.tabActive {
+  background-color: #757575;
+  color: white;
+  height: 30px;
+  width: 110px;
+  font-size: 12px;
+  text-align: center;
+  padding-top: 7px;
+  border-right: solid 1px black;
+  border-left: solid 1px black;
+}
+
+.tab:hover {
+  cursor: pointer;
+  background-color: #9e9e9e;
+  color: white;
+}
+.tabActive:hover {
+  cursor: pointer;
+}
+
+.tab2 {
+  background-color: white;
+  height: 30px;
+  width: 110px;
+  font-size: 12px;
+  text-align: center;
+  padding-top: 7px;
+  border-right: solid 1px black;
+}
+
+.tabActive2 {
+  background-color: #757575;
+  color: white;
+  height: 30px;
+  width: 110px;
+  font-size: 12px;
+  text-align: center;
+  padding-top: 7px;
+  border-right: solid 1px black;
+}
+.tab2:hover {
+  cursor: pointer;
+  background-color: #9e9e9e;
+  color: white;
+}
+.tabActive2:hover {
+  cursor: pointer;
+}
+.left-tab {
+  background-color: white;
+  height: 30px;
+  width: 110px;
+  font-size: 12px;
+  text-align: center;
+  padding-top: 7px;
+  border-radius: 6px 0px 0px 6px;
+}
+
+.left-tabActive {
+  background-color: #757575;
+  color: white;
+  height: 30px;
+  width: 110px;
+  font-size: 12px;
+  text-align: center;
+  padding-top: 7px;
+  border-radius: 5px 0px 0px 5px;
+}
+
+.left-tab:hover {
+  cursor: pointer;
+  background-color: #9e9e9e;
+  color: white;
+}
+.left-tabActive:hover {
+  cursor: pointer;
+}
+.right-tab {
+  background-color: white;
+  height: 30px;
+  width: 110px;
+  font-size: 12px;
+  text-align: center;
+  padding-top: 7px;
+  border-radius: 0px 6px 6px 0px;
+}
+
+.right-tabActive {
+  background-color: #757575;
+  color: white;
+  height: 30px;
+  width: 110px;
+  font-size: 12px;
+  text-align: center;
+  padding-top: 7px;
+  border-radius: 0px 5px 5px 0px;
+}
+.right-tab:hover {
+  cursor: pointer;
+  background-color: #9e9e9e;
+  color: white;
+}
+.right-tabActive:hover {
+  cursor: pointer;
+}
+
+.wrapper {
+  display: flex;
+  border: solid 1px black;
+  border-radius: 6px;
+  height: 32px;
+}
+
+.multiSelect chips {
+  background: #6E54A3;
+}

@@ -1,5 +1,5 @@
 class Api::QvotesController < ApplicationController
-  before_action :set_question, except: [:check_vote]
+  before_action :set_question, except: [:my_vote]
   before_action :set_qvote, only: [:show, :update, :destroy]
 
   def index
@@ -32,8 +32,8 @@ class Api::QvotesController < ApplicationController
     render json: @qvote
   end
 
-  def check_vote
-    render json: @question.qvotes.check_vote(params[:user_id])
+  def my_vote
+    render json: Qvote.get_my_vote(params[:vote_code])
   end
 
   private

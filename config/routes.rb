@@ -43,8 +43,12 @@ Rails.application.routes.draw do
     get 'comment_author/:id', to: 'comments#author'
     get 'qcomment_author/:id', to: 'qcomments#author'
     get 'user_has_questions/:id', to: 'users#user_has_questions'
-    get 'questions/:id/:users', to: 'questions#users'
+    get 'questions/:id/users', to: 'questions#users'
+    get 'questions/:id/upvotes', to: 'questions#upvotes'
+    get 'questions/:id/downvotes', to: 'questions#downvotes'
     get 'answers/:id/:users', to: 'answers#users'
+    get 'qvotes/:vote_code', to: 'qvotes#my_vote'
+    get 'avotes/:vote_code', to: 'avotes#my_vote'
     resources :tags
   end
 

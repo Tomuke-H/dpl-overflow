@@ -77,4 +77,22 @@ class Question < ApplicationRecord
     .where('q.id = ?', id)
   end
 
+  def self.get_upvotes(id)
+    select('count(qv.up)')
+    .from('questions AS q')
+    .joins('INNER JOIN qvotes AS qv ON q.id = qv.question_id')
+    .where('q.id = ?', id)
+    .group('qv.up')
+    .having('qv.up = true')
+  end
+
+  def self.get_downvotes(id)
+    select('count(qv.down)')
+    .from('questions AS q')
+    .joins('INNER JOIN qvotes AS qv ON q.id = qv.question_id')
+    .where('q.id = ?', id)
+    .group('qv.down')
+    .having('qv.down = true')
+  end
+
 end

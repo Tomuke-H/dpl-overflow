@@ -3,147 +3,212 @@ import React, { useContext, useEffect, useReducer, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { AiFillCaretUp, AiFillCaretDown } from "react-icons/ai"
 
+const QuestionVote = ({question}) => {
+  const{user} = useContext(AuthContext)
+  const[voteUsers, setVoteUsers] = useState([])
+  const[vote, setVote] = useState({})
+  const[upVoted, setUpVoted] = useState(false)
+  const[downVoted, setDownVoted] = useState(false)
+  const[upVotes, setUpVotes] = useState()
+  const[downVotes, setDownVotes] = useState()
 
-const QuestionVote = ({question, liked_questions,downvote_questions}) => {
-  const{setUser} = useContext(AuthContext)
-  const [lq, setLQ] = useState(liked_questions); // lq = liked Questions
-  const [isLQ, setIsLQ] = useState(false);
-  const [dq, setDQ] = useState(downvote_questions); // dq = disliked Questions
-  const [isDQ, setIsDQ] = useState(false);
-
-  // okay got it working but would like to keep track of whether a user has already liked or not - limit one like per user, right?
   
-  const checkLQ = () => {
-    if(liked_questions.length !==0 ){
-      if(lq.includes(question.id) === true){
-        setIsLQ(true)
+  useEffect(() => {
+    getUserVotes();
+    getUpVotes();
+    getDownVotes();
+  }, [])
+
+  const getUserVotes = async() => {
+    try {
+      let res = await axios.get(`/api/questions/${question.id}/users`)
+      let datarray = []
+      for (let i = 0; i < res.data.length; i++) {
+        datarray.push(res.data[i].user_id)
       }
+      console.log(datarray)
+      setVoteUsers(datarray)
+         if (datarray.includes(user.id)){
+        checkUpDown();
+      }
+    } catch(err) {
+      console.log("getUsers error", err)
     }
+  }
+
+  const getUpVotes = async() => {
+    try {
+      let res = await axios.get(`/api/questions/${question.id}/upvotes`)
+      console.log("upvotes", res)
+    } catch(err) {
+      console.log("getUpVotes error", err)
+    }
+  }
+
+  const getDownVotes = async() => {
+    try {
+      let res = await axios.get(`/api/questions/${question.id}/downvotes`)
+      console.log("downvotes", res)
+    } catch(err) {
+      console.log("getDownVotes error", err)
+    }
+  }
+
+  // const getTotalAnswers
+
+  const checkUpVote = () => {
+    if (upVoted === true && downVoted === false) {
+      // deleteVote()
+      alert("let's delete that vote")
+    }
+    else if (upVoted === false && downVoted === true) {
+      // updateUp()
+    }
+    else if (upVoted === false && downVoted === false) {
+      alert("let's cast your vote!")
+      upVote()
+    }
+    else (alert("peepee"))
+  }
+
+  const checkDownVote = () => {
+    if (upVoted === false && downVoted === true) {
+      // deleteVote()
+      alert("let's delete that vote")
+    }
+    else if (upVoted === true && downVoted === false) {
+      // updateDown()
+      alert("let's change that vote to down")
+    }
+    else if (upVoted === false && downVoted === false) {
+      alert("let's cast your vote!")
+      downVote()
+    }
+    else (alert("poop"))
+  }
+
+  const deleteVote = async() => {
+
   }
   
-  const checkDQ = () => {
-    if(liked_questions.length !==0 ){
-      if(dq.includes(question.id) === true){
-        setIsDQ(true)
-      }
+  const updateUp = async() => {
+
+  }
+
+  const updateDown = async() => {
+
+  }
+
+ 
+
+  const upVote = async() => {
+    try {
+      let res = await axios.post(`/api/questions/${question.id}/qvotes`, {
+        up: true,
+        down: false,
+        user_id: user.id,
+        question_id: question.id,
+        vote_code: `${user.id}-${question.id}`
+      })
+      console.log("upVote", res)
+    } catch(err) {
+      console.log(err)
     }
   }
 
-  useEffect(()=>{
-    checkDQ()
-    checkLQ()
-  },[])
+  const downVote = async() => {
+    try {
+      let res = await axios.post(`/api/questions/${question.id}/qvotes`, {
+        up: false,
+        down: true,
+        user_id: user.id,
+        question_id: question.id,
+        vote_code: `${user.id}-${question.id}`
+      })
+      console.log("downVote", res)
+    } catch(err) {
+      console.log(err)
+    }
+  }
+
+  // const checkIfVote = () => {
+  //   if (voteUsers.includes(user.id)){
+  //     checkUpDown();
+  //   }
+  // }
+
+  const checkUpDown = async() => {
+    try {
+      let res = await axios.get(`/api/qvotes/${user.id}-${question.id}`)
+      console.log("votecheck", res.data[0])
+        if (res.data[0].up === true) {
+          setUpVoted(true)
+          setDownVoted(false)
+        }
+        else if (res.data[0].down === true) {
+          setUpVoted(false)
+          setDownVoted(true)
+        }
+    } catch(err) {
+      console.log("checkUpDown error", err)
+    }
+  }
+
+//   const saveUpVote = async () => {
+//     try{
+//       await axios.put(`/api/questions/${question.id}`, {
+//       likes: likes + 1
+//     })
+//     // console.log(res)
+//   } catch (err) {
+//       console.log("upvote error", err)
+//     }
+//   }
+
+//   const saveDownVote = async () => {
+//     try{
+//     await axios.put(`/api/questions/${question.id}`, {
+//       likes: likes - 1
+//     })
+//     // console.log(res)
+//   } catch (err) {
+//       console.log("downvote error", err)
+//     }
+//   }
   
-  const saveUpVote = async () => {
-    try{
-      await axios.put(`/api/questions/${question.id}`, {
-      likes: likes + 1
-    })
-    // console.log(res)
-  } catch (err) {
-      console.log("upvote error", err)
-    }
-  }
+//   const upVote = () =>{
+//     dispatch("add");
+//     saveUpVote(likes)
+//   }
 
-  const saveDownVote = async () => {
-    try{
-    await axios.put(`/api/questions/${question.id}`, {
-      likes: likes - 1
-    })
-    // console.log(res)
-  } catch (err) {
-      console.log("downvote error", err)
-    }
-  }
-  
-  const upVote = () =>{
-    dispatch("add");
-    saveUpVote(likes)
-  }
+//   const downVote = () =>{
+//     dispatch("subtract");
+//     saveDownVote(likes)
+//   }
 
-  const downVote = () =>{
-    dispatch("subtract");
-    saveDownVote(likes)
-  }
-
-  const handleDQ = async () =>{
-    if(isDQ){
-      try {
-        let unDQ = dq.filter((i) => i !== question.id)
-        let res = await axios.put(`/api/downvotequestion`, {downvote_questions: unDQ})
-        setUser(res.data)
-        setDQ(unDQ)
-        setIsDQ(false)
-        upVote()
-      } catch (err) {
-        console.log(err)
-      }
-    }else{
-      if(isLQ === true){
-        handleLQ()
-      }
-      try {
-        dq.push(question.id)
-        let res = await axios.put(`/api/downvotequestion`, {downvote_questions: dq})
-        setDQ(dq)
-        setUser(res.data)
-        setIsDQ(true)
-        downVote()
-      } catch (err) {
-        console.log(err)
-      }
-    }
-  }
-
-  const handleLQ = async () =>{
-    if(isLQ){
-      try {
-        let unLQ = lq.filter((i) => i !== question.id)
-        let res = await axios.put(`/api/likequestion`, {liked_questions: unLQ})
-        setUser(res.data)
-        setLQ(unLQ)
-        setIsLQ(false)
-        downVote()      
-      } catch (err) {
-        console.log(err)
-      }
-    }else{
-      if(isDQ === true){
-        handleDQ()
-      }
-      try {
-        lq.push(question.id)
-        let res = await axios.put(`/api/likequestion`, {liked_questions: lq})
-        setLQ(lq)
-        setUser(res.data)
-        setIsLQ(true)
-        upVote()
-      } catch (err) {
-        console.log(err)
-      }
-    }
-  }
-
-const [likes, dispatch] = useReducer((state, action) => {
-  switch (action) {
-    case "add":
-      return state + 1;
-    case "subtract":
-      return state - 1;
-  }
-}, question.likes);
+// const [likes, dispatch] = useReducer((state, action) => {
+//   switch (action) {
+//     case "add":
+//       return state + 1;
+//     case "subtract":
+//       return state - 1;
+//   }
+// }, question.likes);
   
   return (
     <div style={styles.voteBox}>
       <AiFillCaretUp
       size="40px"
-      color={isLQ ? "#6E54A3":"#757575"}
-        onClick={() => {handleLQ()}}/>
-      <p style={styles.likesNumber}>{likes}</p>
+      color={upVoted ? "#6E54A3":"#757575"}
+        onClick={() => {
+          checkUpVote()}
+        }/>
+      {/* <p style={styles.likesNumber}>{likes}</p> */}
       <AiFillCaretDown
       size="40px"
-      color={isDQ ? "#6E54A3":"#757575"}
-      onClick={() => {handleDQ()}}/>
+      color={downVoted ? "#6E54A3":"#757575"}
+      onClick={() => {
+        checkDownVote()}}/>
     </div>
   );
 };

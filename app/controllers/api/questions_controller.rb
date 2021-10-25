@@ -71,6 +71,15 @@ class Api::QuestionsController < ApplicationController
     render json: Question.get_users(params[:id])
   end
 
+  def upvotes
+    render json: Question.get_upvotes(params[:id])
+  end
+
+
+  def downvotes
+    render json: Question.get_downvotes(params[:id])
+  end
+
   private
 
   def question_params

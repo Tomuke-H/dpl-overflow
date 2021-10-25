@@ -4,146 +4,137 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { AiFillCaretUp, AiFillCaretDown } from "react-icons/ai"
 
 const AnswerVote = ({answer}) => {
-  const{setUser} = useContext(AuthContext)
-  const [la, setLA] = useState(liked_answers); // la = liked answers
-  const [isLA, setIsLA] = useState(false);
-  const [da, setDA] = useState(downvote_answers); // Da = downvote answers
-  const [isDA, setIsDA] = useState(false);
-  // okay got it working but would like to keep track of whether a user has already liked or not - limit one like per user, right?
+  const{user} = useContext(AuthContext)
+  const[voteUsers, setVoteUsers] = useState([])
+  const[upVoted, setUpVoted] = useState(false)
+  const[downVoted, setDownVoted] = useState(false)
+
+  useEffect(() => {
+    getUserVotes();
+  }, [])
+
+  const getUserVotes = async() => {
+    try {
+      let res = await axios.get(`/api/answers/${answer.id}/users`)
+      let datarray = []
+      for (let i = 0; i < res.data.length; i++) {
+        datarray.push(res.data[i].user_id)
+      }
+      console.log(datarray)
+      setVoteUsers(datarray)
+         if (datarray.includes(user.id)){
+        checkUpDown();
+      }
+    } catch(err) {
+      console.log("getUsers error", err)
+    }
+  }
+
+  const upVote = async() => {
+    try {
+      let res = await axios.post(`/api/answers/${answer.id}/avotes`, {
+        up: true,
+        down: false,
+        user_id: user.id,
+        answer_id: answer.id,
+        vote_code: `${user.id}-${answer.id}`
+      })
+      console.log("upVote", res)
+    } catch(err) {
+      alert(err)
+    }
+  }
+
+  const downVote = async() => {
+    try {
+      let res = await axios.post(`/api/answers/${answer.id}/avotes`, {
+        up: false,
+        down: true,
+        user_id: user.id,
+        answer_id: answer.id,
+        vote_code: `${user.id}-${answer.id}`
+      })
+      console.log("downVote", res)
+      } catch(err) {
+      alert(err)
+    }
+  }
+
+  const checkIfVote = () => {
+    if (voteUsers.includes(user.id)){
+      checkUpDown();
+    }
+  }
+
+  const checkUpDown = async() => {
+    try {
+      let res = await axios.get(`/api/avotes/${user.id}-${answer.id}`)
+      console.log("votecheck", res.data[0])
+      if (res.data[0].up === true) {
+        setUpVoted(true)
+        setDownVoted(false)
+      }
+      else if (res.data[0].down === true) {
+        setUpVoted(false)
+        setDownVoted(true)
+      }
+    } catch(err) {
+      console.log("checkUpDown error", err)
+    }
+  }
+
+  // const saveUpVote = async () => {
+  //   try{
+  //   await axios.put(`/api/questions/${answer.question_id}/answers/${answer.id}`, { 
+  //     likes: answerLikes + 1
+  //   })
+  //   // console.log(res)
+  // } catch (err) {
+  //     console.log("upvote error", err)
+  //   }
+  // }
+
+
+  // const saveDownVote = async () => {
+  //   try{
+  //   await axios.put(`/api/questions/${answer.question_id}/answers/${answer.id}`, { 
+  //     likes: answerLikes - 1
+  //   })
+  //   // console.log(res)
+  // } catch (err) {
+  //     console.log("downvote error", err)
+  //   }
+  // }
   
-  const getAnswerVotes = () => {
-    if(liked_answers.length !==0 ){
-      if(la.includes(answer.id) === true){
-        setIsLA(true)
-      }
-    }
-  }
+  // const upVote = () =>
+  // {dispatch("add");
+  // saveUpVote(answerLikes)}
 
-  const checkDA = () => {
-    if(liked_answers.length !==0 ){
-      if(la.includes(answer.id) === true){
-        setIsDA(true)
-      }
-    }
-  }
-  
-  useEffect(()=>{
-    checkLA()
-    checkDA()
-  },[])
+  // const downVote = () =>
+  // {dispatch("subtract");
+  // saveDownVote(answerLikes)}
 
 
-  const saveUpVote = async () => {
-    try{
-    await axios.put(`/api/questions/${answer.question_id}/answers/${answer.id}`, { 
-      likes: answerLikes + 1
-    })
-    // console.log(res)
-  } catch (err) {
-      console.log("upvote error", err)
-    }
-  }
-
-
-  const saveDownVote = async () => {
-    try{
-    await axios.put(`/api/questions/${answer.question_id}/answers/${answer.id}`, { 
-      likes: answerLikes - 1
-    })
-    // console.log(res)
-  } catch (err) {
-      console.log("downvote error", err)
-    }
-  }
-  
-  const upVote = () =>
-  {dispatch("add");
-  saveUpVote(answerLikes)}
-
-  const downVote = () =>
-  {dispatch("subtract");
-  saveDownVote(answerLikes)}
-
-
-
-  const handleLA = async () =>{
-    if(isLA){
-      try {
-        let unLA = la.filter((i) => i !== answer.id)
-        let res = await axios.put(`/api/likeanswer`, {liked_answers: unLA})
-        setUser(res.data)
-        setLA(unLA)
-        setIsLA(false)
-        downVote()
-      } catch (err) {
-        console.log(err)
-      }
-    }else{
-      if(isDA === true){
-        handleDA()
-      }
-      try {
-        la.push(answer.id)
-        let res = await axios.put(`/api/likeanswer`, {liked_answers: la})
-        setLA(la)
-        setUser(res.data)
-        setIsLA(true)
-        upVote()
-      } catch (err) {
-        console.log(err)
-      }
-    }
-  }
-
-  const handleDA = async () =>{
-    if(isDA){
-      try {
-        let unDA = la.filter((i) => i !== answer.id)
-        let res = await axios.put(`/api/downvoteanswer`, {downvote_answers: unDA})
-        setUser(res.data)
-        setDA(unDA)
-        setIsDA(false)
-        upVote()
-      } catch (err) {
-        console.log(err)
-      }
-    }else{
-      try {
-        if(isLA === true){
-          handleLA()
-        }
-        da.push(answer.id)
-        let res = await axios.put(`/api/downvoteanswer`, {downvote_answers: da})
-        setDA(da)
-        setUser(res.data)
-        setIsDA(true)
-        downVote()
-      } catch (err) {
-        console.log(err)
-      }
-    }
-  }
-
-  const [answerLikes, dispatch] = useReducer((state, action) => {
-    switch (action) {
-      case "add":
-        return state + 1;
-      case "subtract":
-        return state - 1;
-    }
-  }, answer.likes);
+  // const [answerLikes, dispatch] = useReducer((state, action) => {
+  //   switch (action) {
+  //     case "add":
+  //       return state + 1;
+  //     case "subtract":
+  //       return state - 1;
+  //   }
+  // }, answer.likes);
   
     return (
       <div style={styles.likeBox}>
         <AiFillCaretUp
         size="40px"
-        color={isLA ? "#6E54A3":"#757575"}
-         onClick={() => {handleLA()}}/>
-        <p style={styles.likesNumber}>{answerLikes}</p>
+        color={upVoted ? "#6E54A3":"#757575"}
+         onClick={() => {upVote()}}/>
+        {/* <p style={styles.likesNumber}>{answerLikes}</p> */}
         <AiFillCaretDown
         size="40px"         
-        color={isDA ? "#6E54A3":"#757575"}
-        onClick={() => {handleDA()}}/>
+        color={downVoted ? "#6E54A3":"#757575"}
+        onClick={() => {downVote()}}/>
       </div>
     );
   };

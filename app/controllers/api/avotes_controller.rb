@@ -1,5 +1,5 @@
 class Api::AvotesController < ApplicationController
-  before_action :set_answer
+  before_action :set_answer, except: [:my_vote]
   before_action :set_avote, only: [:show, :update, :destroy]
 
   def index
@@ -32,8 +32,8 @@ class Api::AvotesController < ApplicationController
     render json: @avote
   end
 
-  def check_vote
-    render json: @answer.avotes.check_vote(params[:user_id])
+  def my_vote
+    render json: Avote.get_my_vote(params[:vote_code])
   end
 
   private

@@ -67,6 +67,10 @@ class Api::QuestionsController < ApplicationController
     render json: Question.author(params[:id])
   end
 
+  def users
+    render json: Question.get_users(params[:id])
+  end
+
   private
 
   def question_params

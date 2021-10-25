@@ -8,9 +8,11 @@ Rails.application.routes.draw do
     resources :questions do
       resources :qcomments
       resources :answers
+      resources :qvotes
     end
     resources :answers do
       resources :comments
+      resources :avotes
     end
     get 'questionTags', to:'question_tags#index'
     post 'questionTags', to:'question_tags#create'
@@ -41,6 +43,8 @@ Rails.application.routes.draw do
     get 'comment_author/:id', to: 'comments#author'
     get 'qcomment_author/:id', to: 'qcomments#author'
     get 'user_has_questions/:id', to: 'users#user_has_questions'
+    get 'questions/:id/:users', to: 'questions#users'
+    get 'answers/:id/:users', to: 'answers#users'
     resources :tags
   end
 

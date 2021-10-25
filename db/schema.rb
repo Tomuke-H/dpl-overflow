@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_22_215958) do
+ActiveRecord::Schema.define(version: 2021_10_25_051839) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2021_10_22_215958) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["answer_id"], name: "index_avotes_on_answer_id"
     t.index ["user_id"], name: "index_avotes_on_user_id"
+    t.index ["vote_code"], name: "index_avotes_on_vote_code", unique: true
   end
 
   create_table "comments", force: :cascade do |t|
@@ -90,6 +91,7 @@ ActiveRecord::Schema.define(version: 2021_10_22_215958) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["question_id"], name: "index_qvotes_on_question_id"
     t.index ["user_id"], name: "index_qvotes_on_user_id"
+    t.index ["vote_code"], name: "index_qvotes_on_vote_code", unique: true
   end
 
   create_table "tags", force: :cascade do |t|

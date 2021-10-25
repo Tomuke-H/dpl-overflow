@@ -90,12 +90,12 @@ User.destroy_all
 
 @tags.each { |t| Tag.create(name:t)}
 
-user1 = User.create(email:'test@test.com', points: 2, password:123456, name:'Tester', cohort: 'Fall 2021', about_me: 'I am a fake user.', image: 'https://images.theconversation.com/files/17962/original/jt558trs-1353642967.jpg?ixlib=rb-1.1.0&rect=23%2C5%2C3831%2C2573&q=45&auto=format&w=926&fit=clip')
+user1 = User.create(email:'test@test.com', password:123456, name:'Tester', cohort: 'Fall 2021', about_me: 'I am a fake user.', image: 'https://images.theconversation.com/files/17962/original/jt558trs-1353642967.jpg?ixlib=rb-1.1.0&rect=23%2C5%2C3831%2C2573&q=45&auto=format&w=926&fit=clip')
 
 25.times do
   u_name = Faker::Name.first_name
   email = Faker::Internet.email(name: u_name)
-  u = User.create(email:Faker::Internet.email, points: rand(830), password:123456, name: u_name, cohort: @cohorts[rand(6)], about_me: Faker::Lorem.sentence(word_count: 15), image: 'https://source.unsplash.com/user/erondu/200x200')
+  u = User.create(email:Faker::Internet.email, password:123456, name: u_name, cohort: @cohorts[rand(6)], about_me: Faker::Lorem.sentence(word_count: 15), image: 'https://source.unsplash.com/user/erondu/200x200')
   (rand(6)+1).times do
     quest = u.questions.create(title: Faker::Lorem.question(word_count: 6), views: rand(30), body: @tags[rand(13)] + Faker::Lorem.sentence(word_count: 30))
     (rand(3)+1).times do
@@ -106,7 +106,7 @@ user1 = User.create(email:'test@test.com', points: 2, password:123456, name:'Tes
     end
     if(rand(8)>0)
       (rand(8)+1).times do
-        ans = quest.answers.create(user_id: User.order('Random()').first.id, body: Faker::Lorem.sentence, likes: rand(40), verified: rand(20)>18)
+        ans = quest.answers.create(user_id: User.order('Random()').first.id, body: Faker::Lorem.sentence, verified: rand(20)>18)
         (rand(5)+1).times do
           ans.comments.create(user_id: User.order('Random()').first.id, body: Faker::Lorem.sentence)
         end

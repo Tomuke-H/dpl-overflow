@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { ListGroup } from 'react-bootstrap'
 import Multiselect from 'multiselect-react-dropdown'
+import '../../stylesheets/SortSelector.css'
 
 
 // const renderTags = () => {
@@ -40,12 +41,12 @@ const SortSelector = ({selectedValues, setSelectedValues, sortBy, getQuestions, 
   }
   return (
     <div>
-      <ListGroup horizontal>
-        <ListGroup.Item style={sortBy === 'all' && !showTags ? styles.tabActive : styles.tab} onClick={(e)=> getQuestions('all', 1)}>Popular</ListGroup.Item >
-        <ListGroup.Item style={(sortBy === 'unanswered' && !showTags) ? styles.tabActive : styles.tab} onClick={(e)=> getQuestions('unanswered', 1)}>Unanswered</ListGroup.Item >
-        <ListGroup.Item style={(sortBy === 'follow' && !showTags) ? styles.tabActive : styles.tab} onClick={(e)=> getQuestions('follow', 1)}>Following</ListGroup.Item >
-        <ListGroup.Item style={showTags ? styles.tabActive : styles.tab} onClick={(e)=> setShowTags(!showTags)}>Search by Tag</ListGroup.Item >
-      </ListGroup>
+      <div className="wrapper">
+        <div className={sortBy === 'all' && !showTags ? 'left-tabActive' : 'left-tab'} onClick={(e)=> getQuestions('all', 1)}>Popular</div >
+        <div className={(sortBy === 'unanswered' && !showTags) ? 'tabActive' : 'tab'} onClick={(e)=> getQuestions('unanswered', 1)}>Unanswered</div >
+        <div className={(sortBy === 'follow' && !showTags) ? 'tabActive2' : 'tab2'} onClick={(e)=> getQuestions('follow', 1)}>Following</div >
+        <div className={showTags ? 'right-tabActive' : 'right-tab'} onClick={(e)=> setShowTags(!showTags)}>Search by Tag</div >
+      </div>
       
       {showTags && <Multiselect 
         style={styles.multiSelect}
@@ -61,13 +62,6 @@ const SortSelector = ({selectedValues, setSelectedValues, sortBy, getQuestions, 
 }
 
 const styles = {
-  tab: {
-    backgroundColor: 'white',
-  }, 
-  tabActive: {
-    backgroundColor: '#757575',
-    color: 'white',
-  },
   multiSelect: {
     chips: {
       background: '#6E54A3',

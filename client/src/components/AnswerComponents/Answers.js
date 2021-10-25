@@ -119,7 +119,6 @@ const styles = {
     marginLeft: "137px",
     fontSize: "20px",
     fontWeight: "500px",
-    fontFamily: "Inter"
   }
 }
 

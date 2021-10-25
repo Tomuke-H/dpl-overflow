@@ -82,7 +82,6 @@ export default Yearbook;
 
 const styles = {
   yearbook: {
-  fontFamily: 'Open Sans',
   fontStyle: 'normal',
   fontWeight: '600px',
   textTransform: 'uppercase',
@@ -97,7 +96,6 @@ const styles = {
     borderStyle: "solid",
     borderColor: "#6E54A3",
     borderRadius: "5px",
-    fontFamily:'Open Sans',
     fontWeight:"600px",
     fontSize: "14px",
     letterSpacing: ".7px",

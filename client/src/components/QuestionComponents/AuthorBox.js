@@ -18,7 +18,6 @@ const styles= {
     width: "120px",
     height: "50px",
     backgroundColor: "#C4C4C4",
-    fontFamily: "Inter",
     fontWeight: "500px",
     fontSize: "10px",
 

@@ -160,7 +160,6 @@ const AnswerVote = ({answer, liked_answers, downvote_answers}) => {
     maxWidth: "850px",
     margin: "10px",
     fontSize: "30px",
-    fontFamily: "Inter, sans-serif",
     fontWeight: "500px",
     display: "flex",
     alignItems: "center",

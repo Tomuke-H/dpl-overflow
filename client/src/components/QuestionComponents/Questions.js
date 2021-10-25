@@ -129,7 +129,7 @@ const Questions = ({location, history}) => {
   const renderQuestions = () => {
     return questions.map(q => {
       return (
-        <div key={q.id} style={{marginBottom: "30px"}}>
+        <div key={q.id} style={{marginBottom: "6px"}}>
           <QuestionCard question={q} history={history}/>
         </div>
       )
@@ -139,11 +139,12 @@ const Questions = ({location, history}) => {
   return (
     <Container style={{marginTop: '30px'}}>
       {/* <h2>{JSON.stringify(tagSearch)}</h2> */}
-      <div style={{display: 'flex', justifyContent: 'space-between'}}>
+      <div style={styles.titleWrapper}>
         <div>
+          <h1 style={styles.title}>TOP QUESTIONS</h1>
           <Form.Control placeholder='Search' value={search} onChange={(e) => getQuestions('search', 1, null, e.target.value)}/>
         </div>
-        <div>
+        <div style={styles.selectWrapper}>
           <SortSelector 
             selectedValues={selectedValues}
             setSelectedValues={setSelectedValues}
@@ -157,7 +158,6 @@ const Questions = ({location, history}) => {
           />
         </div>
       </div>
-      <br/>
       <div>
         <InfiniteScroll
           dataLength={questions.length}
@@ -170,6 +170,20 @@ const Questions = ({location, history}) => {
       </div>
     </Container>
   )
+}
+
+const styles = {
+  titleWrapper: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    margin: '40px 0px 6px 0px'
+  },
+  title: {
+    fontWeight: '600px'
+  },
+  selectWrapper: {
+    paddingTop: '12px'
+  }
 }
 
 export default Questions;

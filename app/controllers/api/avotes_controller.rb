@@ -1,14 +1,14 @@
 class Api::AvotesController < ApplicationController
-  before_action :set_answer, except: [:my_vote]
-  before_action :set_avote, only: [:show, :update, :destroy]
+  # before_action :set_answer, except: [:my_vote]
+  before_action :set_avote, only: [:update, :destroy]
 
-  def index
-    render json: @answer.avotes.all
-  end
+  # def index
+  #   render json: @answer.avotes.all
+  # end
 
-  def show
-    render json: @avote
-  end
+  # def show
+  #   render json: @avote
+  # end
 
   def create
     @avote = Avote.new(avote_params)
@@ -38,12 +38,12 @@ class Api::AvotesController < ApplicationController
 
   private
 
-  def set_answer
-    @answer = Answer.find(params[:answer_id])
-  end
+  # def set_answer
+  #   @answer = Answer.find(params[:answer_id])
+  # end
 
   def set_avote
-    @avote = @answer.avotes.find(params[:id])
+    @avote = Avote.find(params[:id])
   end
 
   def avote_params

@@ -16,6 +16,24 @@ class Answer < ApplicationRecord
     .from('answers as a')
     .joins('INNER JOIN avotes AS av ON av.answer_id = a.id')
     .where('a.id = ?', id)
-    end
+  end
+
+  def self.get_upvotes(id)
+    select('count(av.up)')
+    .from('answers AS a')
+    .joins('INNER JOIN avotes AS av ON a.id = av.answer_id')
+    .where('a.id = ?', id)
+    .group('av.up')
+    .having('av.up = true')
+  end
+
+  def self.get_downvotes(id)
+    select('count(av.down)')
+    .from('answers AS a')
+    .joins('INNER JOIN avotes AS av ON a.id = av.answer_id')
+    .where('a.id = ?', id)
+    .group('av.down')
+    .having('av.down = true')
+  end
 
 end

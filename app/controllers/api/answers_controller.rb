@@ -1,6 +1,6 @@
 class Api::AnswersController < ApplicationController
 
-before_action :set_question, except: [:author, :users]
+before_action :set_question, except: [:author, :users, :downvotes, :upvotes]
 before_action :set_answer, only: [:show, :update, :destroy]
 
 
@@ -37,6 +37,15 @@ end
 
 def users
   render json: Answer.get_users(params[:id])
+end
+
+def upvotes
+  render json: Answer.get_upvotes(params[:id])
+end
+
+
+def downvotes
+  render json: Answer.get_downvotes(params[:id])
 end
 
 private

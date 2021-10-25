@@ -1,14 +1,14 @@
 class Api::QvotesController < ApplicationController
-  before_action :set_question, except: [:my_vote]
-  before_action :set_qvote, only: [:show, :update, :destroy]
+  # before_action :set_question, except: [:my_vote]
+  before_action :set_qvote, only: [:update, :destroy]
 
-  def index
-    render json: @question.qvotes.all
-  end
+  # def index
+  #   render json: @question.qvotes.all
+  # end
 
-  def show
-    render json: @qvote
-  end
+  # def show
+  #   render json: @qvote
+  # end
 
   def create
     @qvote = Qvote.new(qvote_params)
@@ -38,12 +38,12 @@ class Api::QvotesController < ApplicationController
 
   private
 
-  def set_question
-    @question = Question.find(params[:question_id])
-  end
+  # def set_question
+  #   @question = Question.find(params[:question_id])
+  # end
 
   def set_qvote
-  @qvote = @question.qvotes.find(params[:id])
+  @qvote = Qvote.find(params[:id])
   end
 
 

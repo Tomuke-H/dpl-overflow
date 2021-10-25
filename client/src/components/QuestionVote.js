@@ -6,17 +6,18 @@ import { AiFillCaretUp, AiFillCaretDown } from "react-icons/ai"
 const QuestionVote = ({question}) => {
   const{user} = useContext(AuthContext)
   const[voteUsers, setVoteUsers] = useState([])
-  const[vote, setVote] = useState({})
+  const[vote, setVote] = useState()
   const[upVoted, setUpVoted] = useState(false)
   const[downVoted, setDownVoted] = useState(false)
-  const[upVotes, setUpVotes] = useState()
-  const[downVotes, setDownVotes] = useState()
+  const[upVoteCount, setUpVoteCount] = useState(0)
+  const[downVoteCount, setDownVoteCount] = useState(0)
+  const[totalVotes, setTotalVotes] = useState(0)
 
-  
   useEffect(() => {
     getUserVotes();
-    getUpVotes();
-    getDownVotes();
+    getUpVoteCount();
+    getDownVoteCount();
+    // getTotalVotes();
   }, [])
 
   const getUserVotes = async() => {
@@ -26,7 +27,7 @@ const QuestionVote = ({question}) => {
       for (let i = 0; i < res.data.length; i++) {
         datarray.push(res.data[i].user_id)
       }
-      console.log(datarray)
+      // console.log(datarray)
       setVoteUsers(datarray)
          if (datarray.includes(user.id)){
         checkUpDown();
@@ -36,111 +37,11 @@ const QuestionVote = ({question}) => {
     }
   }
 
-  const getUpVotes = async() => {
-    try {
-      let res = await axios.get(`/api/questions/${question.id}/upvotes`)
-      console.log("upvotes", res)
-    } catch(err) {
-      console.log("getUpVotes error", err)
-    }
-  }
-
-  const getDownVotes = async() => {
-    try {
-      let res = await axios.get(`/api/questions/${question.id}/downvotes`)
-      console.log("downvotes", res)
-    } catch(err) {
-      console.log("getDownVotes error", err)
-    }
-  }
-
-  // const getTotalAnswers
-
-  const checkUpVote = () => {
-    if (upVoted === true && downVoted === false) {
-      // deleteVote()
-      alert("let's delete that vote")
-    }
-    else if (upVoted === false && downVoted === true) {
-      // updateUp()
-    }
-    else if (upVoted === false && downVoted === false) {
-      alert("let's cast your vote!")
-      upVote()
-    }
-    else (alert("peepee"))
-  }
-
-  const checkDownVote = () => {
-    if (upVoted === false && downVoted === true) {
-      // deleteVote()
-      alert("let's delete that vote")
-    }
-    else if (upVoted === true && downVoted === false) {
-      // updateDown()
-      alert("let's change that vote to down")
-    }
-    else if (upVoted === false && downVoted === false) {
-      alert("let's cast your vote!")
-      downVote()
-    }
-    else (alert("poop"))
-  }
-
-  const deleteVote = async() => {
-
-  }
-  
-  const updateUp = async() => {
-
-  }
-
-  const updateDown = async() => {
-
-  }
-
- 
-
-  const upVote = async() => {
-    try {
-      let res = await axios.post(`/api/questions/${question.id}/qvotes`, {
-        up: true,
-        down: false,
-        user_id: user.id,
-        question_id: question.id,
-        vote_code: `${user.id}-${question.id}`
-      })
-      console.log("upVote", res)
-    } catch(err) {
-      console.log(err)
-    }
-  }
-
-  const downVote = async() => {
-    try {
-      let res = await axios.post(`/api/questions/${question.id}/qvotes`, {
-        up: false,
-        down: true,
-        user_id: user.id,
-        question_id: question.id,
-        vote_code: `${user.id}-${question.id}`
-      })
-      console.log("downVote", res)
-    } catch(err) {
-      console.log(err)
-    }
-  }
-
-  // const checkIfVote = () => {
-  //   if (voteUsers.includes(user.id)){
-  //     checkUpDown();
-  //   }
-  // }
-
   const checkUpDown = async() => {
     try {
       let res = await axios.get(`/api/qvotes/${user.id}-${question.id}`)
-      console.log("votecheck", res.data[0])
+      // console.log("votecheck", res.data[0])
+      setVote(res.data[0])
         if (res.data[0].up === true) {
           setUpVoted(true)
           setDownVoted(false)
@@ -153,6 +54,132 @@ const QuestionVote = ({question}) => {
       console.log("checkUpDown error", err)
     }
   }
+
+    const getUpVoteCount = async() => {
+      try {
+        let res = await axios.get(`/api/questions/${question.id}/upvotes`)
+        // console.log("question upvotes", res.data[0].count)
+        setUpVoteCount(res.data[0].count)
+      } catch(err) {
+        console.log("getUpVotes question error", err)
+        setUpVoteCount(0)
+      }
+    }
+
+    const getDownVoteCount = async() => {
+      try {
+        let res = await axios.get(`/api/questions/${question.id}/downvotes`)
+        // console.log("question downvotes", res.data[0].count)
+        setDownVoteCount(res.data[0].count)
+      } catch(err) {
+        console.log("getDownVotes answer error", err)
+        setDownVoteCount(0)
+      }
+    }
+
+  const checkUpVote = () => {
+    if (upVoted === true && downVoted === false) {
+      deleteVote()
+      alert("let's delete that vote")
+    }
+    else if (upVoted === false && downVoted === true) {
+      updateUp()
+      alert("let's change that vote to up")
+    }
+    else if (upVoted === false && downVoted === false) {
+      upVote()
+      alert("let's cast your vote!")
+    }
+    else (alert("peepee"))
+  }
+
+  const checkDownVote = () => {
+    if (upVoted === false && downVoted === true) {
+      deleteVote()
+      alert("let's delete that vote")
+    }
+    else if (upVoted === true && downVoted === false) {
+      updateDown()
+      alert("let's change that vote to down")
+    }
+    else if (upVoted === false && downVoted === false) {
+      downVote()
+      alert("let's cast your vote!")
+    }
+    else (alert("poop"))
+  }
+
+  const deleteVote = async() => {
+    try {
+      let res = await axios.delete(`/api/qvotes/${vote.id}`)
+      // console.log(res)
+      setUpVoted(false)
+      setDownVoted(false)
+    } catch (err) {
+      console.log("deleteVote error", err)
+    }
+  }
+  
+  const updateUp = async() => {
+    try {
+      let res = await axios.put(`/api/qvotes/${vote.id}`, {
+        up: true,
+        down: false
+      })
+      // console.log(res)
+      checkUpDown()
+    } catch (err) {
+      console.log("updateVote error", err)
+    }
+  }
+
+  const updateDown = async() => {
+    try {
+      let res = await axios.put(`/api/qvotes/${vote.id}`, {
+        up: false,
+        down: true
+      })
+      // console.log(res)
+      checkUpDown()
+    } catch (err) {
+      console.log("updateVote error", err)
+    }
+  }
+
+  const upVote = async() => {
+    try {
+      let res = await axios.post(`/api/qvotes`, {
+        up: true,
+        down: false,
+        user_id: user.id,
+        question_id: question.id,
+        vote_code: `${user.id}-${question.id}`
+      })
+      // console.log("upVote", res)
+      checkUpDown()
+    } catch(err) {
+      console.log(err)
+    }
+  }
+
+  const downVote = async() => {
+    try {
+      let res = await axios.post(`/api/qvotes`, {
+        up: false,
+        down: true,
+        user_id: user.id,
+        question_id: question.id,
+        vote_code: `${user.id}-${question.id}`
+      })
+      // console.log("downVote", res)
+      checkUpDown()
+      // setDownVoted(true)
+    } catch(err) {
+      console.log(err)
+    }
+  }
+
+
 
 //   const saveUpVote = async () => {
 //     try{

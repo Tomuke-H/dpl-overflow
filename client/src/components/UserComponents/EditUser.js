@@ -115,7 +115,7 @@ const EditUser = (id) => {
                     />
                 <br />
                 <h5>Cohort:</h5>
-                {/* <select
+                <select
                 value={cohort}
                 label="Cohort"
                 onChange={(e) => setCohort(e.target.value)}
@@ -124,7 +124,9 @@ const EditUser = (id) => {
                     <option value="Winter">Winter</option>
                     <option value="Spring">Spring</option>
                 </select>
-                <br /> */}
+                <br />
+                <select id="selectElementId"></select>
+                <br />
                 <Form.Control
                     value={cohort}
                     label="Cohort"

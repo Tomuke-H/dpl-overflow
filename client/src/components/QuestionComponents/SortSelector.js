@@ -66,6 +66,9 @@ const styles = {
     chips: {
       background: '#6E54A3',
     },
+    searchBox: {
+      maxWidth: '442px'
+    },
   }
 }
 

@@ -182,7 +182,7 @@ const styles = {
     fontWeight: '600px'
   },
   selectWrapper: {
-    paddingTop: '21px'
+    paddingTop: '12px'
   }
 }
 

@@ -75,8 +75,6 @@ const styles = {
     height: '41px',
     left: '157px',
     top: '126px',
-
-    fontFamily: 'Open Sans',
     fontStyle: 'normal',
     fontWeight: '600px',
     fontSize: '30px',
@@ -98,8 +96,6 @@ const styles = {
     height: '41px',
     left: '78px',
     top: '293px',
-
-    fontFamily: 'Open Sans',
     fontStyle: 'normal',
     fontWeight: '600px',
     fontSize: '30px',
@@ -118,8 +114,6 @@ const styles = {
     height: '15px',
     left: '81px',
     top: '227px',
-
-    fontFamily: 'Inter',
     fontStyle: 'normal',
     fontWeight: '500px',
     fontSize: '12px',
@@ -136,8 +130,6 @@ const styles = {
     height: '15px',
     left: '151px',
     top: '227px',
-
-    fontFamily: 'Inter',
     fontStyle: 'normal',
     fontWeight: '500px',
     fontSize: '12px',
@@ -155,7 +147,6 @@ const styles = {
     left: '229px',
     top: '227px',
 
-    fontFamily: 'Inter',
     fontStyle: 'normal',
     fontWeight: '500px',
     fontSize: '12px',
@@ -173,7 +164,6 @@ const styles = {
     left: '711px',
     top: '293px',
 
-    fontFamily: 'Open Sans',
     fontStyle: 'normal',
     fontWeight: '600px',
     fontSize: '30px',

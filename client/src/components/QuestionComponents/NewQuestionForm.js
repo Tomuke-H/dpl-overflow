@@ -132,7 +132,6 @@ const styles = {
     textTransform: "uppercase",
     marginTop: "70px",
     fontSize: "30px",
-    fontFamily: "Open Sans, sans-serif",
     fontWeight: "600px",
     color: "#000000",
   },

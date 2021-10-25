@@ -33,29 +33,29 @@ const QuestionCard = ({question, history}) => {
   }
 
   return(
-    <Card onClick={()=>handleRedirect(question.id)}>
-      <div style={styles.maindiv}>
-        <div style={styles.vavdiv}>
-          <div >
-            <Card.Text style={styles.vav}>{question.likes}</Card.Text>
-            <Card.Text style={styles.vavcat}>Votes</Card.Text>
-          </div>
-          <div>
-            <Card.Text style={styles.vav}>{question.total_answers}</Card.Text>
-            <Card.Text style={styles.vavcat}>Answers</Card.Text>
-          </div>
-          <div >
-            <Card.Text style={styles.vav}>{question.views}</Card.Text>
-            <Card.Text style={styles.vavcat}>Views</Card.Text>
-          </div>
+    <div onClick={()=>handleRedirect(question.id)} style={styles.card}>
+      <div style={styles.vavdiv}>
+        <div >
+          <Card.Text style={styles.vav}>{question.likes}</Card.Text>
+          <Card.Text style={styles.vavcat}>Votes</Card.Text>
         </div>
-        <div style={styles.title}>
-          <Card.Text style={styles.titleWords}>{question.title}</Card.Text>
-          <div style={styles.tags}>{renderTags()}</div>
-        <Card.Text className="text-muted" style={styles.info}> {QuestionAuthor(question.id)} / {day(question.created_at)} / {time(question.created_at)} </Card.Text>
+        <div>
+          <Card.Text style={styles.vav}>{question.total_answers}</Card.Text>
+          <Card.Text style={styles.vavcat}>Answers</Card.Text>
+        </div>
+        <div >
+          <Card.Text style={styles.vav}>{question.views}</Card.Text>
+          <Card.Text style={styles.vavcat}>Views</Card.Text>
         </div>
       </div>
-    </Card>
+      <div style={styles.title}>
+        <Card.Text style={styles.titleWords}>{question.title}</Card.Text>
+        <div style={styles.tagsInfoWrapper}>
+          <div style={styles.tags}>{renderTags()}</div>
+          <Card.Text style={styles.info}> {QuestionAuthor(question.id)} / {day(question.created_at)} / {time(question.created_at)} </Card.Text>
+        </div>  
+      </div>
+    </div>
   )
 }
 
@@ -72,12 +72,13 @@ const styles = {
 
   vav:{
     margin: "10px 10px 0px 10px",
-    fontSize: "1.3em",
-    fontWeight:"600px",
+    fontSize: "16px",
+    fontWeight:"500px",
     textAlign: "center"
   },
   
   vavcat:{
+    fontSize: '8px',
     margin: "0px 10px 10px 10px",
   },
 
@@ -85,13 +86,11 @@ const styles = {
     display:"flex",
     flexDirection:"column",
     flex: "1"
-    
   },
 
   titleWords:{
-    fontFamily:'Open Sans',
-    fontWeight:"600px",
-    fontSize: "1.3em",
+    fontWeight:"semi-bold",
+    fontSize: "16px",
     letterSpacing: "1px",
     color:"#FFFFFF;",
     textAlign:"left",
@@ -105,8 +104,21 @@ const styles = {
   info:{
     textAlign:"end",
     padding:"0px 10px 10px 0px",
+    fontSize: '12px'
   },
   
+  tagsInfoWrapper:{
+    display:'flex',
+    justifyContent: 'space-between'
+  },
+
+  card:{
+    border: 'solid 1.5px black',
+    borderRadius: '6px',
+    display:"flex",
+    justifyContent: 'space-between',
+    fontWeight: 'medium',
+  }
 }
 
 export default QuestionCard; 

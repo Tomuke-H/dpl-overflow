@@ -48,7 +48,7 @@ end
 
 
 def self.user_questions(id)
-  select('u.id, q.id AS question_id, q.title, q.body AS question_body, q.views, q.created_at AS question_created')
+  select('u.id, u.name, q.id AS question_id, q.title, q.body AS question_body, q.views, q.created_at AS question_created')
   .from('questions as q ')
   .joins('FULL JOIN users as u ON q.user_id = u.id')
   .where('u.id = ?', id)
@@ -57,10 +57,10 @@ end
 
 
 def self.user_answers(id)
-  select('u.id, q.id AS question_id, a.id AS answer_id, q.title, q.body AS question_body, q.views, a.body AS answer_body, a.created_at AS answer_created, q.created_at AS question_created, a.verified')
-  .from('questions AS q')
-  .joins('FULL JOIN users as u ON q.user_id = u.id
-          FULL JOIN answers AS a ON a.question_id = q.id')
+  select('u.id, u.name, q.id AS ques_id, a.question_id AS question_id, a.id AS answer_id, q.title, q.body AS question_body, q.views, a.body AS answer_body, a.created_at AS answer_created, q.created_at AS question_created')
+  .from('answers AS a')
+  .joins('FULL JOIN users as u ON u.id = a.user_id
+          FULL JOIN questions AS q ON a.question_id = q.id')
   .where('u.id = ?', id)
   .order('a.created_at DESC')
 end

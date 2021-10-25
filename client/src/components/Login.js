@@ -13,7 +13,11 @@ const Login = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        handleLogin({email, password}, history)
+        if (!email)
+        alert("Email cannot be blank.")
+        else if (!password)
+        alert("Password cannot be blank.")
+        else handleLogin({email, password}, history)
     }
 
     return (

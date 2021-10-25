@@ -7,15 +7,16 @@ import SortSelector from "./SortSelector";
 import BoxLoader from "../BoxLoader";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-const Questions = ({history}) => {
+const Questions = ({location, history}) => {
   const [questions, setQuestions] = useState([])
   const [page, setPage] = useState(1)
   const [totalPages, setTotalPages] = useState(6)
   const [tags, setTags] = useState([])
-  const [tagSearch, setTagSearch] = useState([])
+  const [tagSearch, setTagSearch] = useState(location.state ? [location.state.id]:[])
   const [sortBy, setSortBy] = useState('all')
-  const [showTags, setShowTags] = useState(false)
+  const [showTags, setShowTags] = useState(location.state ? true : false)
   const [search, setSearch] = useState('')
+  const [selectedValues, setSelectedValues] = useState(location.state ? [location.state] : [])
 
   const setStates = (data, p) => {
     setQuestions(p === 1 ? data.questions : questions.concat(data.questions))
@@ -108,7 +109,11 @@ const Questions = ({history}) => {
 
   useEffect(()=>{
     getTags()
-    getQuestions('all', page)
+    if(location.state){
+      getQuestions('tag', 1, location.state.id)
+    } else {
+      getQuestions('all', page)
+    }
   },[])
 
 
@@ -140,6 +145,8 @@ const Questions = ({history}) => {
         </div>
         <div>
           <SortSelector 
+            selectedValues={selectedValues}
+            setSelectedValues={setSelectedValues}
             sortBy={sortBy}
             tagSearch={tagSearch} 
             setTagSearch={setTagSearch}

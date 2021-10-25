@@ -44,10 +44,12 @@ const NewQuestionForm = ({ handleRedirect }) => {
 
   const handleAddTag = (list) => {
     setCheckedItems(list)
+    setSelectedValues(list)
   }
 
   const handleRemoveTag = (list) => {
     setCheckedItems(list)
+    setSelectedValues(list)
   }
 
   const handleTagSubmit = async (questionRes) =>{
@@ -62,6 +64,7 @@ const NewQuestionForm = ({ handleRedirect }) => {
 
   const handleSubmit = async (e) => {
     setErrors(null)
+    console.log(e)
     e.preventDefault()
     if(!body){
       setErrors('Body cannot be empty')
@@ -75,6 +78,11 @@ const NewQuestionForm = ({ handleRedirect }) => {
       }
     }
   }
+
+  const checkKeyDown = (e) => {
+    if (e.code === 'Enter') e.preventDefault();
+  };
+
   return (
     <Container>
       {errors && <h2 style={{border: 'solid 2px red', color: 'red'}}>{errors}</h2>}
@@ -88,6 +96,7 @@ const NewQuestionForm = ({ handleRedirect }) => {
             size='lg'
             value={title}
             placeholder='Title'
+            onKeyDown={(e)=>{checkKeyDown(e)}}
             onChange={(e) => setTitle(e.target.value)}
           />
         </Form.Group>
@@ -97,13 +106,12 @@ const NewQuestionForm = ({ handleRedirect }) => {
            setBody = {setBody}
           />
         </Form.Group>
-        <DPLButton type='button' onClick={(e)=>setShowTagModal(true)}>Add New Tag</DPLButton>
-        <br />
-        <br />
-        <Form.Group>
+        <DPLButton type='button' onClick={(e)=>setShowTagModal(true)}>New Tag</DPLButton>
+        <Form.Group onKeyDown={(e)=>{checkKeyDown(e)}}>
           <Multiselect 
           options={tags}
           selectedValues={selectedValues}
+          emptyRecordMsg = "Not an Option, please consider making new tag"
           onSelect={(selectedList, selectedItem) => handleAddTag(selectedList)}
           onRemove={(selectedList, selectedItem) => handleRemoveTag(selectedList)}
           displayValue="name"

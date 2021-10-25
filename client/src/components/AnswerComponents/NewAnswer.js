@@ -5,7 +5,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { DPLButton } from "../DPLButtons";
 import MarkdownEditor from "../Markdown/MarkdownEditor";
 
-const NewAnswer = ({props}) => {
+const NewAnswer = ({props, answers, setAnswers}) => {
   const [body, setBody] = useState("")
   // const [answer, setAnswer] = useState({body: , question_id: ,})
   const { user } = useContext(AuthContext)
@@ -18,11 +18,12 @@ const NewAnswer = ({props}) => {
       question_id: props.match.params.id,
       user_id: user.id
     }
-    // e.preventDefault()
+    e.preventDefault()
     try {
       // console.log(body)
       let res = await axios.post(`/api/questions/${props.match.params.id}/answers`, answer)
       console.log(res)
+      setAnswers([...answers, res.data])
     } catch (err) {
       console.log("New Answer Submission Error", err)
     };

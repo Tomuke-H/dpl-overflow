@@ -12,7 +12,7 @@ const FirstQuestionModal = ({showModal, setShowModal}) => {
       keyboard={false}
     >
       <Modal.Header closeButton>
-        <Modal.Title>Asking Good Questions</Modal.Title>
+        <Modal.Title>Your First Question</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         Welcome to the DPL community! Asking questions is the best way to learn, and people are here to help! In order to help you get started on the right foot, here are a couple pointers:

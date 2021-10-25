@@ -72,7 +72,6 @@ const styles = {
     label: {
         height: "22px",
 
-        fontFamily: "Lato",
         fontStyle: "normal",
         fontWeight: "normal",
         fontSize: "16px",
@@ -93,7 +92,6 @@ const styles = {
         width: "104px",
         height: "56px",
 
-        fontFamily: "Lato",
         fontStyle: "normal",
         fontWeight: "normal",
         fontSize: "40.8px",

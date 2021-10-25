@@ -161,7 +161,6 @@ const [likes, dispatch] = useReducer((state, action) => {
     maxWidth: "850px",
     margin: "10px",
     fontSize: "30px",
-    fontFamily: "Lato",
     fontWeight: "500px",
     display: "flex",
     alignItems: "center",

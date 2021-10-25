@@ -53,7 +53,6 @@ const NewAnswer = ({props, answers, setAnswers}) => {
 
 const styles = {
   yourAnswer: {
-    fontFamily: "Lato",
     fontWeight: "500px",
     fontSize: "20px",
     letterSpacing: "0.5px",

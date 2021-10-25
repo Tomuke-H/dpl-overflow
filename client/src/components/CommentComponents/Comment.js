@@ -35,7 +35,6 @@ const styles = {
     display: "flex",
     flexDirection: "row",
     fontSize: "14px",
-    fontFamily: "Lato",
     fontWeight: "500px",
     marginTop: "30px",
     marginBottom: "30px",
@@ -43,7 +42,6 @@ const styles = {
   comment: {
     marginLeft: "20px",
     fontSize: "14px",
-    fontFamily: "Lato",
     fontWeight: "500px",
   }
 }

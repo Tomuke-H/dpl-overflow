@@ -168,7 +168,6 @@ const styles ={
     borderStyle: "solid",
     borderColor: "#6E54A3",
     borderRadius: "5px",
-    fontFamily:'Lato',
     fontWeight:"600px",
     fontSize: "14px",
     letterSpacing: ".7px",
@@ -181,7 +180,6 @@ const styles ={
   },
 
   leaderboard: {
-    fontFamily: 'Lato',
     fontStyle: 'normal',
     fontWeight: '600px',
     textTransform: 'uppercase',

@@ -31,7 +31,7 @@ function App() {
   useEffect(() => {
     WebFont.load({
       google: {
-        families: ['Lato', 'Inter']
+        families: ['Lato']
       }
     })
   }, [])
@@ -86,18 +86,24 @@ function App() {
     )
   }
   return (
-    <>
-    <FetchUser>
-      <Switch>
-        {/* Currently Commented out so that navbar appears on the login and register pages */}
-        {/* <Route exact path='/login' component={Login}/>
-        <Route exact path='/register' component={Register}/> */}
-        
-        <Route component = {hasNavBar}/>
-      </Switch>
-    </FetchUser>
-    </>
+    <div style={styles.everything}>
+      <FetchUser>
+        <Switch>
+          {/* Currently Commented out so that navbar appears on the login and register pages */}
+          {/* <Route exact path='/login' component={Login}/>
+          <Route exact path='/register' component={Register}/> */}
+          
+          <Route component = {hasNavBar}/>
+        </Switch>
+      </FetchUser>
+    </div>
   )
+}
+
+const styles = {
+  everything: {
+    fontFamily: 'Lato'
+  }
 }
 
 export default App;

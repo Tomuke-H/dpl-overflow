@@ -5,7 +5,7 @@ export const DPLButton = styled.button`
  border-style: solid;
  border-color: #6E54A3;
  border-radius: 5px;
- font-family: 'Open Sans';
+ font-family: 'Lato';
  font-weight: 600px;
  font-size: 14px;
  letter-spacing: .7px;
@@ -29,7 +29,7 @@ export const DPLGetStarted = styled.button`
  border-style: solid;
  border-color: #6E54A3;
  border-radius: 5px;
- font-family: 'Open Sans';
+ font-family: 'Lato';
  font-weight: 600px;
  font-size: 14px;
  letter-spacing: .7px;
@@ -51,7 +51,7 @@ export const DPLGreyButton = styled.button`
  border-style: solid;
  border-color: #F5F5F5;
  border-radius: 5px;
- font-family: 'Open Sans';
+ font-family: 'Lato';
  font-weight: 400px;
  font-size: 18px;
  color:#000000;
@@ -71,7 +71,7 @@ export const DPLLightWeightButton = styled.button`
  border-style: solid;
  border-color: #6E54A3;
  border-radius: 5px;
- font-family:'Open Sans';
+ font-family:'Lato';
  font-weight: 400px;
  font-size: 18px;
  color: #FFFFFF;

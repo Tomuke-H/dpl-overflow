@@ -173,7 +173,6 @@ const styles = {
     textTransform: "uppercase",
     marginTop: "70px",
     fontSize: "30px",
-    fontFamily: "Open Sans, sans-serif",
     fontWeight: "600px",
     color: "#000000",
   },
@@ -181,7 +180,6 @@ const styles = {
     marginRight: "15px",
     marginTop: "30px",
     fontSize: "14px",
-    fontFamily: "Inter, sans-serif",
     fontWeight: "500px",
     display: "flex",
     alignItems: "left",
@@ -200,7 +198,6 @@ const styles = {
     color: "#000000",
     boxSizing: "borderBox",
     fontSize: "10px",
-    fontFamily: "Inter, sans-serif",
     fontWeight: "500px",
     display: "flex",
     alignItems: "center",
@@ -209,7 +206,6 @@ const styles = {
   addComment: {
     margin: "10px",
     fontSize: "14px",
-    fontFamily: "Inter, sans-serif",
     fontWeight: "500px",
     color: "#757575"
   },

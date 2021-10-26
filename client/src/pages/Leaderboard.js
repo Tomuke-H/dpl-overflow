@@ -1,11 +1,12 @@
 import axios from 'axios'
 import { useHistory } from 'react-router';
 import React, { useEffect, useState } from 'react'
-import { Button, ButtonGroup, Dropdown, Table } from 'react-bootstrap'
+import { Table } from 'react-bootstrap'
 import BoxLoader from '../components/BoxLoader'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import {cohorts} from '../components/Cohorts';
 import '../stylesheets/Leaderboard.css'
+import UserRow from '../components/UserComponents/UserRow';
 
 const Leaderboard = () => {
   const [users, setUsers] = useState([])
@@ -60,16 +61,17 @@ const Leaderboard = () => {
   const renderUsers = () => {
     return users.map((u, index)=> {
       return (
-        <tr style={styles.tbody} key={u.id} onClick={(e) => history.push(`/users/${u.id}/profile`)}>
-          <td><img style={styles.img} src={u.image} /></td>
-          <td>{(index + 1)}</td>
-          <td>{u.name}</td>
-          <td>{u.points}</td>
-          <td>{u.cohort}</td>
-          <td>Num 1</td>
-          <td>Num 2</td>
-          <td>Num 3</td>
-        </tr>
+        // <tr style={styles.tbody} key={u.id} onClick={(e) => history.push(`/users/${u.id}/profile`)}>
+        //   <td><img style={styles.img} src={u.image} /></td>
+        //   <td>{(index + 1)}</td>
+        //   <td>{u.name}</td>
+        //   <td>{u.points}</td>
+        //   <td>{u.cohort}</td>
+        //   <td>Num 1</td>
+        //   <td>Num 2</td>
+        //   <td>Num 3</td>
+        // </tr>
+        <UserRow id={u.id} index={index} history={history}/>
       )
     })
   }
@@ -117,9 +119,9 @@ const Leaderboard = () => {
               <th>Name</th>
               <th>Points</th>
               <th>Cohort</th>
-              <th>Stat 1</th>
-              <th>Stat 2</th>
-              <th>Stat 3</th>
+              <th>Votes</th>
+              <th>Answers</th>
+              <th>Questions</th>
             </tr>
           </thead>
           <tbody>

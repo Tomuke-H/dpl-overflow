@@ -4,6 +4,7 @@ class Question < ApplicationRecord
   has_many :answers, dependent: :destroy
   has_many :question_tags, dependent: :destroy
   has_many :tags, through: :question_tags
+  has_many :qvotes, dependent: :destroy
 
   def self.find_questions_by_tag(tag_ids)
     p tag_ids
@@ -68,5 +69,30 @@ class Question < ApplicationRecord
     .order('q.id')
     .group('q.id')
   end 
+
+  def self.get_users(id)
+    select('qv.user_id')
+    .from('questions AS q')
+    .joins('INNER JOIN qvotes AS qv ON qv.question_id = q.id')
+    .where('q.id = ?', id)
+  end
+
+  def self.get_upvotes(id)
+    select('count(qv.up)')
+    .from('questions AS q')
+    .joins('INNER JOIN qvotes AS qv ON q.id = qv.question_id')
+    .where('q.id = ?', id)
+    .group('qv.up')
+    .having('qv.up = true')
+  end
+
+  def self.get_downvotes(id)
+    select('count(qv.down)')
+    .from('questions AS q')
+    .joins('INNER JOIN qvotes AS qv ON q.id = qv.question_id')
+    .where('q.id = ?', id)
+    .group('qv.down')
+    .having('qv.down = true')
+  end
 
 end

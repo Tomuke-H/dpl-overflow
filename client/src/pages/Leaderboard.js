@@ -61,16 +61,6 @@ const Leaderboard = () => {
   const renderUsers = () => {
     return users.map((u, index)=> {
       return (
-        // <tr style={styles.tbody} key={u.id} onClick={(e) => history.push(`/users/${u.id}/profile`)}>
-        //   <td><img style={styles.img} src={u.image} /></td>
-        //   <td>{(index + 1)}</td>
-        //   <td>{u.name}</td>
-        //   <td>{u.points}</td>
-        //   <td>{u.cohort}</td>
-        //   <td>Num 1</td>
-        //   <td>Num 2</td>
-        //   <td>Num 3</td>
-        // </tr>
         <UserRow id={u.id} index={index} history={history}/>
       )
     })

@@ -1,14 +1,15 @@
 import React from "react";
-import DPOverflowPlaceholder from "../icons/DPOverflowPlaceholder.png";
 import { Container, Image } from "react-bootstrap";
 import { DPLButton } from "../components/DPLButtons";
 import { Link, NavLink } from "react-router-dom";
+import DPLLandingR from "../icons/DPLandingR.png"
+import DPLandingL from "../../src/icons/DPLandingL.png"
 
 const Home = () => {
   return (
     <div style={styles.row}>
       <div style={styles.column1}>
-        <Image src={DPOverflowPlaceholder} style={styles.leftpic} />
+        <Image src={DPLandingL} style={styles.leftpic} />
         <br />
         <Container style={styles.consize}>
           <p style={styles.textstyle}>Think Stack Overflow but solely for the DevPoint Labs
@@ -21,7 +22,7 @@ const Home = () => {
         </Container>
       </div>
       <div style={styles.column2}>
-        <h2>Dashboard Image Here</h2>
+        <Image src={DPLLandingR} style={styles.rightpic} />
       </div>
     </div>
   )
@@ -34,6 +35,12 @@ const styles = {
   leftpic: {
     display: "flex",
     width: "75%",
+    margin: "0px",
+  },
+
+  rightpic: {
+    display: "flex",
+    width: "100%",
   },
 
   row: {
@@ -51,6 +58,7 @@ const styles = {
 
   consize: {
     width: "75%",
+    margin: "0px",
   },
 
   textstyle: {

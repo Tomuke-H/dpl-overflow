@@ -5,7 +5,7 @@ import Activity from "../../pages/Activity";
 import { AuthContext } from "../../providers/AuthProvider";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { ProfilePill, StatsAndAbout, StatsBox } from "./ProfileStyles";
+import { AboutMe, ProfilePill, StatNum, StatsAndAbout, Box, StatTitle } from "./ProfileStyles";
 
 
 export default function OtherUserProfile(props) {
@@ -29,6 +29,11 @@ export default function OtherUserProfile(props) {
     }
   }
 
+  const showProfile = () => {
+    setShowActivity(false)
+    return console.log('profile')
+  }
+
   return (
     <div style={{display: 'flex', flexDirection: 'column'}}>
       <div style={{display: 'flex', flexDirection: 'row'}}>
@@ -44,27 +49,27 @@ export default function OtherUserProfile(props) {
           {showActivity && <Activity user = {user}/>}
         </ShowActivityStyle>
         <div style={{display: 'flex', flexDirection: 'row'}}>
-        <p style={styles.stats}>STATS</p>
-        <p style={styles.about}>ABOUT</p>
+        <Title style={{marginLeft: '60px'}}>STATS</Title>
+        <Title style={{marginLeft: '635px'}}>about</Title>
         </div>
         <StatsAndAbout>
-        <Card style={styles.statsCard}>
-          <StatsBox>
-            <Card.Body>{user.answer_likes + user.question_likes + user.comment_likes}</Card.Body>
-            <Card.Body>{user.answer_count}</Card.Body>
-            <Card.Body>{user.question_views? user.question_views : 0}</Card.Body>
-            <Card.Body>{user.question_count}</Card.Body>
-          </StatsBox>
-          <StatsBox>
-          <Card.Body>Votes</Card.Body>
-          <Card.Body>Answers</Card.Body>
-          <Card.Body>Views</Card.Body>
-          <Card.Body>Questions</Card.Body>
-          </StatsBox>
-          </Card>
-        <Card style={{width: '600px', height: '79px', flex: 1}}>
-          <Card.Body>{user.about_me}</Card.Body>
-        </Card>
+          <Box>
+            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around'}}>
+            <StatNum>{user.answer_likes + user.question_likes + user.comment_likes}</StatNum>
+            <StatNum>{user.answer_count}</StatNum>
+            <StatNum>{user.question_views? user.question_views : 0}</StatNum>
+            <StatNum>{user.question_count}</StatNum>
+            </div>
+            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around'}}>
+          <StatTitle>Votes</StatTitle>
+          <StatTitle>Answers</StatTitle>
+          <StatTitle>Views</StatTitle>
+          <StatTitle>Questions</StatTitle>
+          </div>
+          </Box>
+        <Box>
+          <AboutMe>{user.about_me}</AboutMe>
+        </Box>
         </StatsAndAbout>
     </div>
   )
@@ -84,9 +89,10 @@ const styles = {
     borderRadius: '4px',
     width: '59px',
     height: '59px',
-    margin:'78px',
+    margin:'47px',
     marginBottom: '51px',
-    marginRight: '20px'
+    marginRight: '20px',
+    marginLeft: '78px'
   },
   name: {
     width: '180px',
@@ -100,7 +106,8 @@ const styles = {
     textAlign: 'center',
     textTransform: 'uppercase',
     margin: '20px',
-    marginTop: '85px',
+    marginLeft: '18px',
+    marginTop: '58px',
     color: '#000000',
     left: '157px',
     top: '126px',
@@ -108,44 +115,24 @@ const styles = {
   optionsContainer: {
     display: "flex",
     flexDirection: "row",
-    marginLeft: '74px',
+    marginLeft: '69px',
     marginBottom: '51px'
   },
-  stats: {
-    flex: 1,
-    width: '87px',
-    height: '41px',
-    left: '78px',
-    top: '293px',
-    marginLeft: '78px',
-
-    fontStyle: 'normal',
-    fontWeight: '600px',
-    fontSize: '30px',
-    lineHeight: '41px',
-    display: 'flex',
-    textAlign: 'center',
-    textTransform: 'uppercase',
-
-    color: '#000000',
-
-  },
-  about: {
-    width: '103px',
-    flex: 1,
-    height: '41px',
-
-    fontStyle: 'normal',
-    fontWeight: '600px',
-    fontSize: '30px',
-    lineHeight: '41px',
-    display: 'flex',
-    alignItems: 'center',
-    textTransform: 'uppercase',
-
-    color: '#000000',
-  }
+ 
 }
+
+export const Title = styled.div`
+  width: 85px;
+  height: 36px;
+  font-weight: 600px;
+  font-size: 30px;
+  line-height: 36px;
+  display: flex;
+  text-align: center;
+  text-transform: uppercase;
+  color: #000000;
+  margin-bottom: 18px;
+`
 
 
 

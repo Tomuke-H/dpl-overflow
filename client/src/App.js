@@ -104,10 +104,6 @@ const styles = {
   everything: {
     fontFamily: 'Lato',
     backgroundColor: '#FFFCF9',
-    // backgroundImage: `url(${Background})`,
-    // backgroundRepeat: 'no-repeat',
-    // backgroundAttachment: 'fixed',
-    // backgroundBlendMode: 'normal'
   }
 }
 

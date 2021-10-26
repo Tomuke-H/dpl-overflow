@@ -55,7 +55,7 @@ function App() {
 
   const hasNavBar = () =>{
     return(
-      <div style = {{backgroundColor:"#9E9E9E"}}>
+      <div>
         <OurNavbar /> 
         <div style={{height: '80px'}}></div>
         <Switch>
@@ -104,10 +104,6 @@ const styles = {
   everything: {
     fontFamily: 'Lato',
     backgroundColor: '#FFFCF9',
-    // backgroundImage: `url(${Background})`,
-    // backgroundRepeat: 'no-repeat',
-    // backgroundAttachment: 'fixed',
-    // backgroundBlendMode: 'normal'
   }
 }
 

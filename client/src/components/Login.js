@@ -21,7 +21,7 @@ const Login = (props) => {
     }
 
     return (
-        <Container style={styles.outercontainer}>
+        <Container>
             <Container style={styles.container}>
                 <h1 style={styles.login}>Login</h1>
                 <br />
@@ -54,22 +54,12 @@ const Login = (props) => {
 };
 
 const styles = {
-    outercontainer: {
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "85vh",
-        width: "200vh",
-        backgroundColor: "#5F9EA0",
-    },
-
     container: {
         display: "flex",
         flexFlow: "column wrap",
         placeContent: "stretch center",
-        height: "550px",
-        width: "85%",
+        height: "70vh",
+        width: "80vw",
         justifyContent: "center",
         flexDirection: "column",
         alignItems: "center",
@@ -77,6 +67,7 @@ const styles = {
         backgroundColor: "#FFFFFF",
         border: "1px solid rgba(0, 0, 0, 0.3)",
         borderRadius: "6px",
+        marginTop: "50px",
     },
 
     buttonGroup: {

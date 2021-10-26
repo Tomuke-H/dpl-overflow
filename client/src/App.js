@@ -55,7 +55,7 @@ function App() {
 
   const hasNavBar = () =>{
     return(
-      <div style = {{backgroundColor:"#9E9E9E"}}>
+      <div>
         <OurNavbar /> 
         <div style={{height: '80px'}}></div>
         <Switch>

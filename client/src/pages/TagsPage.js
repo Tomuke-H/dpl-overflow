@@ -60,7 +60,7 @@ const TagsPage = () => {
     return(
       <div style={{display:"flex", justifyContent:"space-between",alignItems:"self-end"}}>
         <div>
-          <Form style={{alignContent:"right"}} onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit}>
             <Form.Control placeholder="Search"
             value = {tagSearch}
             onChange={(e) => {

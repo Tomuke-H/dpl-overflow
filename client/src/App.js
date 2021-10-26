@@ -55,7 +55,7 @@ function App() {
 
   const hasNavBar = () =>{
     return(
-      <>
+      <div style = {{backgroundColor:"#9E9E9E"}}>
         <OurNavbar /> 
         <div style={{height: '80px'}}></div>
         <Switch>
@@ -82,7 +82,7 @@ function App() {
             <Route component={()=><p>react 404 path not found</p>} />
         </Switch>
         <Footer />
-    </>
+    </div>
     )
   }
   return (

@@ -1,4 +1,97 @@
-.dropbtn-leaderboard {
-  background-color: '#6E54A3';
-  color: white;
+:root{
+  --active-color: #9e9e9e;
+  --radius: 6px;
+  --not-active-color:#fff;
+}
+
+ul {
+  padding:0 !important;
+  margin: 0 !important;
+  font-size: 12px;
+}
+
+.button {
+  display: inline-block;
+  border-style: solid;
+  border-color: #000000;
+  font-weight:500 !important;
+  font-size: 12px;
+  letter-spacing: .7px;
+  color:#000000;
+  background-color:var(--not-active-color);
+  text-align:center;
+  text-transform: capitalize;
+  width: 110px;
+  height: 32px;
+  border-top-left-radius: var(--radius);
+  border-bottom-left-radius: var(--radius);
+}
+
+
+.button:hover, .button:focus{
+  background-color: var(--active-color);
+}
+
+.dropbtn {
+  display: inline-block;
+  border-style: solid;
+  border-color: #000000;
+  font-weight:500;
+  font-size: 12px;
+  letter-spacing: .7px;
+  color:#000000;
+  background-color:var(--not-active-color);
+  text-align:center;
+  line-height: 25px;
+  text-transform: capitalize;
+  width: 110px;
+  height: 32px;
+  border-top-right-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
+}
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: var(--active-color);
+  border-bottom-right-radius: 0;
+
+}
+
+.dropfocus{
+  display: inline-block;
+  border-style: solid;
+  border-color: #000000;
+  font-weight:500;
+  font-size: 12px;
+  line-height: 25px;
+  letter-spacing: .7px;
+  color:#000000;
+  text-align:center;
+  text-transform: capitalize;
+  width: 110px;
+  height: 32px;
+  border-top-right-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
+  background-color: var(--active-color);
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  text-align: center;
+  background-color: #f9f9f9;
+  min-width: 110px;
+}
+
+.dropdown-content ul {
+  color: black;
+}
+
+.dropdown ul:hover {background-color: #757575;}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }

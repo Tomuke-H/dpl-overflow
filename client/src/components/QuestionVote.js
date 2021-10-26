@@ -9,15 +9,15 @@ const QuestionVote = ({question}) => {
   const[vote, setVote] = useState()
   const[upVoted, setUpVoted] = useState(false)
   const[downVoted, setDownVoted] = useState(false)
-  const[upVoteCount, setUpVoteCount] = useState(0)
-  const[downVoteCount, setDownVoteCount] = useState(0)
+  // const[upVoteCount, setUpVoteCount] = useState(0)
+  // const[downVoteCount, setDownVoteCount] = useState(0)
   const[totalVotes, setTotalVotes] = useState(0)
 
   useEffect(() => {
     getUserVotes();
-    getUpVoteCount();
-    getDownVoteCount();
-    // getTotalVotes();
+    // getUpVoteCount();
+    // getDownVoteCount();
+    getVoteTotal();
   }, [])
 
   const getUserVotes = async() => {
@@ -55,27 +55,59 @@ const QuestionVote = ({question}) => {
     }
   }
 
-    const getUpVoteCount = async() => {
-      try {
-        let res = await axios.get(`/api/questions/${question.id}/upvotes`)
-        // console.log("question upvotes", res.data[0].count)
-        setUpVoteCount(res.data[0].count)
-      } catch(err) {
-        console.log("getUpVotes question error", err)
-        setUpVoteCount(0)
-      }
+    // const getUpVoteCount = async() => {
+    //   try {
+    //     let res = await axios.get(`/api/questions/${question.id}/upvotes`)
+    //     // console.log("question upvotes", res.data[0].count)
+    //     setUpVoteCount(res.data[0].count)
+    //   } catch(err) {
+    //     console.log("getUpVotes question error", err)
+    //     setUpVoteCount(0)
+    //   }
+    // }
+
+    // const getDownVoteCount = async() => {
+    //   try {
+    //     let res = await axios.get(`/api/questions/${question.id}/downvotes`)
+    //     // console.log("question downvotes", res.data[0].count)
+    //     setDownVoteCount(res.data[0].count)
+    //   } catch(err) {
+    //     console.log("getDownVotes answer error", err)
+    //     setDownVoteCount(0)
+    //   }
+    // }
+    
+    const difference = (a, b) => {
+      return a - b
     }
 
-    const getDownVoteCount = async() => {
-      try {
-        let res = await axios.get(`/api/questions/${question.id}/downvotes`)
-        // console.log("question downvotes", res.data[0].count)
-        setDownVoteCount(res.data[0].count)
-      } catch(err) {
-        console.log("getDownVotes answer error", err)
-        setDownVoteCount(0)
-      }
-    }
+    const getVoteTotal = () => {
+      let requestUp = axios.get(`/api/questions/${question.id}/upvotes`)
+      let requestDown = axios.get(`/api/questions/${question.id}/downvotes`)
+      axios.all([requestUp, requestDown]).then(axios.spread((...responses) => {
+      let resUp = responses[0]
+      let resDown = responses[1]
+        if (resUp.data.length > 0 && resDown.data.length > 0) {
+          let a = resUp.data[0].count
+          let b = resDown.data[0].count
+          setTotalVotes(difference(a,b))
+          // console.log("total", difference(a,b)) 
+        }
+        else if (resUp.data.length > 0) {
+          setTotalVotes(resUp.data[0].count)
+          // console.log("total resup", resUp.data[0].count)
+        }
+        else if (resDown.data.length > 0) {
+          setTotalVotes(0 - resDown.data[0].count)
+          // console.log("total resdown", resDown.data[0].count)
+        }
+        else {setTotalVotes(0)}
+        saveLikes()
+})).catch(errors => {
+  // react on errors.
+  console.log(errors)
+})
+}
 
   const checkUpVote = () => {
     if (upVoted === true && downVoted === false) {
@@ -115,6 +147,7 @@ const QuestionVote = ({question}) => {
       // console.log(res)
       setUpVoted(false)
       setDownVoted(false)
+      getVoteTotal()
     } catch (err) {
       console.log("deleteVote error", err)
     }
@@ -128,6 +161,7 @@ const QuestionVote = ({question}) => {
       })
       // console.log(res)
       checkUpDown()
+      getVoteTotal()
     } catch (err) {
       console.log("updateVote error", err)
     }
@@ -141,6 +175,7 @@ const QuestionVote = ({question}) => {
       })
       // console.log(res)
       checkUpDown()
+      getVoteTotal()
     } catch (err) {
       console.log("updateVote error", err)
     }
@@ -157,6 +192,7 @@ const QuestionVote = ({question}) => {
       })
       // console.log("upVote", res)
       checkUpDown()
+      getVoteTotal()
     } catch(err) {
       console.log(err)
     }
@@ -173,35 +209,22 @@ const QuestionVote = ({question}) => {
       })
       // console.log("downVote", res)
       checkUpDown()
-      // setDownVoted(true)
+      getVoteTotal()
     } catch(err) {
       console.log(err)
     }
   }
 
-
-
-//   const saveUpVote = async () => {
-//     try{
-//       await axios.put(`/api/questions/${question.id}`, {
-//       likes: likes + 1
-//     })
-//     // console.log(res)
-//   } catch (err) {
-//       console.log("upvote error", err)
-//     }
-//   }
-
-//   const saveDownVote = async () => {
-//     try{
-//     await axios.put(`/api/questions/${question.id}`, {
-//       likes: likes - 1
-//     })
-//     // console.log(res)
-//   } catch (err) {
-//       console.log("downvote error", err)
-//     }
-//   }
+  const saveLikes = async () => {
+    try{
+      let res = await axios.put(`/api/questions/${question.id}`, {
+      likes: totalVotes
+    })
+    console.log(res)
+  } catch (err) {
+      console.log("save likes", err)
+    }
+  }
   
 //   const upVote = () =>{
 //     dispatch("add");
@@ -221,7 +244,7 @@ const QuestionVote = ({question}) => {
 //       return state - 1;
 //   }
 // }, question.likes);
-  
+
   return (
     <div style={styles.voteBox}>
       <AiFillCaretUp
@@ -230,7 +253,7 @@ const QuestionVote = ({question}) => {
         onClick={() => {
           checkUpVote()}
         }/>
-      {/* <p style={styles.likesNumber}>{likes}</p> */}
+      <p style={styles.likesNumber}>{totalVotes}</p>
       <AiFillCaretDown
       size="40px"
       color={downVoted ? "#6E54A3":"#757575"}

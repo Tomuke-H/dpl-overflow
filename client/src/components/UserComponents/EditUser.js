@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router';
-import {  Container, Form } from 'react-bootstrap';
+import {  Container, Form, Dropdown } from 'react-bootstrap';
 import { Image } from "cloudinary-react";
 import axios from 'axios';
 import { AuthContext } from '../../providers/AuthProvider';
@@ -11,6 +11,8 @@ const EditUser = (id) => {
     const {user, setUser} = useContext(AuthContext)
     const [name, setName] = useState(user.name)
     const [email, setEmail] = useState(user.email)
+    const [season, setSeason] = useState("")
+    const [year, setYear] = useState("")
     const [cohort, setCohort] = useState(user.cohort)
     const [about_me, setAbout_me] = useState(user.about_me)
     const [password, setPassword] = useState('')
@@ -81,24 +83,65 @@ const EditUser = (id) => {
 
     }
 
-    // let seasonDrop = () => {
-    //     return (
-    //         <Dropdown>
-    //           <Dropdown.Toggle style={styles.button}>Season</Dropdown.Toggle>
-    //           <Dropdown.Menu>
-    //             <Dropdown.Item onClick={(e) => setSeason(Spring)}>Spring</Dropdown.Item>
-    //             <Dropdown.Item onClick={(e) => setSeason(Summer)}>Summer</Dropdown.Item>
-    //             <Dropdown.Item onClick={(e) => setSeason(Fall)}>Fall</Dropdown.Item>
-    //             <Dropdown.Item onClick={(e) => setSeason(Winter)}>Winter</Dropdown.Item>
-    //           </Dropdown.Menu>
-    //         </Dropdown>
-    //   )}
 
+      const years = [...Array(new Date().getFullYear() - 2012).keys()].map((e)=>e+2013)
+
+      const renderYears = () => { 
+          return(years.map((year)=> {
+              return(
+            <Dropdown.Item onClick={(e) => setYear(year)}>{year}</Dropdown.Item>
+      )}))}
+
+
+    const seasonDrop = () => {
+        return (
+            <Dropdown>
+              <Dropdown.Toggle style={styles.button}>Season</Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item onClick={(e) => setSeason("Spring")}>Spring</Dropdown.Item>
+                <Dropdown.Item onClick={(e) => setSeason("Summer")}>Summer</Dropdown.Item>
+                <Dropdown.Item onClick={(e) => setSeason("Fall")}>Fall</Dropdown.Item>
+                <Dropdown.Item onClick={(e) => setSeason("Winter")}>Winter</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+      )}
+            
+      const yearDrop = () => {
+        return (
+            <Dropdown>
+              <Dropdown.Toggle style={styles.button}>Year</Dropdown.Toggle>
+              <Dropdown.Menu>
+                {renderYears()}
+              </Dropdown.Menu>
+            </Dropdown>
+      )}
+
+    // const dropDownItems = () => (
+    //     <div>
+    //     <Dropdown.Item onClick={(e) => getAllUsers()}>View All</Dropdown.Item>
+    //     <Dropdown.Item onClick={(e) => getCohortUsers('Fall 2021')}>Fall 2021</Dropdown.Item>
+    //     <Dropdown.Item onClick={(e) => getCohortUsers('Winter 2021')}>Winter 2021</Dropdown.Item>
+    //     <Dropdown.Item onClick={(e) => getCohortUsers('Spring 2022')}>Spring 2022</Dropdown.Item>
+    //     </div>
+    //   )
+    
+    //   let dropDown = () => {
+    //     return (
+    //       <div class="dropdown">
+    //          <DPLDropDownButton 
+    //          class="dropbtn" 
+    //          title="View by Cohort"
+    //          onClick={()=>setShowDropDown(!showDropDown)}>
+    //            Search by Cohort
+    //         </DPLDropDownButton>
+    //          {showDropDown && dropDownItems()}
+    //     </div>
+    //   )}
 
     return (
         <div>
             <Container style={styles.container}>
-            <h1 style={styles.form}>Edit Profile</h1>
+            <h1 style={styles.header}>Edit Profile</h1>
             <br />
             <div>
             <h2 style={styles.label}>Update Profile Picture</h2>
@@ -117,7 +160,7 @@ const EditUser = (id) => {
             />
             </div>
             <br />
-            <br />
+            <div style={styles.formdiv}>
             <Form onSubmit={handleSubmit}>
                 <h2 style={styles.label}>Update Username</h2>
                     <input style={styles.rectangle}
@@ -134,14 +177,17 @@ const EditUser = (id) => {
                     />
                 <br />
                 <h2 style={styles.label}>Update Cohort</h2>
-                <input style={styles.rectangle}
+                {/* <input style={styles.rectangle}
                     value={cohort}
                     label="Cohort"
                     onChange={(e) => setCohort(e.target.value)}
-                    />
+                    /> */}
+                    {seasonDrop()}
+                    {yearDrop()}
                 <br />
                 <h2 style={styles.label}>Update About Me</h2>
-                <input style={styles.bigRectangle}
+                <textarea style={styles.bigRectangle}
+                    type="text"
                     value={about_me}
                     label="About Me"
                     onChange={(e) => setAbout_me(e.target.value)}
@@ -149,10 +195,9 @@ const EditUser = (id) => {
                 <br />
                 <DPLButton style={{margin: "10px"}} type="submit">Update Profile</DPLButton>
             </Form>
+            </div>
                 <br />
-                <br />
-                <br />
-                <br />
+            <div style={styles.formdiv}>
             <Form onSubmit={handlePasswordUpdate}>
             <h3 style={styles.label}>New Password</h3>
             <input style={styles.rectangle}
@@ -169,12 +214,11 @@ const EditUser = (id) => {
                 <br />
                 <DPLButton type="submit" style={{width: "160px", height: "50px", margin: "10px"}}>Update Password</DPLButton>
             </Form>
+            </div>
             <br />
-            <br />
-            <br />
-            <br />
-            <br />
+            <div style={styles.formdiv}>
             <DPLButton onClick={() => deleteAccount(id)} style={{width: "160px", height: "50px", margin: "10px"}}>Delete Account</DPLButton>
+            </div>
             </Container>
         </div>
     );
@@ -182,13 +226,18 @@ const EditUser = (id) => {
 
 const styles = {
     container: {
+        marginTop: "26px",
+        marginBottom: "126px",
         display: "flex",
         width: "1500px",
         flexFlow: "column",
         justifyContent: "center",
         flexDirection: "column",
     },
-    form: {
+    formdiv: {
+        marginTop: "26px"
+    },
+    header: {
         fontStyle: "normal",
         fontWeight: "normal",
         fontSize: "40.8px",
@@ -218,6 +267,22 @@ const styles = {
         wordBreak: "breakAll",
         height: "80px",
     },
+    button: {
+        display: "inline-block",
+        borderStyle: "solid",
+        borderColor: "#6E54A3",
+        borderRadius: "5px",
+        fontWeight:"600px",
+        fontSize: "14px",
+        letterSpacing: ".7px",
+        color:"#FFFFFF",
+        backgroundColor:"#6E54A3",
+        textAlign:"center",
+        textTransform: "uppercase",
+        width: "165px",
+        height: "40px",
+        marginTop: "8px",
+      },
 }
 
 export default EditUser;

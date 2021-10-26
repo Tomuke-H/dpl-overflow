@@ -29,10 +29,11 @@ const Footer = () => {
             <Image src={YouTubeIcon} style={styles.ytlogo} />
           </Nav.Link>
         </Nav.Item>
-      </Navbar>
-      <div>
+        <Nav.Item>
         <p>DevPoint Labs LLC 2021. All rights reserved.</p>
-      </div>
+        </Nav.Item>
+      </Navbar>
+
     </div>
   )
 }

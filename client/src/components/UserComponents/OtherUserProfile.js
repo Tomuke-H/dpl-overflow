@@ -24,8 +24,22 @@ export default function OtherUserProfile(props) {
     try {
     let res = await axios.get (`/api/users_profile/${id}`)
     setUser(res.data.user[0])
+    userPoints(res.data.user[0])
     } catch (err) {
       console.log("get user error", err)
+    }
+  }
+
+  const userPoints = async(user) => {
+    let points = user.answer_count + user.question_count + 2*(user.answer_likes + user.question_likes);
+    console.log("points", points)
+    try {
+      let res = await axios.put(`/api/user_points/${id}`, {
+        points: points
+      })
+      console.log("What why isn't this working", res)
+    } catch(err) {
+      console.log("point problem", err)
     }
   }
 

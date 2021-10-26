@@ -66,6 +66,7 @@ const Leaderboard = () => {
           <td>{u.name}</td>
           <td>{u.points}</td>
           <td>{u.cohort}</td>
+          {/* I think we should use the userprofile stuff with the total votes, question count, and answer count of the nums below. */}
           <td>Num 1</td>
           <td>Num 2</td>
           <td>Num 3</td>

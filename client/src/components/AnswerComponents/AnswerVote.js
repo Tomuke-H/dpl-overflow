@@ -217,7 +217,7 @@ const checkUpVote = () => {
 
   const saveLikes = async () => {
     try{
-      let res = await axios.put(`/api/answers/${answer.id}`, {
+      let res = await axios.put(`/api/questions/${answer.question_id}/answers/${answer.id}`, {
       likes: totalVotes
     })
     console.log(res)

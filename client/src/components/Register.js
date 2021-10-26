@@ -122,9 +122,6 @@ const styles = {
     },
 
     register: {
-        // width: "104px",
-        // height: "56px",
-
         fontStyle: "normal",
         fontWeight: "normal",
         fontSize: "40.8px",

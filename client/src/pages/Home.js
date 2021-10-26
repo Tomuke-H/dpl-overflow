@@ -47,11 +47,11 @@ const styles = {
     flexDirection: "column",
     float: "left",
     width: "50%",
-    backgroundColor: "#5F9EA0",
   },
 
   consize: {
     width: "75%",
+    marginBottom: "100px",
   },
 
   textstyle: {
@@ -68,7 +68,6 @@ const styles = {
     justifyContent: "center",
     float: "right",
     width: "50%",
-    height: "645px",
-    backgroundColor: "#FFFCF9",
+    height: "100vh",
   },
 }

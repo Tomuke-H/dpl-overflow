@@ -12,7 +12,6 @@ const UserRow = ({id, index, history}) => {
 const getUserInfo = async(user) => {
   try {
   let res = await axios.get (`/api/users_profile/${id}`);
-  console.log(res)
   setU(res.data.user[0])
   userPoints(res.data.user[0])
   } catch (err) {
@@ -22,7 +21,6 @@ const getUserInfo = async(user) => {
 
 const userPoints = async(user) => {
   let points = user.answer_count + user.question_count + 2*(user.answer_likes + user.question_likes);
-  console.log("points", points)
   try {
     let res = await axios.put(`/api/user_points/${user.id}`, {
       points: points
@@ -34,7 +32,7 @@ const userPoints = async(user) => {
 }
 
 return (
-  <tr key={u.id} onClick={(e) => history.push(`/users/${u.id}/profile`)}>
+  <tr style={styles.tbody} key={u.id} onClick={(e) => history.push(`/users/${u.id}/profile`)}>
     <td><img style={styles.img} src={u.image} /></td>
     <td>{(index + 1)}</td>
     <td>{u.name}</td>
@@ -51,6 +49,9 @@ const styles = {
   img: {
     height: '50px',
     width: '50px'
+  },
+  tbody: {
+    borderStyle:"hidden"
   },
 }
 

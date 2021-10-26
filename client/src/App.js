@@ -57,7 +57,7 @@ function App() {
     return(
       <>
         <OurNavbar /> 
-        <div style={{height: '92px'}}></div>
+        <div style={{height: '80px'}}></div>
         <Switch>
             <Route exact path='/' component={Home}/>
             <Route exact path='/test_page' component={TestPage}/>
@@ -104,8 +104,7 @@ const styles = {
   everything: {
     fontFamily: 'Lato',
     backgroundColor: "#5F9EA0",
-    height: "100vh",
-  }
+  },
 }
 
 export default App;

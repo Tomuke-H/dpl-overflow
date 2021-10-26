@@ -51,7 +51,6 @@ const styles = {
 
   consize: {
     width: "75%",
-    marginBottom: "100px",
   },
 
   textstyle: {
@@ -68,6 +67,6 @@ const styles = {
     justifyContent: "center",
     float: "right",
     width: "50%",
-    height: "100vh",
+    height: "85vh",
   },
 }

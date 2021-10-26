@@ -82,16 +82,10 @@ const Leaderboard = () => {
           <button className='button' onClick={(e) => getUsers('all', null, 1)}>All-Time</button>
           <div className="dropdown">
           <div className={cohort? 'dropfocus':'dropbtn'}>{cohort ? `${cohort}`:'Cohort'}</div>
-          <div className="dropdown-content">
-            {renderDropdownItems()}
+            <div className="dropdown-content">
+              {renderDropdownItems()}
+            </div>
           </div>
-        </div>
-          {/* <Dropdown >
-            <Dropdown.Toggle style={styles.button}>Cohort</Dropdown.Toggle>
-            <Dropdown.Menu>
-            {renderDropdownItems()}
-            </Dropdown.Menu>
-          </Dropdown> */}
         </div>
       </div>
       <InfiniteScroll

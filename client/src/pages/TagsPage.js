@@ -1,7 +1,8 @@
 import axios from "axios"
 import React, { useEffect, useState } from "react"
-import { Alert, Button, ButtonGroup, Card, Form } from "react-bootstrap"
+import { Alert, Button, Form } from "react-bootstrap"
 import { useHistory } from "react-router"
+import { TagPagePill } from "../components/TagComponents/TagPill"
 
 const TagsPage = () => {
   const [tags, setTags] = useState([])
@@ -24,10 +25,10 @@ const TagsPage = () => {
   const renderTags = () => {
     return tags.map((t,ind)=>{
       return(
-        <Card style={styles.gridChild} key={ind} onClick={()=> history.push('/dashboard', t)}>
-          <Card.Title style={{border:"1px solid black", padding: "5px",margin:"10px"}}>{t.name}</Card.Title>
-          <Card.Body>Tag description</Card.Body>
-        </Card> 
+        <div style={styles.gridChild} key={ind} onClick={()=> history.push('/dashboard', t)}>
+          <TagPagePill>{t.name}</TagPagePill>
+          <p style={styles.descript}>Tag description</p>
+        </div> 
       )
     })
   }
@@ -41,7 +42,6 @@ const TagsPage = () => {
     e.preventDefault()
     try {
       let res = await axios.get(`/api/tag/${tagSearch}`)
-      // console.log(res)
       if(res.data.length > 0){
         setTags(res.data)
       }else{
@@ -56,34 +56,28 @@ const TagsPage = () => {
     getTags()
   }
 
-  const renderBelowHeader = () => {
+  const renderSearch = () => {
     return(
-      <div style={{display:"flex", justifyContent:"space-between"}}>
+      <div style={{display:"flex", justifyContent:"space-between",alignItems:"self-end"}}>
         <div>
-          <Form onSubmit={handleSubmit}>
+          <Form style={{alignContent:"right"}} onSubmit={handleSubmit}>
             <Form.Control placeholder="Search"
             value = {tagSearch}
             onChange={(e) => {
             setTagSearch(e.target.value)}}/>
             <Button onClick={()=>{reset()}}>Reset Search</Button>
           </Form>
-        <h3>Available tags</h3>
-        </div>
-        <div>
-          <ButtonGroup>
-            <Button>Sort</Button>
-            <Button>Sort</Button>
-            <Button>Sort</Button>
-          </ButtonGroup>
         </div>
       </div>
     )
   }
 
   return(
-    <div style={{margin:"10px", padding:"10px"}}>
+    <div style={{margin:"60px 90px 0px 90px", padding:"10px"}}>
+      <div style={{display:"flex", justifyContent:"space-between", alignItems:"flex-start"}}>
       <h1 style={styles.header}>Tags</h1>
-      {renderBelowHeader()}
+      {renderSearch()}
+      </div>
       <div style={styles.grid}>
       {renderTags()}
       </div>
@@ -96,21 +90,31 @@ const styles ={
   grid:{
     display:"flex",
     flexWrap:"wrap",
-    margin: "20px"
+    margin: "80px 0px 0px 0px",
+    border: "2px solid black",
+    borderRadius:"5px",
+    backgroundColor:"#ffffff",
+    padding: "20px 40px 20px 40px",
   },
 
   gridChild:{
     margin: "5px",
+    border:"2px solid #6E54A3",
     flexBasis: `calc(100% / 4 - 10px)`,
+    textTransform: "capitalize",
+    borderRadius: "5px",
   },
 
   header: {
-    fontStyle: "normal",
     fontWeight: "500px",
     display: "flex",
     alignItems: "center",
     textAlign: "center",
-
+    color: "#000000",
+  },
+  
+  descript: {
+    margin: "10px",
     color: "#000000",
   },
 

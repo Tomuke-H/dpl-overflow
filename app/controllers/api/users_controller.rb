@@ -18,6 +18,15 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def point_update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      render json: @user
+    else
+      render json: {errors: @user.errors.full_messages}, status: 422
+    end
+  end
+
   def follow
     if current_user.update(user_follow)
       render json: current_user
@@ -118,7 +127,7 @@ class Api::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :cohort, :about_me, :image,)
+    params.require(:user).permit(:name, :email, :cohort, :about_me, :image, :points)
   end 
 
   def user_follow

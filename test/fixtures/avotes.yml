@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  answer: one
+  up: false
+  down: false
+  vote_code: MyString
+
+two:
+  user: two
+  answer: two
+  up: false
+  down: false
+  vote_code: MyString

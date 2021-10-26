@@ -5,7 +5,7 @@ import Activity from "../../pages/Activity";
 import { AuthContext } from "../../providers/AuthProvider";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { AboutBox, AboutMe, AnswerTitle, ProfilePill, QuestionTitle, StatsAndAbout, StatsBox, ViewTitle, VotesStat, VoteTitle } from "./ProfileStyles";
+import { AboutMe, ProfilePill, StatNum, StatsAndAbout, Box, StatTitle } from "./ProfileStyles";
 
 
 export default function OtherUserProfile(props) {
@@ -49,21 +49,27 @@ export default function OtherUserProfile(props) {
           {showActivity && <Activity user = {user}/>}
         </ShowActivityStyle>
         <div style={{display: 'flex', flexDirection: 'row'}}>
-        <p style={styles.stats}>STATS</p>
-        <p style={styles.about}>about</p>
+        <Title style={{marginLeft: '60px'}}>STATS</Title>
+        <Title style={{marginLeft: '635px'}}>about</Title>
         </div>
         <StatsAndAbout>
-          <StatsBox />
-            <VotesStat>{user.answer_likes + user.question_likes + user.comment_likes}</VotesStat>
-            <p>{user.answer_count}</p>
-            <p>{user.question_views? user.question_views : 0}</p>
-            <p>{user.question_count}</p>
-          <VoteTitle>Votes</VoteTitle>
-          <AnswerTitle>Answers</AnswerTitle>
-          <ViewTitle>Views</ViewTitle>
-          <QuestionTitle>Questions</QuestionTitle>
-        <AboutBox />
+          <Box>
+            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around'}}>
+            <StatNum>{user.answer_likes + user.question_likes + user.comment_likes}</StatNum>
+            <StatNum>{user.answer_count}</StatNum>
+            <StatNum>{user.question_views? user.question_views : 0}</StatNum>
+            <StatNum>{user.question_count}</StatNum>
+            </div>
+            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around'}}>
+          <StatTitle>Votes</StatTitle>
+          <StatTitle>Answers</StatTitle>
+          <StatTitle>Views</StatTitle>
+          <StatTitle>Questions</StatTitle>
+          </div>
+          </Box>
+        <Box>
           <AboutMe>{user.about_me}</AboutMe>
+        </Box>
         </StatsAndAbout>
     </div>
   )
@@ -112,37 +118,21 @@ const styles = {
     marginLeft: '69px',
     marginBottom: '51px'
   },
-  stats: {
-    position: 'absolute',
-    width: '85px',
-    height: '36px',
-    left: '79px',
-    top: '295px',
-    fontWeight: '600',
-    fontSize: '30px',
-    lineHeight: '36px',
-    display: 'flex',
-    textAlign: 'center',
-    textTransform: 'uppercase',
-    color: '#000000',
-
-  },
-  about: {
-    position: 'absolute',
-    width: '36px',
-    height: '22px',
-    left: '711px',
-    top: '302px',
-    // font-style: 'normal',
-    fontWeight: '500',
-    fontSize: '14px',
-    lineHeight: '22px',
-    display: 'flex',
-    alignItems: 'center',
-    
-    color: '#000000'
-  },
+ 
 }
+
+export const Title = styled.div`
+  width: 85px;
+  height: 36px;
+  font-weight: 600px;
+  font-size: 30px;
+  line-height: 36px;
+  display: flex;
+  text-align: center;
+  text-transform: uppercase;
+  color: #000000;
+  margin-bottom: 18px;
+`
 
 
 

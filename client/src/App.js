@@ -103,8 +103,12 @@ function App() {
 const styles = {
   everything: {
     fontFamily: 'Lato',
-    backgroundColor: "#FFFCF9",
-  },
+    backgroundColor: '#FFFCF9',
+    // backgroundImage: `url(${Background})`,
+    // backgroundRepeat: 'no-repeat',
+    // backgroundAttachment: 'fixed',
+    // backgroundBlendMode: 'normal'
+  }
 }
 
 export default App;

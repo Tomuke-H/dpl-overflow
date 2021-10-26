@@ -4,6 +4,7 @@
   justify-Content: space-between;
   border: solid 2px black;
   border-radius: 6px;
+  background-color: white;
 }
 
 .qcard:hover {

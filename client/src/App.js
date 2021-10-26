@@ -24,6 +24,7 @@ import OtherUserProfile from './components/UserComponents/OtherUserProfile';
 import AboutUs from './pages/AboutUs';
 import WebFont from 'webfontloader';
 import { useEffect } from 'react';
+import Background from './icons/DevPointOverflow_LogoOnly_3x.png'
 
 function App() {
   const { users } = useGetUser()
@@ -56,7 +57,7 @@ function App() {
     return(
       <>
         <OurNavbar /> 
-        <div style={{height: '92px'}}></div>
+        <div style={{height: '80px'}}></div>
         <Switch>
             <Route exact path='/' component={Home}/>
             <Route exact path='/test_page' component={TestPage}/>
@@ -80,7 +81,6 @@ function App() {
             {renderProfiles()}
             <Route component={()=><p>react 404 path not found</p>} />
         </Switch>
-        <div style={{height: '92px'}}></div>
         <Footer />
     </>
     )
@@ -103,6 +103,11 @@ function App() {
 const styles = {
   everything: {
     fontFamily: 'Lato',
+    backgroundColor: '#FFFCF9',
+    // backgroundImage: `url(${Background})`,
+    // backgroundRepeat: 'no-repeat',
+    // backgroundAttachment: 'fixed',
+    // backgroundBlendMode: 'normal'
   }
 }
 

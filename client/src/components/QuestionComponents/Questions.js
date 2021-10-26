@@ -176,13 +176,14 @@ const styles = {
   titleWrapper: {
     display: 'flex',
     justifyContent: 'space-between',
-    margin: '40px 0px 6px 0px'
+    margin: '60px 0px 6px 0px',
   },
   title: {
-    fontWeight: '600px'
+    fontWeight: '600px',
+    marginBottom: '40px'
   },
   selectWrapper: {
-    paddingTop: '12px'
+    paddingTop: '46px'
   }
 }
 

@@ -7,7 +7,7 @@ const UserRow = ({id, index, history}) => {
 
   useEffect(() => {
     getUserInfo()
-  }, [])
+  }, [id])
 
 const getUserInfo = async(user) => {
   try {

@@ -5,7 +5,7 @@ width: 64px;
 height: 25px;
 background: rgba(110, 84, 163, 0.7);
 border-radius: 10px;
-font-family: Inter;
+font-family: Lato;
 font-style: normal;
 font-weight: 500;
 font-size: 12px;

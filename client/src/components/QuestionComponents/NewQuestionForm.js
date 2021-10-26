@@ -121,6 +121,7 @@ const NewQuestionForm = ({ handleRedirect }) => {
           />
           {/* {tagList()} */}
         </Form.Group>
+        <br />
         <DPLButton variant="primary" type='submit'>SUBMIT</DPLButton>
       </Form>
     </Container>

@@ -32,63 +32,75 @@ const Register = () => {
     };
 
     return (
-        <Container style={styles.container}>
-            <h1 style={styles.register}>Register</h1>
-            <Form onSubmit={handleSubmit}>
-            <p style={styles.label}>Email</p>
-                <input style={styles.rectangle}
-                    value={email}
-                    label="Email"
-                    onChange={(e) => setEmail(e.target.value)}
-                    />
-                <br />
-                <br />
-                <p style={styles.label}>Password</p>
-                <input style={styles.rectangle}
-                    type = "password"
-                    value={password}
-                    label="New Password"
-                    onChange={(e) => setPassword(e.target.value)}
-                    />
-                <br />
-                <br />
-                <p style={styles.label}>Password confirmation</p>
-                <input style={styles.rectangle}
-                    type = "password"
-                    value={passwordConfirmation}
-                    label="Confirm Password"
-                    onChange={(e) => setPasswordConfirmation(e.target.value)}
-                    />
-                <br />
-                <br />
-                <p style={styles.label}>DPL Key</p>
-                <input style={styles.rectangle}
-                    type = "password"
-                    value={check}
-                    label="Enter Key"
-                    onChange={(e) => setCheck(e.target.value)}
-                    />
-                <div style={styles.buttonGroup}>
-                <DPLLightWeightButton type="submit">Register</DPLLightWeightButton>
-                <Nav.Link as={Link} to='/login'>
-                <DPLGreyButton type="submit">Login to existing account</DPLGreyButton>
-                </Nav.Link>
-                </div>
-            </Form>
+        <Container style={styles.outercon}>
+            <Container style={styles.container}>
+                <h1 style={styles.register}>Register</h1>
+                <Form onSubmit={handleSubmit}>
+                <p style={styles.label}>Email</p>
+                    <input style={styles.rectangle}
+                        value={email}
+                        label="Email"
+                        onChange={(e) => setEmail(e.target.value)}
+                        />
+                    <br />
+                    <br />
+                    <p style={styles.label}>Password</p>
+                    <input style={styles.rectangle}
+                        type = "password"
+                        value={password}
+                        label="New Password"
+                        onChange={(e) => setPassword(e.target.value)}
+                        />
+                    <br />
+                    <br />
+                    <p style={styles.label}>Password confirmation</p>
+                    <input style={styles.rectangle}
+                        type = "password"
+                        value={passwordConfirmation}
+                        label="Confirm Password"
+                        onChange={(e) => setPasswordConfirmation(e.target.value)}
+                        />
+                    <br />
+                    <br />
+                    <p style={styles.label}>DPL Key</p>
+                    <input style={styles.rectangle}
+                        type = "password"
+                        value={check}
+                        label="Enter Key"
+                        onChange={(e) => setCheck(e.target.value)}
+                        />
+                    <div style={styles.buttonGroup}>
+                    <DPLLightWeightButton type="submit">Register</DPLLightWeightButton>
+                    <Nav.Link as={Link} to='/login'>
+                    <DPLGreyButton type="submit">Login to existing account</DPLGreyButton>
+                    </Nav.Link>
+                    </div>
+                </Form>
+            </Container>
         </Container>
     );
 }
 
 const styles = {
+    outercon: {
+        display: "flex",
+        height: "85vh",
+        alignItems: "center",
+    },
+
     container: {
         display: "flex",
         flexFlow: "column wrap",
-        height: "600px",
-        width: "800px",
+        placeContent: "stretch center",
+        height: "73vh",
+        width: "80vw",
+        justifyContent: "center",
         flexDirection: "column",
         alignItems: "center",
         flexWrap: "nowrap",
-        justifyContent: "center",
+        backgroundColor: "#FFFFFF",
+        border: "1px solid rgba(0, 0, 0, 0.3)",
+        borderRadius: "6px",
     },
 
     buttonGroup: {
@@ -109,7 +121,7 @@ const styles = {
     },
 
     rectangle: {
-        height: "50px",
+        height: "43px",
         width: "600px",
         borderStyle: "none none solid none",
 
@@ -117,9 +129,6 @@ const styles = {
     },
 
     register: {
-        // width: "104px",
-        // height: "56px",
-
         fontStyle: "normal",
         fontWeight: "normal",
         fontSize: "40.8px",

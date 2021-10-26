@@ -117,33 +117,33 @@ console.log(errors)
 const checkUpVote = () => {
     if (upVoted === true && downVoted === false) {
       deleteVote()
-      alert("let's delete that vote")
+      // alert("let's delete that vote")
     }
     else if (upVoted === false && downVoted === true) {
       updateUp()
-      alert("let's change that vote to up")
+      // alert("let's change that vote to up")
     }
     else if (upVoted === false && downVoted === false) {
       upVote()
-      alert("let's cast your vote!")
+      // alert("let's cast your vote!")
     }
-    else (alert("peepee"))
+    else alert("Nothing ever works the way it's supposed to.")
   }
 
   const checkDownVote = () => {
     if (upVoted === false && downVoted === true) {
       deleteVote()
-      alert("let's delete that vote")
+      // alert("let's delete that vote")
     }
     else if (upVoted === true && downVoted === false) {
       updateDown()
-      alert("let's change that vote to down")
+      // alert("let's change that vote to down")
     }
     else if (upVoted === false && downVoted === false) {
       downVote()
-      alert("let's cast your vote!")
+      // alert("let's cast your vote!")
     }
-    else (alert("poop"))
+    else alert("Nothing ever works the way it's supposed to.")
   }
 
   const deleteVote = async() => {
@@ -225,7 +225,7 @@ const checkUpVote = () => {
       let res = await axios.put(`/api/questions/${answer.question_id}/answers/${answer.id}`, {
       likes: value
     })
-    console.log(res)
+    // console.log(res)
   } catch (err) {
       console.log("save likes", err)
     }

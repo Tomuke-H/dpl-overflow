@@ -24,6 +24,7 @@ const NewAnswer = ({props, answers, setAnswers}) => {
       let res = await axios.post(`/api/questions/${props.match.params.id}/answers`, answer)
       console.log(res)
       setAnswers([...answers, res.data])
+      setBody("")
     } catch (err) {
       console.log("New Answer Submission Error", err)
     };

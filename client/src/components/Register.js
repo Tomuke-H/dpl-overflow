@@ -83,12 +83,17 @@ const styles = {
     container: {
         display: "flex",
         flexFlow: "column wrap",
-        height: "600px",
-        width: "800px",
+        placeContent: "stretch center",
+        height: "72vh",
+        width: "80vw",
+        justifyContent: "center",
         flexDirection: "column",
         alignItems: "center",
         flexWrap: "nowrap",
-        justifyContent: "center",
+        backgroundColor: "#FFFFFF",
+        border: "1px solid rgba(0, 0, 0, 0.3)",
+        borderRadius: "6px",
+        marginTop: "40px",
     },
 
     buttonGroup: {
@@ -109,7 +114,7 @@ const styles = {
     },
 
     rectangle: {
-        height: "50px",
+        height: "43px",
         width: "600px",
         borderStyle: "none none solid none",
 

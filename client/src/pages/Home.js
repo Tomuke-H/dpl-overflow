@@ -47,7 +47,7 @@ const styles = {
     flexDirection: "column",
     float: "left",
     width: "50%",
-    height: "550px",
+    backgroundColor: "#5F9EA0",
   },
 
   consize: {
@@ -68,6 +68,7 @@ const styles = {
     justifyContent: "center",
     float: "right",
     width: "50%",
-    height: "550px",
+    height: "645px",
+    backgroundColor: "#FFFCF9",
   },
 }

@@ -80,7 +80,6 @@ function App() {
             {renderProfiles()}
             <Route component={()=><p>react 404 path not found</p>} />
         </Switch>
-        <div style={{height: '92px'}}></div>
         <Footer />
     </>
     )

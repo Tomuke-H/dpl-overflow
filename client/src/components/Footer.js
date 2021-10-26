@@ -3,7 +3,7 @@ import { Nav, Navbar } from 'react-bootstrap'
 
 const Footer = () => {
   return (
-    <Navbar bg="white" sticky="bottom" style={{borderTop: 'solid 2px #C4C4C4', padding: '5px'}}>
+    <Navbar bg="white" fixed="bottom" style={{borderTop: 'solid 2px #C4C4C4', padding: '5px'}}>
       <Nav.Item>
         <Nav.Link href='https://twitter.com/devpointlabs' target="_blank">twitter</Nav.Link>
       </Nav.Item>

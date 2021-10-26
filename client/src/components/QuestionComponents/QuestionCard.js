@@ -86,7 +86,8 @@ const styles = {
   title:{
     display:"flex",
     flexDirection:"column",
-    flex: "1"
+    flex: "1",
+    marginLeft: '50px'
   },
 
   titleWords:{

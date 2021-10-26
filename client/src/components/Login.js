@@ -21,46 +21,58 @@ const Login = (props) => {
     }
 
     return (
-        <Container style={styles.container}>
-            <h1 style={styles.login}>Login</h1>
-            <br />
-            <Form onSubmit={handleSubmit}>
-                <p style={styles.label}>Email</p>
-                <input style={styles.rectangle}
-                    value={email}
-                    label="Email"
-                    onChange={(e) => setEmail(e.target.value)}
-                />
+        <Container style={styles.outercon}>
+            <Container style={styles.container}>
+                <h1 style={styles.login}>Login</h1>
                 <br />
-                <br />
-                <p style={styles.label}>Password</p>
-                <input style={styles.rectangle}
-                    type = "password"
-                    value={password}
-                    label="Password"
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <div style={styles.buttonGroup}>
-                <DPLLightWeightButton type="submit">Login</DPLLightWeightButton>
-                <Nav.Link as={Link} to='/register'>
-                    <DPLGreyButton>Create a new account</DPLGreyButton>
-                </Nav.Link>
-                </div>
-            </Form>
+                <Form onSubmit={handleSubmit}>
+                    <p style={styles.label}>Email</p>
+                    <input style={styles.rectangle}
+                        value={email}
+                        label="Email"
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <br />
+                    <br />
+                    <p style={styles.label}>Password</p>
+                    <input style={styles.rectangle}
+                        type = "password"
+                        value={password}
+                        label="Password"
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <div style={styles.buttonGroup}>
+                    <DPLLightWeightButton type="submit">Login</DPLLightWeightButton>
+                    <Nav.Link as={Link} to='/register'>
+                        <DPLGreyButton>Create a new account</DPLGreyButton>
+                    </Nav.Link>
+                    </div>
+                </Form>
+            </Container>
         </Container>
     );
 };
 
 const styles = {
+    outercon: {
+        display: "flex",
+        height: "85vh",
+        alignItems: "center",
+    },
+
     container: {
         display: "flex",
         flexFlow: "column wrap",
-        placeContent: "stretch space-around",
-        height: "500px",
-        width: "800px",
+        placeContent: "stretch center",
+        height: "70vh",
+        width: "80vw",
         justifyContent: "center",
         flexDirection: "column",
         alignItems: "center",
+        flexWrap: "nowrap",
+        backgroundColor: "#FFFFFF",
+        border: "1px solid rgba(0, 0, 0, 0.3)",
+        borderRadius: "6px",
     },
 
     buttonGroup: {

@@ -103,7 +103,7 @@ function App() {
 const styles = {
   everything: {
     fontFamily: 'Lato',
-    backgroundColor: "#5F9EA0",
+    backgroundColor: "#FFFCF9",
   },
 }
 

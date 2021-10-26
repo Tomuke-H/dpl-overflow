@@ -24,6 +24,7 @@ import OtherUserProfile from './components/UserComponents/OtherUserProfile';
 import AboutUs from './pages/AboutUs';
 import WebFont from 'webfontloader';
 import { useEffect } from 'react';
+import Background from './icons/DevPointOverflow_LogoOnly_3x.png'
 
 function App() {
   const { users } = useGetUser()
@@ -101,7 +102,8 @@ function App() {
 
 const styles = {
   everything: {
-    fontFamily: 'Lato'
+    fontFamily: 'Lato',
+    backgroundColor: '#FFFCF9',
   }
 }
 

@@ -91,18 +91,23 @@ const AnswerVote = ({answer}) => {
         let a = resUp.data[0].count
         let b = resDown.data[0].count
         setTotalVotes(difference(a,b))
+        saveLikes(difference(a,b))
         // console.log("total", difference(a,b)) 
       }
       else if (resUp.data.length > 0) {
         setTotalVotes(resUp.data[0].count)
-        // console.log("total resup", resUp.data[0].count)
+        saveLikes(resUp.data[0].count)
+      // console.log("total resup", resUp.data[0].count)
       }
       else if (resDown.data.length > 0) {
         setTotalVotes(0 - resDown.data[0].count)
-        // console.log("total resdown", resDown.data[0].count)
+        saveLikes(0 - resDown.data[0].count)
+      // console.log("total resdown", resDown.data[0].count)
       }
-      else {setTotalVotes(0)}
-      saveLikes()
+      else {
+        setTotalVotes(0)
+        saveLikes(0)
+      }
 })).catch(errors => {
 // react on errors.
 console.log(errors)
@@ -215,10 +220,10 @@ const checkUpVote = () => {
     }
   }
 
-  const saveLikes = async () => {
+  const saveLikes = async (value) => {
     try{
       let res = await axios.put(`/api/questions/${answer.question_id}/answers/${answer.id}`, {
-      likes: totalVotes
+      likes: value
     })
     console.log(res)
   } catch (err) {

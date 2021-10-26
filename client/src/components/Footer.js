@@ -7,7 +7,6 @@ import YouTubeIcon from '../../src/icons/YouTubeIcon.png'
 
 const Footer = () => {
   return (
-    <div>
       <Navbar bg="white" fixed="bottom" style={{borderTop: 'solid 2px #C4C4C4', padding: '15px'}}>
         <Nav.Item>
           <Nav.Link href='https://www.instagram.com/devpointlabs/' target="_blank" style={{margin: "0px", padding: "0px"}}>
@@ -29,11 +28,10 @@ const Footer = () => {
             <Image src={YouTubeIcon} style={styles.ytlogo} />
           </Nav.Link>
         </Nav.Item>
+          <Nav.Item style={{margin: "0 130px 0 750px"}}>
+            <p style={{margin: "0px", fontWeight: "500px", fontSize: "14px"}}>DevPoint Labs LLC © 2021. All rights reserved.</p>
+          </Nav.Item>
       </Navbar>
-      <div>
-        <p>DevPoint Labs LLC 2021. All rights reserved.</p>
-      </div>
-    </div>
   )
 }
 

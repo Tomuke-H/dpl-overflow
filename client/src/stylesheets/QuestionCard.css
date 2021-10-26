@@ -1,0 +1,11 @@
+.qcard {
+  display: flex;
+  flex-direction: row;
+  justify-Content: space-between;
+  border: solid 2px black;
+  border-radius: 6px;
+}
+
+.qcard:hover {
+  cursor: pointer;
+}

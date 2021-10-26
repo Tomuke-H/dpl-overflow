@@ -4,6 +4,7 @@ import { Card } from "react-bootstrap";
 import { day, time } from "../DayConverter/Dates";
 import { TagPill } from "../TagComponents/TagPill";
 import QuestionAuthor from "./QuestionAuthor";
+import '../../stylesheets/QuestionCard.css'
 
 
 const QuestionCard = ({question, history}) => {
@@ -33,7 +34,7 @@ const QuestionCard = ({question, history}) => {
   }
 
   return(
-    <div onClick={()=>handleRedirect(question.id)} style={styles.card}>
+    <div onClick={()=>handleRedirect(question.id)} className='qcard'>
       <div style={styles.vavdiv}>
         <div >
           <Card.Text style={styles.vav}>{question.likes}</Card.Text>
@@ -113,9 +114,9 @@ const styles = {
   },
 
   card:{
-    border: 'solid 1.5px black',
+    border: 'solid 2px black',
     borderRadius: '6px',
-    display:"flex",
+    display: "flex",
     justifyContent: 'space-between',
     fontWeight: 'medium',
   }

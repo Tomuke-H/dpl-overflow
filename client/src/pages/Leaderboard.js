@@ -1,11 +1,10 @@
 import axios from 'axios'
 import { useHistory } from 'react-router';
 import React, { useEffect, useState } from 'react'
-import { ButtonGroup, Dropdown, Table } from 'react-bootstrap'
+import { Button, ButtonGroup, Dropdown, Table } from 'react-bootstrap'
 import BoxLoader from '../components/BoxLoader'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import {cohorts} from '../components/Cohorts';
-import { DPLButton } from '../components/DPLButtons';
 import '../stylesheets/Leaderboard.css'
 
 const Leaderboard = () => {
@@ -78,7 +77,7 @@ const Leaderboard = () => {
   const renderDropdownItems = () => {
     return cohorts.map(c => {
       return( 
-        <Dropdown.Item onClick={(e) => getUsers('cohort', c, 1)}>{c}</Dropdown.Item>
+        <ul onClick={(e) => getUsers('cohort', c, 1)}>{c}</ul>
       )
     })
   }
@@ -87,19 +86,21 @@ const Leaderboard = () => {
     <div style={styles.wrapper}>
       <div style={styles.header}>
         <h1 style={styles.leaderboard}>Leaderboard</h1>
-        <ButtonGroup>
-        <DPLButton></DPLButton>
-        <Dropdown variant='leaderboard'>
-          <Dropdown.Toggle style={styles.button}>Sort By Cohort</Dropdown.Toggle>
-          <Dropdown.Menu>
-            <Dropdown.Item onClick={(e) => getUsers('all', null, 1)}>View All</Dropdown.Item>
-            {/* <Dropdown.Item onClick={(e) => getUsers('cohort', 'Fall 2021', 1)}>Fall 2021</Dropdown.Item>
-            <Dropdown.Item onClick={(e) => getUsers('cohort', 'Winter 2021', 1)}>Winter 2021</Dropdown.Item>
-            <Dropdown.Item onClick={(e) => getUsers('cohort', 'Spring 2022', 1)}>Spring 2022</Dropdown.Item> */}
+        <div style={{display:'flex', alignItems:'flex-end'}}>
+          <button className='button' onClick={(e) => getUsers('all', null, 1)}>All-Time</button>
+          <div className="dropdown">
+          <div className={cohort? 'dropfocus':'dropbtn'}>{cohort ? `${cohort}`:'Cohort'}</div>
+          <div className="dropdown-content">
             {renderDropdownItems()}
-          </Dropdown.Menu>
-        </Dropdown>
-        </ButtonGroup>
+          </div>
+        </div>
+          {/* <Dropdown >
+            <Dropdown.Toggle style={styles.button}>Cohort</Dropdown.Toggle>
+            <Dropdown.Menu>
+            {renderDropdownItems()}
+            </Dropdown.Menu>
+          </Dropdown> */}
+        </div>
       </div>
       <InfiniteScroll
         dataLength={users.length}
@@ -131,10 +132,7 @@ const Leaderboard = () => {
 }
 
 const styles ={
-  img: {
-    height: '50px',
-    width: '50px'
-  },
+
   tableWrapper: {
     display: 'flex',
     width: '1500px',
@@ -145,6 +143,10 @@ const styles ={
     flexDirection: 'column',
     alignItems: 'center'
   },
+  img: {
+    height: '50px',
+    width: '50px'
+  },
   table: {
     width: '86.1vw',
     border: '1.5px solid rgba(0, 0, 0, 0.3)',
@@ -154,7 +156,6 @@ const styles ={
     marginBottom: '30px',
     backgroundColor:'#FFFFFF'
   },
-
   header: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -162,23 +163,6 @@ const styles ={
     alignItems: 'center',
     margin: '90px 0px 0px 0px',
   },
-
-  button: {
-    display: "inline-block",
-    borderStyle: "solid",
-    borderColor: "#6E54A3",
-    borderRadius: "5px",
-    fontWeight:"600px",
-    fontSize: "14px",
-    letterSpacing: ".7px",
-    color:"#FFFFFF",
-    backgroundColor:"#6E54A3",
-    textAlign:"center",
-    textTransform: "uppercase",
-    width: "165px",
-    height: "40px",
-  },
-
   leaderboard: {
     fontStyle: 'normal',
     fontWeight: '600px',

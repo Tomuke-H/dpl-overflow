@@ -141,10 +141,10 @@ const Questions = ({location, history}) => {
       {/* <h2>{JSON.stringify(tagSearch)}</h2> */}
       <div style={styles.titleWrapper}>
         <div>
-          <p style={styles.title}>Top Questions</p>
+          <h1 style={styles.title}>TOP QUESTIONS</h1>
           <Form.Control placeholder='Search' value={search} onChange={(e) => getQuestions('search', 1, null, e.target.value)}/>
         </div>
-        <div>
+        <div style={styles.selectWrapper}>
           <SortSelector 
             selectedValues={selectedValues}
             setSelectedValues={setSelectedValues}
@@ -176,11 +176,13 @@ const styles = {
   titleWrapper: {
     display: 'flex',
     justifyContent: 'space-between',
-    margin: '10px 0px 15px 0px'
+    margin: '40px 0px 6px 0px'
   },
   title: {
-    fontWeight: '600px',
-    fontSize: '30px'
+    fontWeight: '600px'
+  },
+  selectWrapper: {
+    paddingTop: '12px'
   }
 }
 

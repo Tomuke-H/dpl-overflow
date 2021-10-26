@@ -17,6 +17,21 @@ export const TagPill = styled.div`
   background-color:rgba(110, 84, 163, .75);
   text-align:center;
   text-transform: capitalize;
+`
+export const TagPagePill = styled.div`
+  display: inline-block;
+  margin: 10px;
+  padding: 5px 10px 5px 10px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #6E54A3;
+  border-radius: 10px;
+  font-weight:600;
+  letter-spacing: 1px;
+  color:#FFFFFF;
+  background-color:rgba(110, 84, 163, .75);
+  text-align:center;
+  text-transform: capitalize;
 
 `
 

@@ -24,12 +24,44 @@ color: #000000;
 export const StatsAndAbout = styled.div`
 display: flex;
 flex-direction: row;
-justify-content: space-between;
+justify-content: space-around;
 `
 
-export const StatsBox = styled.div`
+export const Box = styled.div`
+width: 600px;
+height: 79px;
+background: #FFFFFF;
+border: 1px solid rgba(0, 0, 0, 0.2);
+box-sizing: border-box;
+border-radius: 4px;
+`
+
+export const StatNum = styled.div`
+width: 10px;
+height: 26px;
+font-weight: 500;
+font-size: 16px;
+line-height: 26px;
+letter-spacing: 0.5px;
+margin-top: 11px;
+`
+
+export const StatTitle = styled.div`
+width: 32px;
+height: 26px;
+font-weight: 500;
+font-size: 12px;
+line-height: 26px;
+letter-spacing: 0.5px;
+`
+
+export const AboutMe = styled.div`
+width: 562px;
+height: 55px;
+font-weight: 500;
+font-size: 14px;
+line-height: 22px;
 display: flex;
-flex-direction: row;
-justify-content: space-between;
-text-align: center
+align-items: center;
+margin-left: 19px;
 `

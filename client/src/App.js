@@ -55,7 +55,7 @@ function App() {
 
   const hasNavBar = () =>{
     return(
-      <>
+      <div style = {{backgroundColor:"#9E9E9E"}}>
         <OurNavbar /> 
         <div style={{height: '80px'}}></div>
         <Switch>
@@ -82,7 +82,7 @@ function App() {
             <Route component={()=><p>react 404 path not found</p>} />
         </Switch>
         <Footer />
-    </>
+    </div>
     )
   }
   return (
@@ -103,8 +103,12 @@ function App() {
 const styles = {
   everything: {
     fontFamily: 'Lato',
-    backgroundColor: "#FFFCF9",
-  },
+    backgroundColor: '#FFFCF9',
+    // backgroundImage: `url(${Background})`,
+    // backgroundRepeat: 'no-repeat',
+    // backgroundAttachment: 'fixed',
+    // backgroundBlendMode: 'normal'
+  }
 }
 
 export default App;

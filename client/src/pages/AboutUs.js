@@ -1,5 +1,4 @@
 import React from "react"
-import { Card, Container } from "react-bootstrap"
 
 const AboutUs = () =>{
 
@@ -53,12 +52,13 @@ const AboutUs = () =>{
   const team = ()=>{
     return teamInfo.map((member,ind)=>{
       return(
-      <Card style={styles.gridteam} key={ind}>
-        <Card.Img variant="top" src={member.img} style={styles.img} />
-        <Card.Title>{member.name}</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">{member.position}</Card.Subtitle>
-        <Card.Body>{member.description}</Card.Body>
-      </Card>
+      <div style={styles.gridteam} key={ind}>
+        <img variant="top" src={member.img} style={styles.img} />
+        <p style={styles.header}>{member.name}</p>
+        <p style={styles.sub} >{member.position}</p>
+        <hr style={{width:"55px", height:"1.5px", margin:"0px 0px 0px 5px"}}/>
+        <p style={styles.bio}>{member.description}</p>
+      </div>
       )
     })
   }
@@ -66,60 +66,75 @@ const AboutUs = () =>{
   const teachers = ()=>{
     return staff.map((member,ind)=>{
       return(
-      <Card style={styles.gridstaff} key={ind}>
-        <Card.Img variant="top" src={member.img} style={styles.img} />
-        <Card.Title>{member.name}</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">{member.position}</Card.Subtitle>
-        <Card.Body>{member.description}</Card.Body>
-      </Card>
+      <div style={styles.gridstaff} key={ind}>
+        <img variant="top" src={member.img} style={styles.img} />
+        <p style={styles.header}>{member.name}</p>
+        <p style={styles.sub}>{member.position}</p>
+        <hr style={{width:"55px", height:"1.5px", margin:"0px 0px 0px 5px"}}/>
+        <p style={styles.bio}>{member.description}</p>
+      </div>
       )
     })
   }
 
 
   return(
-    <div>
-      <h1>Our Team</h1>
-      <Container style={styles.gridlayoutforteam}>
+    <div style={styles.container}>
+      <h1 style={{margin:"0px 0px 0px 20px"}}>Our Team</h1>
+      <div style={styles.gridlayoutforteam}>
       {team()}
-      </Container>
-      <Container style={styles.gridlayoutforstaff}>
+      </div>
+      <div style={styles.gridlayoutforstaff}>
       {teachers()}
-      </Container>
+      </div >
     </div>
   )
 
 }
 
 const styles ={
+  container: {
+    margin:"60px 75px 0px 75px", 
+    padding:"10px",
+  },
+
   gridlayoutforteam:{
     display:"flex",
     flexWrap:"wrap",
-    margin: "20px",
-    justifyContent:"center"
+    justifyContent:"center",
   },
   
   gridlayoutforstaff:{
     display:"flex",
     flexWrap:"wrap",
-    margin: "20px",
     justifyContent:"center"
   },
 
   gridteam:{
-    margin: "5px",
-    flexBasis: `calc(100% / 5 - 10px)`,
+    margin: "20px",
+    flexBasis: `calc(100% / 5 - 40px)`,
   },
 
   gridstaff:{
-    margin: "5px",
-    flexBasis: `calc(100% / 5 - 10px)`,
+    margin: "20px",
+    flexBasis: `calc(100% / 5 - 40px)`,
   },
 
   img:{
     height:"auto",
-    width:"100%"
-  }
+    width:"100%",
+  },
+  sub:{
+    margin: "5px",
+  },
+  header:{
+    margin: "5px",
+    fontWeight:" 600",
+  },
+  bio:{
+    margin: "5px",
+    fontWeight:"500",
+  },
 }
 
 export default AboutUs

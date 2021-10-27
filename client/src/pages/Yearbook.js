@@ -110,7 +110,7 @@ const styles = {
     display: "inline-block",
     borderStyle: "solid",
     borderColor: "#6E54A3",
-    borderRadius: "5px",
+    borderRadius: "6px",
     fontWeight:"600px",
     fontSize: "14px",
     letterSpacing: ".7px",

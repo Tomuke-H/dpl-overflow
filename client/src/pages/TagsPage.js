@@ -82,7 +82,7 @@ const TagsPage = () => {
   }
 
   return(
-    <div style={{margin:"60px 90px 0px 90px", padding:"10px"}}>
+    <div style={styles.container}>
       <div style={{display:"flex", justifyContent:"space-between", alignItems:"flex-start"}}>
       <h1 style={styles.header}>Tags</h1>
       {renderSearch()}
@@ -96,22 +96,26 @@ const TagsPage = () => {
 }
 
 const styles ={
+  container: {
+    margin:"60px 95px 0px 95px", 
+    padding:"10px",
+  },
   grid:{
     display:"flex",
     flexWrap:"wrap",
     margin: "80px 0px 0px 0px",
-    border: "2px solid black",
-    borderRadius:"5px",
+    border: "1px solid black",
+    borderRadius:"6px",
     backgroundColor:"#ffffff",
     padding: "20px 40px 20px 40px",
   },
 
   gridChild:{
-    margin: "5px",
+    margin: "15px",
     border:"2px solid #6E54A3",
-    flexBasis: `calc(100% / 4 - 10px)`,
+    flexBasis: `calc(100% / 4 - 30px)`,
     textTransform: "capitalize",
-    borderRadius: "5px",
+    borderRadius: "6px",
   },
 
   header: {
@@ -127,11 +131,9 @@ const styles ={
     color: "#000000",
   },
   input: {
-    borderRadius:"50px",
-    padding:"0px 0px 0px 10px",
+    borderRadius:"20px",
+    padding:"7px 0px 8px 15px",
   },
-
-
 }
 
 

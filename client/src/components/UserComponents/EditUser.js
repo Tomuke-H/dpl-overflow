@@ -21,11 +21,14 @@ const EditUser = (id) => {
     const current_password = user.password
     const history = useHistory();
 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            let res = await axios.put(`/api/users/${user.id}`, { name: name, email: email, cohort: cohort, about_me: about_me, password: password, passwordConfirmation: passwordConfirmation })
+            let res = await axios.put(`/api/users/${user.id}`, { 
+                name: name, 
+                email: email, 
+                cohort: cohort, 
+                about_me: about_me })
             setUser(res.data)
             history.push(`/users/${user.id}/profile`)
         } catch (err) {
@@ -38,7 +41,10 @@ const EditUser = (id) => {
         e.preventDefault();
         try {
             // console.log(user)
-            await axios.put("/api/auth/password", { password: password, password_confirmation: passwordConfirmation, current_password: current_password  })
+            await axios.put("/api/auth/password", { 
+                password: password, 
+                password_confirmation: passwordConfirmation, 
+                current_password: current_password  })
             history.push(`/users/${user.id}/profile`)
         } catch (err) {
             alert("error updating password")
@@ -80,8 +86,23 @@ const EditUser = (id) => {
             alert(err)
             console.log(err)
         }
-
     }
+
+    const updateCohort = (season, year) => {
+        setCohort(`${season} ${year}`)
+    }
+
+    const updateSeason = (season) => {
+        setSeason(season)
+        updateCohort(season, year)
+    }
+
+    const updateYear = (year) => {
+        setYear(year)
+        updateCohort(season, year)
+    }
+    
+    
 
 
       const years = [...Array(new Date().getFullYear() - 2012).keys()].map((e)=>e+2013)
@@ -89,7 +110,7 @@ const EditUser = (id) => {
       const renderYears = () => { 
           return(years.map((year)=> {
               return(
-            <Dropdown.Item onClick={(e) => setYear(year)}>{year}</Dropdown.Item>
+            <Dropdown.Item onClick={(e) => updateYear(year)}>{year}</Dropdown.Item>
       )}))}
 
 
@@ -98,10 +119,10 @@ const EditUser = (id) => {
             <Dropdown>
               <Dropdown.Toggle style={styles.button}>Season</Dropdown.Toggle>
               <Dropdown.Menu>
-                <Dropdown.Item onClick={(e) => setSeason("Spring")}>Spring</Dropdown.Item>
-                <Dropdown.Item onClick={(e) => setSeason("Summer")}>Summer</Dropdown.Item>
-                <Dropdown.Item onClick={(e) => setSeason("Fall")}>Fall</Dropdown.Item>
-                <Dropdown.Item onClick={(e) => setSeason("Winter")}>Winter</Dropdown.Item>
+                <Dropdown.Item onClick={(e) => updateSeason("Spring")}>Spring</Dropdown.Item>
+                <Dropdown.Item onClick={(e) => updateSeason("Summer")}>Summer</Dropdown.Item>
+                <Dropdown.Item onClick={(e) => updateSeason("Fall")}>Fall</Dropdown.Item>
+                <Dropdown.Item onClick={(e) => updateSeason("Winter")}>Winter</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
       )}
@@ -115,28 +136,6 @@ const EditUser = (id) => {
               </Dropdown.Menu>
             </Dropdown>
       )}
-
-    // const dropDownItems = () => (
-    //     <div>
-    //     <Dropdown.Item onClick={(e) => getAllUsers()}>View All</Dropdown.Item>
-    //     <Dropdown.Item onClick={(e) => getCohortUsers('Fall 2021')}>Fall 2021</Dropdown.Item>
-    //     <Dropdown.Item onClick={(e) => getCohortUsers('Winter 2021')}>Winter 2021</Dropdown.Item>
-    //     <Dropdown.Item onClick={(e) => getCohortUsers('Spring 2022')}>Spring 2022</Dropdown.Item>
-    //     </div>
-    //   )
-    
-    //   let dropDown = () => {
-    //     return (
-    //       <div class="dropdown">
-    //          <DPLDropDownButton 
-    //          class="dropbtn" 
-    //          title="View by Cohort"
-    //          onClick={()=>setShowDropDown(!showDropDown)}>
-    //            Search by Cohort
-    //         </DPLDropDownButton>
-    //          {showDropDown && dropDownItems()}
-    //     </div>
-    //   )}
 
     return (
         <div>
@@ -177,13 +176,13 @@ const EditUser = (id) => {
                     />
                 <br />
                 <h2 style={styles.label}>Update Cohort</h2>
-                {/* <input style={styles.rectangle}
-                    value={cohort}
-                    label="Cohort"
-                    onChange={(e) => setCohort(e.target.value)}
-                    /> */}
+                <p style={styles.pRectangle}>
+                    {cohort}
+                    </p>
+                    <div style={styles.cohort}>
                     {seasonDrop()}
                     {yearDrop()}
+                    </div>
                 <br />
                 <h2 style={styles.label}>Update About Me</h2>
                 <textarea style={styles.bigRectangle}
@@ -212,12 +211,12 @@ const EditUser = (id) => {
                     onChange={(e) => setPasswordConfirmation(e.target.value)}
                     />
                 <br />
-                <DPLButton type="submit" style={{width: "160px", height: "50px", margin: "10px"}}>Update Password</DPLButton>
+                <DPLButton type="submit" style={{height: "50px", margin: "10px"}}>Update Password</DPLButton>
             </Form>
             </div>
             <br />
             <div style={styles.formdiv}>
-            <DPLButton onClick={() => deleteAccount(id)} style={{width: "160px", height: "50px", margin: "10px"}}>Delete Account</DPLButton>
+            <DPLButton onClick={() => deleteAccount(id)} style={{height: "50px", margin: "10px"}}>Delete Account</DPLButton>
             </div>
             </Container>
         </div>
@@ -225,6 +224,10 @@ const EditUser = (id) => {
 }
 
 const styles = {
+    cohort: {
+        display: "flex",
+        flexDirection: "row"
+    },
     container: {
         marginTop: "26px",
         marginBottom: "126px",
@@ -247,7 +250,7 @@ const styles = {
         marginTop: "16px",
         height: "22px",
         fontStyle: "normal",
-        fontWeight: "normal",
+        fontWeight: "500",
         fontSize: "16px",
         lineHeight: "22px",
         color: "#000000",
@@ -258,16 +261,26 @@ const styles = {
         borderStyle: "none none solid none",
         background: "rgba(0, 0, 0, 0.0261145)",
     },
+    pRectangle: {
+        paddingTop: "13px",
+        height: "50px",
+        width: "600px",
+        borderBottom: "2px solid #767676",
+        background: "rgba(0, 0, 0, 0.0261145)",
+    },
     bigRectangle: {
         height: "100px",
         width: "600px",
         borderStyle: "none none solid none",
+        borderBottom: "2px solid #767676",
         background: "rgba(0, 0, 0, 0.0261145)",
         wordWrap: "breakWord",
         wordBreak: "breakAll",
         height: "80px",
     },
     button: {
+        marginLeft: "10px",
+        marginRight: "10px",
         display: "inline-block",
         borderStyle: "solid",
         borderColor: "#6E54A3",
@@ -279,10 +292,11 @@ const styles = {
         backgroundColor:"#6E54A3",
         textAlign:"center",
         textTransform: "uppercase",
-        width: "165px",
-        height: "40px",
+        width: "140px",
+        height: "33px",
         marginTop: "8px",
-      },
+      }
+
 }
 
 export default EditUser;

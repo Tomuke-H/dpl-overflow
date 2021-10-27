@@ -8,11 +8,24 @@
   height: auto;
   background-color: #FFFCF9;
   background-size: 60%;
-  background-image: url(../icons/DevPointOverflow_LogoOnly_3x.png);
+  background-image: url(../icons/DevPointOverflow_LogoOnly_3x_TOM.png);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 50% 0%;
 }
+
+/* .image { 
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: auto;
+} */
+/* -webkit-filter: grayscale(100%);
+     -moz-filter: grayscale(100%);
+       -o-filter: grayscale(100%);
+      -ms-filter: grayscale(100%);
+          filter: grayscale(100%);  */
 
 /* .background::before {
   content: "";

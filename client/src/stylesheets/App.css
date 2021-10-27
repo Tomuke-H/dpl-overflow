@@ -1,21 +1,21 @@
 :root {
-  font-family: Lato;
   background-color: #FFFCF9;
 }
 
 .background {
+  font-family: Lato;
   position: relative;
   height: auto;
   background-color: #FFFCF9;
-}
-
-/* .background::before {
-  content: "";
   background-size: 60%;
   background-image: url(../icons/DevPointOverflow_LogoOnly_3x.png);
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: 50% 50%;
+  background-position: 50% 0%;
+}
+
+/* .background::before {
+  content: "";
   position: absolute;
   top: 0px;
   right: 0px;

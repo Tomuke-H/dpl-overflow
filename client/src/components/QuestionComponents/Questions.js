@@ -179,7 +179,7 @@ const styles = {
     margin: '60px 0px 6px 0px',
   },
   title: {
-    fontWeight: '600px',
+    fontWeight: '600',
     marginBottom: '40px'
   },
   selectWrapper: {

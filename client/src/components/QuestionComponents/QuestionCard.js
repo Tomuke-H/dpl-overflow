@@ -34,7 +34,7 @@ const QuestionCard = ({question, history}) => {
   }
 
   return(
-    <div onClick={()=>handleRedirect(question.id)} className='qcard' style={{minWidth: '772px', minHeight: '96px'}}>
+    <div onClick={()=>handleRedirect(question.id)} className='qcard' style={{minWidth: '772px'}}>
       <div style={styles.vavdiv}>
         <div >
           <Card.Text style={styles.vav}>{question.likes}</Card.Text>
@@ -79,7 +79,7 @@ const styles = {
   },
   
   vavcat:{
-    fontSize: '8px',
+    fontSize: '11px',
     margin: "0px 10px 10px 10px",
   },
 

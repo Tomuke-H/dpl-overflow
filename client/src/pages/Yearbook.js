@@ -84,7 +84,7 @@ const Yearbook = () => {
         {dropDown()}
        </div>
       </div>
-      <div style={{border: '1.5px solid rgba(0, 0, 0, 0.3)', marginRight: '100px', marginLeft: '100px', marginTop: '30px', marginBottom: '30px', borderRadius: '6px', background: 'white', minWidth: '679px', minHeight: '2097px'}}>
+      <div style={{border: '1.5px solid rgba(0, 0, 0, 0.3)', marginRight: '100px', marginLeft: '100px', marginTop: '30px', marginBottom: '30px', borderRadius: '6px', background: 'white', minWidth: '679px'}}>
         <div style={{justifyContent: 'flex-start'}}>
           {renderUsers()}
         </div>

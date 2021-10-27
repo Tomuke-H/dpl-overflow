@@ -1,9 +1,12 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
-import { Button, Card, NavLink } from 'react-bootstrap';
+import { Card, NavLink } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { DPLButton } from '../components/DPLButtons';
+import { ProfilePill } from '../components/UserComponents/ProfileStyles';
 import { AuthContext } from '../providers/AuthProvider';
+import styled from 'styled-components';
+import Question from '../components/QuestionComponents/Question';
 
 const Activity = ({user}) => {
   const [userAnswers, setUserAnswers] = useState([])
@@ -40,9 +43,10 @@ const renderQuestions = () => {
     userQuestions.map((ques)=> {
       return (
         <NavLink as={Link} to={`/question/${ques.question_id}`}>
-        <Card>
-          <Card.Body>{ques.title} {ques.question_body} {ques.question_created}</Card.Body>
-        </Card>
+        <QuestionCard style={{display: 'flex', flexDirection: 'column', alignContent: 'space-around'}}>
+          <QuestionContent>{ques.title}</QuestionContent>
+          <QuestionContent>Created at: {ques.question_created}</QuestionContent>
+        </QuestionCard>
         </NavLink>
       )
     })
@@ -57,9 +61,10 @@ const renderAnswers = () => {
     userAnswers.map((ans)=> {
       return (
         <NavLink as={Link} to={`/question/${ans.question_id}`}>
-        <Card>
-        <Card.Body>{ans.answer_body} {ans.answer_created}</Card.Body>
-        </Card>
+        <QuestionCard style={{display: 'flex', flexDirection: 'column', alignContent: 'space-around'}}>
+        <QuestionContent>{ans.answer_body}</QuestionContent>
+        <QuestionContent>Created at: {ans.answer_created}</QuestionContent>
+        </QuestionCard>
         </NavLink>
       )
     })
@@ -75,13 +80,34 @@ useEffect(()=>{
 },[])
 
   return (
-    <div>
-      <DPLButton onClick={()=>setShowQuestions(!showQuestions)}>Questions</DPLButton>
+    <div style={{display: 'flex', flexDirection: 'row'}}>
+      <div>
+      <ProfilePill onClick={()=>setShowQuestions(!showQuestions)}>Questions</ProfilePill>
       {showQuestions && renderQuestions()}
-      <DPLButton onClick={()=>setShowAnswers(!showAnswers)}>Answers</DPLButton>  
+      </div>
+      <div>
+      <ProfilePill onClick={()=>setShowAnswers(!showAnswers)}>Answers</ProfilePill>  
       {showAnswers && renderAnswers()}
+      </div>
     </div>
   );
 };
 
 export default Activity;
+
+const QuestionCard = styled.div`
+border: solid 2px black;
+border-radius: 6px;
+display: flex;
+justify-content: space-between;
+font-weight: medium;
+`
+
+const QuestionContent = styled.div`
+font-weight: semi-bold;
+font-size: 16px;
+letter-spacing: 1px;
+text-align: left;
+color: black;
+margin: 1em;
+`

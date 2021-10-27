@@ -97,7 +97,7 @@ const styles = {
     width: '180px',
     height: '41px',
     fontStyle: 'normal',
-    fontWeight: '600px',
+    fontWeight: '600',
     fontSize: '30px',
     lineHeight: '41px',
     display: 'flex',

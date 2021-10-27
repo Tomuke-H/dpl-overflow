@@ -118,7 +118,7 @@ const styles = {
   answerCount: {
     marginLeft: "137px",
     fontSize: "20px",
-    fontWeight: "500px",
+    fontWeight: "500",
   }
 }
 

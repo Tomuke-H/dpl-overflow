@@ -35,14 +35,14 @@ const styles = {
     display: "flex",
     flexDirection: "row",
     fontSize: "14px",
-    fontWeight: "500px",
+    fontWeight: "500",
     marginTop: "30px",
     marginBottom: "30px",
   },
   comment: {
     marginLeft: "20px",
     fontSize: "14px",
-    fontWeight: "500px",
+    fontWeight: "500",
   }
 }
 

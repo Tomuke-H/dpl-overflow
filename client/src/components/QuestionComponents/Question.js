@@ -173,14 +173,14 @@ const styles = {
     textTransform: "uppercase",
     marginTop: "70px",
     fontSize: "30px",
-    fontWeight: "600px",
+    fontWeight: "600",
     color: "#000000",
   },
   questionDetails: {
     marginRight: "15px",
     marginTop: "30px",
     fontSize: "14px",
-    fontWeight: "500px",
+    fontWeight: "500",
     display: "flex",
     alignItems: "left",
     letterSpacing: ".5px",
@@ -198,7 +198,7 @@ const styles = {
     color: "#000000",
     boxSizing: "borderBox",
     fontSize: "10px",
-    fontWeight: "500px",
+    fontWeight: "500",
     display: "flex",
     alignItems: "center",
     letterSpacing: ".5px",
@@ -206,7 +206,7 @@ const styles = {
   addComment: {
     margin: "10px",
     fontSize: "14px",
-    fontWeight: "500px",
+    fontWeight: "500",
     color: "#757575"
   },
   littleBorder:{

@@ -74,7 +74,7 @@ const styles = {
   vav:{
     margin: "10px 10px 0px 10px",
     fontSize: "16px",
-    fontWeight:"500px",
+    fontWeight:"500",
     textAlign: "center"
   },
   

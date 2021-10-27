@@ -133,7 +133,7 @@ const styles = {
     textTransform: "uppercase",
     marginTop: "70px",
     fontSize: "30px",
-    fontWeight: "600px",
+    fontWeight: "600",
     color: "#000000",
   },
   multiSelect: {

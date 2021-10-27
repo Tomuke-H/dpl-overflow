@@ -98,7 +98,7 @@ export default Yearbook;
 const styles = {
   yearbook: {
   fontStyle: 'normal',
-  fontWeight: '600px',
+  fontWeight: '600',
   textTransform: 'uppercase',
   flexDirection: 'flex-end',
   color: '#000000',
@@ -111,7 +111,7 @@ const styles = {
     borderStyle: "solid",
     borderColor: "#6E54A3",
     borderRadius: "6px",
-    fontWeight:"600px",
+    fontWeight:"600",
     fontSize: "14px",
     letterSpacing: ".7px",
     color:"#FFFFFF",

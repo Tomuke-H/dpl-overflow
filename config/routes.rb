@@ -56,6 +56,7 @@ Rails.application.routes.draw do
     put 'avotes/:id', to: 'avotes#update'
     delete 'avotes/:id', to: 'avotes#destroy'
     put 'user_points/:id', to: 'users#point_update'
+    get 'cohorts', to: 'users#cohorts'
     resources :tags
   end
 

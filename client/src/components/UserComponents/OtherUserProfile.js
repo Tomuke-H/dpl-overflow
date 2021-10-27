@@ -33,12 +33,12 @@ export default function OtherUserProfile(props) {
     <div style={{display: 'flex', flexDirection: 'column'}}>
       <div style={{display: 'flex', flexDirection: 'row'}}>
           <Image style={styles.profilePic} src={user.image} />
-          <p style={styles.name}>{user.name}</p>
+            <p style={styles.name}>{user.name}</p>
       </div>
         <div style={styles.optionsContainer}>
           {showActivity ? <ToggleOptions onClick={()=>setShowActivity(false)}>Profile</ToggleOptions> : <ProfilePill onClick={()=>setShowActivity(false)}>Profile</ProfilePill> }
           {showActivity ? <ProfilePill onClick={()=>{setShowActivity(!showActivity)}}>Activity</ProfilePill> : <ToggleOptions onClick={()=>{setShowActivity(!showActivity)}}>Activity</ToggleOptions> }
-          {user.id === currentUser.id && <NavLink as={Link} to={`/user/edit`}><ToggleOptions>Settings</ToggleOptions></NavLink>}
+          {user.id === currentUser.id && <NavLink style={styles.buttonfix} as={Link} to={`/user/edit`}><ToggleOptions>Settings</ToggleOptions></NavLink>}
           </div>
           <ShowActivityStyle>
           {showActivity && <Activity user = {user}/>}
@@ -74,6 +74,9 @@ export default function OtherUserProfile(props) {
 }
 
 const styles = {
+  buttonfix: {
+     transform: "translateY(-8px) translateX(-16px)",
+  },
   statsCard: {
     width: '600px',
     flexDirection: 'column',
@@ -104,8 +107,8 @@ const styles = {
     marginLeft: '18px',
     marginTop: '58px',
     color: '#000000',
-    left: '157px',
-    top: '126px',
+    // left: '157px',
+    // top: '126px',
   },
   optionsContainer: {
     display: "flex",

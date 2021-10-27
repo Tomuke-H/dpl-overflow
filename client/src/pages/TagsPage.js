@@ -1,8 +1,10 @@
 import axios from "axios"
 import React, { useEffect, useState } from "react"
-import { Alert, Button, Form } from "react-bootstrap"
+import { Alert} from "react-bootstrap"
 import { useHistory } from "react-router"
 import { TagPagePill } from "../components/TagComponents/TagPill"
+import { DPLButton } from "../components/DPLButtons"
+
 
 const TagsPage = () => {
   const [tags, setTags] = useState([])
@@ -11,6 +13,10 @@ const TagsPage = () => {
 
   useEffect(()=>{
     getTags();
+  },[]);
+
+  useEffect(()=>{
+    getTag();
   },[tagSearch]);
 
   const getTags = async () => {
@@ -38,8 +44,8 @@ const TagsPage = () => {
       )
   }
 
-  const handleSubmit = async (e) =>{
-    e.preventDefault()
+  const getTag = async () =>{
+    if(tagSearch.length ===0){return reset()}
     try {
       let res = await axios.get(`/api/tag/${tagSearch}`)
       if(res.data.length > 0){
@@ -60,13 +66,16 @@ const TagsPage = () => {
     return(
       <div style={{display:"flex", justifyContent:"space-between",alignItems:"self-end"}}>
         <div>
-          <Form style={{alignContent:"right"}} onSubmit={handleSubmit}>
-            <Form.Control placeholder="Search"
+          <form onSubmit={(e) => {e.preventDefault()}}>
+            <input 
+            style = {styles.input}
+            type="text"
+            placeholder="Search"
             value = {tagSearch}
             onChange={(e) => {
             setTagSearch(e.target.value)}}/>
-            <Button onClick={()=>{reset()}}>Reset Search</Button>
-          </Form>
+          </form>
+            <DPLButton onClick={()=>{reset()}}>Reset Search</DPLButton>
         </div>
       </div>
     )
@@ -80,8 +89,8 @@ const TagsPage = () => {
       </div>
       <div style={styles.grid}>
       {renderTags()}
-      </div>
       {tags.length === 0 && renderBadSearch()}
+      </div>
     </div>
   )
 }
@@ -116,6 +125,10 @@ const styles ={
   descript: {
     margin: "10px",
     color: "#000000",
+  },
+  input: {
+    borderRadius:"50px",
+    padding:"0px 0px 0px 10px",
   },
 
 

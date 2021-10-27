@@ -18,7 +18,7 @@ const styles= {
     width: "120px",
     height: "50px",
     backgroundColor: "#C4C4C4",
-    fontWeight: "500px",
+    fontWeight: "500",
     fontSize: "10px",
 
   }

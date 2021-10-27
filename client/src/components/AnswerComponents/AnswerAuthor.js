@@ -28,7 +28,7 @@ return(
 
 const styles = {
   Author: {
-    fontWeight: "500px",
+    fontWeight: "500",
     fontSize: "14px",
     letterSpacing: "0.5px",
     color: "#000000"

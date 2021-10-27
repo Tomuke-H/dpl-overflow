@@ -159,7 +159,7 @@ const styles ={
   
   leaderboard: {
     fontStyle: 'normal',
-    fontWeight: '600px',
+    fontWeight: '600',
     textTransform: 'uppercase',
     flexDirection: 'flex-end',
     color: '#000000',

@@ -1,5 +1,6 @@
 :root {
   font-family: Lato;
+  background-color: #FFFCF9;
 }
 
 .background {
@@ -8,7 +9,7 @@
   background-color: #FFFCF9;
 }
 
-.background::before {
+/* .background::before {
   content: "";
   background-size: 60%;
   background-image: url(../icons/DevPointOverflow_LogoOnly_3x.png);
@@ -21,4 +22,4 @@
   bottom: 0px;
   left: 0px;
   opacity: 0.07;
-}
+} */

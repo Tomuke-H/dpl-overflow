@@ -87,43 +87,47 @@ const NewQuestionForm = ({ handleRedirect }) => {
     <Container>
       {errors && <h2 style={{border: 'solid 2px red', color: 'red'}}>{errors}</h2>}
       <FirstQuestionModal showModal={showModal} setShowModal={setShowModal} />
-      <h2>Ask a Question</h2>
       <NewTagModal checkedItems={checkedItems} setCheckedItems={setCheckedItems} tags={tags} setTags={setTags} selectedValues={selectedValues} setSelectedValues={setSelectedValues} showTagModal={showTagModal} setShowTagModal={setShowTagModal} />
-      <Form onSubmit={handleSubmit}>
-        <Form.Group className='mb-3'>
-          <Form.Control 
-            required
-            size='lg'
-            value={title}
-            placeholder='Title'
-            onKeyDown={(e)=>{checkKeyDown(e)}}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group className='mb-3'>
-        <MarkdownEditor
-           body = {body}
-           setBody = {setBody}
-          />
-        </Form.Group>
-        <DPLButton type='button' onClick={(e)=>setShowTagModal(true)}>New Tag</DPLButton>
-        <Form.Group onKeyDown={(e)=>{checkKeyDown(e)}}>
-          <Multiselect 
-          options={tags}
-          selectedValues={selectedValues}
-          emptyRecordMsg = "Not an Option, please consider making new tag"
-          onSelect={(selectedList, selectedItem) => handleAddTag(selectedList)}
-          onRemove={(selectedList, selectedItem) => handleRemoveTag(selectedList)}
-          displayValue="name"
-          placeholder='Select Tags'
-          style={styles.multiSelect}
-          closeIcon="cancel"
-          />
-          {/* {tagList()} */}
-        </Form.Group>
-        <br />
-        <DPLButton variant="primary" type='submit'>SUBMIT</DPLButton>
-      </Form>
+      <h2>Ask a Question</h2>
+      <div style={styles.formWrapper}>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group className='mb-3'>
+            <Form.Control 
+              required
+              size='lg'
+              value={title}
+              placeholder='Title'
+              onKeyDown={(e)=>{checkKeyDown(e)}}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group className='mb-3'>
+          <MarkdownEditor
+            body = {body}
+            setBody = {setBody}
+            />
+          </Form.Group>
+          <Form.Group onKeyDown={(e)=>{checkKeyDown(e)}}>
+            <Multiselect 
+            options={tags}
+            selectedValues={selectedValues}
+            emptyRecordMsg = "Not an Option, please consider making new tag"
+            onSelect={(selectedList, selectedItem) => handleAddTag(selectedList)}
+            onRemove={(selectedList, selectedItem) => handleRemoveTag(selectedList)}
+            displayValue="name"
+            placeholder='Select Tags'
+            style={styles.multiSelect}
+            closeIcon="cancel"
+            />
+            {/* {tagList()} */}
+          </Form.Group>
+          <br />
+          <div style={{display: 'flex', justifyContent: 'space-between'}}>
+            <div style={styles.newTagToggle} type='button' onClick={(e)=>setShowTagModal(true)}>New Tag</div>
+            <DPLButton variant="primary" type='submit'>SUBMIT</DPLButton>
+          </div>
+        </Form>
+      </div>
     </Container>
   )
 } 
@@ -140,6 +144,17 @@ const styles = {
     chips: {
       background: '#6E54A3',
     },
+  },
+  formWrapper: {
+    border: 'solid 2px black',
+    borderRadius: '6px',
+    backgroundColor: 'white',
+    padding: '50px',
+    margin: '40px 0px 0px 0px'
+  },
+  newTagToggle: {
+    width: '140px',
+    height: '33px',
   }
 }
 

@@ -1,11 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Container, Image } from "react-bootstrap";
 import { DPLButton } from "../components/DPLButtons";
 import { Link, NavLink } from "react-router-dom";
 import DPLLandingR from "../icons/DPLandingR.png"
 import DPLandingL from "../../src/icons/DPLandingL.png"
+import { AuthContext } from "../providers/AuthProvider";
 
 const Home = () => {
+  const {user} = useContext(AuthContext)
+
+  const buttonLink = () => {
+    if(user){
+      return (
+        <NavLink as={Link} to="/Dashboard">
+          <DPLButton>DASHBOARD</DPLButton>
+        </NavLink>
+      )
+    } else {
+      return (
+        <NavLink as={Link} to="/register">
+          <DPLButton>GET STARTED</DPLButton>
+        </NavLink>
+      )
+    }
+  }
+
   return (
     <div style={styles.row}>
       <div style={styles.column1}>
@@ -16,9 +35,7 @@ const Home = () => {
             / DevPoint Studios Community. Focused on homework, whiteboard
             questions and all things code.
           </p>
-          <NavLink as={Link} to="/register">
-            <DPLButton>GET STARTED</DPLButton>
-          </NavLink>
+          {buttonLink()}
         </Container>
       </div>
       <div style={styles.column2}>

@@ -80,7 +80,7 @@ const AboutUs = () =>{
 
   return(
     <div style={styles.container}>
-      <h1 style={{margin:"0px 0px 0px 20px"}}>Our Team</h1>
+      <h1 style={{margin:"0px 0px 0px 20px", fontWeight: "600"}}>OUR TEAM</h1>
       <div style={styles.gridlayoutforteam}>
       {team()}
       </div>

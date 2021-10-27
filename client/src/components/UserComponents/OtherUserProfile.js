@@ -1,11 +1,11 @@
 import axios from "axios";
 import React, {  useContext, useEffect, useState } from "react";
-import { Card, Image, NavLink } from "react-bootstrap";
+import { Image, NavLink } from "react-bootstrap";
 import Activity from "../../pages/Activity";
 import { AuthContext } from "../../providers/AuthProvider";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { AboutMe, ProfilePill, StatNum, StatsAndAbout, Box, StatTitle } from "./ProfileStyles";
+import { AboutMe, ProfilePill, StatNum, StatsAndAbout, Box, StatTitle, ToggleOptions } from "./ProfileStyles";
 
 
 export default function OtherUserProfile(props) {
@@ -29,11 +29,6 @@ export default function OtherUserProfile(props) {
     }
   }
 
-  const showProfile = () => {
-    setShowActivity(false)
-    return console.log('profile')
-  }
-
   return (
     <div style={{display: 'flex', flexDirection: 'column'}}>
       <div style={{display: 'flex', flexDirection: 'row'}}>
@@ -41,9 +36,9 @@ export default function OtherUserProfile(props) {
             <p style={styles.name}>{user.name}</p>
       </div>
         <div style={styles.optionsContainer}>
-          <ProfilePill onClick={()=>setShowActivity(false)}>Profile</ProfilePill>
-          <ProfilePill onClick={()=>{setShowActivity(!showActivity)}}>Activity</ProfilePill>
-          {user.id === currentUser.id && <NavLink style={styles.buttonfix} as={Link} to={`/user/edit`}><ProfilePill>Settings</ProfilePill></NavLink>}
+          {showActivity ? <ToggleOptions onClick={()=>setShowActivity(false)}>Profile</ToggleOptions> : <ProfilePill onClick={()=>setShowActivity(false)}>Profile</ProfilePill> }
+          {showActivity ? <ProfilePill onClick={()=>{setShowActivity(!showActivity)}}>Activity</ProfilePill> : <ToggleOptions onClick={()=>{setShowActivity(!showActivity)}}>Activity</ToggleOptions> }
+          {user.id === currentUser.id && <NavLink style={styles.buttonfix} as={Link} to={`/user/edit`}><ToggleOptions>Settings</ToggleOptions></NavLink>}
           </div>
           <ShowActivityStyle>
           {showActivity && <Activity user = {user}/>}
@@ -95,7 +90,7 @@ const styles = {
     margin:'47px',
     marginBottom: '51px',
     marginRight: '20px',
-    marginLeft: '78px'
+    marginLeft: '60px'
   },
   name: {
     width: '180px',
@@ -118,8 +113,7 @@ const styles = {
   optionsContainer: {
     display: "flex",
     flexDirection: "row",
-    marginLeft: '69px',
-    marginBottom: '51px'
+    marginLeft: '32px',
   },
  
 }

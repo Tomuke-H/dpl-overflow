@@ -68,6 +68,7 @@ const TagsPage = () => {
         <div>
           <form onSubmit={(e) => {e.preventDefault()}}>
             <input 
+            style = {styles.input}
             type="text"
             placeholder="Search"
             value = {tagSearch}
@@ -124,6 +125,10 @@ const styles ={
   descript: {
     margin: "10px",
     color: "#000000",
+  },
+  input: {
+    borderRadius:"50px",
+    padding:"0px 0px 0px 10px",
   },
 
 

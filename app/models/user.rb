@@ -67,6 +67,11 @@ def self.user_answers(id)
   .order('a.created_at DESC')
 end
 
+def self.cohorts
+  select('DISTINCT u.cohort')
+  .from('users AS u')
+end
+
 
   extend Devise::Models
   # Include default devise modules. Others available are:

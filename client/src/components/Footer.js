@@ -7,7 +7,7 @@ import YouTubeIcon from '../../src/icons/YouTubeIcon.png'
 
 const Footer = () => {
   return (
-      <Navbar bg="white" fixed="bottom" style={{borderTop: 'solid 2px #C4C4C4', padding: '15px'}}>
+      <Navbar bg="white" fixed="bottom" style={{borderTop: 'solid 2px #C4C4C4', padding: '15px', height: '64px'}}>
         <Nav.Item>
           <Nav.Link href='https://www.instagram.com/devpointlabs/' target="_blank" style={{margin: "0px", padding: "0px"}}>
             <Image src={instagramIcon} style={styles.iglogo} />

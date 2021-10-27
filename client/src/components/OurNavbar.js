@@ -86,7 +86,7 @@ const OurNavbar = (props) => {
 
   return(
     <span>
-    <Navbar bg="white" fixed="top" collapseOnSelect style={{borderBottom: 'solid 2px #C4C4C4', padding: '0px'}}>
+    <Navbar bg="white" fixed="top" collapseOnSelect style={{borderBottom: 'solid 2px #C4C4C4', padding: '0px', height: '70px'}}>
       <Nav.Link style={styles.logo} as={Link} to='/'>
         <Image src={DplOLogo} style={styles.logo}/>
       </Nav.Link >
@@ -111,8 +111,8 @@ const styles = {
     color: '#757575'
   },
   logo: {
-    width: '90px',
-    height: '90px',
+    width: '70px',
+    height: '70px',
     margin: '0px',
     padding: '0px'
   }

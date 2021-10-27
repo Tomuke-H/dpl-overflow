@@ -14,24 +14,24 @@ export const TagPill = styled.div`
   font-size: 7px;
   letter-spacing: 1px;
   color:#FFFFFF;
-  background-color:rgba(110, 84, 163, .75);
+  background-color:rgba(110, 84, 163, .70);
   text-align:center;
   text-transform: capitalize;
 `
 export const TagPagePill = styled.div`
   display: inline-block;
   margin: 10px;
-  padding: 5px 10px 5px 10px;
+  padding: 5px 5px 5px 5px;
   border-width: 2px;
   border-style: solid;
   border-color: #6E54A3;
-  border-radius: 10px;
+  border-radius: 6px;
   font-weight:600;
+  font-size: .75em ;
   letter-spacing: 1px;
   color:#FFFFFF;
-  background-color:rgba(110, 84, 163, .75);
+  background-color:rgba(110, 84, 163, .70);
   text-align:center;
   text-transform: capitalize;
-
 `
 

@@ -1,9 +1,9 @@
 :root {
-  font-family: Lato;
   background-color: #FFFCF9;
 }
 
 .background {
+  font-family: Lato;
   position: relative;
   height: auto;
   background-color: #FFFCF9;

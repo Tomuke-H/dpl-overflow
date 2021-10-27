@@ -73,6 +73,7 @@ const styles = {
         backgroundColor: "#FFFFFF",
         border: "1px solid rgba(0, 0, 0, 0.3)",
         borderRadius: "6px",
+        fontSize: "16px"
     },
 
     buttonGroup: {
@@ -105,7 +106,7 @@ const styles = {
         height: "56px",
 
         fontStyle: "normal",
-        fontWeight: "normal",
+        fontWeight: "500",
         fontSize: "40.8px",
         lineHeight: "56px",
     },

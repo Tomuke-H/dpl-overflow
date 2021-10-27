@@ -62,7 +62,7 @@ export default function OtherUserProfile(props) {
           <StatTitle>Questions</StatTitle>
           </div>
           </Box>
-        <Box>
+        <Box style={{marginLeft: '120px'}}>
           <AboutMe>{user.about_me}</AboutMe>
         </Box>
         </StatsAndAbout>

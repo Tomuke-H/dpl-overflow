@@ -32,19 +32,19 @@ class Api::QuestionsController < ApplicationController
     puts '---------------------------------------------'
     puts params[:tag_ids]
     puts '---------------------------------------------'
-    render json: {questions: Question.find_questions_by_tag(params[:tag_ids]).page(@page).per(10), total_pages: Question.find_questions_by_tag(params[:tag_ids]).page(@page).per(10).total_pages}
+    render json: {questions: Question.find_questions_by_tag(params[:tag_ids]).page(@page).per(20), total_pages: Question.find_questions_by_tag(params[:tag_ids]).page(@page).per(20).total_pages}
   end
 
   def unanswered_questions
-    render json: {questions: Question.unanswered_questions.page(@page).per(10), total_pages: Question.unanswered_questions.page(@page).per(10).total_pages}
+    render json: {questions: Question.unanswered_questions.page(@page).per(20), total_pages: Question.unanswered_questions.page(@page).per(20).total_pages}
   end
   
   def follow
-    render json: {questions: Question.follow(current_user.follow).page(@page).per(10), total_pages: Question.follow(current_user.follow).page(@page).per(10).total_pages}
+    render json: {questions: Question.follow(current_user.follow).page(@page).per(20), total_pages: Question.follow(current_user.follow).page(@page).per(20).total_pages}
   end
 
   def search
-    render json: {questions: Question.search(params[:body]).page(@page).per(10), total_pages: Question.search(params[:body]).page(@page).per(10).total_pages}
+    render json: {questions: Question.search(params[:body]).page(@page).per(20), total_pages: Question.search(params[:body]).page(@page).per(20).total_pages}
   end
 
   def update

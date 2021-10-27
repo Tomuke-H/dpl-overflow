@@ -1,4 +1,4 @@
-import './App.css';
+import './stylesheets/App.css'
 import { Route, Switch } from 'react-router';
 import Home from './pages/Home';
 import Login from './components/Login';
@@ -87,7 +87,7 @@ function App() {
     )
   }
   return (
-    <div style={styles.everything}>
+    <div className="background">
       <FetchUser>
         <Switch>
           {/* Currently Commented out so that navbar appears on the login and register pages */}
@@ -101,11 +101,16 @@ function App() {
   )
 }
 
-const styles = {
-  everything: {
-    fontFamily: 'Lato',
-    backgroundColor: '#FFFCF9',
-  }
-}
+// const styles = {
+//   everything: {
+//     fontFamily: 'Lato',
+//     backgroundColor: '#FFFCF9',
+//     backgroundSize: '60%',
+//     backgroundImage: `url(${Background})`,
+//     backgroundRepeat: 'no-repeat',
+//     backgroundAttachment: 'fixed',
+//     backgroundPosition: '50% 50%',
+//   }
+// }
 
 export default App;

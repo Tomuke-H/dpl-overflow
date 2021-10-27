@@ -1,0 +1,24 @@
+:root {
+  font-family: Lato;
+}
+
+.background {
+  position: relative;
+  height: auto;
+  background-color: #FFFCF9;
+}
+
+.background::before {
+  content: "";
+  background-size: 60%;
+  background-image: url(../icons/DevPointOverflow_LogoOnly_3x.png);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 50% 50%;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 0.07;
+}

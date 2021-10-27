@@ -43,10 +43,10 @@ export default function OtherUserProfile(props) {
           <ShowActivityStyle>
           {showActivity && <Activity user = {user}/>}
         </ShowActivityStyle>
-        {/* <div style={{display: 'flex', flexDirection: 'row'}}>
+        <div style={{display: 'flex', flexDirection: 'row'}}>
         <Title style={{marginLeft: '60px'}}>STATS</Title>
         <Title style={{marginLeft: '635px'}}>about</Title>
-        </div> */}
+        </div>
         <StatsAndAbout>
           <Box>
             <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around'}}>

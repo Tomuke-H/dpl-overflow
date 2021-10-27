@@ -33,7 +33,7 @@ margin: 18px;
 export const StatsAndAbout = styled.div`
 display: flex;
 flex-direction: row;
-justify-content: space-around;
+margin-left: 60px;
 `
 
 export const Box = styled.div`

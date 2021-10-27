@@ -58,7 +58,7 @@ const TagsPage = () => {
 
   const renderSearch = () => {
     return(
-      <div style={{display:"flex", justifyContent:"space-between",alignItems:"self-end"}}>
+      <div style={{display:"flex", justifyContent:"space-between", alignItems:"self-end"}}>
         <div>
           <Form style={{alignContent:"right"}} onSubmit={handleSubmit}>
             <Form.Control placeholder="Search"

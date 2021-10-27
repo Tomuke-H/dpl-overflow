@@ -68,9 +68,6 @@ export default function OtherUserProfile(props) {
         </StatsAndAbout>
     </div>
   )
-
-
-
 }
 
 const styles = {

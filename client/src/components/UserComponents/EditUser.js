@@ -285,7 +285,7 @@ const styles = {
         borderStyle: "solid",
         borderColor: "#6E54A3",
         borderRadius: "5px",
-        fontWeight:"600px",
+        fontWeight:"600",
         fontSize: "14px",
         letterSpacing: ".7px",
         color:"#FFFFFF",

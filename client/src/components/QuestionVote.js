@@ -270,9 +270,6 @@ const QuestionVote = ({question}) => {
 
   const styles = {
   voteBox: {
-    position: "absolute",
-    top: "189px",
-    left: "44px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -281,7 +278,7 @@ const QuestionVote = ({question}) => {
     maxWidth: "850px",
     margin: "10px",
     fontSize: "30px",
-    fontWeight: "500px",
+    fontWeight: "500",
     display: "flex",
     alignItems: "center",
     letterSpacing: ".5px",

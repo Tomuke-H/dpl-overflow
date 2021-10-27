@@ -116,7 +116,7 @@ const styles = {
     marginLeft: "40px",
     marginRight: "10px",
     fontSize: "16px",
-    fontWeight: "500px",
+    fontWeight: "500",
     display: "flex",
     alignItems: "flex-start",
     letterSpacing: ".5px",
@@ -127,7 +127,7 @@ const styles = {
     marginLeft: "50px",
     marginRight: "10px",
     fontSize: "14px",
-    fontWeight: "500px",
+    fontWeight: "500",
     display: "flex",
     alignItems: "flex-start",
     letterSpacing: ".5px",
@@ -138,7 +138,7 @@ const styles = {
     display: "flex",
     flexDirection: "row",
     fontSize: "14px",
-    fontWeight: "500px",
+    fontWeight: "500",
     marginTop: "30px",
   },
   answerContainer: {
@@ -156,7 +156,7 @@ const styles = {
   addComment: {
     marginLeft: "50px",
     fontSize: "14px",
-    fontWeight: "500px",
+    fontWeight: "500",
     color: "#757575"
   }
 }

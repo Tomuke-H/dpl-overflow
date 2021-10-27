@@ -28,7 +28,7 @@ return(
 
 const styles = {
   commentAuthor: {
-    fontWeight: "500px",
+    fontWeight: "500",
     fontSize: "16px",
     letterSpacing: "0.5px",
     color: "#000000"

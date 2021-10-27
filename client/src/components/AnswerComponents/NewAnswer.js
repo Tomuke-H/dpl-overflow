@@ -54,7 +54,7 @@ const NewAnswer = ({props, answers, setAnswers}) => {
 
 const styles = {
   yourAnswer: {
-    fontWeight: "500px",
+    fontWeight: "500",
     fontSize: "20px",
     letterSpacing: "0.5px",
   }

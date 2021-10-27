@@ -3,8 +3,6 @@ import React, { useEffect, useState } from "react"
 import { Alert} from "react-bootstrap"
 import { useHistory } from "react-router"
 import { TagPagePill } from "../components/TagComponents/TagPill"
-import { DPLButton } from "../components/DPLButtons"
-
 
 const TagsPage = () => {
   const [tags, setTags] = useState([])
@@ -75,7 +73,6 @@ const TagsPage = () => {
             onChange={(e) => {
             setTagSearch(e.target.value)}}/>
           </form>
-            <DPLButton onClick={()=>{reset()}}>Reset Search</DPLButton>
         </div>
       </div>
     )

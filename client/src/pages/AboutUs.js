@@ -122,16 +122,18 @@ const styles ={
 
   img:{
     height:"auto",
-    width:"100%"
+    width:"100%",
   },
   sub:{
-    margin: "5px"
+    margin: "5px",
   },
   header:{
-    margin: "5px"
+    margin: "5px",
+    fontWeight:" 600",
   },
   bio:{
-    margin: "5px"
+    margin: "5px",
+    fontWeight:"500",
   },
 }
 

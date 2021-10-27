@@ -45,6 +45,7 @@ const styles = {
 
   row: {
     display: "flex",
+    backgroundColor: '#FFFCF9'
   },
 
   column1: {

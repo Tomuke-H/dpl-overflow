@@ -30,7 +30,7 @@ export default function OtherUserProfile(props) {
   }
 
   return (
-    <div style={{display: 'flex', flexDirection: 'column'}}>
+    <div style={{display: 'flex', flexDirection: 'column', height: '100%', width: '100%' }}>
       <div style={{display: 'flex', flexDirection: 'row'}}>
           <Image style={styles.profilePic} src={user.image} />
             <p style={styles.name}>{user.name}</p>
@@ -76,6 +76,7 @@ export default function OtherUserProfile(props) {
 const styles = {
   buttonfix: {
      transform: "translateY(-8px) translateX(-16px)",
+    color: 'black'
   },
   statsCard: {
     width: '600px',
@@ -106,9 +107,7 @@ const styles = {
     margin: '20px',
     marginLeft: '18px',
     marginTop: '58px',
-    color: '#000000',
-    // left: '157px',
-    // top: '126px',
+    color: '#000000'
   },
   optionsContainer: {
     display: "flex",

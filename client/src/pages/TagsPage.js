@@ -108,6 +108,8 @@ const styles ={
     borderRadius:"6px",
     backgroundColor:"#ffffff",
     padding: "20px 40px 20px 40px",
+    minWidth: '663px', 
+    minHeight: '464px'
   },
 
   gridChild:{

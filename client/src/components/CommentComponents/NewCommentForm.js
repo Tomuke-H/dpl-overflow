@@ -25,6 +25,7 @@ const handleSubmit = (e, comment) => {
       <Form onSubmit={(e)=>{handleSubmit(e, comment)}}>
       {/* <Form> */}
         <Form.Control
+        as="textarea"
         value={commentBody}
         label="Body"
         onChange={(e) => setCommentBody(e.target.value)}

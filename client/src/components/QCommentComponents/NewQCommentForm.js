@@ -25,6 +25,7 @@ const handleSubmit = (e, qcomment) => {
       <Form onSubmit={(e)=>{handleSubmit(e, qcomment)}}>
       {/* <Form> */}
         <Form.Control
+        as="textarea"
         value={qcommentBody}
         label="Body"
         onChange={(e) => setQCommentBody(e.target.value)}

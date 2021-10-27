@@ -29,6 +29,7 @@ const EditCommentForm = ({updateComments, answer, c, showEdit, setShowEdit}) => 
     <div>
       <Form onSubmit={handleSubmit}>
         <Form.Control
+        as="textarea"
         value={commentBody}
         label="Body"
         onChange={(e) => setCommentBody(e.target.value)}

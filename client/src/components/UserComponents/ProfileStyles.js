@@ -39,6 +39,8 @@ margin-left: 60px;
 export const Box = styled.div`
 width: 600px;
 height: 79px;
+min-width: 600px;
+min-height: 79px;
 background: #FFFFFF;
 border: 1px solid rgba(0, 0, 0, 0.2);
 box-sizing: border-box;

@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react'
 import { Table } from 'react-bootstrap'
 import BoxLoader from '../components/BoxLoader'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import {cohorts} from '../components/Cohorts';
 import '../stylesheets/Leaderboard.css'
 import UserRow from '../components/UserComponents/UserRow';
 
@@ -14,9 +13,11 @@ const Leaderboard = () => {
   const [page, setPage] = useState(1)
   const [sortBy, setSortBy] = useState('all')
   const [cohort, setCohort] = useState(null)
+  const [cohorts, setCohorts] = useState([])
   const history = useHistory()
 
   useEffect(()=>{
+    getCohorts()
     getUsers(sortBy, null, page)
   },[])
 
@@ -64,6 +65,22 @@ const Leaderboard = () => {
         <UserRow id={u.id} index={index} history={history}/>
       )
     })
+  }
+
+  const getCohorts = async () => {
+    try{
+    let res = await axios.get(`/api/cohorts`)
+    setCohorts(normCohorts(res.data))
+  } catch(err) {
+    console.log(err)
+  }
+}
+  const normCohorts = (res)=>{
+    let data = []
+    res.forEach( co => {
+      data.push(co.cohort)
+    });
+    return data
   }
 
   const renderDropdownItems = () => {
@@ -119,22 +136,14 @@ const Leaderboard = () => {
 
 const styles ={
 
-  tableWrapper: {
-    display: 'flex',
-    width: '1500px',
-    justifyContent: 'center'
-  },
   wrapper: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center'
-  },
-  img: {
-    height: '50px',
-    width: '50px'
-  },
+    margin:"60px 95px 0px 95px", 
+    padding:"10px",
+    },
+
   table: {
-    width: '86.1vw',
     border: '1.5px solid rgba(0, 0, 0, 0.3)',
     borderRadius: '6px',
     padding: '25px 50px 25px 50px',
@@ -145,10 +154,9 @@ const styles ={
   header: {
     display: 'flex',
     justifyContent: 'space-between',
-    width: '86.1vw',
     alignItems: 'center',
-    margin: '90px 0px 0px 0px',
   },
+  
   leaderboard: {
     fontStyle: 'normal',
     fontWeight: '600px',

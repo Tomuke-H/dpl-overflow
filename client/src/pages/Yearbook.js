@@ -27,12 +27,21 @@ const Yearbook = () => {
   const getCohorts = async () => {
     try{
     let res = await axios.get(`/api/cohorts`)
-    // console.log(res.data)
-    setCohorts(res.data)
+    console.log(normCohorts(res.data))
+    setCohorts(normCohorts(res.data))
   } catch(err) {
     console.log(err)
   }
 }
+
+const normCohorts = (res)=>{
+  let data = []
+  res.forEach( co => {
+    data.push(co.cohort)
+  });
+  return data
+}
+
 
   const renderUsers = () => {
     if (users) {
@@ -62,7 +71,7 @@ const Yearbook = () => {
   const renderOptions = () => { 
     return(cohorts.map((cohort)=> {
         return(
-          <Dropdown.Item onClick={(e) => getCohortUsers(cohort.cohort)}>{cohort.cohort}</Dropdown.Item>
+          <Dropdown.Item onClick={(e) => getCohortUsers(cohort)}>{cohort}</Dropdown.Item>
 )}))}
 
   let dropDown = () => {
@@ -98,7 +107,7 @@ export default Yearbook;
 const styles = {
   yearbook: {
   fontStyle: 'normal',
-  fontWeight: '600px',
+  fontWeight: '600',
   textTransform: 'uppercase',
   flexDirection: 'flex-end',
   color: '#000000',
@@ -111,7 +120,7 @@ const styles = {
     borderStyle: "solid",
     borderColor: "#6E54A3",
     borderRadius: "6px",
-    fontWeight:"600px",
+    fontWeight:"600",
     fontSize: "14px",
     letterSpacing: ".7px",
     color:"#FFFFFF",

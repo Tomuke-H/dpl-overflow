@@ -120,7 +120,7 @@ const styles ={
   },
 
   header: {
-    fontWeight: "500px",
+    fontWeight: "500",
     display: "flex",
     alignItems: "center",
     textAlign: "center",

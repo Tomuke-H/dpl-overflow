@@ -6,6 +6,10 @@ class Api::UsersController < ApplicationController
     render json: User.all
   end
 
+  def cohorts
+    render json: User.cohorts
+  end
+
   def show
     render json: current_user
   end

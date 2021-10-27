@@ -8,6 +8,7 @@ import User from '../components/UserComponents/User';
 
 const Yearbook = () => {
   const [users, setUsers] = useState([])
+  const [cohorts, setCohorts] = useState([])
 
   const getAllUsers = async () => {
     try {
@@ -20,7 +21,18 @@ const Yearbook = () => {
 
   useEffect(()=>{
     getAllUsers();
+    getCohorts();
   },[])
+
+  const getCohorts = async () => {
+    try{
+    let res = await axios.get(`/api/cohorts`)
+    // console.log(res.data)
+    setCohorts(res.data)
+  } catch(err) {
+    console.log(err)
+  }
+}
 
   const renderUsers = () => {
     if (users) {
@@ -47,6 +59,11 @@ const Yearbook = () => {
     }
   }
 
+  const renderOptions = () => { 
+    return(cohorts.map((cohort)=> {
+        return(
+          <Dropdown.Item onClick={(e) => getCohortUsers(cohort.cohort)}>{cohort.cohort}</Dropdown.Item>
+)}))}
 
   let dropDown = () => {
     return (
@@ -54,9 +71,7 @@ const Yearbook = () => {
           <Dropdown.Toggle style={styles.button}>Sort By Cohort</Dropdown.Toggle>
           <Dropdown.Menu>
             <Dropdown.Item onClick={(e) => getAllUsers()}>View All</Dropdown.Item>
-            <Dropdown.Item onClick={(e) => getCohortUsers('Fall 2021')}>Fall 2021</Dropdown.Item>
-            <Dropdown.Item onClick={(e) => getCohortUsers('Winter 2021')}>Winter 2021</Dropdown.Item>
-            <Dropdown.Item onClick={(e) => getCohortUsers('Spring 2022')}>Spring 2022</Dropdown.Item>
+            {renderOptions()}
           </Dropdown.Menu>
         </Dropdown>
   )}

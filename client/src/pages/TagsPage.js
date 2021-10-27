@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react"
 import { Alert} from "react-bootstrap"
 import { useHistory } from "react-router"
 import { TagPagePill } from "../components/TagComponents/TagPill"
+import "../stylesheets/TagPage.css"
 
 const TagsPage = () => {
   const [tags, setTags] = useState([])
@@ -66,6 +67,7 @@ const TagsPage = () => {
         <div>
           <form onSubmit={(e) => {e.preventDefault()}}>
             <input 
+            id = "add"
             style = {styles.input}
             type="text"
             placeholder="Search"
@@ -131,7 +133,7 @@ const styles ={
   },
   input: {
     borderRadius:"20px",
-    padding:"7px 0px 8px 15px",
+    padding:"7px 0px 8px 35px",
   },
 }
 

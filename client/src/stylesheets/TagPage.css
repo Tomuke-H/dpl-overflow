@@ -1,0 +1,10 @@
+
+
+#add {
+  font-size: 13px;
+  background-image: url(../icons/search.png);
+  background-size: 30px;
+  background-repeat: no-repeat;
+  background-position: 4px;
+  outline: 0;
+}

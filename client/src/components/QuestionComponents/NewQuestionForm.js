@@ -88,26 +88,28 @@ const NewQuestionForm = ({ handleRedirect }) => {
       {errors && <h2 style={{border: 'solid 2px red', color: 'red'}}>{errors}</h2>}
       <FirstQuestionModal showModal={showModal} setShowModal={setShowModal} />
       <NewTagModal checkedItems={checkedItems} setCheckedItems={setCheckedItems} tags={tags} setTags={setTags} selectedValues={selectedValues} setSelectedValues={setSelectedValues} showTagModal={showTagModal} setShowTagModal={setShowTagModal} />
-      <h2>Ask a Question</h2>
+      <h2 style={styles.title}>ASK A QUESTION</h2>
       <div style={styles.formWrapper}>
         <Form onSubmit={handleSubmit}>
           <Form.Group className='mb-3'>
+            <p style={styles.topLabel}>Title</p>
             <Form.Control 
               required
               size='lg'
               value={title}
-              placeholder='Title'
               onKeyDown={(e)=>{checkKeyDown(e)}}
               onChange={(e) => setTitle(e.target.value)}
             />
           </Form.Group>
           <Form.Group className='mb-3'>
+          <p style={styles.label}>Body</p>
           <MarkdownEditor
             body = {body}
             setBody = {setBody}
             />
           </Form.Group>
           <Form.Group onKeyDown={(e)=>{checkKeyDown(e)}}>
+            <p style={styles.label}>Tags</p>
             <Multiselect 
             options={tags}
             selectedValues={selectedValues}
@@ -146,15 +148,38 @@ const styles = {
     },
   },
   formWrapper: {
-    border: 'solid 2px black',
+    border: 'solid 1px black',
     borderRadius: '6px',
     backgroundColor: 'white',
-    padding: '50px',
+    padding: '25px 45px 25px 45px',
     margin: '40px 0px 0px 0px'
   },
   newTagToggle: {
     width: '140px',
     height: '33px',
+    display: 'inline-block',
+    borderStyle: 'solid',
+    borderColor: '#757575',
+    borderRadius: '5px',
+    fontFamily: 'Lato',
+    fontWeight: '600px',
+    fontSize: '14px',
+    letterSpacing: '.7px',
+    color: 'white',
+    backgroundColor: '#757575',
+    textAlign: 'center',
+    textTransform: 'uppercase',
+    paddingTop: '2px'
+  },
+  title: {
+    marginTop: '20px'
+  },
+  label: {
+    fontWeight: '600',
+    marginTop: '20px'
+  },
+  topLabel: {
+    fontWeight: '600'
   }
 }
 

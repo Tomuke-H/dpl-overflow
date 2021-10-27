@@ -97,6 +97,7 @@ function App() {
           <Route component = {hasNavBar}/>
         </Switch>
       </FetchUser>
+      <div className='image'></div>
     </div>
   )
 }

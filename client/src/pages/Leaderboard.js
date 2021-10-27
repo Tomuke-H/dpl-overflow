@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react'
 import { Table } from 'react-bootstrap'
 import BoxLoader from '../components/BoxLoader'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import {cohorts} from '../components/Cohorts';
 import '../stylesheets/Leaderboard.css'
 import UserRow from '../components/UserComponents/UserRow';
 
@@ -14,9 +13,11 @@ const Leaderboard = () => {
   const [page, setPage] = useState(1)
   const [sortBy, setSortBy] = useState('all')
   const [cohort, setCohort] = useState(null)
+  const [cohorts, setCohorts] = useState([])
   const history = useHistory()
 
   useEffect(()=>{
+    getCohorts()
     getUsers(sortBy, null, page)
   },[])
 
@@ -64,6 +65,22 @@ const Leaderboard = () => {
         <UserRow id={u.id} index={index} history={history}/>
       )
     })
+  }
+
+  const getCohorts = async () => {
+    try{
+    let res = await axios.get(`/api/cohorts`)
+    setCohorts(normCohorts(res.data))
+  } catch(err) {
+    console.log(err)
+  }
+}
+  const normCohorts = (res)=>{
+    let data = []
+    res.forEach( co => {
+      data.push(co.cohort)
+    });
+    return data
   }
 
   const renderDropdownItems = () => {

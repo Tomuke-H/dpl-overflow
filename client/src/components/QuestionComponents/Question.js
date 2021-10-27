@@ -154,15 +154,15 @@ const Question = ({props, edited, setEdited, history, question, loading}) => {
 
 const styles = {
   theMightyDiv: {
-    marginRight: "260px",
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "center",
     marginBottom: "30px"
   },
   likesContainer: {
-    marginRight: "66px",
-    padding: "0px"
+    display: "flex",
+    alignItems: "flex-start"
   },
   questionContainer: {
     display: "flex",

@@ -270,9 +270,6 @@ const QuestionVote = ({question}) => {
 
   const styles = {
   voteBox: {
-    position: "absolute",
-    top: "189px",
-    left: "44px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",

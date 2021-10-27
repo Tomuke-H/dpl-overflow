@@ -37,11 +37,26 @@ const QuestionPage = (props) => {
   }
 
   return (
-    <div>
+    <div style={styles.qcontainer}>
       <Question props={props} edited = {edited} setEdited={setEdited} history={history} question={question} loading={loading}/>
       <Answers props = {props} /> 
     </div>
   )
+}
+
+const styles = {
+  qcontainer: {
+  display: "block",
+  marginLeft: "auto",
+  marginRight: "auto",
+  width: '86.1vw',
+  border: '1.5px solid rgba(0, 0, 0, 0.3)',
+  borderRadius: '6px',
+  padding: '25px 50px 25px 50px',
+  marginTop: '30px',
+  marginBottom: '30px',
+  backgroundColor:'#FFFFFF'
+}
 }
 
 export default QuestionPage;

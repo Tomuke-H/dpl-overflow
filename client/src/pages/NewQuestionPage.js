@@ -12,7 +12,7 @@ const NewQuestionPage = (props) => {
   /// markdown backtick instructions? 
   
   return(
-    <div>
+    <div style={{minWidth: '734px', minHeight: '480px'}}>
       <NewQuestionForm handleRedirect={handleRedirect}/>
     </div>
   )

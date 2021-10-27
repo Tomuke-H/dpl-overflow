@@ -34,7 +34,7 @@ const QuestionCard = ({question, history}) => {
   }
 
   return(
-    <div onClick={()=>handleRedirect(question.id)} className='qcard'>
+    <div onClick={()=>handleRedirect(question.id)} className='qcard' style={{minWidth: '772px', minHeight: '96px'}}>
       <div style={styles.vavdiv}>
         <div >
           <Card.Text style={styles.vav}>{question.likes}</Card.Text>

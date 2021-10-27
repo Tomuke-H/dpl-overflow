@@ -29,6 +29,7 @@ const EditQCommentForm = ({updateQComments, question, qc, showEdit, setShowEdit}
     <div>
       <Form onSubmit={handleSubmit}>
         <Form.Control
+        as="textarea"
         value={qcommentBody}
         label="Body"
         onChange={(e) => setQCommentBody(e.target.value)}

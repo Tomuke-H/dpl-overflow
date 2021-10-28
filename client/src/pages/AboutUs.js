@@ -1,12 +1,13 @@
 import React from "react"
+import TomHead from '../icons/Tom Headshot Option 3.jpg'
 
 const AboutUs = () =>{
 
   const teamInfo = [
     {name: "Tom Hohl",
     position:"Student of Fall 2021",
-    description:"Put something here",
-    img:"https://images-na.ssl-images-amazon.com/images/I/61LLhx0YtdL.jpg"
+    description:"Theatre Technician turned Software Developer",
+    img:`${TomHead}`
     },
     {name: "Michaela Sivertsen",
     position:"Student of Fall 2021",

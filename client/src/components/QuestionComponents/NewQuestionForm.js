@@ -120,6 +120,7 @@ const NewQuestionForm = ({ handleRedirect }) => {
             placeholder='Select Tags'
             style={styles.multiSelect}
             closeIcon="cancel"
+            avoidHighlightFirstOption="true"
             />
             {/* {tagList()} */}
           </Form.Group>

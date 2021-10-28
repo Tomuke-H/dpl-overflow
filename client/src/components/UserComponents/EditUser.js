@@ -20,7 +20,6 @@ const EditUser = (id) => {
     const [selectedFile, setSelectedFile] = useState([])
     const current_password = user.password
     const history = useHistory();
-    const [showDelete, setShowDelete] = useState(false)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -54,18 +53,6 @@ const EditUser = (id) => {
 
     }
 
-    const deleteAccountConfirm = () => {
-        return(
-            <div>
-            <h3 style={styles.label}> Are you sure you want to delete your account? </h3>
-            <DPLButton 
-            type="submit" 
-            style={{height: "50px", margin: "10px"}}
-            onClick={deleteAccount(id)}>Yes, Delete My Account</DPLButton>
-            </div>
-        )
-    }
-
     const deleteAccount = async () => {
         try {
             await axios.delete("/api/auth");
@@ -75,8 +62,8 @@ const EditUser = (id) => {
         } catch (error) {
             alert("error deleting account");
             console.log(error);
-          }
         }
+    }
 
     const fileSelectedHandler = event => {
         try {
@@ -229,8 +216,7 @@ const EditUser = (id) => {
             </div>
             <br />
             <div style={styles.formdiv}>
-            <DPLButton onClick={() => setShowDelete(!showDelete)} style={{height: "50px", margin: "10px"}}>Delete Account</DPLButton>
-            {showDelete && deleteAccountConfirm()}
+            <DPLButton onClick={() => deleteAccount(id)} style={{height: "50px", margin: "10px"}}>Delete Account</DPLButton>
             </div>
             </Container>
         </div>

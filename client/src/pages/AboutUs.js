@@ -3,6 +3,7 @@ import TomHead from '../icons/Tom Headshot Option 3.jpg'
 import MacHead from '../icons/MicHeadShot.jpg'
 import MichaelHead from '../icons/MichaelHead.jpeg'
 import SydHeadShot from '../icons/SydHeadShot.png'
+import Julie from '../icons/Julie.jpg'
 
 const AboutUs = () =>{
 
@@ -24,8 +25,8 @@ const AboutUs = () =>{
     },
     {name: "Julie Tang",
     position:"Student of Fall 2021",
-    description:"Put something here",
-    img:"https://images-na.ssl-images-amazon.com/images/I/61LLhx0YtdL.jpg"
+    description:"BioReagents Formulator turned Software Developer",
+    img:`${Julie}`
     },
     {name: "Michael Cheung",
     position:"Student of Fall 2021",

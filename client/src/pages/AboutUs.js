@@ -84,6 +84,7 @@ const AboutUs = () =>{
       <div style={styles.gridlayoutforteam}>
       {team()}
       </div>
+      <h1 style={{margin:"0px 0px 0px 20px",textAlign:"center"}}>Assisting Staff</h1>
       <div style={styles.gridlayoutforstaff}>
       {teachers()}
       </div >

@@ -1,5 +1,6 @@
 import React from "react"
 import TomHead from '../icons/Tom Headshot Option 3.jpg'
+import MichaelHead from '../icons/MichaelHead.jpg'
 
 const AboutUs = () =>{
 
@@ -26,8 +27,8 @@ const AboutUs = () =>{
     },
     {name: "Michael Cheung",
     position:"Student of Fall 2021",
-    description:"Put something here",
-    img:"https://images-na.ssl-images-amazon.com/images/I/61LLhx0YtdL.jpg"
+    description:"Chemical Engineer Grad turned Software Developer",
+    img:`${MichaelHead}`
     },
   ]
 

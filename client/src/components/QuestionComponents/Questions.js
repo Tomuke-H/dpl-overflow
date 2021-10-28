@@ -6,6 +6,8 @@ import { Container, Form } from "react-bootstrap";
 import SortSelector from "./SortSelector";
 import BoxLoader from "../BoxLoader";
 import InfiniteScroll from "react-infinite-scroll-component";
+import "../../stylesheets/TagPage.css"
+
 
 const Questions = ({location, history}) => {
   const [questions, setQuestions] = useState([])
@@ -142,7 +144,7 @@ const Questions = ({location, history}) => {
       <div style={styles.titleWrapper}>
         <div>
           <h1 style={styles.title}>TOP QUESTIONS</h1>
-          <Form.Control placeholder='Search' value={search} onChange={(e) => getQuestions('search', 1, null, e.target.value)}/>
+          <input style={styles.input} placeholder='Search' value={search} id = "add" onChange={(e) => getQuestions('search', 1, null, e.target.value)}/>
         </div>
         <div style={styles.selectWrapper}>
           <SortSelector 
@@ -184,7 +186,11 @@ const styles = {
   },
   selectWrapper: {
     paddingTop: '46px'
-  }
+  },
+  input: {
+    borderRadius:"20px",
+    padding:"7px 0px 8px 35px",
+  },
 }
 
 export default Questions;

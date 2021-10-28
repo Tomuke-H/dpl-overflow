@@ -1,5 +1,6 @@
 import React from "react"
 import TomHead from '../icons/Tom Headshot Option 3.jpg'
+import MacHead from '../icons/MicHeadShot.jpg'
 
 const AboutUs = () =>{
 
@@ -11,8 +12,8 @@ const AboutUs = () =>{
     },
     {name: "Michaela Sivertsen",
     position:"Student of Fall 2021",
-    description:"Put something here",
-    img:"https://images-na.ssl-images-amazon.com/images/I/61LLhx0YtdL.jpg"
+    description:"Warehouse Wizard turned Software Developer",
+    img:`${MacHead}`
     },
     {name: "Sydney Orr",
     position:"Student of Fall 2021",
@@ -35,17 +36,14 @@ const AboutUs = () =>{
     {name: "James Yeates",
     position:"Instructor of Fall 2021",
     description:"Took over Dani's position for guiding the project after her departure",
-    img:"https://images-na.ssl-images-amazon.com/images/I/61LLhx0YtdL.jpg"
     },
     {name: "Will Liang",
     position:"Layout Provider",
     description:"Provided guidelines for how they wanted the interface to look as well as what functionality was desired.",
-    img:"https://images-na.ssl-images-amazon.com/images/I/61LLhx0YtdL.jpg"
     },
     {name: "Dani Dona",
     position:"Teacher's assistant",
     description:"Left us Oct 15th for a new job",
-    img:"https://images-na.ssl-images-amazon.com/images/I/61LLhx0YtdL.jpg"
     },
   ]
 

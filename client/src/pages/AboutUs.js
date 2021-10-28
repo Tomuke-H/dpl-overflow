@@ -15,7 +15,7 @@ const AboutUs = () =>{
     },
     {name: "Sydney Orr",
     position:"Student of Fall 2021",
-    description:"Put something here",
+    description:"",
     img:"https://images-na.ssl-images-amazon.com/images/I/61LLhx0YtdL.jpg"
     },
     {name: "Julie Tang",

@@ -1,6 +1,7 @@
 import React from "react"
 import TomHead from '../icons/Tom Headshot Option 3.jpg'
 import MacHead from '../icons/MicHeadShot.jpg'
+import SydHeadShot from '../icons/SydHeadShot.png'
 
 const AboutUs = () =>{
 
@@ -17,8 +18,8 @@ const AboutUs = () =>{
     },
     {name: "Sydney Orr",
     position:"Student of Fall 2021",
-    description:"Recently certified developer who loves the outdoors.",
-    img:"https://images-na.ssl-images-amazon.com/images/I/61LLhx0YtdL.jpg"
+    description:"Bjorn's Barista turns Software Developer",
+    img:`${SydHeadShot}`
     },
     {name: "Julie Tang",
     position:"Student of Fall 2021",

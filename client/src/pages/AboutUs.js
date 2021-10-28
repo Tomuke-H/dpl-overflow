@@ -2,6 +2,7 @@ import React from "react"
 import TomHead from '../icons/Tom Headshot Option 3.jpg'
 import MacHead from '../icons/MicHeadShot.jpg'
 import MichaelHead from '../icons/MichaelHead.jpeg'
+import SydHeadShot from '../icons/SydHeadShot.png'
 
 const AboutUs = () =>{
 
@@ -18,8 +19,8 @@ const AboutUs = () =>{
     },
     {name: "Sydney Orr",
     position:"Student of Fall 2021",
-    description:"Put something here",
-    img:"https://images-na.ssl-images-amazon.com/images/I/61LLhx0YtdL.jpg"
+    description:"Bjorn's Barista turned Software Developer",
+    img:`${SydHeadShot}`
     },
     {name: "Julie Tang",
     position:"Student of Fall 2021",
@@ -80,7 +81,7 @@ const AboutUs = () =>{
 
   return(
     <div style={styles.container}>
-      <h1 style={{margin:"0px 0px 0px 20px"}}>Our Team</h1>
+      <h1 style={{margin:"0px 0px 0px 20px", fontWeight: "600"}}>OUR TEAM</h1>
       <div style={styles.gridlayoutforteam}>
       {team()}
       </div>

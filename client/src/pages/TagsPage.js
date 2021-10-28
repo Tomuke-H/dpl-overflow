@@ -83,7 +83,7 @@ const TagsPage = () => {
   return(
     <div style={styles.container}>
       <div style={{display:"flex", justifyContent:"space-between", alignItems:"flex-start"}}>
-      <h1 style={styles.header}>Tags</h1>
+      <h1 style={styles.header}>TAGS</h1>
       {renderSearch()}
       </div>
       <div style={styles.grid}>
@@ -120,7 +120,7 @@ const styles ={
   },
 
   header: {
-    fontWeight: "500",
+    fontWeight: "600",
     display: "flex",
     alignItems: "center",
     textAlign: "center",

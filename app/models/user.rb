@@ -70,6 +70,7 @@ end
 def self.cohorts
   select('DISTINCT u.cohort')
   .from('users AS u')
+  .order('u.cohort')
 end
 
 

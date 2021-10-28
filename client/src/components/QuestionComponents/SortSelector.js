@@ -56,6 +56,7 @@ const SortSelector = ({selectedValues, setSelectedValues, sortBy, getQuestions, 
         onRemove={(selectedList, selectedItem) => handleRemoveTag(selectedItem.id, selectedList)}
         closeIcon='cancel'
         displayValue="name"
+        avoidHighlightFirstOption="true"
       />}
     </div>
   )

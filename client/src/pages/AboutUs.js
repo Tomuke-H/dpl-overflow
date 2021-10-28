@@ -1,32 +1,37 @@
 import React from "react"
+import TomHead from '../icons/Tom Headshot Option 3.jpg'
+import MacHead from '../icons/MicHeadShot.jpg'
+import MichaelHead from '../icons/MichaelHead.jpeg'
+import SydHeadShot from '../icons/SydHeadShot.png'
+import Julie from '../icons/Julie.jpg'
 
 const AboutUs = () =>{
 
   const teamInfo = [
     {name: "Tom Hohl",
     position:"Student of Fall 2021",
-    description:"Put something here",
-    img:"https://images-na.ssl-images-amazon.com/images/I/61LLhx0YtdL.jpg"
+    description:"Theatre Technician turned Software Developer",
+    img:`${TomHead}`
     },
     {name: "Michaela Sivertsen",
     position:"Student of Fall 2021",
-    description:"Put something here",
-    img:"https://images-na.ssl-images-amazon.com/images/I/61LLhx0YtdL.jpg"
+    description:"Warehouse Wizard turned Software Developer",
+    img:`${MacHead}`
     },
     {name: "Sydney Orr",
     position:"Student of Fall 2021",
-    description:"Put something here",
-    img:"https://images-na.ssl-images-amazon.com/images/I/61LLhx0YtdL.jpg"
+    description:"Bjorn's Barista turned Software Developer",
+    img:`${SydHeadShot}`
     },
     {name: "Julie Tang",
     position:"Student of Fall 2021",
-    description:"Put something here",
-    img:"https://images-na.ssl-images-amazon.com/images/I/61LLhx0YtdL.jpg"
+    description:"BioReagents Formulator turned Software Developer",
+    img:`${Julie}`
     },
     {name: "Michael Cheung",
     position:"Student of Fall 2021",
-    description:"Put something here",
-    img:"https://images-na.ssl-images-amazon.com/images/I/61LLhx0YtdL.jpg"
+    description:"Chemical Engineer Grad turned Software Developer",
+    img:`${MichaelHead}`
     },
   ]
 
@@ -34,17 +39,14 @@ const AboutUs = () =>{
     {name: "James Yeates",
     position:"Instructor of Fall 2021",
     description:"Took over Dani's position for guiding the project after her departure",
-    img:"https://images-na.ssl-images-amazon.com/images/I/61LLhx0YtdL.jpg"
     },
     {name: "Will Liang",
     position:"Layout Provider",
     description:"Provided guidelines for how they wanted the interface to look as well as what functionality was desired.",
-    img:"https://images-na.ssl-images-amazon.com/images/I/61LLhx0YtdL.jpg"
     },
     {name: "Dani Dona",
     position:"Teacher's assistant",
     description:"Left us Oct 15th for a new job",
-    img:"https://images-na.ssl-images-amazon.com/images/I/61LLhx0YtdL.jpg"
     },
   ]
 
@@ -80,10 +82,14 @@ const AboutUs = () =>{
 
   return(
     <div style={styles.container}>
-      <h1 style={{margin:"0px 0px 0px 20px"}}>Our Team</h1>
+      <h1 style={{margin:"0px 0px 0px 20px", fontWeight: "600"}}>OUR TEAM</h1>
       <div style={styles.gridlayoutforteam}>
       {team()}
       </div>
+      <br />
+      <br />
+      <br />
+      <h1 style={{margin:"0px 0px 0px 20px",textAlign:"center"}}>Assisting Staff</h1>
       <div style={styles.gridlayoutforstaff}>
       {teachers()}
       </div >
